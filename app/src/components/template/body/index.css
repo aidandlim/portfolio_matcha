@@ -1,0 +1,12 @@
+.body {
+    width: 100%;
+    height: calc(100% - 6rem);
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    position: relative;
+    float: left;
+
+    background-color: #EEEEEE;
+}
