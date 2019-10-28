@@ -77,3 +77,34 @@
     opacity: 1;
     transition: linear 0.3s;
 }
+
+.footer-icon-active {
+    width: 1.15rem;
+    height: 1.15rem;
+    margin: 0.4rem calc(50% - 0.5rem) 0.4rem calc(50% - 0.5rem);
+
+    position: relative;
+    float: left;
+
+    color: white;
+}
+
+.footer-title-active {
+    width: 3.5rem;
+    height: 0.95rem;
+    margin: 0 0.75rem;
+
+    position: relative;
+    float: left;
+
+    color: white;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 0.95rem;
+
+    background-color: #F06292;
+    border-radius: 0.35rem 0.35rem 0 0;
+
+    opacity: 1;
+}
