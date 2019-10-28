@@ -62,6 +62,12 @@
 
 ---
 
+## Luke Lim (@kilkim in 42 Silicon Valley)
+
+***Not Yet***
+
+---
+
 ## License
 
 - <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html" target="_blank">`GNU General Public License v2.0`</a>
