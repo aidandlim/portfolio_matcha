@@ -12,7 +12,7 @@
 
 ## Preview
 
-*** Not Yet ***
+***Not Yet***
 
 ---
 
@@ -40,13 +40,13 @@
 
 ## Features
 
-*** Not Yet ***
+***Not Yet***
 
 ---
 
 ## Live Demo
 
-*** Not Yet ***
+***Not Yet***
 
 ---
 
