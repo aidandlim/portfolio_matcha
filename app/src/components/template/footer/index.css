@@ -11,8 +11,6 @@
     background: linear-gradient(135deg,  rgba(255,171,64,1) 0%,rgba(255,82,82,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffab40', endColorstr='#ff5252',GradientType=1 );
 
-    border-top: solid 1px #FF80AB;
-
     z-index: 9;
 }
 
@@ -44,6 +42,8 @@
     float: left;
 
     color: #FCE4EC;
+
+    opacity: 0.75;
 }
 
 .footer-title {
@@ -74,7 +74,7 @@
 }
 
 .footer-icon-container:hover .footer-title {
-    opacity: 1;
+    opacity: 0.75;
     transition: linear 0.3s;
 }
 

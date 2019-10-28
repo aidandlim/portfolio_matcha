@@ -12,17 +12,21 @@
     background: -webkit-linear-gradient(-45deg,  rgba(255,82,82,1) 0%,rgba(255,171,64,1) 100%);
     background: linear-gradient(135deg,  rgba(255,82,82,1) 0%,rgba(255,171,64,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5252', endColorstr='#ffab40',GradientType=1 );
-
-    border-bottom: solid 1px #FF80AB;
+    
     z-index: 9;
 }
 
 .header-title {
+    width: 7rem;
+    height: 3rem;
+
     color: white;
     font-size: 1rem;
     font-family: 'Rubik Mono One', sans-serif;
     text-indent: 1rem;
     line-height: 3rem;
+
+    cursor: pointer;
 }
 
 .header-user {
@@ -35,4 +39,6 @@
 
     background-color: white;
     border-radius: 50%;
+
+    cursor: pointer;
 }

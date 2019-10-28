@@ -6,7 +6,7 @@ import Match from '../../function/match';
 import Search from '../../function/search';
 import Chat from '../../function/chat';
 import Notification from '../../function/notification';
-import Cover from '../../function/cover';
+import Cover from '../cover';
 
 import './index.css';
 

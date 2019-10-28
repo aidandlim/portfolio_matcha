@@ -5,7 +5,7 @@ import './index.css';
 const Matching = () => {
 	return (
 		<div className='matching'>
-			
+			Matching
 		</div>
 	);
 }
