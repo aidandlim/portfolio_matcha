@@ -2,7 +2,7 @@
   <img src="https://freepngimg.com/download/instagram/7-2-instagram-heart-picture.png" width="200" height="200" title="header" alt="header">
 </a>
 
-# Matcha Application
+# M@tch@
 
 > A responsive Single Page Application(SPA) using React & Node
 
