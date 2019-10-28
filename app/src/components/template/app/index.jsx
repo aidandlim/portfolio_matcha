@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { map_latitude, map_longitude } from '../../../actions';
+import { map_center } from '../../../actions';
 
 import Landing from '../landing';
 import Header from '../header';
@@ -17,10 +17,12 @@ const App = () => {
 	const map = useSelector(state => state.map);
 	const dispatch = useDispatch();
 
-	if(map.latitude === -1 && map.longitude === -1) {
+	if(map.center === null) {
 		navigator.geolocation.getCurrentPosition((position) => {
-			dispatch(map_latitude(position.coords.latitude));
-			dispatch(map_longitude(position.coords.longitude));
+			dispatch(map_center({
+				latitude: position.coords.latitude,
+				longitude: position.coords.longitude,
+			}));
 		});
 	}
 

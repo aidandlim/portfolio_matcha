@@ -11,7 +11,12 @@ const Map = (props) => {
 	let map = useSelector(state => state.map);
 
 	const _handleOnload = () => {
-		console.log('here');
+		setTimeout(() => {
+			document.getElementById('cover').style.opacity = 0;
+		}, 1000);
+		setTimeout(() => {
+			document.getElementById('cover').style.display = 'none';
+		}, 2000);
 	}
 
 	return (
@@ -19,7 +24,7 @@ const Map = (props) => {
 			className='map-viewer'
 			google={props.google}
 			zoom={12}
-			initialCenter={{ lat: map.latitude, lng: map.longitude }}
+			initialCenter={{ lat: map.center.latitude, lng: map.center.longitude }}
 			onReady={_handleOnload}
 		>
 		</GoogleMap>

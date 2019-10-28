@@ -9,16 +9,9 @@ export const ui_nav = (value) => {
 
 /***************************************************/
 
-export const map_latitude = (value) => {
+export const map_center = (value) => {
     return {
-        type: 'MAP_LATITUDE',
-        payload: value
-    };
-};
-
-export const map_longitude = (value) => {
-    return {
-        type: 'MAP_LONGITUDE',
+        type: 'MAP_CENTER',
         payload: value
     };
 };

@@ -6,6 +6,7 @@ import Match from '../../function/match';
 import Search from '../../function/search';
 import Chat from '../../function/chat';
 import Notification from '../../function/notification';
+import Cover from '../../function/cover';
 
 import './index.css';
 
@@ -18,6 +19,8 @@ const Body = () => {
 			{ui.nav === 2 ? <Search /> : ''}
 			{ui.nav === 3 ? <Chat /> : ''}
 			{ui.nav === 4 ? <Notification /> : ''}
+			
+			{ui.nav === 2 ? <Cover /> : ''}
 		</div>
 	);
 }
