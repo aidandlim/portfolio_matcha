@@ -1,6 +1,6 @@
 const map = {
-    latitude: 0,
-    longitude: 0,
+    latitude: -1,
+    longitude: -1,
 }
 
 const mapReducer = (state = map, action) => {
