@@ -11,6 +11,8 @@
     z-index: 99;
 
     transition: opacity 1s;
+    
+    display: none;
 }
 
 .cover-loading {

@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { map_center } from '../../../actions';
+import { useSelector } from 'react-redux';
 
 import Landing from '../landing';
 import Header from '../header';
@@ -14,17 +13,6 @@ import './index.css';
 
 const App = () => {
 	const ui = useSelector(state => state.ui);
-	const map = useSelector(state => state.map);
-	const dispatch = useDispatch();
-
-	if(map.center === null) {
-		navigator.geolocation.getCurrentPosition((position) => {
-			dispatch(map_center({
-				latitude: position.coords.latitude,
-				longitude: position.coords.longitude,
-			}));
-		});
-	}
 
 	return (
 		<Wrapper className='app no-drag'>

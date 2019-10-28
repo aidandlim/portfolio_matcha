@@ -19,8 +19,7 @@ const Body = () => {
 			{ui.nav === 2 ? <Search /> : ''}
 			{ui.nav === 3 ? <Chat /> : ''}
 			{ui.nav === 4 ? <Notification /> : ''}
-			
-			{ui.nav === 2 ? <Cover /> : ''}
+			<Cover />
 		</div>
 	);
 }

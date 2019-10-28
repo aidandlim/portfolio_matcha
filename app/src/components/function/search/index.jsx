@@ -1,36 +1,15 @@
 import React from 'react';
 
-import { useSelector } from 'react-redux';
-
-import { Map as GoogleMap, GoogleApiWrapper } from 'google-maps-react';
-import { API_KEY } from '../../../const';
+import Map from '../map';
 
 import './index.css';
 
-const Map = (props) => {
-	let map = useSelector(state => state.map);
-
-	const _handleOnload = () => {
-		setTimeout(() => {
-			document.getElementById('cover').style.opacity = 0;
-		}, 1000);
-		setTimeout(() => {
-			document.getElementById('cover').style.display = 'none';
-		}, 2000);
-	}
-
+const Search = () => {
 	return (
-		<GoogleMap
-			className='map-viewer'
-			google={props.google}
-			zoom={12}
-			initialCenter={{ lat: map.center.latitude, lng: map.center.longitude }}
-			onReady={_handleOnload}
-		>
-		</GoogleMap>
+		<div className='search'>
+			<Map />
+		</div>
 	);
 }
 
-export default GoogleApiWrapper({
-	apiKey: API_KEY
-  })(Map);
+export default Search;
