@@ -2,7 +2,7 @@
 
 .header {
     width: 100%;
-    height: 3rem;
+    height: 2.5rem;
 
     position: relative;
     float: left;
@@ -22,5 +22,17 @@
     font-size: 1.3rem;
     font-family: 'Rubik Mono One', sans-serif;
     text-indent: 1rem;
-    line-height: 3rem;
+    line-height: 2.6rem;
+}
+
+.header-user {
+    width: 1.5rem;
+    height: 1.5rem;
+
+    position: absolute;
+    top: 0.5rem;
+    left: calc(100% - 2.5rem);
+
+    background-color: white;
+    border-radius: 50%;
 }

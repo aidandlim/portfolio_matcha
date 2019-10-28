@@ -1,12 +1,10 @@
 /****************************************************/
 
-/*
-export const action_example = (value) => {
+export const ui_nav = (value) => {
     return {
-        type: 'ACTION_EXAMPLE',
+        type: 'UI_NAV',
         payload: value
     };
 };
-*/
 
 /***************************************************/
