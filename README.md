@@ -27,8 +27,8 @@
 > Back-end Side
 
 - Javascript
-- Node.js
-- Express.js
+- Node
+- Express
 
 > Database
 
