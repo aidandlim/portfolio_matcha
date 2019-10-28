@@ -58,7 +58,7 @@
 
 - Studies computer science at De Anza College & 42 Silicon Valley.
 
-- Contact: ortivo.sol@gmail.com
+- Contact: aidandlim@gmail.com
 
 ---
 
