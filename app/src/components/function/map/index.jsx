@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { Map as GoogleMap, GoogleApiWrapper } from 'google-maps-react';
-import { API_KEY } from '../../../const';
+import { KEY } from '../../../api';
 
 import './index.css';
 
