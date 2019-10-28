@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { ui_nav } from '../../../actions';
+import { ui_nav, map_latitude, map_longitude } from '../../../actions';
 
 import { FiAtSign, FiMap, FiMessageCircle, FiHeart } from "react-icons/fi";
 import './index.css';
@@ -10,6 +10,14 @@ const Footer = () => {
 	const ui = useSelector(state => state.ui);
 	const dispatch = useDispatch();
 
+	const _handleFind = () => {
+		navigator.geolocation.getCurrentPosition((position) => {
+			dispatch(map_latitude(position.coords.latitude));
+			dispatch(map_longitude(position.coords.longitude));
+		});
+		dispatch(ui_nav(2));
+	}
+
 	return (
 		<div className='footer'>
 			<div className='footer-container'>
@@ -17,7 +25,7 @@ const Footer = () => {
 					<FiAtSign className={ui.nav === 1 ? 'footer-icon-active' : 'footer-icon'} />
 					<div className={ui.nav === 1 ? 'footer-title-active' : 'footer-title'}>MATCH</div>
 				</div>
-				<div className='footer-icon-container' onClick={ () => dispatch(ui_nav(2)) }>
+				<div className='footer-icon-container' onClick={ () => _handleFind() }>
 					<FiMap className={ui.nav === 2 ? 'footer-icon-active' : 'footer-icon'} />
 					<div className={ui.nav === 2 ? 'footer-title-active' : 'footer-title'}>FIND</div>
 				</div>
