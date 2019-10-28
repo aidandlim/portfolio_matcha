@@ -1,16 +1,17 @@
 import React from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { ui_nav } from '../../../actions';
 
 import wallpaper from '../../../resources/wallpaper.png';
 import './index.css';
 
 const Landing = () => {
+	const ui = useSelector(state => state.ui);
 	const dispatch = useDispatch();
 
 	return (
-		<div className='landing'>
+		<div className={ui.nav === 0 ? 'landing' : 'landing landing-hide'}>
 			<div className='landing-wallpaper' style={{
 				backgroundImage: 'url(\'' + wallpaper + '\')'
 			}}></div>
