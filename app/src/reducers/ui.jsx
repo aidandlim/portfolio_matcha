@@ -1,6 +1,13 @@
 const ui = {
-    nav: 0
-    // Landing :    0
+    nav: 0,
+    // Landing :        0
+    // Matching :       1
+    // Search :         2
+    // Chatting :       3
+    // Notification :   4
+    isLogin: false,
+    isRegister: false,
+    isForgot: false,
 }
 
 const uiReducer = (state = ui, action) => {
@@ -8,6 +15,18 @@ const uiReducer = (state = ui, action) => {
         case 'UI_NAV':
             return Object.assign({}, state, {
                 nav: action.payload
+            });
+        case 'UI_ISLOGIN':
+            return Object.assign({}, state, {
+                isLogin: action.payload
+            });
+        case 'UI_ISREGISTER':
+            return Object.assign({}, state, {
+                isRegister: action.payload
+            });
+        case 'UI_ISFORGOT':
+            return Object.assign({}, state, {
+                isForgot: action.payload
             });
         default:
             return state;

@@ -2,9 +2,9 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 
-import Match from '../../function/match';
-import Search from '../../function/search';
-import Chat from '../../function/chat';
+import Matching from '../../function/matching';
+import Searching from '../../function/searching';
+import Chatting from '../../function/chatting';
 import Notification from '../../function/notification';
 import Cover from '../cover';
 
@@ -15,9 +15,9 @@ const Body = () => {
 
 	return (
 		<div className='body'>
-			{ui.nav === 1 ? <Match /> : ''}
-			{ui.nav === 2 ? <Search /> : ''}
-			{ui.nav === 3 ? <Chat /> : ''}
+			{ui.nav === 1 ? <Matching /> : ''}
+			{ui.nav === 2 ? <Searching /> : ''}
+			{ui.nav === 3 ? <Chatting /> : ''}
 			{ui.nav === 4 ? <Notification /> : ''}
 			<Cover />
 		</div>

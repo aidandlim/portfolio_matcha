@@ -14,17 +14,11 @@
     background: linear-gradient(135deg,  rgba(255,82,82,1) 0%,rgba(255,171,64,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5252', endColorstr='#ffab40',GradientType=1 );
 
-    z-index: 10;
-
-    transition: ease-in-out 1s;
-}
-
-.landing-hide {
-    top: calc(-100% - 10px);
+    z-index: 99;
 }
 
 .landing-wallpaper {
-    width: calc(40% + 5px);
+    width: calc(45% + 5px);
     height: calc(100% + 10px);
 
     background-size: cover;
@@ -38,13 +32,18 @@
     opacity: 0.5;
 }
 
+.landing-wallpaper-active {
+    width: calc(100% - 32.5rem);
+    transition: 0.5s;
+}
+
 .landing-container {
-    width: 22.5rem;
-    height: 8.7rem;
+    width: 25rem;
+    height: auto;
 
     position: absolute;
-    top: calc(50% - 4.35rem);
-    left: 45%;
+    top: calc(50% - 4.25rem);
+    left: calc(45% + 3.5rem);
 }
 
 .landing-title {

@@ -4,12 +4,12 @@ import Map from '../map';
 
 import './index.css';
 
-const Search = () => {
+const Searching = () => {
 	return (
-		<div className='search'>
+		<div className='searching'>
 			<Map />
 		</div>
 	);
 }
 
-export default Search;
+export default Searching;

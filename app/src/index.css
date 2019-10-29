@@ -42,8 +42,9 @@ input[type="email"],
 input[type="submit"],
 input[type="button"],
 textarea  {
-    -webkit-appearance: none;
+    padding: 0;
     border-radius: 0;
+    -webkit-appearance: none;
 }
 
 ::-webkit-scrollbar {
