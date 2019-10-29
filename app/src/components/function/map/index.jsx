@@ -36,5 +36,5 @@ const Map = (props) => {
 }
 
 export default GoogleApiWrapper({
-	apiKey: API_KEY
+	apiKey: KEY
   })(Map);
