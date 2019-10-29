@@ -14,13 +14,33 @@ const Signin = () => {
 		dispatch(chatbot_message(
 			[{
 				direction: 0,
-				profile: null,
-				content: 'Hey there! Good to see you! Anyway, Do you have an account?'
+				content: 'Hey there! Good to see you! Anyway, Do you have an account?',
+				process: 0,
 			}]
 		));
 		dispatch(chatbot_reflection(
 			['Yes, I do', 'No, I don\'t']
 		));
+	}
+
+	const _handleReflection = (reflection) => {
+		let process = chatbot.message[chatbot.message.length - 1].process;
+		if(process === 0) {
+			if(reflection)
+			dispatch(chatbot_message(
+				chatbot.message.concat([{
+					direction: 1,
+					content: reflection,
+				},{
+					direction: 0,
+					content: 'Alright, please tell me your email address.',
+					process: 1,
+				}])
+			));
+			dispatch(chatbot_reflection(
+				[]
+			));
+		}
 	}
 
 	return (
@@ -34,8 +54,7 @@ const Signin = () => {
 				<div className='chatbot-body'>
 					{ chatbot.message.map((msg, index) =>
 						<div className={ msg.direction ? 'chatbot-message-right' : 'chatbot-message-left' } key={index}>
-							<div className='chatbot-message-profile'></div>
-							<div className='chatbot-message-content'>{msg.content}</div>
+							{msg.content}
 						</div>
 					)}			
 				</div>
@@ -44,7 +63,7 @@ const Signin = () => {
 						<input type='text' />
 					:
 						(chatbot.reflection.map((reflection, index) =>
-							<div className='chabot-reflection' key={index}>
+							<div className='chatbot-reflection' key={index} onClick={ () => _handleReflection(reflection) }>
 								{reflection}
 							</div>
 						))
