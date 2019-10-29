@@ -39,6 +39,22 @@ export const user_user = (value) => {
 
 /***************************************************/
 
+export const chatbot_message = (value) => {
+    return {
+        type: 'CHATBOT_MESSAGE',
+        payload: value
+    };
+};
+
+export const chatbot_reflection = (value) => {
+    return {
+        type: 'CHATBOT_REFLECTION',
+        payload: value
+    };
+};
+
+/***************************************************/
+
 export const map_center = (value) => {
     return {
         type: 'MAP_CENTER',
