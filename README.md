@@ -68,6 +68,10 @@
 
 ---
 
+## API Document for Cooperation
+
+- <a href="https://docs.google.com/spreadsheets/d/1-CM0LqIEmeM8dlE-RiZZnZ8IjyxbIhl-KkBeoyc4KYw">`Google Spread Sheet`</a>
+
 ## License
 
 - <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html" target="_blank">`GNU General Public License v2.0`</a>
