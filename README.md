@@ -68,7 +68,7 @@
 
 ---
 
-## API Document for Cooperation
+## Document for Cooperation
 
 - <a href="https://docs.google.com/spreadsheets/d/1-CM0LqIEmeM8dlE-RiZZnZ8IjyxbIhl-KkBeoyc4KYw">`Google Spread Sheet`</a>
 
