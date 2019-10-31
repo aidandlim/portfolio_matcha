@@ -3,6 +3,29 @@
 
     margin: 0;
     padding: 0;
+
+    background: rgb(255,82,82);
+    background: -moz-linear-gradient(-45deg,  rgba(255,82,82,1) 0%, rgba(255,171,64,1) 100%);
+    background: -webkit-linear-gradient(-45deg,  rgba(255,82,82,1) 0%,rgba(255,171,64,1) 100%);
+    background: linear-gradient(135deg,  rgba(255,82,82,1) 0%,rgba(255,171,64,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5252', endColorstr='#ffab40',GradientType=1 );
+}
+
+.title {
+    width: 7rem;
+    height: 3rem;
+
+    color: white;
+    font-size: 1rem;
+    font-family: 'Rubik Mono One', sans-serif;
+    text-indent: 1rem;
+    line-height: 3rem;
+
+    cursor: pointer;
+}
+
+.audio {
+    display: none;
 }
 
 body.react-confirm-alert-body-element {

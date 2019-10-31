@@ -12,6 +12,9 @@ import Footer from '../footer';
 
 import Wrapper from 'react-div-100vh';
 
+import AudioSend from '../../../resources/send.mp3';
+import AudioReceive from '../../../resources/receive.mp3';
+
 import './index.css';
 
 const App = () => {
@@ -27,6 +30,12 @@ const App = () => {
 			{ user.user !== null ? <Header /> : ''}
 			{ user.user !== null ? <Body /> : ''}
 			{ user.user !== null ? <Footer /> : ''}
+			<audio id='audio-send' className='audio'>
+				<source src={AudioSend} type="audio/mp3" />
+			</audio>
+			<audio id='audio-receive' className='audio'>
+				<source src={AudioReceive} type="audio/mp3" />
+			</audio>
 		</Wrapper>
 	);
 }
