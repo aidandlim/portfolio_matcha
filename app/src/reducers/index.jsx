@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux';
 
 import uiReducer from './ui';
+import signReducer from './sign';
 import userReducer from './user';
-import chatbotReducer from './chatbot';
 import mapReducer from './map';
 
 const rootReducers = combineReducers({
     ui: uiReducer,
+    sign: signReducer,
     user: userReducer,
-    chatbot: chatbotReducer,
     map: mapReducer,
 })
 

@@ -30,25 +30,32 @@ export const ui_isForgot = (value) => {
 
 /***************************************************/
 
-export const user_user = (value) => {
+export const sign_message = (value) => {
     return {
-        type: 'USER_USER',
+        type: 'SIGN_MESSAGE',
+        payload: value
+    };
+};
+
+export const sign_email = (value) => {
+    return {
+        type: 'SIGN_EMAIL',
+        payload: value
+    };
+};
+
+export const sign_password = (value) => {
+    return {
+        type: 'SIGN_PASSWORD',
         payload: value
     };
 };
 
 /***************************************************/
 
-export const chatbot_message = (value) => {
+export const user_user = (value) => {
     return {
-        type: 'CHATBOT_MESSAGE',
-        payload: value
-    };
-};
-
-export const chatbot_reflection = (value) => {
-    return {
-        type: 'CHATBOT_REFLECTION',
+        type: 'USER_USER',
         payload: value
     };
 };
