@@ -3,6 +3,8 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { sign_message, sign_email, sign_password } from '../../../actions';
 
+import SendSound from '../../../resources/send.mp3';
+import RecieveSound from '../../../resources/receive.mp3';
 import { FiActivity } from "react-icons/fi";
 import './index.css';
 
@@ -24,6 +26,8 @@ const Signin = () => {
 							step: 1
 						}]);
 						dispatch(sign_message(temp));
+						document.getElementById('receive').currentTime = 0;
+						document.getElementById('receive').play();
 						document.getElementById('signin-body').scrollTop = document.getElementById('signin-body').scrollHeight;
 					}, 0);
 					setTimeout(() => {
@@ -33,6 +37,8 @@ const Signin = () => {
 							step: 2
 						}]);
 						dispatch(sign_message(temp));
+						document.getElementById('send').currentTime = 0;
+						document.getElementById('send').play();
 						document.getElementById('signin-body').scrollTop = document.getElementById('signin-body').scrollHeight;
 					}, 1000);
 				} else {
@@ -43,6 +49,8 @@ const Signin = () => {
 							step: 1
 						}]);
 						dispatch(sign_message(temp));
+						document.getElementById('receive').currentTime = 0;
+						document.getElementById('receive').play();
 						document.getElementById('signin-body').scrollTop = document.getElementById('signin-body').scrollHeight;
 					}, 0);
 					setTimeout(() => {
@@ -52,6 +60,8 @@ const Signin = () => {
 							step: 0
 						}]);
 						dispatch(sign_message(temp));
+						document.getElementById('send').currentTime = 0;
+						document.getElementById('send').play();
 						document.getElementById('signin-body').scrollTop = document.getElementById('signin-body').scrollHeight;
 					}, 1000);
 				}
@@ -66,6 +76,8 @@ const Signin = () => {
 						step: 3
 					}]);
 					dispatch(sign_message(temp));
+					document.getElementById('receive').currentTime = 0;
+					document.getElementById('receive').play();
 					document.getElementById('signin-body').scrollTop = document.getElementById('signin-body').scrollHeight;
 				}, 0);
 				setTimeout(() => {
@@ -75,6 +87,8 @@ const Signin = () => {
 						step: 4
 					}]);
 					dispatch(sign_message(temp));
+					document.getElementById('send').currentTime = 0;
+					document.getElementById('send').play();
 					document.getElementById('signin-body').scrollTop = document.getElementById('signin-body').scrollHeight;
 				}, 1000);
 			}
@@ -96,6 +110,8 @@ const Signin = () => {
 				content: 'Hey there! Glad to see you. What is your email?', 
 				step: 0
 			}]));
+			document.getElementById('send').currentTime = 0;
+			document.getElementById('send').play();
 		}, 1000);
 	}
 
@@ -121,6 +137,12 @@ const Signin = () => {
 						{ sign.message !== null && sign.message[sign.message.length - 1].step === 2 ? <input className='signin-input' type='password' name='password' onKeyDown={ (e) => _handleForm(e) } placeholder='Password' autoFocus autoComplete='off' /> : '' }
 					</form>
 				</div>
+				<audio id='send'>
+					<source src={SendSound} type="audio/mp3" />
+				</audio>
+				<audio id='receive'>
+					<source src={RecieveSound} type="audio/mp3" />
+				</audio>
 			</div>
 		</div>
 	);

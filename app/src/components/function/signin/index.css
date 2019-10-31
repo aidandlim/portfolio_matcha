@@ -83,7 +83,8 @@
     height: calc(100% - 8.5rem);
     padding-bottom: 0.5rem;
 
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
 
     position: relative;
     float: left;
@@ -136,9 +137,9 @@
     color: #808080;
     font-size: 0.5rem;
     font-weight: 500;
-    text-indent: 0.25rem;
+    text-indent: 0.5rem;
 
-    background-color: white;
+    background-color: #F7F7F7;
     border: none;
     border-radius: 0.35rem !important;
 
