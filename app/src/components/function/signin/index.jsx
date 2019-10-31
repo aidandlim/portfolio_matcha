@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { sign_message, sign_email, sign_password } from '../../../actions';
+import { user_user, sign_message, sign_email, sign_password } from '../../../actions';
 
 import SendSound from '../../../resources/send.mp3';
 import RecieveSound from '../../../resources/receive.mp3';
@@ -91,6 +91,9 @@ const Signin = () => {
 					document.getElementById('send').play();
 					document.getElementById('signin-body').scrollTop = document.getElementById('signin-body').scrollHeight;
 				}, 1000);
+				setTimeout(() => {
+					dispatch(user_user({email: sign.email}));
+				}, 2000);
 			}
 		}
 	}
