@@ -8,7 +8,7 @@
     position: relative;
     float: left;
 
-    background-color: #EEEEEE;
+    background-color: #FFFFFF;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
@@ -19,7 +19,13 @@
     position: relative;
     float: left;
 
-    background-color: #F06292;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 900;
+    text-indent: 0.6rem;
+    line-height: 3rem;
+
+    background-color: #CE93D8;
 }
 
 .dashboard-body {

@@ -8,6 +8,62 @@
     position: relative;
     float: left;
 
-    background-color: #DDDDDD;
+    background-color: #E0E0E0;
     border-radius: 0.4rem;
+}
+
+.message-profile {
+    width: 2rem;
+    height: 2rem;
+    margin: 0.5rem;
+
+    position: relative;
+    float: left;
+
+    background-color: #CCCCCC;
+    border-radius: 50%;;
+}
+
+.message-body {
+    width: calc(100% - 3rem);
+    height: 100%;
+
+    position: relative;
+    float: left;
+}
+
+.message-nickname {
+    width: calc(100% - 0.5rem);
+    height: 0.8rem;
+    margin-top: 0.65rem;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    position: relative;
+    float: left;
+
+    color: #616161;
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 0.8rem;
+}
+
+.message-content {
+    width: calc(100% - 0.5rem);
+    height: 0.7rem;
+    margin-top: 0.3rem;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    position: relative;
+    float: left;
+    
+    color: #757575;
+    font-size: 0.6rem;
+    font-weight: 500;
+    line-height: 0.7rem;
 }
