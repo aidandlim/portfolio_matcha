@@ -10,7 +10,10 @@ const Card = () => {
 			<div className='card-picture' style={{
 				backgroundImage: 'url(\'' + Tester  + '\')'
 			}}></div>
-			<div className='card-profile'></div>
+			<div className='card-profile'>
+				<div className='card-fullname'>Ariana Grande</div>
+				<div className='card-age'>(21)</div>
+			</div>
 		</div>
 	);
 }

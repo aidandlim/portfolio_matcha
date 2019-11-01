@@ -35,5 +35,35 @@
 
     background-color: #EEEEEE;
     
-    opacity: 0.75;
+    opacity: 0.85;
+}
+
+.card-fullname {
+    width: auto;
+    height: 1rem;
+    margin: 0.5rem;
+
+    position: relative;
+    float: left;
+
+    color: #424242;
+    font-size: 0.85rem;
+    font-weight: 700;
+    line-height: 1rem;
+
+    background-color: #CE93D8;
+}
+
+.card-age {
+    width: auto;
+    height: 1rem;
+    margin: 0.5rem 0;
+
+    position: relative;
+    float: left;
+
+    color: #616161;
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1rem;
 }
