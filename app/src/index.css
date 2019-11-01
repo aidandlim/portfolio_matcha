@@ -52,21 +52,21 @@ textarea  {
 }
 
 ::-webkit-scrollbar:vertical {
-    width: 7px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar:horizontal {
-    height: 7px;
+    height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #EEEEEE;
+    background: #E0E0E0;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #DDDDDD;
+    background: #BDBDBD;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #CCCCCC;
+    background: #9E9E9E;
 }

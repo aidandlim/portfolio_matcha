@@ -1,9 +1,7 @@
 const ui = {
     nav: 0,
-    // Matching :       0
-    // Search :         1
-    // Chatting :       2
-    // Notification :   3
+        // Matching :       0
+        // Searching :      1
     isLogin: false,
     isRegister: false,
     isForgot: false,

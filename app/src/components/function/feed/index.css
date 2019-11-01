@@ -1,6 +1,6 @@
-.body {
-    width: 100%;
-    height: calc(100% - 2.75rem);
+.feed {
+    width: calc(100% - 22rem);
+    height: 100%;
 
     overflow: hidden;
 

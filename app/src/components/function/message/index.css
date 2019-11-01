@@ -1,0 +1,13 @@
+.message {
+    width: calc(100% - 0.8rem);
+    height: 3rem;
+    margin: 0.4rem 0.4rem 0 0.4rem;
+
+    overflow: hidden;
+
+    position: relative;
+    float: left;
+
+    background-color: #DDDDDD;
+    border-radius: 0.4rem;
+}

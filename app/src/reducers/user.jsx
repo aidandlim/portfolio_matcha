@@ -1,5 +1,7 @@
 const user = {
-    user: null
+    user: {
+        email: 'ortivo.sol@gmail.com'
+    }
 }
 
 const userReducer = (state = user, action) => {

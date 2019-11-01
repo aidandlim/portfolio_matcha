@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Map from '../map';
+import Map from '../../function/map';
 
 import './index.css';
 

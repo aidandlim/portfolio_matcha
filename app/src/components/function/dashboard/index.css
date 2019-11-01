@@ -1,0 +1,35 @@
+.dashboard {
+    width: 20rem;
+    height: calc(100% - 3rem);
+    margin: 1.5rem;
+
+    overflow: hidden;
+
+    position: relative;
+    float: left;
+
+    background-color: #EEEEEE;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.dashboard-header {
+    width: 100%;
+    height: 3rem;
+
+    position: relative;
+    float: left;
+
+    background-color: #F06292;
+}
+
+.dashboard-body {
+    width: 100%;
+    height: calc(100% - 3.4rem);
+    padding-bottom: 0.4rem;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    position: relative;
+    float: left;
+}
