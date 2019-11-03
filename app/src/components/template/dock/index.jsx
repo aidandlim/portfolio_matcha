@@ -2,12 +2,12 @@ import React from 'react';
 
 import './index.css';
 
-const Header = () => {
+const Dock = () => {
 	return (
-		<div className='header'>
+		<div className='dock'>
 
 		</div>
 	);
 }
 
-export default Header;
+export default Dock;
