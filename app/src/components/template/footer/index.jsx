@@ -2,12 +2,12 @@ import React from 'react';
 
 import './index.css';
 
-const Header = () => {
+const Footer = () => {
 	return (
-		<div className='header'>
+		<div className='footer'>
 
 		</div>
 	);
 }
 
-export default Header;
+export default Footer;
