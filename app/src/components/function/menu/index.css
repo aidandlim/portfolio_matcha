@@ -1,0 +1,46 @@
+.menu {
+    width: 100%;
+    height: 2rem;
+
+    position: relative;
+    float: left;
+
+    cursor: pointer;
+
+    z-index: 9;
+}
+
+.menu-icon {
+    width: 1rem;
+    height: 1rem;
+    
+    padding: 0.5rem;
+
+    position: relative;
+    float: left;
+
+    color: #FBC02D;
+}
+
+.menu:hover .menu-icon {
+    color: #F48FB1;
+    transition: 0.5s;
+}
+
+.menu-active {
+    width: 100%;
+    height: 2rem;
+
+    position: relative;
+    float: left;
+
+    cursor: pointer;
+
+    background-color: #FFF8E1;
+
+    z-index: 9;
+}
+
+.menu-active .menu-icon {
+    color: #F48FB1;
+}

@@ -2,9 +2,15 @@ import React, { useEffect } from 'react';
 
 import { useSelector } from 'react-redux';
 
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 import Header from '../header';
 import Nav from '../nav';
-import Body from '../body';
+
+import Dashboard from '../../function/dashboard';
+import Match from '../../function/match';
+import Search from '../../function/search';
+import Chat from '../../function/chat';
 
 import './index.css';
 
@@ -20,11 +26,18 @@ const Application = () => {
 	});
 
 	return (
-		<div className='application'>
-			<Header />
-			<Nav />
-			<Body />
-		</div>
+		<Router>
+			<div className='application'>
+				<Header />
+				<Nav />
+				<Switch>
+					<Route path='/' exact component={Dashboard} />
+					<Route path='/match' component={Match} />
+					<Route path='/search' component={Search} />
+					<Route path='/chat' component={Chat} />
+				</Switch>
+			</div>
+		</Router>
 	);
 }
 

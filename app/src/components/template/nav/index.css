@@ -1,7 +1,9 @@
 .nav {
-    width: 10rem;
+    width: 2rem;
     height: calc(100% - 2rem);
 
     position: relative;
     float: left;
+
+    background-color: #FFECB3;
 }
