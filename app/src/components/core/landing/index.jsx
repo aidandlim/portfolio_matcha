@@ -21,6 +21,7 @@ const Landing = () => {
 
 	return (
 		<div className='landing'>
+			M@TCH@
 			<button onClick={ () => dispatch(auth_isLogin(true)) }>Getting Started</button>
 		</div>
 	);
