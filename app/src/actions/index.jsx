@@ -29,3 +29,10 @@ export const auth_onForgotPage = (value) => {
 };
 
 /***************************************************/
+
+export const map_center = (value) => {
+    return {
+        type: 'MAP_CENTER',
+        payload: value
+    };
+};

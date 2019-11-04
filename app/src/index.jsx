@@ -8,7 +8,7 @@ import RootReducers from './reducers';
 
 import './index.css';
 
-import App from './components/template/app';
+import App from './components/core/app';
 
 const store = createStore(
     RootReducers,
