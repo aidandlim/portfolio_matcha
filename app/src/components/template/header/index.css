@@ -5,14 +5,14 @@
     position: relative;
     float: left;
 
-    background-color: #FFD54F;
+    background-color: white;
 }
 
 .header-ci {
     width: 1rem;
     height: 1rem;
 
-    margin: 0.5rem 0.5rem 0.5rem 0.65rem;
+    margin: 0.5rem;
 
     position: relative;
     float: left;

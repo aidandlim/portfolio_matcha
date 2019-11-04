@@ -2,20 +2,29 @@ import React, { useEffect } from 'react';
 
 import './index.css';
 
-const CurrentCard = () => {
+const Card = () => {
 
 	useEffect(() => {
 		setTimeout( () => {
-			if(document.querySelector('.current-card') !== null)
-				document.querySelector('.current-card').className = 'current-card active'
+			if(document.querySelector('.card') !== null)
+				document.querySelector('.card').className = 'card active'
 		}, 500);
 	});
 
 	return (
-		<div className='current-card'>
-			card
+		<div className='card'>
+			<p>images</p>
+			<p>fullname</p>
+			<p>age</p>
+			<p>bio</p>
+			<p>tags</p>
+			<p>distance</p>
+			<p>refelction</p>
+			<p>- like</p>
+			<p>- dislike</p>
+			<p>- detail</p>
 		</div>
 	);
 }
 
-export default CurrentCard;
+export default Card;

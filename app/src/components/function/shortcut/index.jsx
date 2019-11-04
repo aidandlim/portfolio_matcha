@@ -13,7 +13,7 @@ const Shortcut = () => {
 
 	return (
 		<div className='shortcut'>
-			Shortcut
+			shortcut
 		</div>
 	);
 }

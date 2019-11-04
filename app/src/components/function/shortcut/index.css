@@ -1,13 +1,13 @@
 .shortcut {
-    width: 15rem;
-    height: 3rem;
+    width: calc(15rem - 2px);
+    height: calc(3rem - 2px);
 
     position: absolute;
     top: calc(100% - 5rem);
     left: 50%;
     transform: translate(-50%, 0);
 
-    background-color: gray;
+    border: solid 1px #DDDDDD;
     border-radius: 0.5rem;
 
     opacity: 0;
