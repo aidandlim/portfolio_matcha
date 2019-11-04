@@ -12,7 +12,7 @@
     left: 50%;
     transform: translate(calc(-50% - 1rem), calc(-50% - 1rem));
 
-    background-color: #ECEFF1;
+    background-color: #F5F5F5;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     border-radius: 0.5rem;
 
@@ -30,5 +30,5 @@
     font-size: 0.7rem;
     text-align: center;
 
-    background-color: #FFF8E1;
+    background-color: #F5F5F5;
 }

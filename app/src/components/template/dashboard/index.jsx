@@ -5,7 +5,11 @@ import './index.css';
 const Dashboard = () => {
 	return (
 		<div className='default dashboard'>
-			Dashboard
+			<p>user information</p>	
+			<p>preference</p>
+			<p>notification</p>
+			<p>overview</p>
+			<p>color theme</p>
 		</div>
 	);
 }

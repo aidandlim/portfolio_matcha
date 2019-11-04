@@ -1,11 +1,15 @@
 import React from 'react';
 
+import Card from '../../function/card';
+import Shortcut from '../../function/shortcut';
+
 import './index.css';
 
 const Match = () => {
 	return (
 		<div className='default match'>
-			Match
+			<Card />
+			<Shortcut />
 		</div>
 	);
 }

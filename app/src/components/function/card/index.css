@@ -1,0 +1,16 @@
+.current-card {
+    width: 15rem;
+    height: 20rem;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% - 2rem));
+
+    background-color: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    border-radius: 0.5rem;
+
+    opacity: 0;
+    transition: 1s;
+}

@@ -23,7 +23,7 @@
 }
 
 .menu:hover .menu-icon {
-    color: #F48FB1;
+    color: #F8BBD0;
     transition: 0.5s;
 }
 
@@ -36,7 +36,7 @@
 
     cursor: pointer;
 
-    background-color: #FFF8E1;
+    background-color: #F5F5F5;
 
     z-index: 9;
 }

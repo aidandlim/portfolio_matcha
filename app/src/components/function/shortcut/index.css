@@ -1,0 +1,15 @@
+.shortcut {
+    width: 15rem;
+    height: 3rem;
+
+    position: absolute;
+    top: calc(100% - 5rem);
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    background-color: gray;
+    border-radius: 0.5rem;
+
+    opacity: 0;
+    transition: 1s;
+}
