@@ -5,7 +5,7 @@ import './index.css';
 const Body = () => {
 	return (
 		<div className='body'>
-			body
+			Body
 		</div>
 	);
 }

@@ -1,4 +1,5 @@
-/*
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap');
+
 @media (max-width:360px){html{font-size:10px;}}
 @media (min-width:361px) and (max-width:399px){html{font-size:11px;}}
 @media (min-width:400px) and (max-width:439px){html{font-size:12px;}}
@@ -14,7 +15,6 @@
 @media (min-width:800px) and (max-width:839px){html{font-size:22px;}}
 @media (min-width:840px) and (max-width:879px){html{font-size:23px;}}
 @media (min-width:880px){html{font-size:24px;}}
-*/
 
 body {
     width: 100vw;
@@ -25,7 +25,7 @@ body {
 
     overflow: hidden;
 
-    /* font-family: 'Quicksand', monospace; */
+    font-family: 'Open Sans', sans-serif;
 }
 
 .no-drag {

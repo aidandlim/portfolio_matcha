@@ -1,5 +1,5 @@
-.body {
-    width: calc(100% - 10rem);
+.nav {
+    width: 10rem;
     height: calc(100% - 2rem);
 
     position: relative;

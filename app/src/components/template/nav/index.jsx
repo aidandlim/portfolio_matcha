@@ -2,12 +2,12 @@ import React from 'react';
 
 import './index.css';
 
-const Dock = () => {
+const Nav = () => {
 	return (
-		<div className='dock'>
-
+		<div className='nav'>
+			Nav
 		</div>
 	);
 }
 
-export default Dock;
+export default Nav;
