@@ -4,13 +4,12 @@ import { useSelector } from 'react-redux';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Header from '../header';
-import Nav from '../nav';
-
-import Dashboard from '../../function/dashboard';
-import Match from '../../function/match';
-import Search from '../../function/search';
-import Chat from '../../function/chat';
+import Header from '../../template/header';
+import Nav from '../../template/nav';
+import Dashboard from '../../template/dashboard';
+import Match from '../../template/match';
+import Search from '../../template/search';
+import Chat from '../../template/chat';
 
 import './index.css';
 
@@ -21,7 +20,9 @@ const Application = () => {
 		if(auth.isLogin) {
 			setTimeout( () => {
 				document.querySelector('.application').className = 'application active'
-			}, 1000);
+			}, 500);
+		} else {
+			document.querySelector('.application').className = 'application'
 		}
 	});
 
