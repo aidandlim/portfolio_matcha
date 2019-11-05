@@ -4,8 +4,6 @@
 
     position: relative;
     float: left;
-
-    background-color: #e74c3c;
 }
 
 .nav-profile  {
@@ -18,14 +16,14 @@
     float: left;
 
     background-color: #ecf0f1;
+    background-size: cover;
+    background-position: center;
     border-radius: 50%;
 }
 
 .nav-fullname {
     width: 100%;
     height: 1.5rem;
-
-    margin-bottom: 1.25rem;
 
     position: relative;
     float: left;
@@ -35,4 +33,39 @@
     font-weight: 900;
     text-align: center;
     line-height: 1.5rem;
+}
+
+.nav-location-container {
+    width: auto;
+    height: 1rem;
+
+    margin-bottom: 1rem;
+
+    position: relative;
+    float: left;
+    left: 50%;
+
+    transform: translate(-50%, 0);
+}
+
+.nav-location-icon {
+    width: 0.4rem;
+    height: 0.4rem;
+    margin: 0.35rem 0.3rem 0.25rem 0;
+
+    color: #ecf0f180;
+    position: relative;
+    float: left;
+}
+
+.nav-location-address {
+    width: auto;
+    height: 1rem;
+
+    position: relative;
+    float: left;
+
+    color: #ecf0f180;
+    font-size: 0.5rem;
+    line-height: 1rem;
 }

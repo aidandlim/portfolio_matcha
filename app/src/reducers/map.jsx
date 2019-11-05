@@ -2,7 +2,8 @@ const map = {
     center: {
         latitude: 0,
         longitude: 0,
-    }
+    },
+    address: ''
 }
 
 const mapReducer = (state = map, action) => {
@@ -10,6 +11,10 @@ const mapReducer = (state = map, action) => {
         case 'MAP_CENTER':
             return Object.assign({}, state, {
                 center: action.payload
+            });
+        case 'MAP_ADDRESS':
+            return Object.assign({}, state, {
+                address: action.payload
             });
         default:
             return state;

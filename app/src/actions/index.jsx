@@ -36,3 +36,19 @@ export const map_center = (value) => {
         payload: value
     };
 };
+
+export const map_address = (value) => {
+    return {
+        type: 'MAP_ADDRESS',
+        payload: value
+    };
+};
+
+/***************************************************/
+
+export const ui_color = (value) => {
+    return {
+        type: 'UI_COLOR',
+        payload: value
+    };
+};
