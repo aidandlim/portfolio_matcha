@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 
+import Profile from '../../../resources/profile.jpeg';
 import './index.css';
 
 const Card = () => {
@@ -13,16 +14,16 @@ const Card = () => {
 
 	return (
 		<div className='card'>
-			<p>images</p>
-			<p>fullname</p>
-			<p>age</p>
-			<p>bio</p>
-			<p>tags</p>
-			<p>distance</p>
-			<p>refelction</p>
-			<p>- like</p>
-			<p>- dislike</p>
-			<p>- detail</p>
+			<div className='card-picture' style={{
+				backgroundImage: 'url(\'' + Profile + '\')'
+			}}></div>
+			<div className='card-fullname'></div>
+			<div className='card-age'></div>
+			<div className='card-distance'></div>
+			<div className='card-bio'></div>
+			<div className='card-tags'></div>
+			<div className='card-like'></div>
+			<div className='card-dislike'></div>
 		</div>
 	);
 }
