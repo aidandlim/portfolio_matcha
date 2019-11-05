@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Header from '../../template/header';
 import Nav from '../../template/nav';
 import Dashboard from '../../template/dashboard';
 import Match from '../../template/match';
@@ -29,7 +28,6 @@ const Application = () => {
 	return (
 		<Router>
 			<div className='application'>
-				<Header />
 				<Nav />
 				<Switch>
 					<Route path='/' exact component={Dashboard} />

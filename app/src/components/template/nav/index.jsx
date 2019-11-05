@@ -22,6 +22,8 @@ const Nav = () => {
 
 	return (
 		<div className='nav'>
+			<div className='nav-profile'></div>
+			<div className='nav-fullname'>Aidan Lim</div>
 			<Menu index={0} nav={nav} setNav={setNav} />
 			<Menu index={1} nav={nav} setNav={setNav} />
 			<Menu index={2} nav={nav} setNav={setNav} />

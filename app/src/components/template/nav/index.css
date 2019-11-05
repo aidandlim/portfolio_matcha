@@ -1,9 +1,38 @@
 .nav {
-    width: 2rem;
-    height: calc(100% - 2rem);
+    width: 10rem;
+    height: 100%;
 
     position: relative;
     float: left;
 
-    background-color: #E9E9E9;
+    background-color: #e74c3c;
+}
+
+.nav-profile  {
+    width: 5rem;
+    height: 5rem;
+    
+    margin: 2rem calc(50% - 2.5rem) 0.5rem calc(50% - 2.5rem);
+
+    position: relative;
+    float: left;
+
+    background-color: #ecf0f1;
+    border-radius: 50%;
+}
+
+.nav-fullname {
+    width: 100%;
+    height: 1.5rem;
+
+    margin-bottom: 1.25rem;
+
+    position: relative;
+    float: left;
+
+    color: #ecf0f1;
+    font-size: 0.8rem;
+    font-weight: 900;
+    text-align: center;
+    line-height: 1.5rem;
 }

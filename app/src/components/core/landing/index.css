@@ -8,13 +8,8 @@
     top: 0;
     left: 0;
 
-    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ef5350+0,ffa726+50,ffee58+100 */
-    background: rgb(239,83,80); /* Old browsers */
-    background: -moz-linear-gradient(-45deg,  rgba(239,83,80,1) 0%, rgba(255,167,38,1) 50%, rgba(255,238,88,1) 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg,  rgba(239,83,80,1) 0%,rgba(255,167,38,1) 50%,rgba(255,238,88,1) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(135deg,  rgba(239,83,80,1) 0%,rgba(255,167,38,1) 50%,rgba(255,238,88,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ef5350', endColorstr='#ffee58',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-
+    background-color: white;
+    
     opacity: 0;
     transition: 0.5s;
 }

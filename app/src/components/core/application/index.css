@@ -1,8 +1,8 @@
 .application {
-    width: calc(100% - 2rem);
-    max-width: 64rem;
-    height: calc(100% - 2rem);
-    max-height: 36rem;
+    width: calc(100% - 10rem);
+    max-width: 60rem;
+    height: 100%;
+    max-height: 35rem;
     margin: 1rem;
 
     overflow: hidden;
@@ -12,17 +12,17 @@
     left: 50%;
     transform: translate(calc(-50% - 1rem), calc(-50% - 1rem));
 
-    background-color: #F5F5F5;
+    background-color: white;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    border-radius: 0.5rem;
+    border-radius: 2rem;
 
     opacity: 0;
     transition: 1s;
 }
 
 .default {
-    width: calc(100% - 2rem);
-    height: calc(100% - 2rem);
+    width: calc(100% - 10rem);
+    height: 100%;
 
     position: relative;
     float: left;
@@ -30,5 +30,5 @@
     font-size: 0.7rem;
     text-align: center;
 
-    background-color: #F5F5F5;
+    background-color: white;
 }
