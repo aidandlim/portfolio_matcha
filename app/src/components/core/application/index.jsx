@@ -14,9 +14,10 @@ import './index.css';
 
 const Application = () => {
 	const auth = useSelector(state => state.auth);
+	const map = useSelector(state => state.map);
 
 	useEffect(() => {
-		if(auth.isLogin) {
+		if(auth.isLogin && map.address !== '') {
 			setTimeout( () => {
 				document.querySelector('.application').className = 'application active'
 			}, 500);

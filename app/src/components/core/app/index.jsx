@@ -6,6 +6,7 @@ import { map_center, map_address } from '../../../actions';
 import axios from 'axios';
 import { KEY } from '../../../api';
 
+import Cover from '../cover';
 import Landing from '../landing';
 import Application from '../application';
 
@@ -23,7 +24,6 @@ const App = () => {
 				latitude: position.coords.latitude,
 				longitude: position.coords.longitude,
 			}));
-			console.log(position.coords.latitude + ',' + position.coords.longitude);
 			axios.get('https://maps.googleapis.com/maps/api/geocode/json?language=en&latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&key=' + KEY)
 			.then((res) => {
 				let data = res.data.plus_code.compound_code.split(' ');
@@ -31,7 +31,9 @@ const App = () => {
 				for(let i = 1; i < data.length; i++) {
 					address += i + 1 === data.length ? data[i] : data[i] + ' ';
 				}
-				dispatch(map_address(address));
+				setTimeout(() => {
+					dispatch(map_address(address));
+				}, 1000);
 			});
 		});
 	}
@@ -40,6 +42,7 @@ const App = () => {
 		<Wrapper className='app no-drag'>
 			<Landing />
 			<Application />
+			{ map.address === '' ? <Cover /> : '' }
 		</Wrapper>
 	);
 }

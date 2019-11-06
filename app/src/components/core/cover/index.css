@@ -1,0 +1,42 @@
+.cover {
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background-color: #ecf0f1;
+
+    z-index: 99;
+}
+
+.cover-icon {
+    width: 8rem;
+    height: 8rem;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-size: cover;
+    background-position: center;
+}
+
+.cover-description {
+    width: 100%;
+    height: 1.5rem;
+
+    position: absolute;
+    top: calc(50% + 4rem);
+    left: 0;
+
+    color: #505050;
+    font-size: 0.8rem;
+    font-weight: 900;
+    text-align: center;
+    line-height: 1.5rem;
+}
