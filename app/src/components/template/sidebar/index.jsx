@@ -5,14 +5,14 @@ import Chatlist from '../../function/chatlist';
 import { FaSearch } from "react-icons/fa";
 import './index.css';
 
-const Chat = () => {
+const Sidebar = () => {
 	return (
-		<div className='chat'>
-			<div className='chat-search'>
-				<FaSearch className='chat-search-icon' />
-				<input className='chat-search-input' type='text' placeholder='Search...' />
+		<div className='sidebar'>
+			<div className='sidebar-search'>
+				<FaSearch className='sidebar-search-icon' />
+				<input className='sidebar-search-input' type='text' placeholder='Search...' />
 			</div>
-			<div className='chat-container'>
+			<div className='sidebar-container'>
 				<Chatlist id={0} name={'Aidan Lim'} picture={'something'} message={'hello there Good morning!'} />
 				<Chatlist id={1} name={'Luke Kim'} picture={'something'} message={'안녕하세요! 김길순입니다.'} />
 				<Chatlist id={2} name={'Areum Kim'} picture={'something'} message={'Hi'} />
@@ -21,7 +21,7 @@ const Chat = () => {
 	);
 }
 
-export default Chat;
+export default Sidebar;
 
 /*
 <p>chat list</p>

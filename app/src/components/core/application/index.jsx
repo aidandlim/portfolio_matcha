@@ -8,7 +8,7 @@ import Nav from '../../template/nav';
 import Dashboard from '../../template/dashboard';
 import Match from '../../template/match';
 import Search from '../../template/search';
-import Chat from '../../template/chat';
+import Sidebar from '../../template/sidebar';
 
 import './index.css';
 
@@ -37,7 +37,7 @@ const Application = () => {
 						<Route path='/search' component={Search} />
 					</Switch>
 				</div>
-				<Chat />
+				<Sidebar />
 			</div>
 		</Router>
 	);

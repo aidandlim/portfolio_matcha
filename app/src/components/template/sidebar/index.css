@@ -1,4 +1,4 @@
-.chat {
+.sidebar {
     width: 10rem;
     height: 100%;
 
@@ -8,7 +8,7 @@
     background-color: #EEEEEE;
 }
 
-.chat-search {
+.sidebar-search {
     width: calc(100% - 2rem);
     height: 1.75rem;
 
@@ -21,7 +21,7 @@
     border-radius: 1rem;
 }
 
-.chat-search-icon {
+.sidebar-search-icon {
     width: 0.6rem;
     height: 0.6rem;
 
@@ -33,7 +33,7 @@
     color: #AAAAAA;
 }
 
-.chat-search-input {
+.sidebar-search-input {
     width: calc(100% - 2.5rem);
     height: 1.75rem;
 
@@ -49,7 +49,7 @@
     outline: none;
 }
 
-.chat-container {
+.sidebar-container {
     width: 100%;
     height: calc(100% - 4.75rem);
 
