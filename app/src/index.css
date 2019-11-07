@@ -51,21 +51,9 @@ textarea  {
 }
 
 ::-webkit-scrollbar:vertical {
-    width: 15px;
+    display: none;
 }
 
 ::-webkit-scrollbar:horizontal {
-    height: 15px;
-}
-
-::-webkit-scrollbar-track {
-    background: #272727;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #474747;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #555555;
+    display: none;
 }

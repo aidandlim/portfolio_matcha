@@ -1,0 +1,63 @@
+.chat-list {
+    width: calc(100% - 4rem);
+    height: 8.75rem;
+
+    padding: 2rem;
+
+    position: relative;
+    float: left;
+
+    background-color: #F9F9F9;
+}
+
+.chat-search {
+    width: 10rem;
+    height: 1.75rem;
+
+    margin-bottom: 1rem;
+
+    position: relative;
+    float: left;
+
+    background-color: #EEEEEE;
+    border-radius: 0.5rem;
+}
+
+.chat-search-icon {
+    width: 0.8rem;
+    height: 0.8rem;
+
+    margin: 0.475rem;
+
+    position: relative;
+    float: left;
+
+    color: #C9C9C9;
+}
+
+.chat-search-input {
+    width: calc(100% - 2.25rem);
+    height: 1.75rem;
+
+    position: relative;
+    float: left;
+
+    color: #AAAAAA;
+    font-size: 0.55rem;
+    font-weight: 600;
+
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.chat-container {
+    width: 100%;
+    height: calc(100% - 3rem);
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    position: relative;
+    float: left;
+}

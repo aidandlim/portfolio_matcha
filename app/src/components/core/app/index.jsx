@@ -19,6 +19,7 @@ const App = () => {
 	const dispatch = useDispatch();
 	
 	if(map.center.latitude === 0 && map.center.longitude === 0) {
+		console.log('GPS Connection is processing...');
         navigator.geolocation.getCurrentPosition((position) => {
 			dispatch(map_center({
 				latitude: position.coords.latitude,
@@ -33,7 +34,7 @@ const App = () => {
 				}
 				setTimeout(() => {
 					dispatch(map_address(address));
-				}, 1000);
+				}, 1500);
 			});
 		});
 	}
