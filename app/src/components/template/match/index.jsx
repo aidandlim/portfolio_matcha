@@ -7,7 +7,7 @@ import './index.css';
 
 const Match = () => {
 	return (
-		<div className='default match'>
+		<div className='match'>
 			<Card />
 			<Shortcut />
 		</div>

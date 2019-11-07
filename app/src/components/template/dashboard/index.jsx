@@ -9,7 +9,7 @@ const Dashboard = () => {
 	const dispatch = useDispatch();
 
 	return (
-		<div className='default dashboard'>
+		<div className='dashboard'>
 			<p>user information</p>	
 			<p>preference</p>
 			<p>notification</p>

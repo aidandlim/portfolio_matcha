@@ -52,3 +52,19 @@ export const ui_color = (value) => {
         payload: value
     };
 };
+
+/***************************************************/
+
+export const chat_list = (value) => {
+    return {
+        type: 'CHAT_LIST',
+        payload: value
+    };
+};
+
+export const chat_current = (value) => {
+    return {
+        type: 'CHAT_CURRENT',
+        payload: value
+    };
+};

@@ -30,12 +30,14 @@ const Application = () => {
 		<Router>
 			<div className='application'>
 				<Nav />
-				<Switch>
-					<Route path='/' exact component={Dashboard} />
-					<Route path='/match' component={Match} />
-					<Route path='/search' component={Search} />
-					<Route path='/chat' component={Chat} />
-				</Switch>
+				<div className='default'>
+					<Switch>
+						<Route path='/' exact component={Dashboard} />
+						<Route path='/match' component={Match} />
+						<Route path='/search' component={Search} />
+					</Switch>
+				</div>
+				<Chat />
 			</div>
 		</Router>
 	);

@@ -21,8 +21,10 @@
 }
 
 .default {
-    width: calc(100% - 10rem);
-    height: 100%;
+    width: calc(100% - 24rem);
+    height: calc(100% - 4rem);
+    
+    padding: 2rem;
 
     position: relative;
     float: left;
