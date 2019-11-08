@@ -80,11 +80,11 @@
 }
 
 .chat-footer-input {
-    width: 80%;
-    height:  100%;
+    width: calc(100% - 4rem);
+    height: calc(100% - 1rem);
 
     margin: 0;
-    padding: 0;
+    padding: 0.5rem;
 
     position: relative;
     float: left;
@@ -93,19 +93,30 @@
     font-size: 0.55rem;
     font-weight: 500;
 
-    background: none;
+    background: #FFFFFF33;
     border: none;
+    border-radius: 0.5rem;
 
     outline: none;
     resize: none;
 }
 
 .chat-footer-submit {
-    width: calc(20% - 0.5rem);
-    height: 1rem;
+    width: 2.5rem;
+    height: 1.5rem;
 
     margin-left: 0.5rem;
 
     position: relative;
     float: left;
+
+    color: white;
+    font-size: 0.6rem;
+    font-weight: 900;
+    text-align: center;
+    line-height: 1.5rem;
+
+    background-color: #20202080;
+    border-radius: 0.5rem;
+
 }
