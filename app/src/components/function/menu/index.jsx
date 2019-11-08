@@ -8,7 +8,7 @@ import './index.css';
 
 const Menu = (props) => {
 	return (
-        <div className={props.nav === props.index ? 'menu-active' : 'menu'} onClick={ () => props.setNav(props.index) } >
+        <div className={props.nav === props.index ? 'menu menu-active' : 'menu'} onClick={ () => props.setNav(props.index) } >
             { props.index === 0 ? <Link to='/'><FaStar className='menu-icon' /><div className='menu-title'>Dashboard</div></Link> : '' }
             { props.index === 1 ? <Link to='/match'><FaFire className='menu-icon' /><div className='menu-title'>Match</div></Link> : '' }
             { props.index === 2 ? <Link to='/search'><FaMapMarkerAlt className='menu-icon' /><div className='menu-title'>Search</div></Link> : '' }

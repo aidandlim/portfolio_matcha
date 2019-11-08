@@ -8,6 +8,7 @@ import Nav from '../../template/nav';
 import Dashboard from '../../template/dashboard';
 import Match from '../../template/match';
 import Search from '../../template/search';
+import Chat from '../../template/chat';
 import Sidebar from '../../template/sidebar';
 
 import './index.css';
@@ -15,6 +16,7 @@ import './index.css';
 const Application = () => {
 	const auth = useSelector(state => state.auth);
 	const map = useSelector(state => state.map);
+	const chat = useSelector(state => state.chat);
 
 	useEffect(() => {
 		if(auth.isLogin && map.address !== '') {
@@ -30,13 +32,14 @@ const Application = () => {
 		<Router>
 			<div className='application'>
 				<Nav />
-				<div className='default'>
+				<div className={chat.current === -1 ? 'default' : 'default default-active'}>
 					<Switch>
 						<Route path='/' exact component={Dashboard} />
 						<Route path='/match' component={Match} />
 						<Route path='/search' component={Search} />
 					</Switch>
 				</div>
+				<Chat />
 				<Sidebar />
 			</div>
 		</Router>

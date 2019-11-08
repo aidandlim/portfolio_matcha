@@ -1,22 +1,38 @@
 import React from 'react';
 
+import { useSelector } from 'react-redux';
+
 import Chatlist from '../../function/chatlist';
 
-import { FaSearch } from "react-icons/fa";
 import './index.css';
 
 const Sidebar = () => {
+	const ui = useSelector(state => state.ui);
+
+	let color = '';
+
+	if(ui.color === 0) // Red
+		color = '#e74c3c';
+	else if(ui.color === 1) // Orange
+		color = '#e67e22';
+	else if(ui.color === 2) // Yellow
+		color = '#f39c12';
+	else if(ui.color === 3) // Green
+		color = '#27ae60';
+	else if(ui.color === 4) // Blue
+		color = '#2980b9';
+	else if(ui.color === 5) // Navy
+		color = '#34495e';
+	else if(ui.color === 6) // Purple
+		color = '#8e44ad';
+
 	return (
-		<div className='sidebar'>
-			<div className='sidebar-search'>
-				<FaSearch className='sidebar-search-icon' />
-				<input className='sidebar-search-input' type='text' placeholder='Search...' />
-			</div>
-			<div className='sidebar-container'>
-				<Chatlist id={0} name={'Aidan Lim'} picture={'something'} message={'hello there Good morning!'} />
-				<Chatlist id={1} name={'Luke Kim'} picture={'something'} message={'안녕하세요! 김길순입니다.'} />
-				<Chatlist id={2} name={'Areum Kim'} picture={'something'} message={'Hi'} />
-			</div>
+		<div className='sidebar' style={{
+			backgroundColor: color
+		}}>
+			<Chatlist id={0} name={'Aidan Lim'} picture={'something'} />
+			<Chatlist id={1} name={'Luke Kim'} picture={'something'} />
+			<Chatlist id={2} name={'Areum Kim'} picture={'something'} />
 		</div>
 	);
 }

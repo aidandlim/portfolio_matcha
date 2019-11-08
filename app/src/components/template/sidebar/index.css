@@ -1,61 +1,12 @@
 .sidebar {
-    width: 10rem;
-    height: 100%;
+    width: 2rem;
+    height: calc(100% - 2rem);
 
-    position: relative;
-    float: left;
+    padding: 1rem;
 
-    background-color: #EEEEEE;
-}
+    position: absolute;
+    top: 0;
+    left: calc(100% - 4rem);
 
-.sidebar-search {
-    width: calc(100% - 2rem);
-    height: 1.75rem;
-
-    margin: 1rem;
-
-    position: relative;
-    float: left;
-
-    background-color: #DDDDDD;
-    border-radius: 1rem;
-}
-
-.sidebar-search-icon {
-    width: 0.6rem;
-    height: 0.6rem;
-
-    margin: 0.625rem;
-
-    position: relative;
-    float: left;
-
-    color: #AAAAAA;
-}
-
-.sidebar-search-input {
-    width: calc(100% - 2.5rem);
-    height: 1.75rem;
-
-    margin: 0;
-    padding: 0;
-
-    color: #AAAAAA;
-    font-size: 0.6rem;
-    font-weight: 700;
-    background: none;
-    border: none;
-
-    outline: none;
-}
-
-.sidebar-container {
-    width: 100%;
-    height: calc(100% - 4.75rem);
-
-    overflow-x: hidden;
-    overflow-y: scroll;
-
-    position: relative;
-    float: left;
+    z-index: 10;
 }

@@ -1,0 +1,54 @@
+.message-container {
+    width: 100%;
+    height: auto;
+    margin-bottom: 0.5rem;
+
+    position: relative;
+    float: left;
+}
+
+.message {
+    width: auto;
+    max-width: 70%;
+    height: auto;
+
+    padding: 0.25rem;
+
+    position: relative;
+
+    color: #404040;
+    font-size: 0.6rem;
+    font-weight: 500;
+    line-height: 1.5;
+
+    border-radius: 0.25rem;
+}
+
+.message-left {
+    float: left;
+    background-color: white;
+}
+
+.message-right {
+    float: right;
+    background-color: white;
+}
+
+.message-time {
+    width: auto;
+    height: 1.4rem;
+    padding: 0 0.25rem;
+
+    color: #808080;
+    font-size: 0.4rem;
+    font-weight: 700;
+    line-height: 1.4rem;
+}
+
+.message-time-left {
+    float: left;
+}
+
+.message-time-right {
+    float: right;
+}

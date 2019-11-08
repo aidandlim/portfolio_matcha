@@ -14,12 +14,10 @@ const Chatlist = (props) => {
 	}
 
 	return (
-		<div className={chat.current === props.id ? 'chatlist chatlist-active' : 'chatlist'} onClick={ () => _handleCurrentChat() }>
-			<div className='chatlist-picture' style={{
+		<div className='chatlist' onClick={ () => _handleCurrentChat() }>
+			<div className={chat.current === props.id ? 'chatlist-picture chatlist-picture-active' : 'chatlist-picture'} style={{
 				backgroundImage: 'url(\'' + props.picture + '\')'
 			}}></div>
-			<div className='chatlist-name'>{props.name}</div>
-			<div className='chatlist-message'>{props.message}</div>
 		</div>
 	);
 }
