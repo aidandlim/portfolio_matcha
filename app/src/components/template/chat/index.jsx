@@ -84,7 +84,9 @@ const Chat = () => {
 				backgroundColor: footerColor
 			}}>
 				<textarea className='chat-footer-input'></textarea>
-				<div className='chat-footer-submit'>SEND</div>
+				<div className='chat-footer-submit' style={{
+					backgroundColor: headerColor
+				}}>SEND</div>
 			</div>
 		</div>
 	);

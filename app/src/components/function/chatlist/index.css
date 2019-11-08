@@ -17,12 +17,13 @@
     position: relative;
     float: right;
 
-    background-color: white;
+    background-size: cover;
+    background-position: center;
     border-radius: 50%;
 }
 
 .chatlist-picture-active {
     width: 1.6rem;
     height: 1.6rem;
-    border: solid 0.2rem #DDDDDD;
+    border: solid 0.2rem white;
 }
