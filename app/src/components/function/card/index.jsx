@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight, FaTimes, FaSearch, FaHeart } from 'react-icons/fa';
+
 import Profile from '../../../resources/profile.jpeg';
 import './index.css';
 
@@ -22,8 +24,11 @@ const Card = () => {
 			<div className='card-distance'></div>
 			<div className='card-bio'></div>
 			<div className='card-tags'></div>
-			<div className='card-like'></div>
-			<div className='card-dislike'></div>
+			<FaArrowAltCircleLeft className='card-arrow card-arrow-left' />
+			<FaArrowAltCircleRight className='card-arrow card-arrow-right' />
+			<FaTimes className='card-icon card-icon-dislike' />
+			<FaSearch className='card-icon card-icon-detail' />
+			<FaHeart className='card-icon card-icon-like' />
 		</div>
 	);
 }
