@@ -15,6 +15,7 @@ import './index.css';
 
 const Application = () => {
 	const auth = useSelector(state => state.auth);
+	const ui = useSelector(state => state.ui);
 	const map = useSelector(state => state.map);
 	const chat = useSelector(state => state.chat);
 
@@ -31,6 +32,20 @@ const Application = () => {
 	return (
 		<Router>
 			<div className='application'>
+				<style>{`
+					:root {
+						--color-100: ${ui.color + 'ff'};
+						--color-90: ${ui.color + 'e6'};
+						--color-80: ${ui.color + 'cc'};
+						--color-70: ${ui.color + 'b3'};
+						--color-60: ${ui.color + '99'};
+						--color-50: ${ui.color + '80'};
+						--color-40: ${ui.color + '66'};
+						--color-30: ${ui.color + '4d'};
+						--color-20: ${ui.color + '33'};
+						--color-10: ${ui.color + '1a'};
+					}
+				`}</style>
 				<Nav />
 				<div className={chat.current === -1 ? 'default' : 'default default-active'}>
 					<Switch>

@@ -4,6 +4,8 @@
 
     position: relative;
     float: left;
+
+    background-color: var(--color-100);
 }
 
 .nav-profile  {

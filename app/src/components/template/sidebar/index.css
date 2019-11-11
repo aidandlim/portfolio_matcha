@@ -8,5 +8,6 @@
     top: 0;
     left: calc(100% - 4rem);
 
+    background-color: var(--color-100);
     z-index: 10;
 }

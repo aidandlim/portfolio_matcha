@@ -9,27 +9,9 @@ import { FaLocationArrow } from "react-icons/fa";
 import './index.css';
 
 const Nav = () => {
-	const ui = useSelector(state => state.ui);
 	const map = useSelector(state => state.map);
 
 	const [ nav, setNav ] = useState(0);
-
-	let color = '';
-
-	if(ui.color === 0) // Red
-		color = '#e74c3c';
-	else if(ui.color === 1) // Orange
-		color = '#e67e22';
-	else if(ui.color === 2) // Yellow
-		color = '#f39c12';
-	else if(ui.color === 3) // Green
-		color = '#27ae60';
-	else if(ui.color === 4) // Blue
-		color = '#2980b9';
-	else if(ui.color === 5) // Navy
-		color = '#34495e';
-	else if(ui.color === 6) // Purple
-		color = '#8e44ad';
 		
 	useEffect(() => {
 		const currentLocation = window.location.pathname;
@@ -44,9 +26,7 @@ const Nav = () => {
 	}, []);
 
 	return (
-		<div className='nav' style={{
-			backgroundColor: color
-		}}>
+		<div className='nav'>
 			<div className='nav-profile' style={{
 				backgroundImage: 'url(\'' + Profile + '\')'
 			}}></div>

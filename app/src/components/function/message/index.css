@@ -26,7 +26,7 @@
 
 .message-left {
     float: left;
-    background-color: #FFF176;
+    background-color: var(--color-30);
 }
 
 .message-right {

@@ -37,7 +37,7 @@
     top: -1rem;
     left: calc(50% - 1.125rem);
 
-    background-color: #606060;
+    background-color: var(--color-80);
     border-radius: 0.125rem;
 
     cursor: pointer;
@@ -69,12 +69,12 @@
     top: calc(100% - 2rem);
     left: 0;
 
-    color: #505050;
+    color: white;
     font-size: 0.65rem;
     font-weight: 700;
     text-align: center;
     line-height: 1.45rem;
-    background-color: #DDDDDDE6;
+    background-color: var(--color-60);
 }
 
 .card-arrow {
@@ -83,7 +83,7 @@
 
     position: absolute;
 
-    color: #EEEEEE;
+    color: var(--color-80);
     background-color: white;
     border-radius: 50%;
 
