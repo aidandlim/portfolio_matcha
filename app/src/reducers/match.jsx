@@ -1,5 +1,5 @@
 const match = {
-    isDetail: false
+    isDetail: true
 }
 
 const matchReducer = (state = match, action) => {

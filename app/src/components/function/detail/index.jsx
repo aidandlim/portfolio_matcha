@@ -28,7 +28,24 @@ const Detail = () => {
 			<div className='detail-profile'>
 				<div className='detail-fullname'>Aidan Lim</div>
 				<div className='detail-age'>(28)</div>
-				<div className='detail-location'>in Newark, CA, USA</div>
+			</div>
+			<div className='detail-tags'>
+				<div className='detail-tag'>#Funny</div>
+				<div className='detail-tag'>#Funny</div>
+				<div className='detail-tag'>#Funny</div>
+				<div className='detail-tag'>#Funny</div>
+				<div className='detail-tag'>#Funny</div>
+				<div className='detail-tag'>#Funny</div>
+				<div className='detail-tag'>#Funny</div>
+				<div className='detail-tag'>#Funny</div>
+				<div className='detail-tag'>#Funny</div>
+				<div className='detail-tag'>#Funny</div>
+				<div className='detail-tag'>#Funny</div>
+				<div className='detail-tag'>#Funny</div>
+				<div className='detail-tag'>#Funny</div>
+				<div className='detail-tag'>#Funny</div>
+				<div className='detail-tag'>#Funny</div>
+				<div className='detail-tag'>#Funny</div>
 			</div>
 			<div className='detail-pictures'>
 				<div className='detail-picture' style={{

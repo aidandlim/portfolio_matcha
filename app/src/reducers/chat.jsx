@@ -1,6 +1,6 @@
 const chat = {
     list: [],
-    current: 0
+    current: -1
 }
 
 const chatReducer = (state = chat, action) => {

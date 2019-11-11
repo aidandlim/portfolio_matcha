@@ -1,7 +1,9 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { map_center, map_address } from '../../../actions';
+import { map_center, map_address, ui_color } from '../../../actions';
+
+import cookie from 'react-cookies'
 
 import axios from 'axios';
 import { KEY } from '../../../api';
@@ -37,6 +39,12 @@ const App = () => {
 				}, 1500);
 			});
 		});
+	}
+
+	const getColor = cookie.load('theme-color');
+
+	if(getColor !== undefined && getColor !== ui_color) {
+		dispatch(ui_color(getColor));
 	}
 
 	return (

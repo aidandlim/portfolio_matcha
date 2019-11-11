@@ -14,8 +14,8 @@
 
 .detail-profile {
     width: 100%;
-    height: 2rem;
-    margin-bottom: 1rem;
+    height: auto;
+    margin-bottom: 0.75rem;
 
     position: relative;
     float: left;
@@ -23,48 +23,59 @@
 
 .detail-fullname {
     width: auto;
-    height: 2rem;
+    height: auto;
 
-    margin-right: 0.5rem;
+    padding: 0 0.5rem;
 
     position: relative;
     float: left;
 
-    color: #404040;
+    color: var(--color-100);;
     font-size: 1.25rem;
     font-weight: 900;
-    line-height: 2rem;
 }
 
 .detail-age {
     width: auto;
-    height: 2rem;
+    height: auto;
+
+    padding-top: 0.4rem;
+    padding-right: 0.5rem;
 
     position: relative;
     float: left;
 
-    color: #404040;
+    color: var(--color-100);
     font-size: 0.85rem;
     font-weight: 700;
-    line-height: 2.25rem;
 }
 
-.detail-location {
+.detail-tags {
+    width: calc(100% - 1rem);
+    height: auto;
+
+    margin-bottom: 0.75rem;
+    padding-left: 1rem;
+
+    position: relative;
+    float: left;
+}
+
+.detail-tag {
     width: auto;
-    height: 2rem;
+    height: auto;
 
-    position: absolute;
-    top: 0;
-    left: 100%;
-    transform: translate(-100%, 0);
+    margin: 0 0.25rem 0.25rem 0;
+    padding: 0.15rem;
 
-    color: #606060;
-    font-size: 0.6rem;
-    font-weight: 700;
-    line-height: 2.25rem;
+    position: relative;
+    float: left;
 
-    display: table-cell;
-    white-space: nowrap;
+    color: var(--color-80);
+    font-size: 0.5rem;
+    font-weight: 900;
+    background-color: var(--color-10);
+    border-radius: 0.25rem;
 }
 
 .detail-pictures {
