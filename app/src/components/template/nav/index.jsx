@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import Menu from '../../function/menu';
 
-import Profile from '../../../resources/profile.jpeg';
+import Profile from '../../../resources/profile1.jpeg';
 import { FaLocationArrow } from "react-icons/fa";
 import './index.css';
 
@@ -39,6 +39,7 @@ const Nav = () => {
 			setNav(1);
 		else if(currentLocation === '/search')
 			setNav(2);
+			
 	}, []);
 
 	return (

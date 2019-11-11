@@ -13,59 +13,32 @@ const Chat = () => {
 	const chat = useSelector(state => state.chat);
 	const dispatch = useDispatch();
 
-	let headerColor = '';
+	let color = '';
 
 	if(ui.color === 0) // Red
-		headerColor = '#e74c3ccc';
+		color = '#e74c3c';
 	else if(ui.color === 1) // Orange
-		headerColor = '#e67e22cc';
+		color = '#e67e22';
 	else if(ui.color === 2) // Yellow
-		headerColor = '#f39c12cc';
+		color = '#f39c12';
 	else if(ui.color === 3) // Green
-		headerColor = '#27ae60cc';
+		color = '#27ae60';
 	else if(ui.color === 4) // Blue
-		headerColor = '#2980b9cc';
+		color = '#2980b9';
 	else if(ui.color === 5) // Navy
-		headerColor = '#34495ecc';
+		color = '#34495e';
 	else if(ui.color === 6) // Purple
-		headerColor = '#8e44adcc';
+		color = '#8e44ad';
 
-	let bodyColor = '';
-
-	if(ui.color === 0) // Red
-		bodyColor = '#e74c3c1a';
-	else if(ui.color === 1) // Orange
-		bodyColor = '#e67e221a';
-	else if(ui.color === 2) // Yellow
-		bodyColor = '#f39c121a';
-	else if(ui.color === 3) // Green
-		bodyColor = '#27ae601a';
-	else if(ui.color === 4) // Blue
-		bodyColor = '#2980b91a';
-	else if(ui.color === 5) // Navy
-		bodyColor = '#34495e1a';
-	else if(ui.color === 6) // Purple
-		bodyColor = '#8e44ad1a';
-
-	let footerColor = '';
-
-	if(ui.color === 0) // Red
-		footerColor = '#e74c3c33';
-	else if(ui.color === 1) // Orange
-		footerColor = '#e67e2233';
-	else if(ui.color === 2) // Yellow
-		footerColor = '#f39c1233';
-	else if(ui.color === 3) // Green
-		footerColor = '#27ae6033';
-	else if(ui.color === 4) // Blue
-		footerColor = '#2980b933';
-	else if(ui.color === 5) // Navy
-		footerColor = '#34495e33';
-	else if(ui.color === 6) // Purple
-		footerColor = '#8e44ad33';
-
+	let containerColor = color + '12';
+	let headerColor = color + 'cc';
+	let bodyColor = color + '1a';
+	let footerColor = color + '33';
+	
 	return (
-		<div className={chat.current === -1 ? 'chat' : 'chat chat-active'}>
+		<div className={chat.current === -1 ? 'chat' : 'chat chat-active'} style={{
+			backgroundColor: containerColor
+		}}>
 			<div className='chat-header' style={{
 				backgroundColor: headerColor
 			}}>

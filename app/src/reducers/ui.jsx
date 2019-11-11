@@ -1,5 +1,5 @@
 const ui = {
-    color: 0
+    color: 4
 }
 
 const uiReducer = (state = ui, action) => {
