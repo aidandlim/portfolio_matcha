@@ -1,4 +1,4 @@
-.chatlist {
+.follow {
     width: 100%;
     height: 2rem;
 
@@ -10,7 +10,7 @@
     cursor: pointer;
 }
 
-.chatlist-picture {
+.follow-picture {
     width: 2rem;
     height: 2rem;
 
@@ -22,7 +22,7 @@
     border-radius: 50%;
 }
 
-.chatlist-picture-active {
+.follow-picture-active {
     width: 1.6rem;
     height: 1.6rem;
     border: solid 0.2rem white;

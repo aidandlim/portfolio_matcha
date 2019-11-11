@@ -28,7 +28,7 @@
 }
 
 .chat-header-name {
-    width: calc(100% - 2rem);
+    width: calc(100% - 2.7rem);
     height: 100%;
 
     position: relative;
@@ -39,6 +39,20 @@
     font-weight: 900;
     text-indent: 0.75rem;
     line-height: 2rem;
+}
+
+.chat-header-remove {
+    width: 0.7rem;
+    height: 0.7rem;
+
+    margin: 0.65rem 0;
+
+    position: relative;
+    float: left;
+
+    color: white;
+
+    cursor: pointer;
 }
 
 .chat-header-exit {

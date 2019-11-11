@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight, FaTimes, FaSearch, FaHeart } from 'react-icons/fa';
 
@@ -10,6 +10,7 @@ import Profile5 from '../../../resources/profile5.jpeg';
 import './index.css';
 
 const Card = () => {
+	const [ index, setIndex ] = useState(0);
 
 	useEffect(() => {
 		setTimeout( () => {
@@ -17,31 +18,32 @@ const Card = () => {
 				document.querySelector('.card').className = 'card active';
 				_handleImage();
 			}
-		}, 500);
+		}, 250);
 	});
 
-	let thisImage = 0;
-
-	const _handleIndex = (toRight, index) => {
-		if(index !== -1) {
-			thisImage = index;
+	const _handleIndex = (toRight, target) => {
+		if(target !== -1) {
+			setIndex(target);
 		} else {
 			if(toRight) {
-				if(0 <= thisImage && thisImage <= 3)
-					thisImage++;
+				if(0 <= index && index <= 3)
+					setIndex(index + 1);
+				else
+					setIndex(0);
 			} else {
-				if(1 <= thisImage && thisImage <= 4)
-				thisImage--;
+				if(1 <= index && index <= 4)
+					setIndex(index - 1);
+				else
+					setIndex(4);
 			}
 		}
-		_handleImage();
 	}
 
 	const _handleImage = () => {
 		let images = document.getElementsByClassName('card-picture');
 		let pointer = document.getElementsByClassName('card-pointer');
 		for(let i = 0; i < images.length; i++) {
-			if(i === thisImage) {
+			if(i === index) {
 				images[i].style.opacity = 1;
 				pointer[i].style.opacity = 1;
 			} else {
@@ -75,11 +77,8 @@ const Card = () => {
 					backgroundImage: 'url(\'' + Profile5 + '\')'
 				}}></div>
 			</div>
-			<div className='card-fullname'></div>
-			<div className='card-age'></div>
+			<div className='card-title'>Aidan (28)</div>
 			<div className='card-distance'></div>
-			<div className='card-bio'></div>
-			<div className='card-tags'></div>
 			<FaArrowAltCircleLeft className='card-arrow card-arrow-left' onClick={ () => _handleIndex(false, -1) } />
 			<FaArrowAltCircleRight className='card-arrow card-arrow-right' onClick={ () => _handleIndex(true, -1) } />
 			<FaTimes className='card-icon card-icon-dislike' />

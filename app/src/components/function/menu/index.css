@@ -43,3 +43,9 @@
 .menu-active .menu-title {
     color: #FFFFFFCC;
 }
+
+.menu-icon-logout {
+    position: absolute;
+    top: 100%;
+    left: 0;
+}

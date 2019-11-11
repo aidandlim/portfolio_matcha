@@ -5,7 +5,7 @@ import { chat_current } from '../../../actions';
 
 import Message from '../../function/message';
 
-import { FaTimesCircle } from "react-icons/fa";
+import { FaTimesCircle, FaRegTrashAlt } from "react-icons/fa";
 import './index.css';
 
 const Chat = () => {
@@ -43,6 +43,7 @@ const Chat = () => {
 				backgroundColor: headerColor
 			}}>
 				<div className='chat-header-name'>Aidan Lim</div>
+				<FaRegTrashAlt className='chat-header-remove' />
 				<FaTimesCircle className='chat-header-exit' onClick={ () => dispatch(chat_current(-1)) } />
 			</div>
 			<div className='chat-body' style={{

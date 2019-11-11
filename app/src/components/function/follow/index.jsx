@@ -5,7 +5,7 @@ import { chat_current } from '../../../actions';
 
 import './index.css';
 
-const Chatlist = (props) => {
+const Follow = (props) => {
 	const chat = useSelector(state => state.chat);
 	const dispatch = useDispatch();
 
@@ -14,12 +14,12 @@ const Chatlist = (props) => {
 	}
 
 	return (
-		<div className='chatlist' onClick={ () => _handleCurrentChat() }>
-			<div className={chat.current === props.id ? 'chatlist-picture chatlist-picture-active' : 'chatlist-picture'} style={{
+		<div className='follow' onClick={ () => _handleCurrentChat() }>
+			<div className={chat.current === props.id ? 'follow-picture follow-picture-active' : 'follow-picture'} style={{
 				backgroundImage: 'url(\'' + props.picture + '\')'
 			}}></div>
 		</div>
 	);
 }
 
-export default Chatlist;
+export default Follow;

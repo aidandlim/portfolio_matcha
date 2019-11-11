@@ -1,0 +1,57 @@
+.dashboard {
+    width: 100%;
+    height: 100%;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    position: relative;
+    float: left;
+}
+
+.dashboard-default {
+    width: 100%;
+    height: auto;
+
+    margin: 0 0 0.5rem 0;
+
+    position: relative;
+    float: left;
+}
+
+.dashboard-header {
+    width: 100%;
+    height: 1.4rem;
+
+    position: relative;
+    float: left;
+
+    border-bottom: solid 0.1rem var(--dashboard-header-color);
+}
+
+.dashboard-header-title {
+    width: auto;
+    height: 1.3rem;
+
+    padding: 0 0.5rem;
+
+    position: relative;
+    float: left;
+
+    color: var(--dashboard-title-text-color);
+    font-size: 0.6rem;
+    font-weight: 900;
+    line-height: 1.3rem;
+
+    border-bottom: solid 0.2rem var(--dashboard-title-color);
+}
+
+.dashboard-body {
+    width: 100%;
+    height: calc(100% - 0.5rem);
+
+    padding: 0.5rem 0 0 0;
+
+    position: relative;
+    float: left;
+}

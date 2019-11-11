@@ -11,6 +11,7 @@ import './index.css';
 const Nav = () => {
 	const ui = useSelector(state => state.ui);
 	const map = useSelector(state => state.map);
+
 	const [ nav, setNav ] = useState(0);
 
 	let color = '';
@@ -39,7 +40,7 @@ const Nav = () => {
 			setNav(1);
 		else if(currentLocation === '/search')
 			setNav(2);
-			
+
 	}, []);
 
 	return (
