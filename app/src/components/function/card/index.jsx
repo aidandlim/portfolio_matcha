@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
+import { useDispatch } from 'react-redux';
+import { match_isDetail } from '../../../actions';
+
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight, FaTimes, FaSearch, FaHeart } from 'react-icons/fa';
 
 import Profile1 from '../../../resources/profile1.jpeg';
@@ -10,6 +13,8 @@ import Profile5 from '../../../resources/profile5.jpeg';
 import './index.css';
 
 const Card = () => {
+	const dispatch = useDispatch();
+
 	const [ index, setIndex ] = useState(0);
 
 	useEffect(() => {
@@ -82,7 +87,7 @@ const Card = () => {
 			<FaArrowAltCircleLeft className='card-arrow card-arrow-left' onClick={ () => _handleIndex(false, -1) } />
 			<FaArrowAltCircleRight className='card-arrow card-arrow-right' onClick={ () => _handleIndex(true, -1) } />
 			<FaTimes className='card-icon card-icon-dislike' />
-			<FaSearch className='card-icon card-icon-detail' />
+			<FaSearch className='card-icon card-icon-detail' onClick={ () => dispatch(match_isDetail(true)) }/>
 			<FaHeart className='card-icon card-icon-like' />
 		</div>
 	);

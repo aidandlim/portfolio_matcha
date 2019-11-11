@@ -1,3 +1,12 @@
+/***************************************************/
+
+export const ui_color = (value) => {
+    return {
+        type: 'UI_COLOR',
+        payload: value
+    };
+};
+
 /****************************************************/
 
 export const auth_isLogin = (value) => {
@@ -30,6 +39,15 @@ export const auth_onForgotPage = (value) => {
 
 /***************************************************/
 
+export const match_isDetail = (value) => {
+    return {
+        type: 'MATCH_ISDETAIL',
+        payload: value
+    };
+};
+
+/***************************************************/
+
 export const map_center = (value) => {
     return {
         type: 'MAP_CENTER',
@@ -40,15 +58,6 @@ export const map_center = (value) => {
 export const map_address = (value) => {
     return {
         type: 'MAP_ADDRESS',
-        payload: value
-    };
-};
-
-/***************************************************/
-
-export const ui_color = (value) => {
-    return {
-        type: 'UI_COLOR',
         payload: value
     };
 };

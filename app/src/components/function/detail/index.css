@@ -1,0 +1,130 @@
+.detail {
+    width: calc(100% - 1rem);
+    height: calc(100% - 1rem);
+
+    padding: 0.5rem;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    opacity: 0;
+    transition: 1s;
+}
+
+.detail-profile {
+    width: 100%;
+    height: 2rem;
+    margin-bottom: 1rem;
+
+    position: relative;
+    float: left;
+}
+
+.detail-fullname {
+    width: auto;
+    height: 2rem;
+
+    margin-right: 0.5rem;
+
+    position: relative;
+    float: left;
+
+    color: #404040;
+    font-size: 1.25rem;
+    font-weight: 900;
+    line-height: 2rem;
+}
+
+.detail-age {
+    width: auto;
+    height: 2rem;
+
+    position: relative;
+    float: left;
+
+    color: #404040;
+    font-size: 0.85rem;
+    font-weight: 700;
+    line-height: 2.25rem;
+}
+
+.detail-location {
+    width: auto;
+    height: 2rem;
+
+    position: absolute;
+    top: 0;
+    left: 100%;
+    transform: translate(-100%, 0);
+
+    color: #606060;
+    font-size: 0.6rem;
+    font-weight: 700;
+    line-height: 2.25rem;
+
+    display: table-cell;
+    white-space: nowrap;
+}
+
+.detail-pictures {
+    width: 100%;
+    height: auto;
+
+    position: relative;
+    float: left;
+}
+
+.detail-picture {
+    width: calc(20% - 0.4rem);
+    height: auto;
+
+    margin-right: 0.5rem;
+    padding-top: calc(26.666% - 0.533rem);
+    display: inline-block;
+
+    position: relative;
+    
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    border-radius: 0.5rem;
+}
+
+.detail-picture:nth-child(5) {
+    margin-right: 0;
+}
+
+.detail-icon {
+    width: 1rem;
+    height: 1rem;
+
+    padding: 0.75rem;
+
+    position: absolute;
+
+    color: white;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    border-radius: 33.333%;
+}
+
+.detail-icon-dislike {
+    top: calc(100% - 3rem);
+    left: calc(50% - 4.5rem);
+
+    background-color: #BA68C8;
+}
+
+.detail-icon-detail {
+    top: calc(100% - 3rem);
+    left: calc(50% - 1.25rem);
+
+    background-color: #64B5F6;
+}
+
+.detail-icon-like {
+    top: calc(100% - 3rem);
+    left: calc(50% + 2rem);
+
+    background-color: #E57373;
+}
