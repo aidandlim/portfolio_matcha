@@ -1,5 +1,5 @@
 const auth = {
-    isLogin: true,
+    isLogin: false,
     onSigninPage: false,
     onSignupPage: false,
     onForgotPage: false,
