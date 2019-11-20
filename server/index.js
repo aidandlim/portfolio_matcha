@@ -37,10 +37,19 @@ app.get('/', (req, res) => {
 
 // 
 
-app.post('/api/user/check', user.check);
-app.post('/api/user/select', user.select);
-app.post('/api/user/update', user.update);
-app.post('/api/message/insert', message.insert);
+app.post('/api/users/check', users.check);
+app.post('/api/users/insert', users.insert);
+app.post('/api/appears/insert', appears.insert);
+app.post('/api/blocks/insert', blocks.insert);
+app.post('/api/likes/insert', likes.insert);
+app.post('/api/logs/insert', logs.insert);
+app.post('/api/messages/insert', messages.insert);
+app.post('/api/reports/insert', reports.insert);
+app.post('/api/tags/insert', tags.insert);
+app.post('/api/unlikes/insert', unlikes.insert);
+app.post('/api/usersAndTags/insert', usersAndTags.insert);
+app.post('/api/verifies/insert', verifies.insert);
+app.post('/api/visits/insert', visits.insert);
 
 // 
 
