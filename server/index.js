@@ -12,7 +12,7 @@ const messages = require('./route/messages');
 const reports = require('./route/reports');
 const tags = require('./route/tags');
 const unlikes = require('./route/unlikes');
-const users_and_tags = require('./route/users_and_tags');
+const usersAndTags = require('./route/usersAndTags');
 const verifies = require('./route/verifies');
 const visits = require('./route/visits');
 
