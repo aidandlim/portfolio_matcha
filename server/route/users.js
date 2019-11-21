@@ -13,12 +13,12 @@ module.exports.check = (req, res) => {
 }
 
 module.exports.signup = (req, res) => {
-    let sql_select_users = 'SELECT * id FROM users WHERE email = ?';
-    let sql_insert_users = 'INSERT INTO users (email, password, first_name, last_name, birth_year, gender, preference, bio) values (?, SHA1(?), ?, ?, ?, ?, ?, ?)';
-    let sql_insert_verifies = 'INSERT INTO verifies (user_id, uuid) values ((SELECT id FROM users WHERE user_id = ?), ?)';
+    const sql_select_users = 'SELECT * id FROM users WHERE email = ?';
+    const sql_insert_users = 'INSERT INTO users (email, password, first_name, last_name, birth_year, gender, preference, bio) values (?, SHA1(?), ?, ?, ?, ?, ?, ?)';
+    const sql_insert_verifies = 'INSERT INTO verifies (user_id, uuid) values ((SELECT id FROM users WHERE user_id = ?), ?)';
 
-    let data = req.body.data;
-    let code = uuid();
+    const data = req.body.data;
+    const code = uuid();
 
     conn.query(sql_select_users, [data.email], (err, results) => {
         if (err) {
