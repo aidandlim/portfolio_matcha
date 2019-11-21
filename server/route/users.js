@@ -9,7 +9,7 @@ module.exports.check = (req, res) => {
 }
 
 module.exports.insert = (req, res) => {
-    let sql = 'INSERT INTO users (email, password, first_name, last_name, birth_year, gender, preference, address, latitude, longitude, bio, picture1, picture2, picture3, picture4, picture5, oAuth) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    let sql = 'INSERT INTO users (email, password, first_name, last_name, birth_year, gender, preference, address, latitude, longitude, bio, picture1, picture2, picture3, picture4, picture5, oAuth) values (?, SHA1(?), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
     let user = req.body.user;
 

@@ -37,8 +37,9 @@ app.get('/', (req, res) => {
 
 // 
 
-app.post('/api/users/check', users.check);
-app.post('/api/users/insert', users.insert);
+app.get('/api/users/check', users.check);
+app.post('/api/users/signup', users.insert);
+
 app.post('/api/appears/insert', appears.insert);
 app.post('/api/blocks/insert', blocks.insert);
 app.post('/api/likes/insert', likes.insert);
