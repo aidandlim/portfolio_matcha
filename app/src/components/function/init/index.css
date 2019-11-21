@@ -1,0 +1,64 @@
+.init {
+    width: 30rem;
+    height: auto;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.init-title {
+    width: 100%;
+    height: auto;
+
+    margin-bottom: 0.75rem;
+
+    position: relative;
+    float: left;
+
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 900;
+
+    opacity: 0.9;
+}
+
+.init-description {
+    width: 100%;
+    height: auto;
+
+    margin-bottom: 1.25rem;
+
+    position: relative;
+    float: left;
+
+    color: white;
+    font-size: 1rem;
+    font-weight: 900;
+
+    opacity: 0.5;
+}
+
+.init-button {
+    width: auto;
+    height: auto;
+
+    padding: 0.5rem;
+
+    position: relative;
+    float: left;
+
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+
+    background-color: var(--color-100);
+    border: solid 0.1rem white;
+    border-radius: 0.5rem;
+
+    opacity: 0.75;
+
+    cursor: pointer;
+    outline: none;
+}

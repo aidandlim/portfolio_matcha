@@ -8,5 +8,20 @@
     top: 0;
     left: 0;
 
-    background-color: #ecf0f1;
+    background-color: var(--color-100);
+}
+
+.landing-container {
+    width: 20rem;
+    height: auto;
+
+    padding: 1rem 1rem 0.5rem 1rem;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }

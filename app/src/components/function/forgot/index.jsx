@@ -19,9 +19,7 @@ const Forgot = () => {
 			email: document.signup.email.value
 		};
 
-		axios.post('/user/forgot', {
-			data
-		})
+		axios.post('/user/forgot', data)
 		.then(res => {
 			if(res.data) {
 				alert(0, 'check your email', 'Okay', null, null);
@@ -35,7 +33,7 @@ const Forgot = () => {
 		<form name='forgot' onSubmit={_handleForm}>
 			<input className='signin-input' type='email' name='email' placeholder='email' required />
 			<input className='signin-submit' type='submit' value='submit' />
-			<input className='signin-button' type='button' value='back' onClick={ () => dispatch(auth_landingStatus(0)) } />
+			<input className='signin-button' type='button' value='back' onClick={ () => dispatch(auth_landingStatus(1)) } />
 		</form>
 	);
 }

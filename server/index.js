@@ -39,7 +39,7 @@ app.use(bodyParser.json({
     limit: '4mb',
 }));
 
-app.use(cors({origin: 'https://127.0.0.1:3000'}));
+app.use(cors({origin: 'https://localhost:3000'}));
 
 app.get('/', (req, res) => {
     res.send('Connection is successful');
@@ -61,9 +61,9 @@ app.post('/api/reports/insert', reports.insert);
 app.post('/api/tags/insert', tags.insert);
 app.post('/api/unlikes/insert', unlikes.insert);
 app.post('/api/usersAndTags/insert', usersAndTags.insert);
-app.post('/api/verifies/insert', verifies.insert);
+// app.post('/api/verifies/insert', verifies.insert);
 app.post('/api/visits/insert', visits.insert);
 
 // 
 
-app.listen(8080, () => console.log('server is running !'));
+app.listen(8443, () => console.log('server is running !'));
