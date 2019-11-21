@@ -4,6 +4,8 @@ const uuid = require('uuidv4');
 const conn = require('../config/db');
 const URL = require('../const');
 
+//
+
 module.exports.check = (req, res) => {
     if(req.session.userId === undefined) {
         res.json(false);
@@ -12,10 +14,12 @@ module.exports.check = (req, res) => {
     }
 }
 
+//
+
 module.exports.signup = (req, res) => {
     const sql_select_users = 'SELECT * id FROM users WHERE email = ?';
     const sql_insert_users = 'INSERT INTO users (email, password, first_name, last_name, birth_year, gender, preference, bio) values (?, SHA1(?), ?, ?, ?, ?, ?, ?)';
-    const sql_insert_verifies = 'INSERT INTO verifies (user_id, uuid) values ((SELECT id FROM users WHERE user_id = ?), ?)';
+    const sql_insert_verifies = 'INSERT INTO verifies (user_id, uuid) values ((SELECT id FROM users WHERE email = ?), ?)';
 
     const data = req.body.data;
     const code = uuid();
@@ -62,8 +66,25 @@ module.exports.signup = (req, res) => {
     })
 }
 
-module.exports.update = (req, res) => {
-    res.json('here is update user');
+//
+
+module.exports.signin = (req, res) => {
+    const sql = 'SELECT * FROM users WHERE email = ? AND password = SHA1(?) AND verify = 1';
+
+    const email = req.body.email;
+    const password = req.body.password;
+
+    conn.query(sql, [email, password], (err, results) => {
+        if (err) {
+            console.log(err);
+        } else if (results.length !== 0) {
+            results = JSON.parse(JSON.stringify(results));
+            req.session.user = results[0].email;
+            res.json(true);
+        } else {
+            res.json(false);
+        }
+    })
 }
 
 //

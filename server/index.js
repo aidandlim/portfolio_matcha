@@ -1,6 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const app = express();
+const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const users = require('./route/users');
@@ -27,6 +28,17 @@ app.use(session({
     }
 }));
 
+app.use(
+    bodyParser.urlencoded({
+        extended: true,
+        limit: '4mb'
+    })
+)
+
+app.use(bodyParser.json({
+    limit: '4mb',
+}));
+
 app.use(cors({origin: 'https://127.0.0.1:3000'}));
 
 app.get('/', (req, res) => {
@@ -37,6 +49,7 @@ app.get('/', (req, res) => {
 
 app.get('/api/users/check', users.check);
 app.get('/api/verifies/signup', verifies.signup);
+app.get('/api/users/signin', users.signin);
 app.post('/api/users/signup', users.signup);
 
 app.post('/api/appears/insert', appears.insert);
