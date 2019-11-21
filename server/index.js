@@ -16,8 +16,6 @@ const usersAndTags = require('./route/usersAndTags');
 const verifies = require('./route/verifies');
 const visits = require('./route/visits');
 
-const URL = 'https://127.0.0.1:8080'
-
 // 
 
 app.use(session({
@@ -38,7 +36,8 @@ app.get('/', (req, res) => {
 // 
 
 app.get('/api/users/check', users.check);
-app.post('/api/users/signup', users.insert);
+app.get('/api/verifies/signup', verifies.signup);
+app.post('/api/users/signup', users.signup);
 
 app.post('/api/appears/insert', appears.insert);
 app.post('/api/blocks/insert', blocks.insert);

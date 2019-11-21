@@ -1,4 +1,8 @@
+const nodemailer = require('nodemailer');
+const uuid = require('uuidv4');
+
 const conn = require('../config/db');
+const URL = require('../const');
 
 module.exports.check = (req, res) => {
     if(req.session.userId === undefined) {
@@ -8,17 +12,52 @@ module.exports.check = (req, res) => {
     }
 }
 
-module.exports.insert = (req, res) => {
-    let sql = 'INSERT INTO users (email, password, first_name, last_name, birth_year, gender, preference, address, latitude, longitude, bio, picture1, picture2, picture3, picture4, picture5, oAuth) values (?, SHA1(?), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+module.exports.signup = (req, res) => {
+    let sql_select_users = 'SELECT * id FROM users WHERE email = ?';
+    let sql_insert_users = 'INSERT INTO users (email, password, first_name, last_name, birth_year, gender, preference, bio) values (?, SHA1(?), ?, ?, ?, ?, ?, ?)';
+    let sql_insert_verifies = 'INSERT INTO verifies (user_id, uuid) values (?, ?)';
 
-    let user = req.body.user;
+    let data = req.body.data;
+    let code = uuid();
 
-    conn.query(sql, [user.email, user.password, user.first_name, user.last_name, user.birth_year, user.gender, user.preference, user.address, user.latitude, user.longitude, user.bio, user.picture1, user.picture2, user.picture3, user.picture4, user.picture5, user.oAuth], (err, results) => {
+    conn.query(sql_select_users, [data.email], (err, results) => {
         if (err) {
             console.log(err);
+        } else if (results.length !== 0) {
+            res.json('이메일이 중복됩니다');
         } else {
-            results = JSON.parse(JSON.stringify(results));
-            res.json(results);
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: 'helloWorld@gmail.com',
+                    pass: '1234'
+                }
+            });
+            const mailOptions = {
+                from: 'helloWorld@gmail.com',
+                to: data.email,
+                subject: 'Please confirm for Matcha registration :)',
+                html: "<a href=" + URL + "/api/verifies/signup?email=" + data.email + "&code=" + code + ">Click here to verify !</a>"
+            };
+            transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                    console.log(error);
+                }
+            });
+
+            conn.query(sql_insert_verifies, [유저_이메일의_아이디, code], (err) => {
+                if (err) {
+                    console.log(err);
+                }
+            })
+            conn.query(sql_insert_users, [data.email, data.password, data.first_name, data.last_name, data.birth_year, data.gender, data.preference, data.bio], (err, results) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    results = JSON.parse(JSON.stringify(results));
+                    res.json(results);
+                }
+            })
         }
     })
 }
