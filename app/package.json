@@ -2,7 +2,7 @@
   "name": "matcha",
   "version": "0.0.1",
   "private": true,
-  "proxy": "https://localhost/api",
+  "proxy": "https://localhost:8443/api",
   "dependencies": {
     "axios": "^0.19.0",
     "google-maps-react": "^2.0.2",
