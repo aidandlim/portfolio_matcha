@@ -8,8 +8,5 @@
     top: 0;
     left: 0;
 
-    background-color: white;
-    
-    opacity: 0;
-    transition: 0.5s;
+    background-color: #ecf0f1;
 }

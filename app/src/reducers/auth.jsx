@@ -1,8 +1,6 @@
 const auth = {
-    isLogin: true,
-    onSigninPage: false,
-    onSignupPage: false,
-    onForgotPage: false,
+    isLogin: false,
+    landingStatus: 0,
 }
 
 const authReducer = (state = auth, action) => {
@@ -11,17 +9,9 @@ const authReducer = (state = auth, action) => {
             return Object.assign({}, state, {
                 isLogin: action.payload
             });
-        case 'AUTH_ONSIGNINPAGE':
+        case 'AUTH_LANDINGSTATUS':
             return Object.assign({}, state, {
-                onSigninPage: action.payload
-            });
-        case 'AUTH_ONSIGNUPPAGE':
-            return Object.assign({}, state, {
-                onSignupPageex: action.payload
-            });
-        case 'AUTH_ONFORGOTPAGE':
-            return Object.assign({}, state, {
-                onForgotPage: action.payload
+                landingStatus: action.payload
             });
         default:
             return state;

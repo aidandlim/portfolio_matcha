@@ -16,23 +16,9 @@ export const auth_isLogin = (value) => {
     };
 };
 
-export const auth_onSigninPage = (value) => {
+export const auth_landingStatus = (value) => {
     return {
-        type: 'AUTH_ONSIGNINPAGE',
-        payload: value
-    };
-};
-
-export const auth_onSignupPage = (value) => {
-    return {
-        type: 'AUTH_ONSIGNUPPAGE',
-        payload: value
-    };
-};
-
-export const auth_onForgotPage = (value) => {
-    return {
-        type: 'AUTH_ONSFORGOTPAGE',
+        type: 'AUTH_LANDINGSTATUS',
         payload: value
     };
 };

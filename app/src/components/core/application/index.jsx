@@ -1,8 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { map_center, map_address, ui_color } from '../../../actions';
+
+import cookie from 'react-cookies'
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+import axios from 'axios';
+import { KEY } from '../../../api';
 
 import Nav from '../../template/nav';
 import Dashboard from '../../template/dashboard';
@@ -14,20 +20,37 @@ import Sidebar from '../../template/sidebar';
 import './index.css';
 
 const Application = () => {
-	const auth = useSelector(state => state.auth);
 	const ui = useSelector(state => state.ui);
-	const map = useSelector(state => state.map);
 	const chat = useSelector(state => state.chat);
+	const map = useSelector(state => state.map);
+	const dispatch = useDispatch();
+	
+	if(map.center.latitude === 0 && map.center.longitude === 0) {
+		console.log('GPS Connection is processing...');
+        navigator.geolocation.getCurrentPosition((position) => {
+			dispatch(map_center({
+				latitude: position.coords.latitude,
+				longitude: position.coords.longitude,
+			}));
+			axios.get('https://maps.googleapis.com/maps/api/geocode/json?language=en&latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&key=' + KEY)
+			.then((res) => {
+				let data = res.data.plus_code.compound_code.split(' ');
+				let address = '';
+				for(let i = 1; i < data.length; i++) {
+					address += i + 1 === data.length ? data[i] : data[i] + ' ';
+				}
+				setTimeout(() => {
+					dispatch(map_address(address));
+				}, 1500);
+			});
+		});
+	}
 
-	useEffect(() => {
-		if(auth.isLogin && map.address !== '') {
-			setTimeout( () => {
-				document.querySelector('.application').className = 'application active'
-			}, 500);
-		} else {
-			document.querySelector('.application').className = 'application'
-		}
-	});
+	const getColor = cookie.load('theme-color');
+
+	if(getColor !== undefined && getColor !== ui_color) {
+		dispatch(ui_color(getColor));
+	}
 
 	return (
 		<Router>
