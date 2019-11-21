@@ -13,12 +13,12 @@ module.exports.check = (req, res) => {
 }
 
 module.exports.signup = (req, res) => {
-    let sql_select_users = 'SELECT * id FROM users WHERE email = ?';
-    let sql_insert_users = 'INSERT INTO users (email, password, first_name, last_name, birth_year, gender, preference, bio) values (?, SHA1(?), ?, ?, ?, ?, ?, ?)';
-    let sql_insert_verifies = 'INSERT INTO verifies (user_id, uuid) values (?, ?)';
+    const sql_select_users = 'SELECT * id FROM users WHERE email = ?';
+    const sql_insert_users = 'INSERT INTO users (email, password, first_name, last_name, birth_year, gender, preference, bio) values (?, SHA1(?), ?, ?, ?, ?, ?, ?)';
+    const sql_insert_verifies = 'INSERT INTO verifies (user_id, uuid) values ((SELECT id FROM users WHERE user_id = ?), ?)';
 
-    let data = req.body.data;
-    let code = uuid();
+    const data = req.body.data;
+    const code = uuid();
 
     conn.query(sql_select_users, [data.email], (err, results) => {
         if (err) {
@@ -45,15 +45,15 @@ module.exports.signup = (req, res) => {
                 }
             });
 
-            conn.query(sql_insert_verifies, [유저_이메일의_아이디, code], (err) => {
-                if (err) {
-                    console.log(err);
-                }
-            })
             conn.query(sql_insert_users, [data.email, data.password, data.first_name, data.last_name, data.birth_year, data.gender, data.preference, data.bio], (err, results) => {
                 if (err) {
                     console.log(err);
                 } else {
+                    conn.query(sql_insert_verifies, [data.email, code], (err) => {
+                        if (err) {
+                            console.log(err);
+                        }
+                    })
                     results = JSON.parse(JSON.stringify(results));
                     res.json(results);
                 }
