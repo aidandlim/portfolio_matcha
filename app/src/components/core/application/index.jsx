@@ -1,9 +1,7 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { map_center, map_address, ui_color } from '../../../actions';
-
-import cookie from 'react-cookies'
+import { map_center, map_address } from '../../../actions';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -20,7 +18,6 @@ import Sidebar from '../../template/sidebar';
 import './index.css';
 
 const Application = () => {
-	const ui = useSelector(state => state.ui);
 	const chat = useSelector(state => state.chat);
 	const map = useSelector(state => state.map);
 	const dispatch = useDispatch();
@@ -46,29 +43,9 @@ const Application = () => {
 		});
 	}
 
-	const getColor = cookie.load('theme-color');
-
-	if(getColor !== undefined && getColor !== ui_color) {
-		dispatch(ui_color(getColor));
-	}
-
 	return (
 		<Router>
 			<div className='application'>
-				<style>{`
-					:root {
-						--color-100: ${ui.color + 'ff'};
-						--color-90: ${ui.color + 'e6'};
-						--color-80: ${ui.color + 'cc'};
-						--color-70: ${ui.color + 'b3'};
-						--color-60: ${ui.color + '99'};
-						--color-50: ${ui.color + '80'};
-						--color-40: ${ui.color + '66'};
-						--color-30: ${ui.color + '4d'};
-						--color-20: ${ui.color + '33'};
-						--color-10: ${ui.color + '1a'};
-					}
-				`}</style>
 				<Nav />
 				<div className={chat.current === -1 ? 'default' : 'default default-active'}>
 					<Switch>

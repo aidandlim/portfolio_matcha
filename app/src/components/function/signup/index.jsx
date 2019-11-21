@@ -26,9 +26,7 @@ const Signup = () => {
 			bio: document.signup.bio.value
 		};
 
-		axios.post('/user/signup', {
-			data
-		})
+		axios.post('/users/signup', data)
 		.then(res => {
 			if(res.data) {
 				console.log('signup success');
@@ -177,7 +175,7 @@ const Signup = () => {
 			</select>
 			<textarea className='signin-textarea' name='bio'></textarea>
 			<input className='signin-submit' type='submit' value='submit' />
-			<input className='signin-button' type='button' value='back' onClick={ () => dispatch(auth_landingStatus(0)) } />
+			<input className='signin-button' type='button' value='back' onClick={ () => dispatch(auth_landingStatus(1)) } />
 		</form>
 	);
 }
