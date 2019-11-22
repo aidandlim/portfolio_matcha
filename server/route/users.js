@@ -75,7 +75,7 @@ module.exports.emailCheck = (req, res) => {
 
 module.exports.signin = (req, res) => {
     const sql_select_email = 'SELECT * FROM users WHERE email = ?';
-    const sql_select_password = 'SELECT verify FROM users WHERE email = ? AND password = ?';
+    const sql_select_password = 'SELECT verify FROM users WHERE email = ? AND password = SHA1(?)';
 
     const email = req.body.email;
     const password = req.body.password;
