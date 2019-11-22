@@ -21,6 +21,7 @@ const App = () => {
 	const dispatch = useDispatch();
 	
 	if(!auth.isLogin) {
+		console.log('App > userCheck');
 		axios.get('/users/check')
 		.then((res) => {
 			if(res.data) {

@@ -6,7 +6,6 @@ import { auth_landingStatus } from '../../../actions';
 import axios from 'axios';
 
 import alert from '../alert';
-import './index.css';
 
 const Forgot = () => {
 	const dispatch = useDispatch();
@@ -31,6 +30,8 @@ const Forgot = () => {
 
 	return (
 		<form name='forgot' onSubmit={_handleForm}>
+			<div className='signin-title'>Have you forgotten your password?</div>
+			<div className='signin-description'>What was the person thinking when they discovered cow’s milk was fine for human consumption… and why did they do it in the first place!?</div>
 			<input className='signin-input' type='email' name='email' placeholder='email' required />
 			<input className='signin-submit' type='submit' value='submit' />
 			<input className='signin-button' type='button' value='back' onClick={ () => dispatch(auth_landingStatus(1)) } />

@@ -46,6 +46,13 @@ textarea  {
     border-radius: 0;
 }
 
+select { 
+    border-radius:0;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none
+}
+
 ::-webkit-scrollbar {
     -webkit-appearance: none;
 }

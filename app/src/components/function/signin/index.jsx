@@ -57,11 +57,19 @@ const Signin = () => {
 
 	return (
 		<form name='signin' onSubmit={_handleForm}>
-			<input className='signin-input' type='email' name='email' placeholder='email' required />
-			<input className='signin-input' type='password' name='password' placeholder='password' required />
-			<input className='signin-submit' type='submit' value='submit' />
-			<input className='signin-button' type='button' value='signup' onClick={ () => dispatch(auth_landingStatus(2)) } />
-			<input className='signin-button' type='button' value='forgot password' onClick={ () => dispatch(auth_landingStatus(3)) } />
+			<div className='signin-title'>Hello, Welcome to M@TCH@!</div>
+			<div className='signin-description'>What was the person thinking when they discovered cow’s milk was fine for human consumption… and why did they do it in the first place!?</div>
+			<label className='signin-label'>
+				<span>Email</span>
+				<input className='signin-input' type='email' name='email' required />
+			</label>
+			<label className='signin-label'>
+				<span>Password</span>
+				<input className='signin-input' type='password' name='password' required />
+			</label>
+			<input className='signin-submit' type='submit' value='SUBMIT' />
+			<input className='signin-button' type='button' value='SIGNUP' onClick={ () => dispatch(auth_landingStatus(2)) } />
+			<input className='signin-button' type='button' value='FORGOT PASSWORD' onClick={ () => dispatch(auth_landingStatus(3)) } />
 		</form>
 	);
 }
