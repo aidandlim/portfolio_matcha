@@ -1,5 +1,5 @@
 const auth = {
-    isLogin: false,
+    isLogin: true,
     landingStatus: 0,
 }
 

@@ -2,14 +2,14 @@ import React from 'react';
 
 import './index.css';
 
-const Preference = () => {
+const Picture = () => {
 	return (
 		<div className='dashboard-default'>
 			<div className='dashboard-header'>
-				<div className='dashboard-header-title'>PREFERENCE</div>
+				PICTURE
 			</div>
 		</div>
 	);
 }
 
-export default Preference;
+export default Picture;
