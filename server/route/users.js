@@ -17,11 +17,12 @@ module.exports.check = (req, res) => {
 //
 
 module.exports.signup = (req, res) => {
-    const sql_select_users = 'SELECT * id FROM users WHERE email = ?';
+    const sql_select_users = 'SELECT id FROM users WHERE email = ?';
     const sql_insert_users = 'INSERT INTO users (email, password, first_name, last_name, birth_year, gender, preference, bio) values (?, SHA1(?), ?, ?, ?, ?, ?, ?)';
     const sql_insert_verifies = 'INSERT INTO verifies (user_id, uuid) values ((SELECT id FROM users WHERE email = ?), ?)';
 
-    const data = req.body.data;
+    const data = req.body;
+    console.log(req);
     const code = uuid();
 
     conn.query(sql_select_users, [data.email], (err, results) => {
@@ -68,21 +69,36 @@ module.exports.signup = (req, res) => {
 
 //
 
+module.exports.emailCheck = (req, res) => {
+    
+}
+
 module.exports.signin = (req, res) => {
-    const sql = 'SELECT * FROM users WHERE email = ? AND password = SHA1(?) AND verify = 1';
+    const sql_select_email = 'SELECT * FROM users WHERE email = ?';
+    const sql_select_password = 'SELECT verify FROM users WHERE email = ? AND password = ?';
 
     const email = req.body.email;
     const password = req.body.password;
 
-    conn.query(sql, [email, password], (err, results) => {
+    conn.query(sql_select_email, [email], (err, results) => {
         if (err) {
             console.log(err);
-        } else if (results.length !== 0) {
-            results = JSON.parse(JSON.stringify(results));
-            req.session.user = results[0].email;
-            res.json(true);
+        } else if (results.length === 0) {
+            res.json(2); // Doesn't exist email
         } else {
-            res.json(false);
+            conn.query(sql_select_password, [email, password], (err, results) => {
+                results = JSON.parse(JSON.stringify(results));
+                if (err) {
+                    console.log(err);
+                } else if (results.length === 0) {
+                    res.json(3); // Password is wrong
+                } else if (results.verify === 0) {
+                    res.json(4); // Verify is 0
+                } else {
+                    req.session.user = email;
+                    res.json(1); // Log in successfully
+                }
+            })
         }
     })
 }
