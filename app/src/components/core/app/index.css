@@ -22,7 +22,7 @@ body.react-confirm-alert-body-element {
     right: 0;
     bottom: 0;
     z-index: 99;
-    background: #202020;
+    background: var(--color-100);
     opacity: 0.99;
 }
 
@@ -35,12 +35,12 @@ body.react-confirm-alert-body-element {
     top: calc(50% - 2.5rem);
     left: calc(50% - 11rem);
 
-    color: #808080;
+    color: var(--color-80);
     font-size: 0.75rem;
     font-weight: 900;
 
-    background: #404040;
-    border: solid 0.1rem #202020;
+    background: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     border-radius: 0.5rem;
 }
 
@@ -61,11 +61,11 @@ body.react-confirm-alert-body-element {
     margin-right: 0.5rem;
     padding: 0.25rem 0.5rem;
 
-    color: #AAAAAA;
+    color: white;
     font-size: 0.5rem;
     font-weight: 700;
 
-    background: #303030;
+    background: var(--color-80);
     border: none;
     border-radius: 0.25rem;
 

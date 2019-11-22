@@ -18,9 +18,9 @@ const Signup = () => {
 		const data = {
 			email: document.signup.email.value,
 			password: document.signup.password.value,
-			firstName: document.signup.firstName.value,
-			lastName: document.signup.lastName.value,
-			birthYear: parseInt(document.signup.birthYear.value),
+			first_name: document.signup.firstName.value,
+			last_name: document.signup.lastName.value,
+			birth_year: parseInt(document.signup.birthYear.value),
 			gender: parseInt(document.signup.gender.value),
 			preference: parseInt(document.signup.preference.value),
 			bio: document.signup.bio.value

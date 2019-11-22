@@ -28,7 +28,7 @@ const Theme = () => {
 					className='theme-picker' 
 					width='calc(100% - 1rem)'
 					color={ui.color} 
-					onChangeComplete={_handleColor}
+					onChange={_handleColor}
 				/>
 			</div>
 		</div>

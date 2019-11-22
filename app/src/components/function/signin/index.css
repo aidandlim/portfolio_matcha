@@ -54,7 +54,7 @@
     position: relative;
     float: left;
 
-    color: #404040;
+    color: var(--color-100);
     font-size: 0.5rem;
     font-weight: 700;
 }

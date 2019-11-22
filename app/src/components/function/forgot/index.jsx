@@ -32,9 +32,12 @@ const Forgot = () => {
 		<form name='forgot' onSubmit={_handleForm}>
 			<div className='signin-title'>Have you forgotten your password?</div>
 			<div className='signin-description'>What was the person thinking when they discovered cow’s milk was fine for human consumption… and why did they do it in the first place!?</div>
-			<input className='signin-input' type='email' name='email' placeholder='email' required />
-			<input className='signin-submit' type='submit' value='submit' />
-			<input className='signin-button' type='button' value='back' onClick={ () => dispatch(auth_landingStatus(1)) } />
+			<label className='signin-label'>
+				<span>Email</span>
+				<input className='signin-input' type='email' name='email' required/>
+			</label>
+			<input className='signin-submit' type='submit' value='SUBMIT' />
+			<input className='signin-button' type='button' value='BACK' onClick={ () => dispatch(auth_landingStatus(1)) } />
 		</form>
 	);
 }
