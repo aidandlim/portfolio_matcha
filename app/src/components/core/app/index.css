@@ -7,10 +7,6 @@
     background-color: #ecf0f1;
 }
 
-.active {
-    opacity: 1;
-}
-
 body.react-confirm-alert-body-element {
     overflow: hidden;
 }
