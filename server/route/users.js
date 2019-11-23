@@ -72,7 +72,7 @@ module.exports.signup = (req, res) => {
             }
         })
     } else {
-        res.json(2);
+        res.json(0);
     }
 }
 
