@@ -112,7 +112,7 @@ module.exports.forgot = (req, res) => {
     const password = uuid();
 
     if (this.emailCheck(email) === 0) {
-        res.json(false);
+        res.json(0);
     } else {
         conn.query(sql, [password, email], (err) => {
             if (err) {
@@ -136,7 +136,7 @@ module.exports.forgot = (req, res) => {
                         console.log(error);
                     }
                 });
-                res.json(true);
+                res.json(1);
             }
         })
     }
