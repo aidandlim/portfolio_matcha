@@ -30,6 +30,8 @@ module.exports.emailCheck = (email) => {
     })
 }
 
+//
+
 module.exports.signup = (req, res) => {
     const sql_insert_users = 'INSERT INTO users (email, password, first_name, last_name, birth_year, gender, preference, bio) values (?, SHA1(?), ?, ?, ?, ?, ?, ?)';
     const sql_insert_verifies = 'INSERT INTO verifies (user_id, uuid) values ((SELECT id FROM users WHERE email = ?), ?)';
