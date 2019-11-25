@@ -27,4 +27,11 @@
     border-radius: 50%;
 
     opacity: 0.25;
+
+    cursor: pointer;
+}
+
+.sidebar-notification-active {
+    color: var(--color-70);
+    opacity: 0.5;
 }
