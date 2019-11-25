@@ -1,6 +1,6 @@
 .push {
     width: 100%;
-    height: 3rem;
+    height: 2rem;
 
     margin-bottom: 0.5rem;
 
@@ -12,10 +12,10 @@
 }
 
 .push-picture {
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
     
-    margin: 0.5rem;
+    margin: 0.25rem;
 
     position: relative;
     float: left;
@@ -27,16 +27,18 @@
 }
 
 .push-content {
-    width: calc(100% - 3rem);
+    width: calc(100% - 3.25rem);
     height: 100%;
+
+    margin-left: 0.25rem;
 
     position: relative;
     float: left;
 
     color: #606060;
-    font-size: 0.65rem;
+    font-size: 0.5rem;
     font-weight: 900;
-    line-height: 3rem;
+    line-height: 2rem;
 }
 
 .push-time {
@@ -49,6 +51,6 @@
     transform: translate(calc(-100% - 0.4rem), 0);
 
     color: #909090;
-    font-size: 0.5rem;
+    font-size: 0.4rem;
     font-weight: 900;
 }
