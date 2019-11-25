@@ -13,11 +13,13 @@ import Dashboard from '../../template/dashboard';
 import Match from '../../template/match';
 import Search from '../../template/search';
 import Chat from '../../template/chat';
+import Notification from '../../template/notification';
 import Sidebar from '../../template/sidebar';
 
 import './index.css';
 
 const Application = () => {
+	const ui = useSelector(state => state.ui);
 	const chat = useSelector(state => state.chat);
 	const map = useSelector(state => state.map);
 	const dispatch = useDispatch();
@@ -47,7 +49,7 @@ const Application = () => {
 		<Router>
 			<div className='application'>
 				<Nav />
-				<div className={chat.current === -1 ? 'default' : 'default default-active'}>
+				<div className={chat.current === -1 && !ui.notification ? 'default' : 'default default-active'}>
 					<Switch>
 						<Route path='/' exact component={Dashboard} />
 						<Route path='/match' component={Match} />
@@ -55,6 +57,7 @@ const Application = () => {
 					</Switch>
 				</div>
 				<Chat />
+				<Notification />
 				<Sidebar />
 			</div>
 		</Router>

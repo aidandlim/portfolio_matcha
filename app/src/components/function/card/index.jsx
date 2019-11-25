@@ -18,12 +18,7 @@ const Card = () => {
 	const [ index, setIndex ] = useState(0);
 
 	useEffect(() => {
-		setTimeout( () => {
-			if(document.querySelector('.card') !== null) {
-				document.querySelector('.card').className = 'card active';
-				_handleImage();
-			}
-		}, 250);
+		_handleImage();
 	});
 
 	const _handleIndex = (toRight, target) => {

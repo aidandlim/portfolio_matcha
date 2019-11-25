@@ -1,0 +1,20 @@
+.notification {
+    width: 15.5rem;
+    height: calc(100% - 1rem);
+
+    padding: 0.5rem;
+    
+    position: absolute;
+    top: 0;
+    left: 100%;
+
+    background-color: var(--color-10);
+
+    transition: 0.5s;
+
+    z-index: 9;
+}
+
+.notification-active {
+    left: calc(100% - 20.5rem);
+}

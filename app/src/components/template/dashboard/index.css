@@ -36,10 +36,10 @@
 }
 
 .dashboard-body {
-    width: 100%;
+    width: calc(100% - 1rem);
     height: calc(100% - 0.5rem);
 
-    padding: 0.5rem 0 0 0;
+    padding: 0.5rem 0.5rem 0 0.5rem;
 
     position: relative;
     float: left;

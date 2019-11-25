@@ -1,5 +1,6 @@
 const ui = {
-    color: '#F44336'
+    color: '#F44336',
+    notification: false,
 }
 
 const uiReducer = (state = ui, action) => {
@@ -7,6 +8,10 @@ const uiReducer = (state = ui, action) => {
         case 'UI_COLOR':
             return Object.assign({}, state, {
                 color: action.payload
+            });
+        case 'UI_NOTIFICATION':
+            return Object.assign({}, state, {
+                notification: action.payload
             });
         default:
             return state;

@@ -7,6 +7,13 @@ export const ui_color = (value) => {
     };
 };
 
+export const ui_notification = (value) => {
+    return {
+        type: 'UI_NOTIFICATION',
+        payload: value
+    };
+};
+
 /****************************************************/
 
 export const auth_isLogin = (value) => {
