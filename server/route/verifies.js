@@ -1,3 +1,5 @@
+const nodemailer = require('nodemailer');
+
 const conn = require('../config/db');
 
 module.exports.signup = (req, res) => {
@@ -22,6 +24,39 @@ module.exports.signup = (req, res) => {
                     console.log(err);
                 }
             })
+        }
+    })
+}
+
+module.exports.resend = (req, res) => {
+    const sql = 'SELECT uuid FROM verifies WHERE user_id = ?';
+
+    const email = req.body.email;
+
+    conn.query(sql, [email], (err, results) => {
+        if (err) {
+            console.log(err);
+        } else {
+            results = JSON.parse(JSON.stringify(results));
+
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: 'helloWorld@gmail.com',
+                    pass: '1234'
+                }
+            });
+            const mailOptions = {
+                from: 'helloWorld@gmail.com',
+                to: data.email,
+                subject: 'Please confirm for Matcha registration :)',
+                html: "<a href=" + URL + "/api/verifies/signup?email=" + email + "&code=" + results.uuid + ">Click here to verify !</a>"
+            };
+            transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                    console.log(error);
+                }
+            });
         }
     })
 }
