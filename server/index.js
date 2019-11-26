@@ -49,9 +49,12 @@ app.get('/', (req, res) => {
 
 app.get('/api/users/check', users.check);
 app.get('/api/verifies/signup', verifies.signup);
+app.get('/api/verifies/resend', verifies.resend);
 app.get('/api/users/signin', users.signin);
 app.get('/api/users/forgot', users.forgot);
 app.post('/api/users/signup', users.signup);
+app.put('/api/users/updateEmail', users.updateEmail);
+app.put('/api/users/updatePassword', users.updatePassword);
 
 app.post('/api/appears/insert', appears.insert);
 app.post('/api/blocks/insert', blocks.insert);

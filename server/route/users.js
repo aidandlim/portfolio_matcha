@@ -141,3 +141,65 @@ module.exports.forgot = (req, res) => {
         })
     }
 }
+
+//
+
+module.exports.updateEmail = (req, res) => {
+    const sql_update_email = 'UPDATE users SET email = ?, verify = 0 WHERE email = ?';
+    const sql_insert_verifies = 'INSERT INTO verifies (user_id, uuid) values ((SELECT id FROM users WHERE email = ?), ?)';
+
+    const email = req.session.user;
+    const newEmail = req.body.email;
+    const code = uuid();
+
+    conn.query(sql_update_email, [newEmail, email], (err) => {
+        if (err) {
+            console.log(err);
+            res.json(0);
+        } else {
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: 'helloWorld@gmail.com',
+                    pass: '1234'
+                }
+            });
+            const mailOptions = {
+                from: 'helloWorld@gmail.com',
+                to: newEmail,
+                subject: 'Please confirm for Matcha registration :)',
+                html: "<a href=" + URL + "/api/verifies/signup?email=" + newEmail + "&code=" + code + ">Click here to verify !</a>"
+            };
+            transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                    console.log(error);
+                }
+            });
+
+            conn.query(sql_insert_verifies, [newEmail, code], (err) => {
+                if (err) {
+                    console.log(err);
+                }
+            })
+            res.json(1);
+        }
+    })
+}
+
+//
+
+module.exports.updatePassword = (req, res) => {
+    const sql = 'UPDATE users SET password = ? WHERE email = ?';
+
+    const email = req.session.user;
+    const password = req.body.password;
+
+    conn.query(sql, [password, email], (err) => {
+        if (err) {
+            console.log(err);
+            res.json(0);
+        } else {
+            res.json(1);
+        }
+    })
+}
