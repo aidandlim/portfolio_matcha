@@ -26,6 +26,8 @@ const Signup = () => {
 			bio: document.signup.bio.value
 		};
 
+		console.log(data);
+
 		axios.post('/users/signup', data)
 		.then(res => {
 			if(res.data) {
