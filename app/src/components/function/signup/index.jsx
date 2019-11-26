@@ -284,16 +284,8 @@ const Signup = () => {
 				<span>Bio</span>
 				<textarea className='signin-textarea' name='bio'></textarea>
 			</label>
-			{ /* Step 3 */ }
-			<label className={ step === 3 ? 'signin-label' : 'signin-label unactive' }>
-				<span>Profile Picture</span>
-			</label>
-			<label className={ step === 3 ? 'signin-label' : 'signin-label unactive' }>
-				<span>Location</span>
-				<input className='signin-input' name='location' />
-			</label>
-			<input className={ step !== 3 ? 'signin-submit' : 'signin-submit unactive' } type='button' value='NEXT' onClick={ () => _handleCheckValidation() } />
-			<input className={ step === 3 ? 'signin-submit' : 'signin-submit unactive' } type='submit' value='SUBMIT' />
+			<input className={ step !== 2 ? 'signin-submit' : 'signin-submit unactive' } type='button' value='NEXT' onClick={ () => _handleCheckValidation() } />
+			<input className={ step === 2 ? 'signin-submit' : 'signin-submit unactive' } type='submit' value='SUBMIT' />
 			<input className='signin-button' type='button' value='BACK' onClick={ () => dispatch(auth_landingStatus(1)) } />
 		</form>
 	);

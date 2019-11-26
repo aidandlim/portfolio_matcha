@@ -18,10 +18,12 @@ const Nav = () => {
 
 		if(currentLocation === '/')
 			setNav(0);
-		else if(currentLocation === '/match')
+		else if(currentLocation === '/overview')
 			setNav(1);
 		else if(currentLocation === '/search')
 			setNav(2);
+		else if(currentLocation === '/match')
+			setNav(3);
 
 	}, []);
 
@@ -38,6 +40,7 @@ const Nav = () => {
 			<Menu index={0} nav={nav} setNav={setNav} />
 			<Menu index={1} nav={nav} setNav={setNav} />
 			<Menu index={2} nav={nav} setNav={setNav} />
+			<Menu index={3} nav={nav} setNav={setNav} />
 		</div>
 	);
 }

@@ -4,6 +4,8 @@
 
     position: relative;
     float: left;
+
+    transition: 1s;
 }
 
 .profile-image {

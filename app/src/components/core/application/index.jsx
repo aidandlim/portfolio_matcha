@@ -9,12 +9,16 @@ import axios from 'axios';
 import { KEY } from '../../../api';
 
 import Nav from '../../template/nav';
-import Dashboard from '../../template/dashboard';
+
+import Profile from '../../template/profile';
+import Overview from '../../template/overview';
+import Theme from '../../template/theme';
 import Match from '../../template/match';
 import Search from '../../template/search';
+
+import Sidebar from '../../template/sidebar';
 import Chat from '../../template/chat';
 import Notification from '../../template/notification';
-import Sidebar from '../../template/sidebar';
 
 import './index.css';
 
@@ -51,7 +55,9 @@ const Application = () => {
 				<Nav />
 				<div className={chat.current === -1 && !ui.notification ? 'default' : 'default default-active'}>
 					<Switch>
-						<Route path='/' exact component={Dashboard} />
+						<Route path='/' exact component={Profile} />
+						<Route path='/overview' exact component={Overview} />
+						<Route path='/theme' exact component={Theme} />
 						<Route path='/match' component={Match} />
 						<Route path='/search' component={Search} />
 					</Switch>
