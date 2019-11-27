@@ -16,7 +16,36 @@ module.exports.check = (req, res) => {
 
 //
 
-module.exports.emailCheck = (email) => {
+module.exports.select = (req, res) => {
+    const sql = 'SELECT * FROM users WHERE email = ?';
+
+    const email = req.session.user;
+
+    conn.query(sql, [email], (err, results) => {
+        if (err) {
+            console.log(err);
+        } else {
+            results = JSON.parse(JSON.stringify(results));
+            res.json(results);            
+        }
+    })
+}
+
+//
+
+module.exports.emailCheck = (req, res) => {
+    const email = req.body.email;
+
+    if (this.ft_emailCheck(email) === 0) {
+        res.json(0);
+    } else {
+        res.json(1);
+    }
+}
+
+//
+
+module.exports.ft_emailCheck = (email) => {
     const sql = 'SELECT id FROM users WHERE email = ?';
 
     conn.query(sql, [email], (err, results) => {
@@ -39,7 +68,7 @@ module.exports.signup = (req, res) => {
     const data = req.body;
     const code = uuid();
 
-    if (this.emailCheck(data.email) === 0) {
+    if (this.ft_emailCheck(data.email) === 0) {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -84,7 +113,7 @@ module.exports.signin = (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
 
-    if (this.emailCheck(email) === 0) {
+    if (this.ft_emailCheck(email) === 0) {
         res.json(2); // Doesn't exist email
     } else {
         conn.query(sql, [email, password], (err, results) => {
@@ -105,13 +134,24 @@ module.exports.signin = (req, res) => {
 
 //
 
+module.exports.logout = (req, res) => {
+    if (req.session.user !== undefined) {
+        req.session.user = undefined;
+        res.json(1);
+    } else {
+        res.json(0);
+    }
+}
+
+//
+
 module.exports.forgot = (req, res) => {
     const sql = 'UPDATE users SET password = SHA1(?) WHERE email = ?';
 
     const email = req.body.email;
     const password = uuid();
 
-    if (this.emailCheck(email) === 0) {
+    if (this.ft_emailCheck(email) === 0) {
         res.json(0);
     } else {
         conn.query(sql, [password, email], (err) => {
@@ -140,6 +180,23 @@ module.exports.forgot = (req, res) => {
             }
         })
     }
+}
+
+//
+
+module.exports.update = (req, res) => {
+    const sql = 'UPDATE users SET first_name = ?, last_name = ?, birth_year = ?, gender = ?, preference = ?, bio = ?';
+
+    const data = req.body;
+
+    conn.query(sql, [data.first_name, data.last_name, data.birth_year, data.gender, data.preference, data.bio], (err) => {
+        if (err) {
+            console.log(err);
+            res.json(0);
+        } else {
+            res.json(1);
+        }
+    })
 }
 
 //
@@ -195,6 +252,24 @@ module.exports.updatePassword = (req, res) => {
     const password = req.body.password;
 
     conn.query(sql, [password, email], (err) => {
+        if (err) {
+            console.log(err);
+            res.json(0);
+        } else {
+            res.json(1);
+        }
+    })
+}
+
+//
+
+module.exports.updatePicture = (req, res) => {
+    const sql = 'UPDATE users SET picture' + req.body.index + ' = ? WHERE email = ?';
+
+    const email = req.session.user;
+    const picture = req.body.picture;
+
+    conn.query(sql, [picture, email], (err) => {
         if (err) {
             console.log(err);
             res.json(0);
