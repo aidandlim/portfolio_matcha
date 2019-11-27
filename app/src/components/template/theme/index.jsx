@@ -19,18 +19,13 @@ const Theme = () => {
 	}
 
 	return (
-		<div className='dashboard-default'>
-			<div className='dashboard-header'>
-				<div className='dashboard-header-title'>THEME</div>
-			</div>
-			<div className='dashboard-body'>
-				<HuePicker 
-					className='theme-picker' 
-					width='calc(100% - 1rem)'
-					color={ui.color} 
-					onChange={_handleColor}
-				/>
-			</div>
+		<div className='theme'>
+			<HuePicker 
+				className='theme-picker' 
+				width='calc(100% - 1rem)'
+				color={ui.color} 
+				onChange={_handleColor}
+			/>
 		</div>
 	);
 }

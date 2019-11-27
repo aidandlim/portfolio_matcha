@@ -4,11 +4,11 @@
 
     padding: 1rem;
 
-    position: absolute;
-    top: 0;
-    left: calc(100% - 4rem);
+    position: relative;
+    float: left;
 
     background-color: var(--color-100);
+
     z-index: 10;
 }
 
