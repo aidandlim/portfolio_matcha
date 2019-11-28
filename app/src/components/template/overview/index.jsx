@@ -1,10 +1,17 @@
 import React from 'react';
 
-import { ResponsiveLine } from '@nivo/line'
+import { useSelector, useDispatch } from 'react-redux';
+import { ui_maximization } from '../../../actions';
+
+import { ResponsiveLine } from '@nivo/line';
+
+import { FaExpandArrowsAlt } from 'react-icons/fa';
 
 import './index.css';
 
 const Overview = (props) => {
+	const ui = useSelector(state => state.ui);
+	const dispatch = useDispatch();
 
 	const _handleDate = (diff) => {
 		let date = new Date();
@@ -155,8 +162,11 @@ const Overview = (props) => {
 	];
 
 	return (
-		<div className='frame'>
-			<div className='frame-header'>OVERVIEW</div>
+		<div className={ui.maximization ? 'frame-wide' : 'frame'}>
+			<div className='frame-header'>
+				<div className='frame-title'>OVERVIEW</div>
+				<FaExpandArrowsAlt className='frame-maximization' onClick={ () => dispatch(ui_maximization(ui.maximization ? false : true)) } />
+			</div>
 			<div className='frame-body'>
 				<ResponsiveLine
 					data={data}

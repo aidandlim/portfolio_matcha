@@ -1,17 +1,26 @@
 import React from 'react';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { ui_maximization } from '../../../actions';
+
 import Profile1 from '../../../resources/profile1.jpeg';
 import Profile2 from '../../../resources/profile2.jpeg';
 import Profile3 from '../../../resources/profile3.jpeg';
 
-import { FaPlusCircle } from 'react-icons/fa';
+import { FaExpandArrowsAlt, FaPlusCircle } from 'react-icons/fa';
 
 import './index.css';
 
 const Profile = () => {
+	const ui = useSelector(state => state.ui);
+	const dispatch = useDispatch();
+
 	return (
-		<div className='frame'>
-			<div className='frame-header'>PROFILE</div>
+		<div className={ui.maximization ? 'frame-wide' : 'frame'}>
+			<div className='frame-header'>
+				<div className='frame-title'>PROFILE</div>
+				<FaExpandArrowsAlt className='frame-maximization' onClick={ () => dispatch(ui_maximization(ui.maximization ? false : true)) } />
+			</div>
 			<div className='frame-body'>
 				<div className='profile-section'>
 					<div className='profile-image' style={{
