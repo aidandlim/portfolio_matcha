@@ -14,13 +14,6 @@ export const ui_notification = (value) => {
     };
 };
 
-export const ui_maximization = (value) => {
-    return {
-        type: 'UI_MAXIMIZATION',
-        payload: value
-    };
-};
-
 /****************************************************/
 
 export const auth_isLogin = (value) => {

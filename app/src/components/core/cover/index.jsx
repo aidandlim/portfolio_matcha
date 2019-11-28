@@ -54,7 +54,7 @@ const Cover = () => {
 					backgroundImage: 'url(\'' + Connection + '\')'
 				}}></div>
 				<div className='cover-description'>We are trying to connect to GPS.</div>
-				<input id='cover-input' type='number' placeholder='Please enter your Zip Code.'  onChange={() => _handleZipCode()} autoComplete={false}/>
+				<input id='cover-input' type='number' placeholder='Please enter your Zip Code.'  onChange={() => _handleZipCode()} />
 			</div>
 		</div>
 	);

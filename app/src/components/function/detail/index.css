@@ -1,0 +1,25 @@
+.detail-profile {
+    width: 7rem;
+    height: 7rem;
+
+    margin: 1.5rem;
+
+    position: relative;
+    float: left;
+
+    background-color: #fff;
+    border-radius: 50%;
+}
+
+.detail-name {
+    width: auto;
+    height: auto;
+
+    position: relative;
+    float: left;
+    top: 1.5rem;
+
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 900;
+}

@@ -20,9 +20,9 @@ const Nav = () => {
 			setNav(0);
 		else if(currentLocation === '/overview')
 			setNav(1);
-		else if(currentLocation === '/search')
-			setNav(2);
 		else if(currentLocation === '/match')
+			setNav(2);
+		else if(currentLocation === '/search')
 			setNav(3);
 
 	}, []);

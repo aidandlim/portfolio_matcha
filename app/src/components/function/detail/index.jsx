@@ -1,20 +1,21 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+
+import { useDispatch } from 'react-redux';
+import { match_isDetail } from '../../../actions';
 
 import './index.css';
 
 const Detail = () => {
-
-	useEffect(() => {
-		setTimeout( () => {
-			if(document.querySelector('.detail') !== null) {
-				document.querySelector('.detail').className = 'detail active';
-			}
-		}, 250);
-	});
+	const dispatch = useDispatch();
 
 	return (
-		<div className='default'>
-
+		<div className='frame'>
+			<div className='frame-header-wide'>
+				<div className='detail-profile'></div>
+				<div className='detail-name'>Aidan Lim (28)</div>
+			</div>
+			<div className='frame-body-narrow' onClick={ () => dispatch(match_isDetail(false)) }>
+			</div>
 		</div>
 	);
 }
