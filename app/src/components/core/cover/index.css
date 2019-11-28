@@ -13,30 +13,63 @@
     z-index: 99;
 }
 
-.cover-icon {
-    width: 8rem;
-    height: 8rem;
+.cover-container  {
+    width: 20rem;
+    height: auto;
 
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.cover-icon {
+    width: 8rem;
+    height: 8rem;
+
+    margin: 0 6rem;
+
+    position: relative;
+    float: left;
 
     background-size: cover;
     background-position: center;
 }
 
 .cover-description {
-    width: 100%;
+    width: 20rem;
     height: 1.5rem;
 
-    position: absolute;
-    top: calc(50% + 4rem);
-    left: 0;
+    margin-bottom: 1.5rem;
+
+    position: relative;
+    float: left;
 
     color: #505050;
     font-size: 0.8rem;
     font-weight: 900;
     text-align: center;
     line-height: 1.5rem;
+}
+
+#cover-input {
+    width: 12rem;
+    height: 1.5rem;
+
+    margin: 0 4rem;
+
+    position: relative;
+    float: left;
+
+    color: #404040;
+    font-size: 0.5rem;
+    font-weight: 900;
+    text-align: center;
+
+    background: none;
+    border: none;
+    border-bottom: solid 0.05rem #808080;
+    display: none;
+
+    outline: none;
 }

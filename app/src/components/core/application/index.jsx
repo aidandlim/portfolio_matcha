@@ -9,16 +9,15 @@ import axios from 'axios';
 import { KEY } from '../../../api';
 
 import Nav from '../../template/nav';
-
-import Profile from '../../template/profile';
-import Overview from '../../template/overview';
-import Theme from '../../template/theme';
-import Match from '../../template/match';
-import Search from '../../template/search';
-
 import Sidebar from '../../template/sidebar';
 import Chat from '../../template/chat';
 import Notification from '../../template/notification';
+
+import Profile from '../../function/profile';
+import Overview from '../../function/overview';
+import Theme from '../../function/theme';
+import Match from '../../function/match';
+import Search from '../../function/search';
 
 import './index.css';
 

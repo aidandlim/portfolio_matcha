@@ -13,7 +13,7 @@ const Detail = () => {
 	});
 
 	return (
-		<div className='detail'>
+		<div className='default'>
 
 		</div>
 	);
