@@ -155,36 +155,39 @@ const Overview = (props) => {
 	];
 
 	return (
-		<div className='overview'>
-			<ResponsiveLine
-				data={data}
-				margin={{ top: 50, right: 80, bottom: 50, left: 50 }}
-				xScale={{ type: 'point' }}
-				yScale={{ type: 'linear', stacked: false, min: 'auto', max: 'auto' }}
-				colors={{ scheme: 'nivo' }}
-				curve='catmullRom'
-				animate={false}
-				pointSize={10}
-				pointColor={{ theme: 'background' }}
-				pointBorderWidth={2}
-				pointBorderColor={{ from: 'serieColor' }}
-				legends={[
-					{
-						anchor: 'bottom-right',
-						direction: 'column',
-						justify: false,
-						translateX: 100,
-						translateY: 0,
-						itemsSpacing: 0,
-						itemDirection: 'left-to-right',
-						itemWidth: 80,
-						itemHeight: 20,
-						symbolSize: 12,
-						symbolShape: 'circle',
-						symbolBorderColor: 'rgba(0, 0, 0, .5)'
-					}
-				]}
-			/>
+		<div className='frame'>
+			<div className='frame-header'>OVERVIEW</div>
+			<div className='frame-body'>
+				<ResponsiveLine
+					data={data}
+					margin={{ top: 50, right: 100, bottom: 50, left: 50 }}
+					xScale={{ type: 'point' }}
+					yScale={{ type: 'linear', stacked: false, min: 'auto', max: 'auto' }}
+					colors={{ scheme: 'nivo' }}
+					curve='catmullRom'
+					animate={false}
+					pointSize={10}
+					pointColor={{ theme: 'background' }}
+					pointBorderWidth={2}
+					pointBorderColor={{ from: 'serieColor' }}
+					legends={[
+						{
+							anchor: 'bottom-right',
+							direction: 'column',
+							justify: false,
+							translateX: 100,
+							translateY: 0,
+							itemsSpacing: 0,
+							itemDirection: 'left-to-right',
+							itemWidth: 80,
+							itemHeight: 20,
+							symbolSize: 12,
+							symbolShape: 'circle',
+							symbolBorderColor: 'rgba(0, 0, 0, .5)'
+						}
+					]}
+				/>
+			</div>
 		</div>
 	);
 }

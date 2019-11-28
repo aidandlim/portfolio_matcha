@@ -6,8 +6,11 @@ import './index.css';
 
 const Search = () => {
 	return (
-		<div className='search'>
-			<Map />
+		<div className='frame'>
+			<div className='frame-header'>SEARCH</div>
+			<div className='frame-body'>
+				<Map />
+			</div>
 		</div>
 	);
 }
