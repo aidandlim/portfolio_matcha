@@ -80,8 +80,10 @@
     color: white;
     font-size: 0.8rem;
     font-weight: 900;
-    text-indent: 0.5rem;
+    text-indent: 0.75rem;
     line-height: 2rem;
+
+    opacity: 0.8;
 }
 
 .frame-maximization {
@@ -95,6 +97,10 @@
     left: calc(100% - 1.75rem);
 
     color: white;
+
+    opacity: 0.5;
+
+    cursor: pointer;
 }
 
 .frame-body {

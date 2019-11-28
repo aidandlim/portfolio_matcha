@@ -1,3 +1,13 @@
+.profile {
+    width: calc(100% - 2rem);
+    height: calc(100% - 2rem);
+
+    margin: 1rem;
+
+    position: relative;
+    float: left;
+}
+
 .profile-section {
     width: 100%;
     height: auto;
