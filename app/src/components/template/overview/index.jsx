@@ -25,70 +25,35 @@ const Overview = (props) => {
 	
 	const data = [
 		{
-			'id': 'Appear',
-			'color': 'hsl(321, 70%, 50%)',
+			'id': 'Unlike',
 			'data': [
 				{
 					'x': _handleDate(6),
-					'y': 32
+					'y': 2
 				},
 				{
 					'x': _handleDate(5),
-					'y': 40
+					'y': 0
 				},
 				{
 					'x': _handleDate(4),
-					'y': 15
+					'y': 0
 				},
 				{
 					'x': _handleDate(3),
-					'y': 14
+					'y': 1
 				},
 				{
 					'x': _handleDate(2),
-					'y': 33
-				},
-				{
-					'x': _handleDate(1),
-					'y': 19
-				},
-				{
-					'x': _handleDate(0),
-					'y': 7
-				},
-			]
-		},
-		{
-			'id': 'Visit',
-			'color': 'hsl(321, 70%, 50%)',
-			'data': [
-				{
-					'x': _handleDate(6),
-					'y': 20
-				},
-				{
-					'x': _handleDate(5),
-					'y': 18
-				},
-				{
-					'x': _handleDate(4),
-					'y': 13
-				},
-				{
-					'x': _handleDate(3),
-					'y': 7
-				},
-				{
-					'x': _handleDate(2),
-					'y': 17
-				},
-				{
-					'x': _handleDate(1),
-					'y': 10
-				},
-				{
-					'x': _handleDate(0),
 					'y': 3
+				},
+				{
+					'x': _handleDate(1),
+					'y': 1
+				},
+				{
+					'x': _handleDate(0),
+					'y': 1
 				},
 			]
 		},
@@ -127,38 +92,73 @@ const Overview = (props) => {
 			]
 		},
 		{
-			'id': 'Unlike',
+			'id': 'Visit',
+			'color': 'hsl(321, 70%, 50%)',
 			'data': [
 				{
 					'x': _handleDate(6),
-					'y': 2
+					'y': 20
 				},
 				{
 					'x': _handleDate(5),
-					'y': 0
+					'y': 18
 				},
 				{
 					'x': _handleDate(4),
-					'y': 0
+					'y': 13
 				},
 				{
 					'x': _handleDate(3),
-					'y': 1
+					'y': 7
 				},
 				{
 					'x': _handleDate(2),
-					'y': 3
+					'y': 17
 				},
 				{
 					'x': _handleDate(1),
-					'y': 1
+					'y': 10
 				},
 				{
 					'x': _handleDate(0),
-					'y': 1
+					'y': 3
 				},
 			]
-		}
+		},
+		{
+			'id': 'Appear',
+			'color': 'hsl(321, 70%, 50%)',
+			'data': [
+				{
+					'x': _handleDate(6),
+					'y': 32
+				},
+				{
+					'x': _handleDate(5),
+					'y': 40
+				},
+				{
+					'x': _handleDate(4),
+					'y': 15
+				},
+				{
+					'x': _handleDate(3),
+					'y': 14
+				},
+				{
+					'x': _handleDate(2),
+					'y': 33
+				},
+				{
+					'x': _handleDate(1),
+					'y': 19
+				},
+				{
+					'x': _handleDate(0),
+					'y': 7
+				},
+			]
+		},
 	];
 
 	return (
