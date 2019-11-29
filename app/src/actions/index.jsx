@@ -23,6 +23,13 @@ export const auth_isLogin = (value) => {
     };
 };
 
+export const auth_isComplete = (value) => {
+    return {
+        type: 'AUTH_ISCOMPLETE',
+        payload: value
+    };
+};
+
 export const auth_landingStatus = (value) => {
     return {
         type: 'AUTH_LANDINGSTATUS',

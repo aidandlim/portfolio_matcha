@@ -17,7 +17,7 @@ const Cover = () => {
 		setTimeout(() => {
 			if(document.getElementById('cover-input') !== null)
 				document.getElementById('cover-input').style.display = 'block';
-		}, 5000);
+		}, 10000);
 	}, []);
 
 	const _handleZipCode = () => {

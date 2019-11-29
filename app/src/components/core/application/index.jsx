@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { map_center, map_address } from '../../../actions';
+import { map_center, map_address, auth_isComplete } from '../../../actions';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -22,6 +22,7 @@ import Search from '../../function/search';
 import './index.css';
 
 const Application = () => {
+	const auth = useSelector(state => state.auth);
 	const ui = useSelector(state => state.ui);
 	const chat = useSelector(state => state.chat);
 	const map = useSelector(state => state.map);
@@ -55,11 +56,12 @@ const Application = () => {
 				<div className={chat.current === -1 && !ui.notification ? 'default' : 'default default-active'}>
 					<Switch>
 						<Route path='/' exact component={Profile} />
-						<Route path='/overview' exact component={Overview} />
-						<Route path='/theme' exact component={Theme} />
-						<Route path='/match' component={Match} />
-						<Route path='/search' component={Search} />
+						{auth.isComplete ? <Route path='/overview' exact component={Overview} /> : ''}
+						{auth.isComplete ? <Route path='/theme' exact component={Theme} /> : ''}
+						{auth.isComplete ? <Route path='/match' component={Match} /> : ''}
+						{auth.isComplete ? <Route path='/search' component={Search} /> : ''}
 					</Switch>
+					{!auth.isComplete ? <div className='announcement' onClick={ () => dispatch(auth_isComplete(true)) }>After you have completed your profile, you will be able to access a matching service.</div> : '' }
 				</div>
 				<Chat />
 				<Notification />

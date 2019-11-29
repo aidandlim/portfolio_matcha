@@ -9,6 +9,7 @@ import { FaLocationArrow } from "react-icons/fa";
 import './index.css';
 
 const Nav = () => {
+	const auth = useSelector(state => state.auth);
 	const map = useSelector(state => state.map);
 
 	const [ nav, setNav ] = useState(0);
@@ -38,9 +39,9 @@ const Nav = () => {
 				<div className='nav-location-address'>{map.address}</div>
 			</div>
 			<Menu index={0} nav={nav} setNav={setNav} />
-			<Menu index={1} nav={nav} setNav={setNav} />
-			<Menu index={2} nav={nav} setNav={setNav} />
-			<Menu index={3} nav={nav} setNav={setNav} />
+			{auth.isComplete ? <Menu index={1} nav={nav} setNav={setNav} /> : ''}
+			{auth.isComplete ? <Menu index={2} nav={nav} setNav={setNav} /> : ''}
+			{auth.isComplete ? <Menu index={3} nav={nav} setNav={setNav} /> : ''}
 		</div>
 	);
 }
