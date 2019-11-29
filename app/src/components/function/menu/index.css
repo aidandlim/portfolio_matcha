@@ -21,6 +21,8 @@
     float: left;
 
     color: #FFFFFF66;
+
+    cursor: pointer;
 }
 
 .menu-title {
@@ -34,6 +36,8 @@
     font-size: 0.7rem;
     font-weight: 700;
     line-height: 2.5rem;
+
+    cursor: pointer;
 }
 
 .menu-active .menu-icon {

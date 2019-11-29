@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { auth_isLogin } from '../../../actions';
 
 import Menu from '../../function/menu';
 
 import Profile from '../../../resources/profile1.jpeg';
-import { FaLocationArrow } from "react-icons/fa";
+import { FaLocationArrow, FaUnlink } from "react-icons/fa";
 import './index.css';
 
 const Nav = () => {
 	const auth = useSelector(state => state.auth);
 	const map = useSelector(state => state.map);
+	const dispatch = useDispatch();
 
 	const [ nav, setNav ] = useState(0);
 		
@@ -42,6 +44,7 @@ const Nav = () => {
 			{auth.isComplete ? <Menu index={1} nav={nav} setNav={setNav} /> : ''}
 			{auth.isComplete ? <Menu index={2} nav={nav} setNav={setNav} /> : ''}
 			{auth.isComplete ? <Menu index={3} nav={nav} setNav={setNav} /> : ''}
+			<FaUnlink className='menu-icon' onClick={ () => dispatch(auth_isLogin(false)) }/><div className='menu-title' onClick={ () => dispatch(auth_isLogin(false)) }>Logout</div>
 		</div>
 	);
 }
