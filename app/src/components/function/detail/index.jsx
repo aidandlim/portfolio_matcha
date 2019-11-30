@@ -12,7 +12,7 @@ const Detail = () => {
 		<div className='frame'>
 			<div className='frame-header-wide'>
 				<div className='detail-profile'></div>
-				<div className='detail-name'>Aidan Lim (28)</div>
+				<div className='detail-name'></div>
 			</div>
 			<div className='frame-body-narrow' onClick={ () => dispatch(match_isDetail(false)) }>
 			</div>
