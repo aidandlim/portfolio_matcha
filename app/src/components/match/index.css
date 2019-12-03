@@ -1,3 +1,11 @@
+.match {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+    float: left;
+}
+
 .card {
     width: 12rem;
     height: 16rem;
@@ -131,28 +139,89 @@
     background-color: #E57373;
 }
 
-.detail-profile {
-    width: 7rem;
-    height: 7rem;
+.detail {
+    width: calc(100% - 4rem);
+    max-width: 38rem;
+    height: auto;
 
-    margin: 1.5rem;
+    margin: 1rem;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(calc(-50% - 1rem), calc(-50% - 1rem));
+
+    background-color: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.detail-picture {
+    width: 50%;
+    height: auto;
+
+    padding-top: 66.666%;
 
     position: relative;
     float: left;
 
-    background-color: #fff;
-    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
 }
 
-.detail-name {
-    width: auto;
+.detail-container {
+    width: 50%;
+    height: 100%;
+
+    overflow-y: scroll;
+
+    position: relative;
+    float: left;
+}
+
+.detail-name,
+.detail-location {
+    width: 100%;
     height: auto;
 
     position: relative;
     float: left;
-    top: 1.5rem;
+}
+
+.detail-reaction {
+    width: auto;
+    height: auto;
+
+    padding: 0.5rem;
+
+    position: relative;
+    float: left;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.detail-icon {
+    width: 1rem;
+    height: 1rem;
+
+    margin: 0.25rem;
+    padding: 0.75rem;
+
+    position: relative;
+    float: left;
 
     color: white;
-    font-size: 1.5rem;
-    font-weight: 900;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    border-radius: 33.333%;
+}
+
+.detail-icon-dislike {
+    background-color: #BA68C8;
+}
+
+.detail-icon-detail {
+    background-color: #64B5F6;
+}
+
+.detail-icon-like {
+    background-color: #E57373;
 }

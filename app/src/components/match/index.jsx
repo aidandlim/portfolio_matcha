@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { match_isDetail } from '../../actions';
 
-import { FaArrowAltCircleLeft, FaArrowAltCircleRight, FaTimes, FaSearch, FaHeart } from 'react-icons/fa';
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight, FaTimes, FaSearchPlus, FaSearchMinus, FaHeart } from 'react-icons/fa';
 
 import Profile1 from '../../resources/profile1.jpeg';
 import Profile2 from '../../resources/profile2.jpeg';
@@ -95,7 +95,7 @@ const Card = () => {
 			<FaArrowAltCircleLeft className='card-arrow card-arrow-left' onClick={ () => _handleIndex(false, -1) } />
 			<FaArrowAltCircleRight className='card-arrow card-arrow-right' onClick={ () => _handleIndex(true, -1) } />
 			<FaTimes className='card-icon card-icon-dislike' />
-			<FaSearch className='card-icon card-icon-detail' onClick={ () => dispatch(match_isDetail(true)) }/>
+			<FaSearchPlus className='card-icon card-icon-detail' onClick={ () => dispatch(match_isDetail(true)) }/>
 			<FaHeart className='card-icon card-icon-like' />
 		</div>
 	);
@@ -105,12 +105,22 @@ const Detail = () => {
 	const dispatch = useDispatch();
 
 	return (
-		<div className='frame'>
-			<div className='frame-header-wide'>
-				<div className='detail-profile'></div>
-				<div className='detail-name'></div>
-			</div>
-			<div className='frame-body-narrow' onClick={ () => dispatch(match_isDetail(false)) }>
+		<div className='detail'>
+			<div className='detail-picture' style={{
+				backgroundImage: 'url(\'' + Profile1 + '\')'
+			}}></div>
+			<div className='detail-container'>
+				<div className='detail-name'>Aidan Lim (28)</div>
+				<div className='detail-location'>in Fremont, CA, USA</div>
+				<div className='detail-title'>Aidan is ...</div>
+				<div className='detail-list'></div>
+				<div className='detail-title'>Aidan likes ...</div>
+				<div className='detail-list'></div>
+				<div className='detail-reaction'>
+					<FaTimes className='detail-icon detail-icon-dislike' />
+					<FaSearchMinus className='detail-icon detail-icon-detail' onClick={ () => dispatch(match_isDetail(false)) }/>
+					<FaHeart className='detail-icon detail-icon-like' />
+				</div>
 			</div>
 		</div>
 	);
