@@ -1,4 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { ui_color } from '../../actions';
+
+import cookie from 'react-cookies'
+
+import { HuePicker } from 'react-color';
 
 import Profile1 from '../../resources/profile1.jpeg';
 import Profile2 from '../../resources/profile2.jpeg';
@@ -15,69 +22,203 @@ const Profile = () => {
 				<div className='frame-title'>PROFILE</div>
 			</div>
 			<div className='frame-body'>
-				<div className='profile-title'>Picture</div>
-				<div className='profile-description'>I currently have 4 windows open up… and I don’t know why.</div>
-				<div className='profile-section'>
-					<div className='profile-image' style={{
-						backgroundImage: 'url(\'' + Profile1 + '\')'
-					}}></div>
-					<div className='profile-image' style={{
-						backgroundImage: 'url(\'' + Profile2 + '\')'
-					}}></div>
-					<div className='profile-image' style={{
-						backgroundImage: 'url(\'' + Profile3 + '\')'
-					}}></div>
-					<div className='profile-image profile-image-none'>
-						<FaPlusCircle className='profile-image-none-icon' />
-					</div>
-					<div className='profile-image profile-image-none'>
-						<FaPlusCircle className='profile-image-none-icon' />
-					</div>
-				</div>
-				<div className='profile-title'>Email</div>
-				<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
-				<div className='profile-section'>
-					<input type='email' className='profile-input' placeholder='Email' />
-					<input type='button' className='profile-submit' value='UPDATE' />
-				</div>
-				<div className='profile-title'>Password</div>
-				<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
-				<div className='profile-section'>
-					<input type='password' className='profile-input' placeholder='New Password' />
-					<input type='password' className='profile-input' placeholder='Confirm Password' />
-					<input type='button' className='profile-submit' value='UPDATE' />
-				</div>
-				<div className='profile-title'>User Information</div>
-				<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
-				<div className='profile-section'>
-					<input type='text' className='profile-input' placeholder='First Name' />
-					<input type='text' className='profile-input' placeholder='Last Name' />
-					<input type='text' className='profile-input profile-input-last' placeholder='Birth Year' />
-					<input type='text' className='profile-input' placeholder='Gender' />
-					<input type='text' className='profile-input' placeholder='Preference' />
-					<input type='button' className='profile-submit' value='UPDATE' />
-				</div>
-				<div className='profile-title'>Location</div>
-				<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
-				<div className='profile-section'>
-					<input type='password' className='profile-input' placeholder='Zip Code' />
-					<input type='button' className='profile-submit' value='UPDATE' />
-				</div>
-				<div className='profile-title'>Describe Myself</div>
-				<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
-				<div className='profile-section'>
-					<textarea className='profile-textarea' />
-					<input type='button' className='profile-submit' value='UPDATE' />
-				</div>
-				<div className='profile-title'>Describe Preference</div>
-				<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
-				<div className='profile-section'>
-					<textarea className='profile-textarea' />
-					<input type='button' className='profile-submit' value='UPDATE' />
-				</div>
+				<Picture />
+				<Email />
+				<Password />
+				<Info />
+				<Location />
+				<Myself />
+				<Preference />
+				<Theme />
 			</div>
 		</div>
 	);
 }
 
 export default Profile;
+
+const Picture = () => {
+	return (
+		<div className='profile-container'>
+			<div className='profile-title'>Picture</div>
+			<div className='profile-description'>I currently have 4 windows open up… and I don’t know why.</div>
+			<div className='profile-section'>
+				<div className='profile-image' style={{
+					backgroundImage: 'url(\'' + Profile1 + '\')'
+				}}></div>
+				<div className='profile-image' style={{
+					backgroundImage: 'url(\'' + Profile2 + '\')'
+				}}></div>
+				<div className='profile-image' style={{
+					backgroundImage: 'url(\'' + Profile3 + '\')'
+				}}></div>
+				<div className='profile-image profile-image-none'>
+					<FaPlusCircle className='profile-image-none-icon' />
+				</div>
+				<div className='profile-image profile-image-none'>
+					<FaPlusCircle className='profile-image-none-icon' />
+				</div>
+			</div>
+		</div>
+	);
+}
+
+const Email = () => {
+	return (
+		<div className='profile-container'>
+			<div className='profile-title'>Email</div>
+			<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
+			<div className='profile-section'>
+				<input type='email' className='profile-input' placeholder='Email' />
+				<input type='button' className='profile-submit' value='UPDATE' />
+			</div>
+		</div>
+	);
+}
+
+const Password = () => {
+	return (
+		<div className='profile-container'>
+			<div className='profile-title'>Password</div>
+			<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
+			<div className='profile-section'>
+				<input type='password' className='profile-input' placeholder='New Password' />
+				<input type='password' className='profile-input' placeholder='Confirm Password' />
+				<input type='button' className='profile-submit' value='UPDATE' />
+			</div>
+		</div>
+	);
+}
+
+const Info = () => {
+	return (
+		<div className='profile-container'>
+			<div className='profile-title'>User Information</div>
+			<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
+			<div className='profile-section'>
+				<input type='text' className='profile-input' placeholder='First Name' />
+				<input type='text' className='profile-input' placeholder='Last Name' />
+				<input type='text' className='profile-input profile-input-last' placeholder='Birth Year' />
+				<input type='text' className='profile-input' placeholder='Gender' />
+				<input type='text' className='profile-input' placeholder='Preference' />
+				<input type='button' className='profile-submit' value='UPDATE' />
+			</div>
+		</div>
+	);
+}
+
+const Location = () => {
+	return (
+		<div className='profile-container'>
+			<div className='profile-title'>Location</div>
+			<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
+			<div className='profile-section'>
+				<input type='password' className='profile-input' placeholder='Zip Code' />
+				<input type='button' className='profile-submit' value='UPDATE' />
+			</div>
+		</div>
+	);
+}
+
+const Myself = () => {
+	const [tags, setTags] = useState([]);
+	
+	const _handleAddTag = (e) => {
+		e.preventDefault();
+		const result = [...tags, document.myself.tag.value];
+		setTags(result);
+		document.myself.tag.value = '';
+	}
+	
+	const _handleDeleteTag = (index) => {
+		const result = [...tags];
+		result.splice(index, 1);
+		setTags(result);
+	}
+
+	return (
+		<div className='profile-container'>
+			<div className='profile-title'>Describe Myself</div>
+			<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
+			<div className='profile-section'>
+				<div className='profile-box'>
+					{tags.length !== 0 ? tags.map((tag, index) => (
+						<Tag key={index} tag={tag} index={index} _handleDeleteTag={_handleDeleteTag} />
+					)) : 'There is no tag yet! Please add tag!'}
+				</div>
+				<form name='myself' onSubmit={_handleAddTag}>
+					<input type='text' className='profile-input' name='tag' placeholder='Tag' />
+					<input type='submit' className='profile-submit' value='ADD'/>
+				</form>
+			</div>
+		</div>
+	);
+}
+
+const Preference = () => {
+	const [tags, setTags] = useState([]);
+	
+	const _handleAddTag = (e) => {
+		e.preventDefault();
+		const result = [...tags, document.preference.tag.value];
+		setTags(result);
+		document.preference.tag.value = '';
+	}
+	
+	const _handleDeleteTag = (index) => {
+		const result = [...tags];
+		result.splice(index, 1);
+		setTags(result);
+	}
+
+	return (
+		<div className='profile-container'>
+			<div className='profile-title'>Describe Preference</div>
+			<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
+			<div className='profile-section'>
+				<div className='profile-box'>
+					{tags.length !== 0 ? tags.map((tag, index) => (
+						<Tag key={index} tag={tag} index={index} _handleDeleteTag={_handleDeleteTag} />
+					)) : 'There is no tag yet! Please add tag!'}
+				</div>
+				<form name='preference' onSubmit={_handleAddTag}>
+					<input type='text' className='profile-input' name='tag' placeholder='Tag' />
+					<input type='submit' className='profile-submit' value='ADD'/>
+				</form>
+			</div>
+		</div>
+	);
+}
+
+const Tag = ({tag, index, _handleDeleteTag}) => {
+	return (
+		<div className='profile-tag' onDoubleClick={() => _handleDeleteTag(index)}>
+			{tag}
+		</div>
+	);
+}
+
+const Theme = () => {
+	const ui = useSelector(state => state.ui);
+	const dispatch = useDispatch();
+
+	const _handleColor = (color) => {
+		cookie.save('theme-color', color.hex, { path: '/' });
+		dispatch(ui_color(color.hex));
+	}
+
+	return (
+		<div className='profile-container'>
+			<div className='profile-title'>Theme</div>
+			<div className='profile-description'>I currently have 4 windows open up… and I don’t know why.</div>
+			<div className='profile-section'>
+				<HuePicker 
+					className='profile-theme' 
+					width='calc(100% - 1rem)'
+					color={ui.color} 
+					onChange={_handleColor}
+				/>
+			</div>
+		</div>
+	);
+}
