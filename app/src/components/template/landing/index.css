@@ -97,7 +97,7 @@
     transition: 0.5s;
 }
 
-.ladning-in {
+.landing-in {
     width: auto;
     height: auto;
 
@@ -105,7 +105,7 @@
     float: left;
 }
 
-.ladning-in-title {
+.landing-in-title {
     width: 100%;
     height: auto;
 
@@ -119,7 +119,7 @@
     font-weight: 900;
 }
 
-.ladning-in-description {
+.landing-in-description {
     width: 100%;
     height: auto;
 
@@ -136,7 +136,7 @@
     opacity: 0.5;
 }
 
-.ladning-in-label {
+.landing-in-label {
     width: 100%;
     height: auto;
 
@@ -146,7 +146,7 @@
     float: left;
 }
 
-.ladning-in-label > span {
+.landing-in-label > span {
     width: 100%;
     height: auto;
 
@@ -158,7 +158,7 @@
     font-weight: 700;
 }
 
-.ladning-in-input {
+.landing-in-input {
     width: 100%;
     height: 1.5rem;
 
@@ -178,7 +178,7 @@
     outline: none;
 }
 
-.ladning-in-textarea {
+.landing-in-textarea {
     width: calc(100% - 0.1rem);
     height: 2rem;
 
@@ -195,7 +195,7 @@
     outline: none;
 }
 
-.ladning-in-picture {
+.landing-in-picture {
     width: 20%;
     
     padding-top: 20%;
@@ -206,7 +206,7 @@
     background-color: gray;
 }
 
-.ladning-in-submit {
+.landing-in-submit {
     width: 100%;
     height: 2rem;
 
@@ -226,7 +226,7 @@
     outline: none;
 }
 
-.ladning-in-button {
+.landing-in-button {
     width: 100%;
     height: 2rem;
 
