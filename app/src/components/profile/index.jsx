@@ -96,9 +96,9 @@ const Info = () => {
 			<div className='profile-title'>User Information</div>
 			<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
 			<div className='profile-section'>
-				<input type='text' className='profile-input' placeholder='First Name' />
-				<input type='text' className='profile-input' placeholder='Last Name' />
-				<input type='text' className='profile-input profile-input-last' placeholder='Birth Year' />
+				<input type='text' className='profile-input profile-input-first' placeholder='First Name' />
+				<input type='text' className='profile-input profile-input-first' placeholder='Last Name' />
+				<input type='text' className='profile-input profile-input-first profile-input-last' placeholder='Birth Year' />
 				<input type='text' className='profile-input' placeholder='Gender' />
 				<input type='text' className='profile-input' placeholder='Preference' />
 				<input type='button' className='profile-submit' value='UPDATE' />
@@ -122,11 +122,21 @@ const Location = () => {
 
 const Myself = () => {
 	const [tags, setTags] = useState([]);
+	const [suggests, setSuggests] = useState([]);
 	
 	const _handleAddTag = (e) => {
 		e.preventDefault();
-		const result = [...tags, document.myself.tag.value];
+		if(document.myself.tag.value !== '') {
+			const result = [...tags, document.myself.tag.value];
+			setTags(result);
+			document.myself.tag.value = '';
+		}
+	}
+
+	const _handleAddTagFromSuggest = (value) => {
+		const result = [...tags, value];
 		setTags(result);
+		setSuggests([]);
 		document.myself.tag.value = '';
 	}
 	
@@ -136,20 +146,45 @@ const Myself = () => {
 		setTags(result);
 	}
 
+	const _handleSuggest = () => {
+		const data = [
+			{
+				id: 0,
+				name: 'hello',
+				count: '1435'
+			},
+			{
+				id: 1,
+				name: 'world',
+				count: '745'
+			}
+		]
+		if(document.myself.tag.value !== '') {
+			setSuggests(data);
+		} else {
+			setSuggests([]);
+		}
+	}
+
 	return (
 		<div className='profile-container'>
 			<div className='profile-title'>Describe Myself</div>
 			<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
 			<div className='profile-section'>
-				<div className='profile-box'>
+				<div className='profile-tag-box'>
 					{tags.length !== 0 ? tags.map((tag, index) => (
 						<Tag key={index} tag={tag} index={index} _handleDeleteTag={_handleDeleteTag} />
 					)) : 'There is no tag yet! Please add tag!'}
 				</div>
-				<form name='myself' onSubmit={_handleAddTag}>
-					<input type='text' className='profile-input' name='tag' placeholder='Tag' />
+				<form name='myself' onSubmit={_handleAddTag} autoComplete='off'>
+					<input type='text' className='profile-input' name='tag' placeholder='Tag' onChange={_handleSuggest} />
 					<input type='submit' className='profile-submit' value='ADD'/>
 				</form>
+				<div className='profile-suggest-box'>
+					{suggests.map((suggest, index) => (
+						<Suggest key={index} suggest={suggest} index={index} _handleAddTagFromSuggest={_handleAddTagFromSuggest} />
+					))}
+				</div>
 			</div>
 		</div>
 	);
@@ -160,9 +195,11 @@ const Preference = () => {
 	
 	const _handleAddTag = (e) => {
 		e.preventDefault();
-		const result = [...tags, document.preference.tag.value];
-		setTags(result);
-		document.preference.tag.value = '';
+		if(document.preference.tag.value !== '') {
+			const result = [...tags, document.preference.tag.value];
+			setTags(result);
+			document.preference.tag.value = '';
+		}
 	}
 	
 	const _handleDeleteTag = (index) => {
@@ -176,15 +213,18 @@ const Preference = () => {
 			<div className='profile-title'>Describe Preference</div>
 			<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
 			<div className='profile-section'>
-				<div className='profile-box'>
+				<div className='profile-tag-box'>
 					{tags.length !== 0 ? tags.map((tag, index) => (
 						<Tag key={index} tag={tag} index={index} _handleDeleteTag={_handleDeleteTag} />
 					)) : 'There is no tag yet! Please add tag!'}
 				</div>
-				<form name='preference' onSubmit={_handleAddTag}>
+				<form name='preference' onSubmit={_handleAddTag} autoComplete='off'>
 					<input type='text' className='profile-input' name='tag' placeholder='Tag' />
 					<input type='submit' className='profile-submit' value='ADD'/>
 				</form>
+				<div className='profile-suggest-box'>
+				
+				</div>
 			</div>
 		</div>
 	);
@@ -194,6 +234,14 @@ const Tag = ({tag, index, _handleDeleteTag}) => {
 	return (
 		<div className='profile-tag' onDoubleClick={() => _handleDeleteTag(index)}>
 			{tag}
+		</div>
+	);
+}
+
+const Suggest = ({suggest, index, _handleAddTagFromSuggest}) => {
+	return (
+		<div className='profile-suggest' onClick={() => _handleAddTagFromSuggest(suggest.name)}>
+			{suggest.name} ({suggest.count})
 		</div>
 	);
 }
