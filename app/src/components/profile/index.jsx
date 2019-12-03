@@ -37,7 +37,42 @@ const Profile = () => {
 				<div className='profile-title'>Email</div>
 				<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
 				<div className='profile-section'>
-					<input type='email' className='profile-input' />
+					<input type='email' className='profile-input' placeholder='Email' />
+					<input type='button' className='profile-submit' value='UPDATE' />
+				</div>
+				<div className='profile-title'>Password</div>
+				<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
+				<div className='profile-section'>
+					<input type='password' className='profile-input' placeholder='New Password' />
+					<input type='password' className='profile-input' placeholder='Confirm Password' />
+					<input type='button' className='profile-submit' value='UPDATE' />
+				</div>
+				<div className='profile-title'>User Information</div>
+				<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
+				<div className='profile-section'>
+					<input type='text' className='profile-input' placeholder='First Name' />
+					<input type='text' className='profile-input' placeholder='Last Name' />
+					<input type='text' className='profile-input profile-input-last' placeholder='Birth Year' />
+					<input type='text' className='profile-input' placeholder='Gender' />
+					<input type='text' className='profile-input' placeholder='Preference' />
+					<input type='button' className='profile-submit' value='UPDATE' />
+				</div>
+				<div className='profile-title'>Location</div>
+				<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
+				<div className='profile-section'>
+					<input type='password' className='profile-input' placeholder='Zip Code' />
+					<input type='button' className='profile-submit' value='UPDATE' />
+				</div>
+				<div className='profile-title'>Describe Myself</div>
+				<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
+				<div className='profile-section'>
+					<textarea className='profile-textarea' />
+					<input type='button' className='profile-submit' value='UPDATE' />
+				</div>
+				<div className='profile-title'>Describe Preference</div>
+				<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
+				<div className='profile-section'>
+					<textarea className='profile-textarea' />
 					<input type='button' className='profile-submit' value='UPDATE' />
 				</div>
 			</div>
