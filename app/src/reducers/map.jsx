@@ -3,7 +3,7 @@ const map = {
         latitude: 0,
         longitude: 0,
     },
-    address: ''
+    address: 'Newark, CA, USA'
 }
 
 const mapReducer = (state = map, action) => {

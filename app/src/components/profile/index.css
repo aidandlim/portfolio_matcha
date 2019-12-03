@@ -1,16 +1,40 @@
-.profile {
-    width: calc(100% - 2rem);
-    height: calc(100% - 2rem);
+.profile-title {
+    width: calc(100% - 1rem);
+    height: auto;
 
-    margin: 1rem;
+    margin: 0.5rem;
+    padding: 0.25rem 0;
 
     position: relative;
     float: left;
+
+    color: var(--color-50);
+    font-size: 0.75rem;
+    font-weight: 900;
+    text-indent: 0.5rem;
+    border-bottom: solid 0.05rem var(--color-20);
+}
+
+.profile-description {
+    width: calc(100% - 2rem);
+    height: auto;
+
+    margin: 0 0.5rem 0.25rem 0.5rem;
+    padding: 0 0.5rem;
+
+    position: relative;
+    float: left;
+
+    color: #AAAAAA;
+    font-size: 0.5rem;
+    font-weight: 700;
 }
 
 .profile-section {
-    width: 100%;
+    width: calc(100% - 2rem);
     height: auto;
+
+    margin: 0.5rem 1rem;
 
     position: relative;
     float: left;
@@ -54,84 +78,13 @@
     color: var(--color-10);
 }
 
-.profile-container {
-    width: calc((100% - 1rem) / 3);
-    height: auto;
-
-    padding: 1rem 0 0 0;
-    margin-right: 0.5rem;
-
-    position: relative;
-    float: left;
-}
-
-.profile-container:nth-child(3) {
-    margin-right: 0;
-}
-
-.profile-label {
-    width: 100%;
-    height: auto;
-
-    margin-bottom: 0.5rem;
-
-    position: relative;
-    float: left;
-}
-
-.profile-label > span {
-    width: 100%;
-    height: auto;
-
-    position: relative;
-    float: left;
-
-    color: var(--color-70);
-    font-size: 0.5rem;
-    font-weight: 700;
-    text-align: left;
-}
-
 .profile-input {
-    width: 100%;
+    width: 10rem;
     height: 1.5rem;
 
-    margin: 0;
-    padding: 0;
-
     position: relative;
     float: left;
 
-    color: #808080;
-    font-size: 0.5rem;
-    font-weight: 300;
-    text-indent: 0.25rem;
-
-    background: none;
+    background: var(--color-10);
     border: none;
-    border-bottom: solid 0.05rem var(--color-30);
-    border-radius: 0;
-
-    outline: none;
-}
-
-.profile-submit {
-    width: auto;
-    height: auto;
-
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
-
-    position: relative;
-    float: left;
-    left: 100%;
-    transform: translate(-100%, 0);
-
-    color: white;
-    font-size: 0.6rem;
-    font-weight: 900;
-
-    background-color: var(--color-70);
-    border: none;
-    border-radius: 0.5rem;
 }
