@@ -192,20 +192,48 @@ const Myself = () => {
 
 const Preference = () => {
 	const [tags, setTags] = useState([]);
+	const [suggests, setSuggests] = useState([]);
 	
 	const _handleAddTag = (e) => {
 		e.preventDefault();
-		if(document.preference.tag.value !== '') {
-			const result = [...tags, document.preference.tag.value];
+		if(document.prefer.tag.value !== '') {
+			const result = [...tags, document.prefer.tag.value];
 			setTags(result);
-			document.preference.tag.value = '';
+			document.prefer.tag.value = '';
 		}
+	}
+
+	const _handleAddTagFromSuggest = (value) => {
+		const result = [...tags, value];
+		setTags(result);
+		setSuggests([]);
+		document.myself.tag.value = '';
 	}
 	
 	const _handleDeleteTag = (index) => {
 		const result = [...tags];
 		result.splice(index, 1);
 		setTags(result);
+	}
+
+	const _handleSuggest = () => {
+		const data = [
+			{
+				id: 0,
+				name: 'hello',
+				count: '1435'
+			},
+			{
+				id: 1,
+				name: 'world',
+				count: '745'
+			}
+		]
+		if(document.prefer.tag.value !== '') {
+			setSuggests(data);
+		} else {
+			setSuggests([]);
+		}
 	}
 
 	return (
@@ -218,12 +246,14 @@ const Preference = () => {
 						<Tag key={index} tag={tag} index={index} _handleDeleteTag={_handleDeleteTag} />
 					)) : 'There is no tag yet! Please add tag!'}
 				</div>
-				<form name='preference' onSubmit={_handleAddTag} autoComplete='off'>
-					<input type='text' className='profile-input' name='tag' placeholder='Tag' />
+				<form name='prefer' onSubmit={_handleAddTag} autoComplete='off'>
+					<input type='text' className='profile-input' name='tag' placeholder='Tag' onChange={_handleSuggest} />
 					<input type='submit' className='profile-submit' value='ADD'/>
 				</form>
 				<div className='profile-suggest-box'>
-				
+					{suggests.map((suggest, index) => (
+						<Suggest key={index} suggest={suggest} index={index} _handleAddTagFromSuggest={_handleAddTagFromSuggest} />
+					))}
 				</div>
 			</div>
 		</div>
