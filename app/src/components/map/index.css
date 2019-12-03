@@ -1,9 +1,0 @@
-.map {
-    width: 100%;
-    height: calc(100% - 5rem);
-
-    overflow: hidden;
-
-    position: relative;
-    float: left;
-}

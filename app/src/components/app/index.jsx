@@ -6,9 +6,9 @@ import { auth_isLogin, ui_color } from '../../actions';
 import axios from 'axios';
 import cookie from 'react-cookies'
 
-import Cover from '../cover';
-import Landing from '../landing';
-import Application from '../application';
+import Core from '../template/core';
+import Landing from '../template/landing';
+import Loading from '../template/loading';
 
 import Wrapper from 'react-div-100vh';
 
@@ -52,9 +52,13 @@ const App = () => {
 					--color-10: ${ui.color + '1a'};
 				}
 			`}</style>
-			{ !auth.isLogin ? <Landing /> : '' }
-			{ auth.isLogin ? <Application /> : '' }
-			{ auth.isLogin && map.address === '' ? <Cover /> : '' }
+			{ 
+				auth.isLogin 
+				? 
+				map.address !== '' ? <Core /> : <Loading />
+				:
+				<Landing /> 
+			}
 		</Wrapper>
 	);
 }
