@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const users = require('./route/users');
+const auth = require('./route/auth');
+const mail = require('./route/mail');
 const appears = require('./route/appears');
 const blocks = require('./route/blocks');
 const likes = require('./route/likes');
@@ -13,7 +15,6 @@ const messages = require('./route/messages');
 const reports = require('./route/reports');
 const tags = require('./route/tags');
 const unlikes = require('./route/unlikes');
-const usersAndTags = require('./route/usersAndTags');
 const verifies = require('./route/verifies');
 const visits = require('./route/visits');
 
@@ -48,18 +49,29 @@ app.get('/', (req, res) => {
 // 
 
 app.get('/api/users', users.select);
-app.get('/api/users/check', users.check);
-app.get('/api/users/emailCheck', users.emailCheck);
-app.get('/api/verifies/signup', verifies.signup);
-app.get('/api/verifies/resend', verifies.resend);
-app.get('/api/users/signin', users.signin);
-app.get('/api/users/logout', users.logout);
-app.get('/api/users/forgot', users.forgot);
-app.post('/api/users/signup', users.signup);
+app.get('/api/users/email', users.emailCheck);
 app.put('/api/users', users.update);
-app.put('/api/users/updateEmail', users.updateEmail);
-app.put('/api/users/updatePassword', users.updatePassword);
-app.put('/api/users/updatePicture', users.updatePicture);
+app.put('/api/users/email', users.updateEmail);
+app.put('/api/users/password', users.updatePassword);
+app.put('/api/users/picture', users.updatePicture);
+app.put('/api/users/address', users.updateAddress);
+app.put('/api/users/bio', users.updateBio);
+
+app.get('/api/verifies/up', verifies.up);
+
+app.get('/api/mail/password', mail.forgot);
+app.get('/api/mail/reverify', mail.reverify);
+
+app.get('/api/auth/in', auth.in);
+app.get('/api/auth/out', auth.out);
+app.post('/api/auth/up', auth.up);
+
+app.get('/api/tags', tags.select);
+app.post('/api/tags', tags.insert);
+app.post('/api/tags/link', tags.linkInsert);
+app.delete('/api/tags/link', tags.linkDelete);
+
+
 
 app.post('/api/appears/insert', appears.insert);
 app.post('/api/blocks/insert', blocks.insert);
@@ -67,10 +79,7 @@ app.post('/api/likes/insert', likes.insert);
 app.post('/api/logs/insert', logs.insert);
 app.post('/api/messages/insert', messages.insert);
 app.post('/api/reports/insert', reports.insert);
-app.post('/api/tags/insert', tags.insert);
 app.post('/api/unlikes/insert', unlikes.insert);
-app.post('/api/usersAndTags/insert', usersAndTags.insert);
-// app.post('/api/verifies/insert', verifies.insert);
 app.post('/api/visits/insert', visits.insert);
 
 // 
