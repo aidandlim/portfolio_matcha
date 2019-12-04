@@ -17,6 +17,7 @@ const tags = require('./route/tags');
 const unlikes = require('./route/unlikes');
 const verifies = require('./route/verifies');
 const visits = require('./route/visits');
+const notifications = require('./route/notifications');
 
 // 
 
@@ -83,7 +84,7 @@ app.post('/api/likes', likes.insert);
 app.put('/api/unlikes', unlikes.update);
 app.post('/api/unlikes', unlikes.insert);
 
-app.get('/api/notification', notifications.select);
+app.get('/api/notifications', notifications.select);
 
 
 
