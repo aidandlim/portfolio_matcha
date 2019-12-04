@@ -7,22 +7,41 @@ const URL = require('../const');
 //
 
 module.exports.select = (req, res) => {
-    const sql = 'SELECT * FROM users WHERE email = ?';
-
     const email = req.body.email === null ? req.session.user : req.body.email;
+    // const distance = req.body.distance;
 
-    conn.query(sql, [email], (err, results) => {
-        if (err) {
-            console.log(err);
-        } else {
-            if (results.length !== 0) { 
-                results = JSON.parse(JSON.stringify(results));
-                res.json(results);
+    // if (distance === null) {
+        const sql = 'SELECT * FROM users WHERE email = ?';
+
+        conn.query(sql, [email], (err, results) => {
+            if (err) {
+                console.log(err);
             } else {
-                res.json(undefined);
+                if (results.length !== 0) { 
+                    results = JSON.parse(JSON.stringify(results));
+                    res.json(results);
+                } else {
+                    res.json(undefined);
+                }
             }
-        }
-    })
+        })
+    // }
+    //  else {
+    //     const sql = 'SELECT * FROM users WHERE email = ?';
+        
+    //     conn.query(sql, [email], (err, results) => {
+    //         if (err) {
+    //             console.log(err);
+    //         } else {
+    //             if (results.length !== 0) { 
+    //                 results = JSON.parse(JSON.stringify(results));
+    //                 res.json(results);
+    //             } else {
+    //                 res.json(undefined);
+    //             }
+    //         }
+    //     })
+    // }
 }
 
 //

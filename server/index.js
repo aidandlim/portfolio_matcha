@@ -71,16 +71,26 @@ app.post('/api/tags', tags.insert);
 app.post('/api/tags/link', tags.linkInsert);
 app.delete('/api/tags/link', tags.linkDelete);
 
+app.put('/api/appears', appears.update);
+app.post('/api/appears', appears.insert);
+
+app.put('/api/visits', visits.update);
+app.post('/api/visits', visits.insert);
+
+app.put('/api/likes', likes.update);
+app.post('/api/likes', likes.insert);
+
+app.put('/api/unlikes', unlikes.update);
+app.post('/api/unlikes', unlikes.insert);
+
+app.get('/api/notification', notifications.select);
 
 
-app.post('/api/appears/insert', appears.insert);
+
 app.post('/api/blocks/insert', blocks.insert);
-app.post('/api/likes/insert', likes.insert);
 app.post('/api/logs/insert', logs.insert);
 app.post('/api/messages/insert', messages.insert);
 app.post('/api/reports/insert', reports.insert);
-app.post('/api/unlikes/insert', unlikes.insert);
-app.post('/api/visits/insert', visits.insert);
 
 // 
 
