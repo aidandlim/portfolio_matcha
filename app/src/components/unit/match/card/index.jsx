@@ -41,8 +41,8 @@ const Card = () => {
 	}
 
 	const _handleImage = () => {
-		let images = document.getElementsByClassName('card-picture');
-		let pointer = document.getElementsByClassName('card-pointer');
+		let images = document.getElementsByClassName('match-card-picture');
+		let pointer = document.getElementsByClassName('match-card-pointer');
 		for(let i = 0; i < images.length; i++) {
 			if(i === index) {
 				images[i].style.opacity = 1;
