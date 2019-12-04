@@ -165,12 +165,15 @@ const Overview = (props) => {
 					xScale={{ type: 'point' }}
 					yScale={{ type: 'linear', stacked: false, min: 'auto', max: 'auto' }}
 					colors={{ scheme: 'nivo' }}
-					curve='catmullRom'
+					curve='linear'
 					animate={false}
+					lineWidth={5}
 					pointSize={10}
-					pointColor={{ theme: 'background' }}
+					pointColor='white'
 					pointBorderWidth={2}
 					pointBorderColor={{ from: 'serieColor' }}
+					enableArea={true}
+        			areaOpacity={0.1}
 					legends={[
 						{
 							anchor: 'bottom-right',
