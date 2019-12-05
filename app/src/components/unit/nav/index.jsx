@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { auth_isLogin } from '../../../actions';
+import { user_data } from '../../../actions';
+
+import axios from 'axios';
 
 import Menu from './menu';
 
@@ -10,7 +12,7 @@ import { FaLocationArrow, FaUnlink } from "react-icons/fa";
 import './index.css';
 
 const Nav = () => {
-	const auth = useSelector(state => state.auth);
+	const user = useSelector(state => state.user);
 	const map = useSelector(state => state.map);
 	const dispatch = useDispatch();
 
@@ -30,6 +32,16 @@ const Nav = () => {
 
 	}, []);
 
+	const _handledLogout = () => {
+		axios.get('/auth/out')
+		.then((res) => {
+			console.log(res.data);
+			if(res.data) {
+				dispatch(user_data({}));
+			}
+		});
+	}
+
 	return (
 		<div className='nav'>
 			<div className='nav-profile' style={{
@@ -41,11 +53,11 @@ const Nav = () => {
 				<div className='nav-location-address'>{map.address}</div>
 			</div>
 			<Menu index={0} nav={nav} setNav={setNav} />
-			{auth.isComplete ? <Menu index={1} nav={nav} setNav={setNav} /> : ''}
-			{auth.isComplete ? <Menu index={2} nav={nav} setNav={setNav} /> : ''}
-			{auth.isComplete ? <Menu index={3} nav={nav} setNav={setNav} /> : ''}
-			<FaUnlink className='nav-menu-icon' onClick={ () => dispatch(auth_isLogin(false)) }/>
-			<div className='nav-menu-title' onClick={ () => dispatch(auth_isLogin(false)) }>Logout</div>
+			{user.isComplete ? <Menu index={1} nav={nav} setNav={setNav} /> : ''}
+			{user.isComplete ? <Menu index={2} nav={nav} setNav={setNav} /> : ''}
+			{user.isComplete ? <Menu index={3} nav={nav} setNav={setNav} /> : ''}
+			<FaUnlink className='nav-menu-icon' onClick={ () => _handledLogout() }/>
+			<div className='nav-menu-title' onClick={ () => _handledLogout() }>Logout</div>
 		</div>
 	);
 }

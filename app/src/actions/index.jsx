@@ -7,6 +7,13 @@ export const ui_color = (value) => {
     };
 };
 
+export const ui_landing = (value) => {
+    return {
+        type: 'UI_LANDING',
+        payload: value
+    };
+};
+
 export const ui_notification = (value) => {
     return {
         type: 'UI_NOTIFICATION',
@@ -14,25 +21,18 @@ export const ui_notification = (value) => {
     };
 };
 
-/****************************************************/
+/***************************************************/
 
-export const auth_isLogin = (value) => {
+export const user_data = (value) => {
     return {
-        type: 'AUTH_ISLOGIN',
+        type: 'USER_DATA',
         payload: value
     };
 };
 
-export const auth_isComplete = (value) => {
+export const user_isComplete = (value) => {
     return {
-        type: 'AUTH_ISCOMPLETE',
-        payload: value
-    };
-};
-
-export const auth_landingStatus = (value) => {
-    return {
-        type: 'AUTH_LANDINGSTATUS',
+        type: 'USER_ISCOMPLETE',
         payload: value
     };
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useDispatch } from 'react-redux';
-import { auth_isLogin, auth_landingStatus } from '../../../../actions';
+import { ui_landing } from '../../../../actions';
 
 import axios from 'axios';
 
@@ -20,11 +20,10 @@ const In = () => {
 			password: document.signin.password.value,
 		};
 
-		axios.get('/auth/in', data)
+		axios.get('/auth/in', {params: data})
 		.then(res => {
 			if(res.data === 1) {
-				dispatch(auth_landingStatus(0));
-				dispatch(auth_isLogin(true));
+				dispatch(ui_landing(0));
 			} else if(res.data === 2) {
 				Alert(0, 'email is invalid', 'Okay', null, null);
 			} else if(res.data === 3) {
@@ -65,8 +64,8 @@ const In = () => {
 				<input className='landing-in-input' type='password' name='password' required />
 			</label>
 			<input className='landing-in-submit' type='submit' value='SUBMIT' />
-			<input className='landing-in-button' type='button' value='SIGNUP' onClick={ () => dispatch(auth_landingStatus(2)) } />
-			<input className='landing-in-button' type='button' value='FORGOT PASSWORD' onClick={ () => dispatch(auth_landingStatus(3)) } />
+			<input className='landing-in-button' type='button' value='SIGNUP' onClick={ () => dispatch(ui_landing(2)) } />
+			<input className='landing-in-button' type='button' value='FORGOT PASSWORD' onClick={ () => dispatch(ui_landing(3)) } />
 		</form>
 	);
 }

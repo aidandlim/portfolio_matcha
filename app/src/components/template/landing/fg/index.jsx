@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useDispatch } from 'react-redux';
-import { auth_landingStatus } from '../../../../actions';
+import { ui_landing } from '../../../../actions';
 
 import axios from 'axios';
 
@@ -21,6 +21,7 @@ const Fg = () => {
 		.then(res => {
 			if(res.data) {
 				Alert(0, 'check your email', 'Okay', null, null);
+				dispatch(ui_landing(1));
 			} else {
 				Alert(0, 'email is invalid', 'Okay', null, null);
 			}
@@ -36,7 +37,7 @@ const Fg = () => {
 				<input className='landing-in-input' type='email' name='email' required/>
 			</label>
 			<input className='landing-in-submit' type='submit' value='SUBMIT' />
-			<input className='landing-in-button' type='button' value='BACK' onClick={ () => dispatch(auth_landingStatus(1)) } />
+			<input className='landing-in-button' type='button' value='BACK' onClick={ () => dispatch(ui_landing(1)) } />
 		</form>
 	);
 }

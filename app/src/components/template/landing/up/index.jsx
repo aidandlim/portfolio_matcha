@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useDispatch } from 'react-redux';
-import { auth_landingStatus } from '../../../../actions';
+import { ui_landing } from '../../../../actions';
 
 import axios from 'axios';
 
@@ -25,7 +25,7 @@ const Up = () => {
 			.then(res => {
 				if(res.data) {
 					console.log('signup success');
-					dispatch(auth_landingStatus(0));
+					dispatch(ui_landing(0));
 				} else {
 					Alert(0, 'email is duplicated', 'Okay', null, null);
 				}
@@ -77,7 +77,7 @@ const Up = () => {
 				<input className='landing-in-input' type='password' name='confirm' required />
 			</label>
 			<input className='landing-in-submit' type='submit' value='SUBMIT' />
-			<input className='landing-in-button' type='button' value='BACK' onClick={ () => dispatch(auth_landingStatus(1)) } />
+			<input className='landing-in-button' type='button' value='BACK' onClick={ () => dispatch(ui_landing(1)) } />
 		</form>
 	);
 }

@@ -10,16 +10,16 @@ import Fg from './fg';
 import './index.css';
 
 const Landing = () => {
-	const auth = useSelector(state => state.auth);
+	const ui = useSelector(state => state.ui);
 
 	return (
 		<div className='landing'>
-			{ auth.landingStatus === 0 ? <Init /> : '' }
-			{ auth.landingStatus !== 0 ?
+			{ ui.landing === 0 ? <Init /> : '' }
+			{ ui.landing !== 0 ?
 				<div className='landing-container'>	
-					{ auth.landingStatus === 1 ? <In /> : '' }
-					{ auth.landingStatus === 2 ? <Up /> : '' }
-					{ auth.landingStatus === 3 ? <Fg /> : '' }
+					{ ui.landing === 1 ? <In /> : '' }
+					{ ui.landing === 2 ? <Up /> : '' }
+					{ ui.landing === 3 ? <Fg /> : '' }
 				</div>
 			: '' }
 		</div>
