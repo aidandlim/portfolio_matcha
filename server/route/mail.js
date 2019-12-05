@@ -19,13 +19,13 @@ module.exports.forgot = (req, res) => {
                 const transporter = nodemailer.createTransport({
                     service: 'gmail',
                     auth: {
-                        user: 'helloWorld@gmail.com',
-                        pass: '1234'
+                        user: '42sv.matcha@gmail.com',
+                        pass: 'gusdk314'
                     }
                 });
                 const mailOptions = {
-                    from: 'helloWorld@gmail.com',
-                    to: data.email,
+                    from: '42sv.matcha@gmail.com',
+                    to: email,
                     subject: 'Please confirm for Matcha account :)',
                     html: "<div>Your password is changed !<p>E-mail : " + email + "<p>Password : " + password + "<p>You can change your password after login.</div>"
                 };
@@ -56,13 +56,13 @@ module.exports.reverify = (req, res) => {
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
-                    user: 'helloWorld@gmail.com',
-                    pass: '1234'
+                    user: '42sv.matcha@gmail.com',
+                    pass: 'gusdk314'
                 }
             });
             const mailOptions = {
-                from: 'helloWorld@gmail.com',
-                to: data.email,
+                from: '42sv.matcha@gmail.com',
+                to: email,
                 subject: 'Please confirm for Matcha registration :)',
                 html: "<a href=" + URL + "/api/verifies/signup?email=" + email + "&code=" + results.uuid + ">Click here to verify !</a>"
             };

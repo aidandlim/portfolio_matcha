@@ -19,15 +19,15 @@ module.exports.up = (req, res) => {
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
-                    user: 'matcha.42sv@gmail.com',
-                    pass: 'Dlaehdtjq314!'
+                    user: '42sv.matcha@gmail.com',
+                    pass: 'gusdk314'
                 }
             });
             const mailOptions = {
-                from: 'matcha.42sv@gmail.com',
+                from: '42sv.matcha@gmail.com',
                 to: data.email,
                 subject: 'Please confirm for Matcha registration :)',
-                html: "<a href=" + URL + "/api/verifies/signup?email=" + data.email + "&code=" + code + ">Click here to verify !</a>"
+                html: "<a href=" + URL + "/api/verifies/up?email=" + data.email + "&code=" + code + ">Click here to verify !</a>"
             };
             transporter.sendMail(mailOptions, function(error, info){
                 if (error) {

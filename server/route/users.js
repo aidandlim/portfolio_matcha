@@ -105,12 +105,12 @@ module.exports.updateEmail = (req, res) => {
                 const transporter = nodemailer.createTransport({
                     service: 'gmail',
                     auth: {
-                        user: 'helloWorld@gmail.com',
-                        pass: '1234'
+                        user: '42sv.matcha@gmail.com',
+                        pass: 'gusdk314'
                     }
                 });
                 const mailOptions = {
-                    from: 'helloWorld@gmail.com',
+                    from: '42sv.matcha@gmail.com',
                     to: newEmail,
                     subject: 'Please confirm for Matcha registration :)',
                     html: "<a href=" + URL + "/api/verifies/signup?email=" + newEmail + "&code=" + code + ">Click here to verify !</a>"
