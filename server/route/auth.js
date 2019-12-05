@@ -6,7 +6,7 @@ const URL = require('../const');
 
 module.exports.up = (req, res) => {
     const sql_select_user = 'SELECT * FROM users WHERE email = ?';
-    const sql_insert_users = 'INSERT INTO users (email, password, first_name, last_name, birth_year, gender, preference, bio) values (?, SHA1(?), ?, ?, ?, ?, ?, ?)';
+    const sql_insert_users = 'INSERT INTO users (email, password) values (?, SHA1(?))';
     const sql_insert_verifies = 'INSERT INTO verifies (user_id, uuid) values ((SELECT id FROM users WHERE email = ?), ?)';
 
     const data = req.body;
@@ -19,12 +19,12 @@ module.exports.up = (req, res) => {
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
-                    user: 'helloWorld@gmail.com',
-                    pass: '1234'
+                    user: 'matcha.42sv@gmail.com',
+                    pass: 'Dlaehdtjq314!'
                 }
             });
             const mailOptions = {
-                from: 'helloWorld@gmail.com',
+                from: 'matcha.42sv@gmail.com',
                 to: data.email,
                 subject: 'Please confirm for Matcha registration :)',
                 html: "<a href=" + URL + "/api/verifies/signup?email=" + data.email + "&code=" + code + ">Click here to verify !</a>"
@@ -35,7 +35,7 @@ module.exports.up = (req, res) => {
                 }
             });
     
-            conn.query(sql_insert_users, [data.email, data.password, data.first_name, data.last_name, data.birth_year, data.gender, data.preference, data.bio], (err) => {
+            conn.query(sql_insert_users, [data.email, data.password], (err) => {
                 if (err) {
                     console.log(err);
                 } else {

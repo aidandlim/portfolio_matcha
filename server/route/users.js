@@ -65,7 +65,7 @@ module.exports.emailCheck = (req, res) => {
 //
 
 module.exports.update = (req, res) => {
-    const sql = 'UPDATE users SET first_name = ?, last_name = ?, birth_year = ?, gender = ?, preference = ?, bio = ? WHERE email = ?';
+    const sql = 'UPDATE users SET first_name = ?, last_name = ?, birth_year = ?, gender = ?, preference = ? WHERE email = ?';
 
     const email = req.session.user;
     const data = req.body;
@@ -73,7 +73,7 @@ module.exports.update = (req, res) => {
     if (email === undefined) {
         res.json(0);
     } else {
-        conn.query(sql, [data.first_name, data.last_name, data.birth_year, data.gender, data.preference, data.bio, email], (err) => {
+        conn.query(sql, [data.first_name, data.last_name, data.birth_year, data.gender, data.preference, email], (err) => {
             if (err) {
                 console.log(err);
                 res.json(0);
