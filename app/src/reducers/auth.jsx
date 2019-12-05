@@ -1,6 +1,6 @@
 const auth = {
     isLogin: true,
-    isComplete: true,
+    isComplete: false,
     landingStatus: 0,
 }
 

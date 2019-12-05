@@ -13,7 +13,6 @@ const In = () => {
 	const dispatch = useDispatch();
 
 	const _handleForm = (e) => {
-		console.log('Signin > _handleForm');
 		e.preventDefault();
 
 		const data = {
@@ -21,10 +20,9 @@ const In = () => {
 			password: document.signin.password.value,
 		};
 
-		axios.get('/users/signin', data)
+		axios.get('/auth/in', data)
 		.then(res => {
 			if(res.data === 1) {
-				console.log('signin success');
 				dispatch(auth_landingStatus(0));
 				dispatch(auth_isLogin(true));
 			} else if(res.data === 2) {
@@ -38,13 +36,11 @@ const In = () => {
 	}
 
 	const _handleResendVerifyingEmail = () => {
-		console.log('Signin > _handleResendVerifyingEmail');
-
 		const data = {
 			email: document.signin.email.value
 		};
 
-		axios.post('/user/resend', {
+		axios.get('/mail/reverify', {
 			data
 		})
 		.then(res => {

@@ -21,9 +21,9 @@ const App = () => {
 	const dispatch = useDispatch();
 	
 	if(!auth.isLogin) {
-		console.log('App > userCheck');
-		axios.get('/users/check')
+		axios.get('/users')
 		.then((res) => {
+			console.log('App -> /users' + res.data);
 			if(res.data) {
 				dispatch(auth_isLogin(true));
 			}
