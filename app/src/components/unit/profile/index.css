@@ -117,6 +117,28 @@
     margin: 0;
 }
 
+
+.profile-textarea {
+    width: calc(100% - 1rem);
+    height: auto;
+
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+
+    position: relative;
+    float: left;
+
+    color: #AAAAAA;
+    font-size: 0.5rem;
+    font-weight: 900;
+    line-height: 1rem;
+
+    background: var(--color-10);
+    border: none;
+
+    resize: none;
+}
+
 .profile-submit {
     width: auto;
     height: 1.5rem;
