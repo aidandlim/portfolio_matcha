@@ -27,7 +27,7 @@ module.exports.up = (req, res) => {
                 from: '42sv.matcha@gmail.com',
                 to: data.email,
                 subject: 'Please confirm for Matcha registration :)',
-                html: "<a href=" + URL + "/api/verifies/up?email=" + data.email + "&code=" + code + ">Click here to verify !</a>"
+                html: "<a href=\"" + URL + "/api/verifies/up?email=" + data.email + "&code=" + code + "\">Click here to verify !</a>"
             };
             transporter.sendMail(mailOptions, function(error, info){
                 if (error) {
