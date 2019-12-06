@@ -50,7 +50,7 @@ const Nav = () => {
 			<div className='nav-fullname'>Aidan Lim</div>
 			<div className='nav-location-container'>
 				<FaLocationArrow className='nav-location-icon'/>
-				<div className='nav-location-address'>{map.address}</div>
+				<div className='nav-location-address'>{map.address === '' ? 'Unknown' : map.address}</div>
 			</div>
 			<Menu index={0} nav={nav} setNav={setNav} />
 			{user.isComplete ? <Menu index={1} nav={nav} setNav={setNav} /> : ''}

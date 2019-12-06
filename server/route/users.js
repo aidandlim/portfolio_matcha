@@ -148,6 +148,7 @@ module.exports.updatePassword = (req, res) => {
                 console.log(err);
                 res.json(0);
             } else {
+                req.session.user = undefined;
                 res.json(1);
             }
         })

@@ -104,7 +104,11 @@
     position: relative;
     float: left;
 
+    color: var(--color-80);
+    font-size: 0.5rem;
+    font-weight: 700;
     text-indent: 0.5rem;
+    
     background: var(--color-20);
     border: none;
 }

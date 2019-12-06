@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { useDispatch } from 'react-redux';
+import { user_data } from '../../../../actions';
+
 import axios from 'axios';
 
 import Alert from '../../../util/alert';
@@ -7,6 +10,7 @@ import Alert from '../../../util/alert';
 import '../index.css';
 
 const Password = () => {
+	const dispatch = useDispatch();
 
 	const _handleForm = (e) => {
 		e.preventDefault();
@@ -19,9 +23,8 @@ const Password = () => {
 			axios.put('/users/password', data)
 			.then(res => {
 				if(res.data) {
-					// 
-				} else {
-					//
+					dispatch(user_data({}));
+					Alert(0, 'Password has updated. Sign in Again!', 'Okay', null, null);
 				}
 			});
 		} else {
