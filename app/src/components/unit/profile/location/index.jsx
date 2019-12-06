@@ -51,8 +51,34 @@ const Location = () => {
 				}
 			});
 		}
+	}
 
-		
+	const _handleCurrentLocation = () => {
+		navigator.geolocation.getCurrentPosition((position) => {
+			axios.get('https://maps.googleapis.com/maps/api/geocode/json?language=en&latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&key=' + KEY)
+			.then((res) => {
+				let result = res.data.plus_code.compound_code.split(' ');
+				let address = '';
+				for(let i = 1; i < result.length; i++) {
+					address += i + 1 === result.length ? result[i] : result[i] + ' ';
+				}
+
+				const data = {
+					address: address,
+					latitude: position.coords.latitude,
+					longitude: position.coords.longitude,
+				};
+
+				axios.put('/users/address', data)
+				.then(res => {
+					if(res.data) {
+						dispatch(user_data({}));
+					} else {
+						//
+					}
+				});
+			});
+		});
 	}
 
 	return (
@@ -64,6 +90,7 @@ const Location = () => {
 				<form name='profile_location' onSubmit={_handleForm}>
 					<input type='text' className='profile-input' name='zipcode' placeholder='Zip Code' />
 					<input type='submit' className='profile-submit' value='UPDATE' />
+					<input type='button' className='profile-submit' value='SET AS CURRENT LOCATION' onClick={ () => _handleCurrentLocation() } />
 				</form>
 			</div>
 		</div>

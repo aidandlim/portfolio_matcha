@@ -8,14 +8,14 @@ import { KEY } from '../../../../api';
 import '../index.css';
 
 const Map = (props) => {
-    const map = useSelector(state => state.map);
+    const user = useSelector(state => state.user);
 
 	return (
 		<GoogleMap
 			className='search-map'
 			google={props.google}
 			zoom={12}
-			initialCenter={{ lat: map.center.latitude, lng: map.center.longitude }}
+			initialCenter={{ lat: user.data.latitude, lng: user.data.longitude }}
 		>
 		</GoogleMap>
 	);
