@@ -13,7 +13,6 @@ import './index.css';
 
 const Nav = () => {
 	const user = useSelector(state => state.user);
-	const map = useSelector(state => state.map);
 	const dispatch = useDispatch();
 
 	const [ nav, setNav ] = useState(0);
@@ -50,7 +49,7 @@ const Nav = () => {
 			<div className='nav-fullname'>Aidan Lim</div>
 			<div className='nav-location-container'>
 				<FaLocationArrow className='nav-location-icon'/>
-				<div className='nav-location-address'>{map.address === '' ? 'Unknown' : map.address}</div>
+				<div className='nav-location-address'>{user.data.address === '' ? 'Unknown' : user.data.address}</div>
 			</div>
 			<Menu index={0} nav={nav} setNav={setNav} />
 			{user.isComplete ? <Menu index={1} nav={nav} setNav={setNav} /> : ''}

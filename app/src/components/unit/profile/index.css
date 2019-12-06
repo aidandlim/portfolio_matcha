@@ -131,9 +131,9 @@
     position: relative;
     float: left;
 
-    color: #AAAAAA;
+    color: var(--color-80);
     font-size: 0.5rem;
-    font-weight: 900;
+    font-weight: 700;
     line-height: 1rem;
 
     background: var(--color-10);
