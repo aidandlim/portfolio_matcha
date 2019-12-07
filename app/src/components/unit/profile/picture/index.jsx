@@ -27,7 +27,7 @@ const Picture = () => {
 					picture : reader.result.replace('data:image/jpeg;base64,', '')
 						.replace('data:image/jpg;base64,', '')
 						.replace('data:image/png;base64,', ''),
-					index: index
+					index: _handleIndex(index)
 				}
 				console.table(data);
 				input.value = '';
@@ -35,6 +35,23 @@ const Picture = () => {
 		} else {
 			input.value = '';
 		}
+	}
+
+	const _handleIndex = (index) => {
+		let result = 1;
+
+		if(user.data.profile1 === undefined && index > 1) {
+			result = 1;
+		} else if(user.data.profile2 === undefined && index > 2) {
+			result = 2;
+		} else if(user.data.profile3 === undefined && index > 3) {
+			result = 3;
+		} else if(user.data.profile4 === undefined && index > 4) {
+			result = 4;
+		} else if(user.data.profile5 === undefined && index > 5) {
+			result = 5;
+		}
+		return result;
 	}
 
 	return (

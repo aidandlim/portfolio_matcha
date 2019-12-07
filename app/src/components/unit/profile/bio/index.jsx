@@ -23,7 +23,9 @@ const Bio = () => {
 		axios.put('/users/bio', data)
 		.then(res => {
 			if(res.data) {
-				dispatch(user_data({}));
+				let result = user.data;
+				result.bio = data.bio;
+				dispatch(user_data(result));
 			} else {
 				//
 			}

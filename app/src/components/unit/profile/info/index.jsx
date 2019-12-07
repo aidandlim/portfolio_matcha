@@ -27,7 +27,13 @@ const Info = () => {
 		axios.put('/users', data)
 		.then(res => {
 			if(res.data) {
-				dispatch(user_data({}));
+				let result = user.data;
+				result.first_name = data.first_name;
+				result.last_name = data.last_name;
+				result.birth_year = data.birth_year;
+				result.gender = data.gender;
+				result.preference = data.preference;
+				dispatch(user_data(result));
 			} else {
 				//
 			}

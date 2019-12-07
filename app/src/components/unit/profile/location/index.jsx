@@ -43,7 +43,12 @@ const Location = () => {
 					axios.put('/users/address', data)
 					.then(res => {
 						if(res.data) {
-							dispatch(user_data({}));
+							let result = user.data;
+							result.address = data.address;
+							result.latitude = data.latitude;
+							result.longitude = data.longitude;
+							dispatch(user_data(result));
+							document.profile_location.zipcode.value = '';
 						} else {
 							//
 						}
@@ -72,7 +77,12 @@ const Location = () => {
 				axios.put('/users/address', data)
 				.then(res => {
 					if(res.data) {
-						dispatch(user_data({}));
+						let result = user.data;
+						result.address = data.address;
+						result.latitude = data.latitude;
+						result.longitude = data.longitude;
+						dispatch(user_data(result));
+						document.profile_location.zipcode.value = '';
 					} else {
 						//
 					}
@@ -86,7 +96,7 @@ const Location = () => {
 			<div className='profile-title'>Location</div>
 			<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
 			<div className='profile-section'>
-				<input className='profile-input' defaultValue={user.data.address === '' ? 'Unknown' : user.data.address} disabled />
+				<div className='profile-input'>{user.data.address === '' ? 'Unknown' : user.data.address}</div>
 				<form name='profile_location' onSubmit={_handleForm}>
 					<input type='text' className='profile-input' name='zipcode' placeholder='Zip Code' />
 					<input type='submit' className='profile-submit' value='UPDATE' />

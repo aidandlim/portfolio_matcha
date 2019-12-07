@@ -13,7 +13,7 @@ const Notification = () => {
 	const [messages, setMessages] = useState([]);
 
 	useEffect(() => {
-		axios.get('/notification')
+		axios.get('/notifications')
 		.then(res => {
 			if(res.data) {
 				setMessages(res.data);
