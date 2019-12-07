@@ -1,14 +1,14 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { ui_color } from '../../actions';
+import { ui_color, user_data, user_isComplete } from '../../actions';
+
+import axios from 'axios';
 
 import cookie from 'react-cookies'
 
 import Core from '../template/core';
 import Landing from '../template/landing';
-
-import Pull from '../util/pull';
 
 import Wrapper from 'react-div-100vh';
 
@@ -20,7 +20,17 @@ const App = () => {
 	const dispatch = useDispatch();
 
 	if(user.data.id === undefined) {
-		Pull();
+		axios.get('/users')
+		.then((res) => {
+			if(res.data) {
+				dispatch(user_data(res.data[0]));
+				if(res.data[0].picture1 !== '' && res.data[0].first_name !== '' && res.data[0].last_name !== '' && res.data[0].address !== '') {
+					dispatch(user_isComplete(true));
+				} else {
+					dispatch(user_isComplete(false));
+				}
+			}
+		});
 	}
 
 	const getColor = cookie.load('theme-color');
