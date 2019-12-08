@@ -7,7 +7,7 @@ const URL = require('../const');
 //
 
 module.exports.select = (req, res) => {
-    const email = req.query.email === null ? req.session.user : req.query.email;
+    const email = req.query.email === undefined ? req.session.user : req.query.email;
     // const distance = req.query.distance;
 
     // if (distance === null) {
