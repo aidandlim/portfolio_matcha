@@ -8,6 +8,12 @@
     top: 0;
     left: 100%;
 
+    color: var(--color-50);
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 5rem;
+    
     background-color: var(--color-10);
 
     transition: 0.5s;

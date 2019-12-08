@@ -18,18 +18,16 @@
     position: relative;
     float: left;
 
-    color: var(--color-70);
+    color: var(--color-50);
     font-size: 0.7rem;
     font-weight: 900;
     line-height: 1.4rem;
-
-    background-color: white;
 
     cursor: pointer;
 }
 
 .overview-nav-menu-active {
-    color: var(--color-90);
+    color: var(--color-80);
     text-decoration: underline;
 }
 

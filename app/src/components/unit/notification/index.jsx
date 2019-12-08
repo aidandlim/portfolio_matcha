@@ -40,6 +40,7 @@ const Notification = () => {
 
 	return (
 		<div className={ui.notification ? 'notification notification-active' : 'notification'}>
+			{messages.length === 0 ? 'There is no notification message' : ''}
 			{messages.map((message, index) => <Message key={index} message={message} />)}
 		</div>
 	);

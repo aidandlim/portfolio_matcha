@@ -6,6 +6,22 @@
     float: left;
 }
 
+.match-inactive {
+    width: auto;
+    height: auto;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    color: var(--color-50);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.5;
+}
+
 .match-card {
     width: 12rem;
     height: 16rem;

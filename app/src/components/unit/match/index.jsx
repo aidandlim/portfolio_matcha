@@ -12,8 +12,9 @@ const Match = () => {
 
 	return (
 		<div className='match'>
-			{ match.data.id !== undefined && !match.isDetail ? <Card /> : <Detail /> }
-			{ match.data.id === undefined ? 'There is no match card!' : ''}
+			{ match.data.id !== undefined && !match.isDetail ? <Card /> : '' }
+			{ match.data.id !== undefined && match.isDetail ? <Detail /> : '' }
+			{ match.data.id === undefined ? <div className='match-inactive'>Sorry for uncomfortable.<br />There is no valid match card!</div> : ''}
 		</div>
 	);
 }
