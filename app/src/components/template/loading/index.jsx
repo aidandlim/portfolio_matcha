@@ -15,13 +15,13 @@ const Loading = () => {
 
 	useEffect(() => {
 		setTimeout(() => {
-			if(document.getElementById('cover-input') !== null)
-				document.getElementById('cover-input').style.display = 'block';
+			if(document.getElementById('loading-input') !== null)
+				document.getElementById('loading-input').style.display = 'block';
 		}, 10000);
 	}, []);
 
 	const _handleZipCode = () => {
-		const zipcode = document.getElementById('cover-input').value;
+		const zipcode = document.getElementById('loading-input').value;
 
 		if(zipcode.length === 5) {
 			axios.get('https://maps.googleapis.com/maps/api/geocode/json?language=en&address=' + zipcode + '&key=' + KEY)
@@ -29,7 +29,7 @@ const Loading = () => {
 				console.log(res.data);
 				if(res.data.status === 'ZERO_RESULTS') {
 					Alert(0, 'zipcode is invalid', 'Okay', null, null);
-					document.getElementById('cover-input').value = '';
+					document.getElementById('loading-input').value = '';
 				} else {
 					let data = res.data.results[0].formatted_address.split(' ');
 					let address = '';
@@ -54,7 +54,7 @@ const Loading = () => {
 					backgroundImage: 'url(\'' + Connection + '\')'
 				}}></div>
 				<div className='loading-description'>We are trying to connect to GPS.</div>
-				<input id='loading-input' type='number' placeholder='Please enter your Zip Code.'  onChange={() => _handleZipCode()} />
+				<input id='loading-input' type='number' placeholder='Please enter your Zip Code.' onChange={() => _handleZipCode()} />
 			</div>
 		</div>
 	);

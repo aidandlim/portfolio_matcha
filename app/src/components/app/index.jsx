@@ -1,31 +1,34 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { auth_isLogin, ui_color } from '../../actions';
+import { ui_color, user_data, user_isComplete } from '../../actions';
 
 import axios from 'axios';
+
 import cookie from 'react-cookies'
 
 import Core from '../template/core';
 import Landing from '../template/landing';
-import Loading from '../template/loading';
 
 import Wrapper from 'react-div-100vh';
 
 import './index.css';
 
 const App = () => {
-	const auth = useSelector(state => state.auth);
+	const user = useSelector(state => state.user);
 	const ui = useSelector(state => state.ui);
-	const map = useSelector(state => state.map);
 	const dispatch = useDispatch();
-	
-	if(!auth.isLogin) {
-		console.log('App > userCheck');
-		axios.get('/users/check')
+
+	if(user.data.id === undefined) {
+		axios.get('/users')
 		.then((res) => {
 			if(res.data) {
-				dispatch(auth_isLogin(true));
+				dispatch(user_data(res.data[0]));
+				if(res.data[0].picture1 !== '' && res.data[0].first_name !== '' && res.data[0].last_name !== '' && res.data[0].address !== '') {
+					dispatch(user_isComplete(true));
+				} else {
+					dispatch(user_isComplete(false));
+				}
 			}
 		});
 	}
@@ -53,11 +56,7 @@ const App = () => {
 				}
 			`}</style>
 			{ 
-				auth.isLogin 
-				? 
-				map.address !== '' ? <Core /> : <Loading />
-				:
-				<Landing /> 
+				user.data.id !== undefined ? <Core /> : <Landing /> 
 			}
 		</Wrapper>
 	);

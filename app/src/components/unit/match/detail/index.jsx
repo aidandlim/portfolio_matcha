@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { match_isDetail } from '../../../../actions';
+
+import axios from 'axios';
 
 import { FaBirthdayCake, FaLocationArrow, FaRuler, FaTimes, FaArrowAltCircleLeft, FaArrowAltCircleRight, FaSearchMinus, FaHeart } from 'react-icons/fa';
 
@@ -14,6 +16,7 @@ import Profile5 from '../../../../resources/profile5.jpeg';
 import '../index.css';
 
 const Detail = () => {
+	const match = useSelector(state => state.match);
 	const dispatch = useDispatch();
 
 	const [ index, setIndex ] = useState(0);
@@ -51,6 +54,36 @@ const Detail = () => {
 		}
 	}
 
+	const _handleLike = () => {
+		const data = {
+			to: match.id
+		};
+
+		axios.post('/likes', data)
+		.then(res => {
+			if(res.data) {
+				// 
+			} else {
+				//
+			}
+		});
+	}
+
+	const _handleDislike = () => {
+		const data = {
+			to: match.id
+		};
+
+		axios.post('/dislikes', data)
+		.then(res => {
+			if(res.data) {
+				// 
+			} else {
+				//
+			}
+		});
+	}
+
 	return (
 		<div className='match-detail'>
 			<div className='match-detail-pictures'>
@@ -71,9 +104,9 @@ const Detail = () => {
 				}}></div>
 				<FaArrowAltCircleLeft className='match-detail-arrow match-detail-arrow-left' onClick={ () => _handleIndex(false, -1) } />
 				<FaArrowAltCircleRight className='match-detail-arrow match-detail-arrow-right' onClick={ () => _handleIndex(true, -1) } />
-				<FaTimes className='match-detail-reaction-icon match-detail-reaction-icon-dislike' />
+				<FaTimes className='match-detail-reaction-icon match-detail-reaction-icon-dislike' onClick={ () => _handleDislike() }  />
 				<FaSearchMinus className='match-detail-reaction-icon match-detail-reaction-icon-detail' onClick={ () => dispatch(match_isDetail(false)) }/>
-				<FaHeart className='match-detail-reaction-icon match-detail-reaction-icon-like' />
+				<FaHeart className='match-detail-reaction-icon match-detail-reaction-icon-like' onClick={ () => _handleLike() }  />
 			</div>
 			<div className='match-detail-container'>
 				<div className='match-detail-name'>Aidan Lim</div>

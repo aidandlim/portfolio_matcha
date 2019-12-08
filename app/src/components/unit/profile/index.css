@@ -98,13 +98,18 @@
     width: calc(100% / 3 - 1rem / 3);
     height: 1.5rem;
 
-    margin-right: 0.5rem;
+    margin: 0 0.5rem 0.5rem 0;
     padding: 0;
 
     position: relative;
     float: left;
 
+    color: var(--color-80);
+    font-size: 0.5rem;
+    font-weight: 700;
     text-indent: 0.5rem;
+    line-height: 1.5rem;
+    
     background: var(--color-20);
     border: none;
 }
@@ -117,10 +122,32 @@
     margin: 0;
 }
 
+.profile-textarea {
+    width: calc(100% - 1rem);
+    height: auto;
+
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+
+    position: relative;
+    float: left;
+
+    color: var(--color-80);
+    font-size: 0.5rem;
+    font-weight: 700;
+    line-height: 1rem;
+
+    background: var(--color-10);
+    border: none;
+
+    resize: none;
+}
+
 .profile-submit {
     width: auto;
     height: 1.5rem;
 
+    margin: 0 0.5rem 0 0;
     padding: 0 0.5rem;
 
     position: relative;

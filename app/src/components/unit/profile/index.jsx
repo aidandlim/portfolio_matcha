@@ -5,6 +5,7 @@ import Email from './email';
 import Password from './password';
 import Info from './info';
 import Location from './location';
+import Bio from './bio';
 import Myself from './myself';
 import Preference from './preference';
 import Theme from './theme';
@@ -23,6 +24,7 @@ const Profile = () => {
 				<Password />
 				<Info />
 				<Location />
+				<Bio />
 				<Myself />
 				<Preference />
 				<Theme />

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useDispatch } from 'react-redux';
-import { auth_landingStatus } from '../../../../actions';
+import { ui_landing } from '../../../../actions';
 
 import axios from 'axios';
 
@@ -11,17 +11,17 @@ const Fg = () => {
 	const dispatch = useDispatch();
 	
 	const _handleForm = (e) => {
-		console.log('Forgot > _handleForm');
 		e.preventDefault();
 
 		const data = {
-			email: document.signup.email.value
+			email: document.forgot.email.value
 		};
 
-		axios.post('/user/forgot', data)
+		axios.get('/mail/password', data)
 		.then(res => {
 			if(res.data) {
 				Alert(0, 'check your email', 'Okay', null, null);
+				dispatch(ui_landing(1));
 			} else {
 				Alert(0, 'email is invalid', 'Okay', null, null);
 			}
@@ -29,7 +29,7 @@ const Fg = () => {
 	}
 
 	return (
-		<form name='landing-fg' onSubmit={_handleForm}>
+		<form name='forgot' onSubmit={_handleForm}>
 			<div className='landing-in-title'>Have you forgotten your password?</div>
 			<div className='landing-in-description'>What was the person thinking when they discovered cow’s milk was fine for human consumption… and why did they do it in the first place!?</div>
 			<label className='landing-in-label'>
@@ -37,7 +37,7 @@ const Fg = () => {
 				<input className='landing-in-input' type='email' name='email' required/>
 			</label>
 			<input className='landing-in-submit' type='submit' value='SUBMIT' />
-			<input className='landing-in-button' type='button' value='BACK' onClick={ () => dispatch(auth_landingStatus(1)) } />
+			<input className='landing-in-button' type='button' value='BACK' onClick={ () => dispatch(ui_landing(1)) } />
 		</form>
 	);
 }
