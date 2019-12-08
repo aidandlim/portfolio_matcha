@@ -19,7 +19,8 @@
     left: calc(100% - 20.5rem);
 }
 
-.notification-message {
+.notification-message,
+.notification-message-active {
     width: 100%;
     height: 2rem;
 
@@ -30,6 +31,10 @@
 
     background-color: var(--color-20);
     border-radius: 0.5rem;
+}
+
+.notification-message {
+    opacity: 0.5;
 }
 
 .notification-message-picture {

@@ -1,18 +1,18 @@
 const user = {
-    // data: {},
-    data: {
-        id: 0,
-        email: 'ortivo.sol@gmail.com',
-        first_name: 'Aidan',
-        last_name: 'Lim',
-        birth_year: '1991',
-        gender: '1',
-        preference: '1',
-        address: 'Fremont, CA, USA',
-        latitude: '37',
-        longitude: '-122',
-        picture1: 'hello'
-    },
+    data: {},
+    // data: {
+    //     id: 0,
+    //     email: 'ortivo.sol@gmail.com',
+    //     first_name: 'Aidan',
+    //     last_name: 'Lim',
+    //     birth_year: '1991',
+    //     gender: '1',
+    //     preference: '1',
+    //     address: 'Fremont, CA, USA',
+    //     latitude: '37',
+    //     longitude: '-122',
+    //     picture1: 'hello'
+    // },
     isComplete: true,
 }
 

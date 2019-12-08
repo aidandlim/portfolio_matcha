@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import axios from 'axios';
+
 import Tag from '../tag';
 import Suggest from '../suggest';
 
@@ -15,6 +17,17 @@ const Myself = () => {
 			const result = [...tags, document.myself.tag.value];
 			setTags(result);
 			setSuggests([]);
+
+			const data = {
+				tag: document.myself.tag.value,
+				type: 'myself'
+			}
+
+			axios.post('/tags/link', data)
+			.then((res) => {
+				console.log(res);
+			});
+			
 			document.myself.tag.value = '';
 		}
 	}

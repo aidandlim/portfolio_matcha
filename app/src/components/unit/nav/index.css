@@ -6,6 +6,8 @@
     float: left;
 
     background-color: var(--color-100);
+
+    z-index: 10;
 }
 
 .nav-profile  {

@@ -22,12 +22,14 @@ const Overview = () => {
 		axios.get('/overviews')
 		.then((res) => {
 			if(res.data) {
+				console.log(res.data);
 				setGraphData(res.data);
 			}
 		});
 		axios.get('/likes')
 		.then((res) => {
 			if(res.data) {
+				console.log(res.data);
 				setFollowers(res.data.user);
 				setFollowing(res.data.other);
 			}

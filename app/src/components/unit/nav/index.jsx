@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { user_data } from '../../../actions';
+import { user_data, ui_notification, chat_current } from '../../../actions';
 
 import axios from 'axios';
 
@@ -31,6 +31,12 @@ const Nav = () => {
 
 	}, []);
 
+	const _handleNav = (index) => {
+		setNav(index);
+		dispatch(ui_notification(false));
+		dispatch(chat_current(-1));
+	}
+
 	const _handledLogout = () => {
 		axios.get('/auth/out')
 		.then((res) => {
@@ -52,9 +58,9 @@ const Nav = () => {
 				<div className='nav-location-address'>{user.data.address === '' ? 'Unknown' : user.data.address}</div>
 			</div>
 			<Menu index={0} nav={nav} setNav={setNav} />
-			{user.isComplete ? <Menu index={1} nav={nav} setNav={setNav} /> : ''}
-			{user.isComplete ? <Menu index={2} nav={nav} setNav={setNav} /> : ''}
-			{user.isComplete ? <Menu index={3} nav={nav} setNav={setNav} /> : ''}
+			{user.isComplete ? <Menu index={1} nav={nav} setNav={_handleNav} /> : ''}
+			{user.isComplete ? <Menu index={2} nav={nav} setNav={_handleNav} /> : ''}
+			{user.isComplete ? <Menu index={3} nav={nav} setNav={_handleNav} /> : ''}
 			<FaUnlink className='nav-menu-icon' onClick={ () => _handledLogout() }/>
 			<div className='nav-menu-title' onClick={ () => _handledLogout() }>Logout</div>
 		</div>

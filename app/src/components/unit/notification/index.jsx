@@ -16,10 +16,25 @@ const Notification = () => {
 		axios.get('/notifications')
 		.then(res => {
 			if(res.data) {
+				console.table(res.data);
 				setMessages(res.data);
 			}
 		});	
 	}, []);
+
+	if(ui.notification) {
+		messages.map((msg) => {
+			if(msg.type === 'appears') {
+				axios.put('/appears', { id: msg.id });
+			} else if(msg.type === 'visits') {
+				axios.put('/visits', { id: msg.id });
+			} else if(msg.type === 'likes') {
+				axios.put('/likes', { id: msg.id });
+			} else if(msg.type === 'unlikes') {
+				axios.put('/unlikes', { id: msg.id });
+			}
+		});
+	}
 
 	return (
 		<div className={ui.notification ? 'notification notification-active' : 'notification'}>

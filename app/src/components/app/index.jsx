@@ -20,8 +20,9 @@ const App = () => {
 	const dispatch = useDispatch();
 
 	if(user.data.id === undefined) {
-		axios.get('/users')
+		axios.get('/users', { params: {email: null}})
 		.then((res) => {
+			console.log(res.data);
 			if(res.data) {
 				dispatch(user_data(res.data[0]));
 				if(res.data[0].picture1 !== '' && res.data[0].first_name !== '' && res.data[0].last_name !== '' && res.data[0].address !== '') {
