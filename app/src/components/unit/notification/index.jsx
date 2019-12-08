@@ -25,13 +25,15 @@ const Notification = () => {
 	if(ui.notification) {
 		messages.map((msg) => {
 			if(msg.type === 'appears') {
-				axios.put('/appears', { id: msg.id });
+				return axios.put('/appears', { id: msg.id });
 			} else if(msg.type === 'visits') {
-				axios.put('/visits', { id: msg.id });
+				return axios.put('/visits', { id: msg.id });
 			} else if(msg.type === 'likes') {
-				axios.put('/likes', { id: msg.id });
+				return axios.put('/likes', { id: msg.id });
 			} else if(msg.type === 'unlikes') {
-				axios.put('/unlikes', { id: msg.id });
+				return axios.put('/unlikes', { id: msg.id });
+			} else {
+				return null;
 			}
 		});
 	}

@@ -1,14 +1,5 @@
 const chat = {
-    list: [
-        {
-            id: 0,
-            picture: 'test1'
-        },
-        {
-            id: 1,
-            picture: 'test2'
-        }
-    ],
+    list: [],
     current: -1
 }
 

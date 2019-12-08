@@ -12,7 +12,8 @@ const Match = () => {
 
 	return (
 		<div className='match'>
-			{!match.isDetail ? <Card /> : <Detail />}
+			{ match.data.id !== undefined && !match.isDetail ? <Card /> : <Detail /> }
+			{ match.data.id === undefined ? 'There is no match card!' : ''}
 		</div>
 	);
 }

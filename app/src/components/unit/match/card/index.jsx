@@ -39,14 +39,11 @@ const Card = () => {
 
 	const _handleImage = () => {
 		let images = document.getElementsByClassName('match-card-picture');
-		let pointer = document.getElementsByClassName('match-card-pointer');
 		for(let i = 0; i < images.length; i++) {
 			if(i === index) {
 				images[i].style.opacity = 1;
-				pointer[i].style.opacity = 1;
 			} else {
 				images[i].style.opacity = 0;
-				pointer[i].style.opacity = 0.5;
 			}
 		}
 	}
@@ -83,30 +80,24 @@ const Card = () => {
 
 	return (
 		<div className='match-card'>
-			<div className='match-card-pointer' onClick={ () => _handleIndex(false, 0) }></div>
-			<div className='match-card-pointer' onClick={ () => _handleIndex(false, 1) }></div>
-			<div className='match-card-pointer' onClick={ () => _handleIndex(false, 2) }></div>
-			<div className='match-card-pointer' onClick={ () => _handleIndex(false, 3) }></div>
-			<div className='match-card-pointer' onClick={ () => _handleIndex(false, 4) }></div>
 			<div className='match-card-pictures'>
 				<div className='match-card-picture' style={{
-					backgroundImage: 'url(\'' + match.profile1 + '\')'
-				}}></div>
+					backgroundImage: 'url(\'' + match.data.picture1 + '\')'
+				}}>{match.data.picture1}</div>
 				<div className='match-card-picture' style={{
-					backgroundImage: 'url(\'' + match.profile2 + '\')'
-				}}></div>
+					backgroundImage: 'url(\'' + match.data.picture2 + '\')'
+				}}>{match.data.picture2}</div>
 				<div className='match-card-picture' style={{
-					backgroundImage: 'url(\'' + match.profile3 + '\')'
-				}}></div>
+					backgroundImage: 'url(\'' + match.data.picture3 + '\')'
+				}}>{match.data.picture3}</div>
 				<div className='match-card-picture' style={{
-					backgroundImage: 'url(\'' + match.profile4 + '\')'
-				}}></div>
+					backgroundImage: 'url(\'' + match.data.picture4 + '\')'
+				}}>{match.data.picture4}</div>
 				<div className='match-card-picture' style={{
-					backgroundImage: 'url(\'' + match.profile5 + '\')'
-				}}></div>
+					backgroundImage: 'url(\'' + match.data.picture5 + '\')'
+				}}>{match.data.picture5}</div>
 			</div>
-			<div className='match-card-title'>Aidan (28)</div>
-			<div className='match-card-distance'></div>
+			<div className='match-card-title'>{match.data.first_name} {match.data.last_name} ({match.data.age})</div>
 			<FaArrowAltCircleLeft className='match-card-arrow match-card-arrow-left' onClick={ () => _handleIndex(false, -1) } />
 			<FaArrowAltCircleRight className='match-card-arrow match-card-arrow-right' onClick={ () => _handleIndex(true, -1) } />
 			<FaTimes className='match-card-icon match-card-icon-dislike' onClick={ () => _handleDislike() } />

@@ -30,26 +30,6 @@
     left: 0;
 }
 
-.match-card-pointer {
-    width: 0.25rem;
-    height: 0.25rem;
-
-    margin: 0.25rem 0.25rem 0 0;
-
-    position: relative;
-    float: left;
-
-    top: -1rem;
-    left: calc(50% - 1.125rem);
-
-    background-color: var(--color-80);
-    border-radius: 0.125rem;
-
-    cursor: pointer;
-    transition: 0.5s;
-    z-index: 9;
-}
-
 .match-card-picture {
     width: 100%;
     height: 100%;
