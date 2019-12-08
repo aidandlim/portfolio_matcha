@@ -59,8 +59,8 @@ module.exports.in = (req, res) => {
     const sql_select_user = 'SELECT * FROM users WHERE email = ?';
     const sql_select_verify = 'SELECT verify FROM users WHERE email = ? AND password = SHA1(?)';
 
-    const email = req.body.email;
-    const password = req.body.password;
+    const email = req.query.email;
+    const password = req.query.password;
 
     conn.query(sql_select_user, [email], (err, results) => {
         if (err) {

@@ -6,7 +6,7 @@ const conn = require('../config/db');
 module.exports.forgot = (req, res) => {
     const sql = 'UPDATE users SET password = SHA1(?) WHERE email = ?';
 
-    const email = req.body.email;
+    const email = req.query.email;
     const password = uuid();
 
     if (this.ft_emailCheck(email) === 0) {
@@ -45,7 +45,7 @@ module.exports.forgot = (req, res) => {
 module.exports.reverify = (req, res) => {
     const sql = 'SELECT uuid FROM verifies WHERE user_id = ?';
 
-    const email = req.body.email;
+    const email = req.query.email;
 
     conn.query(sql, [email], (err, results) => {
         if (err) {

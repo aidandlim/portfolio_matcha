@@ -1,5 +1,39 @@
 const conn = require('../config/db');
 
+module.exports.select = (req, res) => {
+    const sql_select_user = 'SELECT `from` as data FROM likes WHERE `to` = (SELECT id FROM users WHERE email = ?)';
+    const sql_select_other = 'SELECT `to` as data FROM likes WHERE `from` = (SELECT id FROM users WHERE email = ?)';
+
+    // const email = req.session.user;
+    const email = 'aidandlim@gmail.com';
+    let temp = {
+        user: [],
+        other: [],
+    };
+
+    conn.query(sql_select_user, [email], (err, results) => {
+        if (err) {
+            console.log(err);
+        } else {
+            // results = JSON.parse(JSON.stringify(results));
+            results = Object.values(results);
+            console.log(results);
+            temp.user = results;
+
+            conn.query(sql_select_other, [email], (err, results) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    results = JSON.parse(JSON.stringify(results));
+                    results = Object.values(results);
+                    temp.other = results;
+                    res.json(temp);
+                }
+            })
+        }
+    })        
+}
+
 module.exports.insert = (req, res) => {
     const sql = 'INSERT INTO likes (from, to) values (?, ?)';
 

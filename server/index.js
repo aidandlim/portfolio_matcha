@@ -19,7 +19,7 @@ const verifies = require('./route/verifies');
 const visits = require('./route/visits');
 const notifications = require('./route/notifications');
 
-// 
+// SELECT COUNT(*) as appears, COUNT(*) as likes FROM appears WHERE time > SUBDATE(NOW(), INTERVAL 7 DAY) GROUP BY DAY(time)
 
 app.use(session({
     secret: '#@#42MATCHA#@#',
@@ -78,6 +78,7 @@ app.post('/api/appears', appears.insert);
 app.put('/api/visits', visits.update);
 app.post('/api/visits', visits.insert);
 
+app.get('/api/likes', likes.select);
 app.put('/api/likes', likes.update);
 app.post('/api/likes', likes.insert);
 
