@@ -28,7 +28,7 @@ const Sidebar = () => {
 		<div className='sidebar'>
 			<FaBell className={ ui.notification ? 'sidebar-notification sidebar-notification-active' : 'sidebar-notification' } onClick={() => _handleNotification()} />
 			{chat.list.map((chat, index) => 
-				<User id={index} data={chat} />
+				<User key={index} id={index} data={chat} />
 			)}
 			</div>
 	);

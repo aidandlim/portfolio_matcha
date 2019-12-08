@@ -10,6 +10,7 @@ import './index.css';
 
 const Overview = () => {
 	const [nav, setNav] = useState(0);
+	const [graphData, setGraphData] = useState([]);
 	const [followers, setFollowers] = useState([]);
 	const [following, setFollowing] = useState([]);
 
@@ -18,6 +19,12 @@ const Overview = () => {
 	}
 
 	useEffect(() => {
+		axios.get('/overviews')
+		.then((res) => {
+			if(res.data) {
+				setGraphData(res.data);
+			}
+		});
 		axios.get('/likes')
 		.then((res) => {
 			if(res.data) {
@@ -34,12 +41,24 @@ const Overview = () => {
 			</div>
 			<div className='frame-body'>
 				<Nav nav={nav} setNav={_handleNav} followers={followers} following={following} />
-				{ nav === 0 ? <Graph /> : '' }
+				{ nav === 0 ? <Graph graphData={graphData} /> : '' }
 				{ nav === 1 ? <Follow follows={followers} /> : '' }
-				{ nav === 1 ? <Follow follows={following} /> : '' }
+				{ nav === 2 ? <Follow follows={following} /> : '' }
 			</div>
 		</div>
 	);
 }
 
 export default Overview;
+
+	/*
+	const _handleDate = (diff) => {
+		let date = new Date();
+
+		date.setTime(date.getTime() - diff * 24 * 60 * 60 * 1000);
+		const month = date.getMonth() + 1; 
+		const day = date.getDate();
+
+		return month + '/' + day;
+	}
+	*/
