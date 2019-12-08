@@ -20,7 +20,7 @@ const App = () => {
 	const dispatch = useDispatch();
 
 	if(user.data.id === undefined) {
-		axios.get('/users', { params: {email: null}})
+		axios.get('/users')
 		.then((res) => {
 			console.log(res.data);
 			if(res.data) {
