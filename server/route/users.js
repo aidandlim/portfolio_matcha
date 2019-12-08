@@ -7,13 +7,8 @@ const URL = require('../const');
 //
 
 module.exports.select = (req, res) => {
-<<<<<<< HEAD
     const email = req.query.email === null ? req.session.user : req.query.email;
     // const distance = req.query.distance;
-=======
-    const email = req.query.email === undefined ? req.session.user : req.query.email;
-    // const distance = req.body.distance;
->>>>>>> 06af49310dedaa847db7421a07c6c6be0f1da9df
 
     // if (distance === null) {
         const sql = 'SELECT * FROM users WHERE email = ?';

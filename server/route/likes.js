@@ -8,25 +8,31 @@ module.exports.select = (req, res) => {
     const email = 'aidandlim@gmail.com';
     let temp = {
         user: [],
-        other: [],
+        other: []
     };
 
     conn.query(sql_select_user, [email], (err, results) => {
         if (err) {
             console.log(err);
         } else {
-            // results = JSON.parse(JSON.stringify(results));
-            results = Object.values(results);
-            console.log(results);
-            temp.user = results;
+            results = JSON.parse(JSON.stringify(results));
+            for (let i = 0; i < results.length; i++) {
+                results[i] = Object.values(results[i]);
+            } for (let i = 0; i < results.length; i++) {
+                temp.user = temp.user.concat(results[i]);
+            }
 
             conn.query(sql_select_other, [email], (err, results) => {
                 if (err) {
                     console.log(err);
                 } else {
                     results = JSON.parse(JSON.stringify(results));
-                    results = Object.values(results);
-                    temp.other = results;
+                    for (let i = 0; i < results.length; i++) {
+                        results[i] = Object.values(results[i]);
+                    } for (let i = 0; i < results.length; i++) {
+                        temp.other = temp.other.concat(results[i]);
+                    }
+                    console.log(temp);
                     res.json(temp);
                 }
             })
