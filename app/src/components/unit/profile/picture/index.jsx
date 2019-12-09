@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { user_data } from '../../../../actions';
+import { user_data , user_isComplete} from '../../../../actions';
 
 import axios from 'axios';
 
@@ -47,6 +47,11 @@ const Picture = () => {
 					if(index === 5)
 						result.picture5 = res.data;
 					dispatch(user_data(result));
+					if(result.picture1 !== '' && result.first_name !== '' && result.last_name !== '' && result.address !== '') {
+						dispatch(user_isComplete(true));
+					} else {
+						dispatch(user_isComplete(false));
+					}
 				});
 				
 				input.value = '';

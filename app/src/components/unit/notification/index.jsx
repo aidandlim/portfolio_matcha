@@ -16,7 +16,6 @@ const Notification = () => {
 		axios.get('/notifications')
 		.then(res => {
 			if(res.data) {
-				console.table(res.data);
 				setMessages(res.data);
 			}
 		});	

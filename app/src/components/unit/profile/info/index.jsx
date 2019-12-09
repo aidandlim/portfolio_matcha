@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { user_data } from '../../../../actions';
+import { user_data, user_isComplete } from '../../../../actions';
 
 import axios from 'axios';
 
@@ -34,6 +34,11 @@ const Info = () => {
 				result.gender = data.gender;
 				result.preference = data.preference;
 				dispatch(user_data(result));
+				if(result.picture1 !== '' && result.first_name !== '' && result.last_name !== '' && result.address !== '') {
+					dispatch(user_isComplete(true));
+				} else {
+					dispatch(user_isComplete(false));
+				}
 			} else {
 				//
 			}

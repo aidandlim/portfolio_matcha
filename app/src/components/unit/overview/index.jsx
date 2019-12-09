@@ -22,19 +22,162 @@ const Overview = () => {
 		axios.get('/overviews')
 		.then((res) => {
 			if(res.data) {
-				console.log(res.data);
-				setGraphData(res.data);
+				console.log(res);
+				const graph = [
+					{
+						id: res.data[0].type,
+						data: [
+							{
+								'x': _handleDate(6),
+								'y': res.data[0].date1
+							},
+							{
+								'x': _handleDate(5),
+								'y': res.data[0].date2
+							},
+							{
+								'x': _handleDate(4),
+								'y': res.data[0].date3
+							},
+							{
+								'x': _handleDate(3),
+								'y': res.data[0].date4
+							},
+							{
+								'x': _handleDate(2),
+								'y': res.data[0].date5
+							},
+							{
+								'x': _handleDate(1),
+								'y': res.data[0].date6
+							},
+							{
+								'x': _handleDate(0),
+								'y': res.data[0].date7
+							}
+						]
+					},
+					{
+						id: res.data[1].type,
+						data: [
+							{
+								'x': _handleDate(6),
+								'y': res.data[1].date1
+							},
+							{
+								'x': _handleDate(5),
+								'y': res.data[1].date2
+							},
+							{
+								'x': _handleDate(4),
+								'y': res.data[1].date3
+							},
+							{
+								'x': _handleDate(3),
+								'y': res.data[1].date4
+							},
+							{
+								'x': _handleDate(2),
+								'y': res.data[1].date5
+							},
+							{
+								'x': _handleDate(1),
+								'y': res.data[1].date6
+							},
+							{
+								'x': _handleDate(0),
+								'y': res.data[1].date7
+							}
+						]
+					},
+					{
+						id: res.data[2].type,
+						data: [
+							{
+								'x': _handleDate(6),
+								'y': res.data[2].date1
+							},
+							{
+								'x': _handleDate(5),
+								'y': res.data[2].date2
+							},
+							{
+								'x': _handleDate(4),
+								'y': res.data[2].date3
+							},
+							{
+								'x': _handleDate(3),
+								'y': res.data[2].date4
+							},
+							{
+								'x': _handleDate(2),
+								'y': res.data[2].date5
+							},
+							{
+								'x': _handleDate(1),
+								'y': res.data[2].date6
+							},
+							{
+								'x': _handleDate(0),
+								'y': res.data[2].date7
+							}
+						]
+					},
+					{
+						id: res.data[3].type,
+						data: [
+							{
+								'x': _handleDate(6),
+								'y': res.data[3].date1
+							},
+							{
+								'x': _handleDate(5),
+								'y': res.data[3].date2
+							},
+							{
+								'x': _handleDate(4),
+								'y': res.data[3].date3
+							},
+							{
+								'x': _handleDate(3),
+								'y': res.data[3].date4
+							},
+							{
+								'x': _handleDate(2),
+								'y': res.data[3].date5
+							},
+							{
+								'x': _handleDate(1),
+								'y': res.data[3].date6
+							},
+							{
+								'x': _handleDate(0),
+								'y': res.data[3].date7
+							}
+						]
+					},
+				];
+				setGraphData(graph);
 			}
 		});
 		axios.get('/likes')
 		.then((res) => {
 			if(res.data) {
-				console.log(res.data);
 				setFollowers(res.data.user);
 				setFollowing(res.data.other);
 			}
 		});
 	  }, []);
+
+	const _handleDate = (diff) => {
+		let date = new Date();
+
+		date.setTime(date.getTime() - diff * 24 * 60 * 60 * 1000);
+		const month = date.getMonth() + 1; 
+		const day = date.getDate();
+
+		return month + '/' + day;
+	}
 
 	return (
 		<div className='frame'>
@@ -52,15 +195,3 @@ const Overview = () => {
 }
 
 export default Overview;
-
-	/*
-	const _handleDate = (diff) => {
-		let date = new Date();
-
-		date.setTime(date.getTime() - diff * 24 * 60 * 60 * 1000);
-		const month = date.getMonth() + 1; 
-		const day = date.getDate();
-
-		return month + '/' + day;
-	}
-	*/
