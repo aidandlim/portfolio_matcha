@@ -11,7 +11,7 @@ module.exports.select = (req, res) => {
     // const distance = req.query.distance;
 
     // if (distance === null) {
-        const sql = 'SELECT * FROM users WHERE email = ?';
+        const sql = 'SELECT * FROM users WHERE id = ?';
 
         conn.query(sql, [email], (err, results) => {
             if (err) {

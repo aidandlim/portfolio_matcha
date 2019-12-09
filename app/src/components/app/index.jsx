@@ -4,8 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ui_color, user_data, user_isComplete } from '../../actions';
 
 import axios from 'axios';
-
-import cookie from 'react-cookies'
+import cookie from 'react-cookies';
 
 import Core from '../template/core';
 import Landing from '../template/landing';

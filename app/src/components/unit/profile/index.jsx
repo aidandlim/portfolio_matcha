@@ -8,7 +8,9 @@ import Location from './location';
 import Bio from './bio';
 import Myself from './myself';
 import Preference from './preference';
+import Notification from './notification';
 import Theme from './theme';
+import Close from './close';
 
 import './index.css';
 
@@ -27,7 +29,9 @@ const Profile = () => {
 				<Bio />
 				<Myself />
 				<Preference />
+				<Notification />
 				<Theme />
+				<Close />
 			</div>
 		</div>
 	);
