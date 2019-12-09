@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { user_data } from '../../../../actions';
+
+import axios from 'axios';
 
 import { FaPlusCircle } from 'react-icons/fa';
 
@@ -9,6 +12,7 @@ import '../index.css';
 const Picture = () => {
 	const user = useSelector(state => state.user);
 	const [index, setIndex] = useState(0);
+	const dispatch = useDispatch();
 
 	const _handlePicture = (index) => {
 		setIndex(index);
@@ -24,34 +28,32 @@ const Picture = () => {
 			reader.readAsDataURL(file);
 			reader.onload = () => {
 				const data = {
-					picture : reader.result.replace('data:image/jpeg;base64,', '')
-						.replace('data:image/jpg;base64,', '')
-						.replace('data:image/png;base64,', ''),
-					index: _handleIndex(index)
+					picture : reader.result,
+					index: index
 				}
-				console.table(data);
+
+				axios.put('/users/picture', data)
+				.then((res) => {
+					console.log(res.data);
+					let result = user.data;
+					if(index === 1)
+						result.picture1 = res.data;
+					if(index === 2)
+						result.picture2 = res.data;
+					if(index === 3)
+						result.picture3 = res.data;
+					if(index === 4)
+						result.picture4 = res.data;
+					if(index === 5)
+						result.picture5 = res.data;
+					dispatch(user_data(result));
+				});
+				
 				input.value = '';
 			}
 		} else {
 			input.value = '';
 		}
-	}
-
-	const _handleIndex = (index) => {
-		let result = 1;
-
-		if(user.data.profile1 === undefined && index > 1) {
-			result = 1;
-		} else if(user.data.profile2 === undefined && index > 2) {
-			result = 2;
-		} else if(user.data.profile3 === undefined && index > 3) {
-			result = 3;
-		} else if(user.data.profile4 === undefined && index > 4) {
-			result = 4;
-		} else if(user.data.profile5 === undefined && index > 5) {
-			result = 5;
-		}
-		return result;
 	}
 
 	return (
@@ -60,10 +62,10 @@ const Picture = () => {
 			<div className='profile-description'>I currently have 4 windows open up… and I don’t know why.</div>
 			<div className='profile-section'>
 				{
-					user.data.profile1 !== undefined
+					user.data.picture1 !== ''
 					?
 						<div className='profile-image' onClick={ () => _handlePicture(1) } style={{
-							backgroundImage: 'url(\'' + user.data.profile1 + '\')'
+							backgroundImage: `url('http://localhost:8443/images/${user.data.picture1}')`
 						}}></div>
 					:
 						<div className='profile-image profile-image-none' onClick={ () => _handlePicture(1) }>
@@ -71,10 +73,10 @@ const Picture = () => {
 						</div>
 				}
 				{
-					user.data.profile2 !== undefined
+					user.data.picture2 !== ''
 					?
 						<div className='profile-image' onClick={ () => _handlePicture(2) } style={{
-							backgroundImage: 'url(\'' + user.data.profile2 + '\')'
+							backgroundImage: `url('http://localhost:8443/images/${user.data.picture2}')`
 						}}></div>
 					:
 						<div className='profile-image profile-image-none' onClick={ () => _handlePicture(2) }>
@@ -82,10 +84,10 @@ const Picture = () => {
 						</div>
 				}
 				{
-					user.data.profile3 !== undefined
+					user.data.picture3 !== ''
 					?
 						<div className='profile-image' onClick={ () => _handlePicture(3) } style={{
-							backgroundImage: 'url(\'' + user.data.profile3 + '\')'
+							backgroundImage: `url('http://localhost:8443/images/${user.data.picture3}')`
 						}}></div>
 					:
 						<div className='profile-image profile-image-none' onClick={ () => _handlePicture(3) }>
@@ -93,10 +95,10 @@ const Picture = () => {
 						</div>
 				}
 				{
-					user.data.profile4 !== undefined
+					user.data.picture4 !== ''
 					?
 						<div className='profile-image' onClick={ () => _handlePicture(4) } style={{
-							backgroundImage: 'url(\'' + user.data.profile4 + '\')'
+							backgroundImage: `url('http://localhost:8443/images/${user.data.picture4}')`
 						}}></div>
 					:
 						<div className='profile-image profile-image-none' onClick={ () => _handlePicture(4) }>
@@ -104,10 +106,10 @@ const Picture = () => {
 						</div>
 				}
 				{
-					user.data.profile5 !== undefined
+					user.data.picture5 !== ''
 					?
 						<div className='profile-image' onClick={ () => _handlePicture(5) } style={{
-							backgroundImage: 'url(\'' + user.data.profile5 + '\')'
+							backgroundImage: `url('http://localhost:8443/images/${user.data.picture5}')`
 						}}></div>
 					:
 						<div className='profile-image profile-image-none' onClick={ () => _handlePicture(5) }>
