@@ -1,17 +1,16 @@
 const conn = require('../config/db');
 
 module.exports.select = (req, res) => {
-    const sql_select_user = 'SELECT `from` as data FROM likes WHERE `to` = (SELECT id FROM users WHERE email = ?)';
-    const sql_select_other = 'SELECT `to` as data FROM likes WHERE `from` = (SELECT id FROM users WHERE email = ?)';
+    const sql_select_user = 'SELECT `from` as data FROM likes WHERE `to` = ?';
+    const sql_select_other = 'SELECT `to` as data FROM likes WHERE `from` = ?';
 
-    // const email = req.session.user;
-    const email = 'aidandlim@gmail.com';
+    const userId = req.session.userId;
     let temp = {
         user: [],
         other: []
     };
 
-    conn.query(sql_select_user, [email], (err, results) => {
+    conn.query(sql_select_user, [userId], (err, results) => {
         if (err) {
             console.log(err);
         } else {
@@ -22,7 +21,7 @@ module.exports.select = (req, res) => {
                 temp.user = temp.user.concat(results[i]);
             }
 
-            conn.query(sql_select_other, [email], (err, results) => {
+            conn.query(sql_select_other, [userId], (err, results) => {
                 if (err) {
                     console.log(err);
                 } else {

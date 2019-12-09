@@ -37,9 +37,9 @@ module.exports.insert = (req, res) => {
 module.exports.linkInsert = (req, res) => {
     const sql_select_tag = 'SELECT id FROM tags WHERE tag = ?';
     const sql_insert_tag = 'INSERT INTO tags (tag) values (?)';
-    const sql_insert_ut = 'INSERT INTO users_and_tags (user_id, tag_id, type) values ((SELECT id FROM users WHERE email = ?), (SELECT id FROM tags WHERE tag = ?), ?)';
+    const sql_insert_ut = 'INSERT INTO users_and_tags (user_id, tag_id, type) values (?, (SELECT id FROM tags WHERE tag = ?), ?)';
 
-    const email = req.session.user;
+    const userId = req.session.userId;
     const tag = req.body.tag;
     const type = req.body.type;
 
@@ -53,7 +53,7 @@ module.exports.linkInsert = (req, res) => {
                     console.log(err);
                     res.json(0);
                 } else {
-                    conn.query(sql_insert_ut, [email, tag, type], (err) => {
+                    conn.query(sql_insert_ut, [userId, tag, type], (err) => {
                         if (err) {
                             console.log(err);
                             res.json(0);
@@ -64,7 +64,7 @@ module.exports.linkInsert = (req, res) => {
                 }
             })
         } else {
-            conn.query(sql_insert_ut, [email, tag, type], (err) => {
+            conn.query(sql_insert_ut, [userId, tag, type], (err) => {
                 if (err) {
                     console.log(err);
                     res.json(0);

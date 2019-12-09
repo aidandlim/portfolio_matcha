@@ -1,6 +1,9 @@
 const nodemailer = require('nodemailer');
 const uuid = require('uuid/v1');
+const fs = require('fs');
+const path = require('path');
 
+const imagePath = path.join(__dirname, '../public/images/');
 const conn = require('../config/db');
 const URL = require('../const');
 
@@ -65,15 +68,15 @@ module.exports.emailCheck = (req, res) => {
 //
 
 module.exports.update = (req, res) => {
-    const sql = 'UPDATE users SET first_name = ?, last_name = ?, birth_year = ?, gender = ?, preference = ? WHERE email = ?';
+    const sql = 'UPDATE users SET first_name = ?, last_name = ?, birth_year = ?, gender = ?, preference = ? WHERE id = ?';
 
-    const email = req.session.user;
+    const userId = req.session.userId;
     const data = req.body;
 
-    if (email === undefined) {
+    if (userId === -1) {
         res.json(0);
     } else {
-        conn.query(sql, [data.first_name, data.last_name, data.birth_year, data.gender, data.preference, email], (err) => {
+        conn.query(sql, [data.first_name, data.last_name, data.birth_year, data.gender, data.preference, userId], (err) => {
             if (err) {
                 console.log(err);
                 res.json(0);
@@ -87,17 +90,17 @@ module.exports.update = (req, res) => {
 //
 
 module.exports.updateEmail = (req, res) => {
-    const sql_update_email = 'UPDATE users SET email = ?, verify = 0 WHERE email = ?';
-    const sql_insert_verifies = 'INSERT INTO verifies (user_id, uuid) values ((SELECT id FROM users WHERE email = ?), ?)';
+    const sql_update_email = 'UPDATE users SET email = ?, verify = 0 WHERE id = ?';
+    const sql_insert_verifies = 'INSERT INTO verifies (user_id, uuid) values (?, ?)';
 
-    const email = req.session.user;
+    const userId = req.session.userId;
     const newEmail = req.body.email;
     const code = uuid();
 
-    if (email === undefined) {
+    if (userId === -1) {
         res.json(0);
     } else {
-        conn.query(sql_update_email, [newEmail, email], (err) => {
+        conn.query(sql_update_email, [newEmail, userId], (err) => {
             if (err) {
                 console.log(err);
                 res.json(0);
@@ -121,7 +124,7 @@ module.exports.updateEmail = (req, res) => {
                     }
                 });
     
-                conn.query(sql_insert_verifies, [newEmail, code], (err) => {
+                conn.query(sql_insert_verifies, [userId, code], (err) => {
                     if (err) {
                         console.log(err);
                     }
@@ -135,20 +138,20 @@ module.exports.updateEmail = (req, res) => {
 //
 
 module.exports.updatePassword = (req, res) => {
-    const sql = 'UPDATE users SET password = SHA1(?) WHERE email = ?';
+    const sql = 'UPDATE users SET password = SHA1(?) WHERE id = ?';
 
-    const email = req.session.user;
+    const userId = req.session.userId;
     const password = req.body.password;
 
     if (email === undefined) {
         res.json(0);
     } else {
-        conn.query(sql, [password, email], (err) => {
+        conn.query(sql, [password, userId], (err) => {
             if (err) {
                 console.log(err);
                 res.json(0);
             } else {
-                req.session.user = undefined;
+                req.session.userId = -1;
                 res.json(1);
             }
         })
@@ -157,15 +160,11 @@ module.exports.updatePassword = (req, res) => {
 
 //
 
-const fs = require('fs');
-const path = require('path');
-
-const imagePath = path.join(__dirname, '../public/images/');
 
 module.exports.updatePicture = (req, res) => {
-    const sql = 'UPDATE users SET picture' + req.body.index + ' = ? WHERE email = ?';
+    const sql = 'UPDATE users SET picture' + req.body.index + ' = ? WHERE id = ?';
 
-    const email = req.session.user;
+    const userId = req.session.userId;
     let picture = req.body.picture;
 
     let extension = '';
@@ -183,13 +182,13 @@ module.exports.updatePicture = (req, res) => {
 
     const code = uuid();
 
-    if (email === undefined) {
+    if (userId === -1) {
         res.json(0);
     } else {
         fs.writeFileSync(imagePath + code + extension, picture, {encoding: 'base64'}, function(err) {
             console.log('File created');
         });
-        conn.query(sql, [code + extension, email], (err) => {
+        conn.query(sql, [code + extension, userId], (err) => {
             if (err) {
                 console.log(err);
                 res.json(0);
@@ -203,15 +202,15 @@ module.exports.updatePicture = (req, res) => {
 //
 
 module.exports.updateAddress = (req, res) => {
-    const sql = 'UPDATE users SET address = ?, latitude = ?, longitude = ? WHERE email = ?';
+    const sql = 'UPDATE users SET address = ?, latitude = ?, longitude = ? WHERE id = ?';
 
-    const email = req.session.user;
+    const userId = req.session.userId;
     const data = req.body;
 
-    if (email === undefined) {
+    if (userId === -1) {
         res.json(0);
     } else {
-        conn.query(sql, [data.address, data.latitude, data.longitude, email], (err) => {
+        conn.query(sql, [data.address, data.latitude, data.longitude, userId], (err) => {
             if (err) {
                 console.log(err);
                 res.json(0);
@@ -225,15 +224,15 @@ module.exports.updateAddress = (req, res) => {
 //
 
 module.exports.updateBio = (req, res) => {
-    const sql = 'UPDATE users SET bio = ? WHERE email = ?';
+    const sql = 'UPDATE users SET bio = ? WHERE id = ?';
 
-    const email = req.session.user;
+    const userId = req.session.userId;
     const bio = req.body.bio;
 
     if (email === undefined) {
         res.json(0);
     } else {
-        conn.query(sql, [bio, email], (err) => {
+        conn.query(sql, [bio, userId], (err) => {
             if (err) {
                 console.log(err);
                 res.json(0);
