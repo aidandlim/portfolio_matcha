@@ -5,7 +5,7 @@ module.exports.select = (req, res) => {
 
     const email = req.session.user;
 
-    conn.query(sql_count_appears, [email, email, email, email], (err, results) => {
+    conn.query(sql, [email, email, email, email], (err, results) => {
         if (err) {
             console.log(err);
         } else {
