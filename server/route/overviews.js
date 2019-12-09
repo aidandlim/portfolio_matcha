@@ -30,66 +30,59 @@ module.exports.select = (req, res) => {
 
 /*
 
-SELECT 'appears' AS type, '2019-12-02' AS date, count(*) as count FROM appears WHERE DATE(time) = '2019-12-02' AND `to` = 35
-UNION
-SELECT 'appears' AS type, '2019-12-03' AS date, count(*) as count FROM appears WHERE DATE(time) = '2019-12-03' AND `to` = 35
-UNION
-SELECT 'appears' AS type, '2019-12-04' AS date, count(*) as count FROM appears WHERE DATE(time) = '2019-12-04' AND `to` = 35
-UNION
-SELECT 'appears' AS type, '2019-12-05' AS date, count(*) as count FROM appears WHERE DATE(time) = '2019-12-05' AND `to` = 35
-UNION
-SELECT 'appears' AS type, '2019-12-06' AS date, count(*) as count FROM appears WHERE DATE(time) = '2019-12-06' AND `to` = 35
-UNION
-SELECT 'appears' AS type, '2019-12-07' AS date, count(*) as count FROM appears WHERE DATE(time) = '2019-12-07' AND `to` = 35
-UNION
-SELECT 'appears' AS type, '2019-12-08' AS date, count(*) as count FROM appears WHERE DATE(time) = '2019-12-08' AND `to` = 35
+SELECT 
+	'appears' AS type,
+	count(CASE WHEN DATE(time) = '2019-12-03' THEN 1 END) as date1,
+	count(CASE WHEN DATE(time) = '2019-12-04' THEN 1 END) as date2,
+	count(CASE WHEN DATE(time) = '2019-12-05' THEN 1 END) as date3,
+	count(CASE WHEN DATE(time) = '2019-12-06' THEN 1 END) as date4,
+	count(CASE WHEN DATE(time) = '2019-12-07' THEN 1 END) as date5,
+	count(CASE WHEN DATE(time) = '2019-12-08' THEN 1 END) as date6,
+	count(CASE WHEN DATE(time) = '2019-12-09' THEN 1 END) as date7
+FROM appears 
+WHERE `to` = 35
 
 UNION
 
-SELECT 'visits' AS type, '2019-12-02' AS date, count(*) as count FROM visits WHERE DATE(time) = '2019-12-02' AND `to` = 35
-UNION
-SELECT 'visits' AS type, '2019-12-03' AS date, count(*) as count FROM visits WHERE DATE(time) = '2019-12-03' AND `to` = 35
-UNION
-SELECT 'visits' AS type, '2019-12-04' AS date, count(*) as count FROM visits WHERE DATE(time) = '2019-12-04' AND `to` = 35
-UNION
-SELECT 'visits' AS type, '2019-12-05' AS date, count(*) as count FROM visits WHERE DATE(time) = '2019-12-05' AND `to` = 35
-UNION
-SELECT 'visits' AS type, '2019-12-06' AS date, count(*) as count FROM visits WHERE DATE(time) = '2019-12-06' AND `to` = 35
-UNION
-SELECT 'visits' AS type, '2019-12-07' AS date, count(*) as count FROM visits WHERE DATE(time) = '2019-12-07' AND `to` = 35
-UNION
-SELECT 'visits' AS type, '2019-12-08' AS date, count(*) as count FROM visits WHERE DATE(time) = '2019-12-08' AND `to` = 35
+SELECT 
+	'visits' AS type,
+	count(CASE WHEN DATE(time) = '2019-12-03' THEN 1 END) as date1,
+	count(CASE WHEN DATE(time) = '2019-12-04' THEN 1 END) as date2,
+	count(CASE WHEN DATE(time) = '2019-12-05' THEN 1 END) as date3,
+	count(CASE WHEN DATE(time) = '2019-12-06' THEN 1 END) as date4,
+	count(CASE WHEN DATE(time) = '2019-12-07' THEN 1 END) as date5,
+	count(CASE WHEN DATE(time) = '2019-12-08' THEN 1 END) as date6,
+	count(CASE WHEN DATE(time) = '2019-12-09' THEN 1 END) as date7
+FROM visits 
+WHERE `to` = 35
 
 UNION
 
-SELECT 'likes' AS type, '2019-12-02' AS date, count(*) as count FROM likes WHERE DATE(time) = '2019-12-02' AND `to` = 35
-UNION
-SELECT 'likes' AS type, '2019-12-03' AS date, count(*) as count FROM likes WHERE DATE(time) = '2019-12-03' AND `to` = 35
-UNION
-SELECT 'likes' AS type, '2019-12-04' AS date, count(*) as count FROM likes WHERE DATE(time) = '2019-12-04' AND `to` = 35
-UNION
-SELECT 'likes' AS type, '2019-12-05' AS date, count(*) as count FROM likes WHERE DATE(time) = '2019-12-05' AND `to` = 35
-UNION
-SELECT 'likes' AS type, '2019-12-06' AS date, count(*) as count FROM likes WHERE DATE(time) = '2019-12-06' AND `to` = 35
-UNION
-SELECT 'likes' AS type, '2019-12-07' AS date, count(*) as count FROM likes WHERE DATE(time) = '2019-12-07' AND `to` = 35
-UNION
-SELECT 'likes' AS type, '2019-12-08' AS date, count(*) as count FROM likes WHERE DATE(time) = '2019-12-08' AND `to` = 35
+SELECT 
+	'likes' AS type,
+	count(CASE WHEN DATE(time) = '2019-12-03' THEN 1 END) as date1,
+	count(CASE WHEN DATE(time) = '2019-12-04' THEN 1 END) as date2,
+	count(CASE WHEN DATE(time) = '2019-12-05' THEN 1 END) as date3,
+	count(CASE WHEN DATE(time) = '2019-12-06' THEN 1 END) as date4,
+	count(CASE WHEN DATE(time) = '2019-12-07' THEN 1 END) as date5,
+	count(CASE WHEN DATE(time) = '2019-12-08' THEN 1 END) as date6,
+	count(CASE WHEN DATE(time) = '2019-12-09' THEN 1 END) as date7
+FROM likes 
+WHERE `to` = 35
 
 UNION
 
-SELECT 'unlikes' AS type, '2019-12-02' AS date, count(*) as count FROM unlikes WHERE DATE(time) = '2019-12-02' AND `to` = 35
-UNION
-SELECT 'unlikes' AS type, '2019-12-03' AS date, count(*) as count FROM unlikes WHERE DATE(time) = '2019-12-03' AND `to` = 35
-UNION
-SELECT 'unlikes' AS type, '2019-12-04' AS date, count(*) as count FROM unlikes WHERE DATE(time) = '2019-12-04' AND `to` = 35
-UNION
-SELECT 'unlikes' AS type, '2019-12-05' AS date, count(*) as count FROM unlikes WHERE DATE(time) = '2019-12-05' AND `to` = 35
-UNION
-SELECT 'unlikes' AS type, '2019-12-06' AS date, count(*) as count FROM unlikes WHERE DATE(time) = '2019-12-06' AND `to` = 35
-UNION
-SELECT 'unlikes' AS type, '2019-12-07' AS date, count(*) as count FROM unlikes WHERE DATE(time) = '2019-12-07' AND `to` = 35
-UNION
-SELECT 'unlikes' AS type, '2019-12-08' AS date, count(*) as count FROM unlikes WHERE DATE(time) = '2019-12-08' AND `to` = 35
+SELECT 
+	'unlikes' AS type,
+	count(CASE WHEN DATE(time) = '2019-12-03' THEN 1 END) as date1,
+	count(CASE WHEN DATE(time) = '2019-12-04' THEN 1 END) as date2,
+	count(CASE WHEN DATE(time) = '2019-12-05' THEN 1 END) as date3,
+	count(CASE WHEN DATE(time) = '2019-12-06' THEN 1 END) as date4,
+	count(CASE WHEN DATE(time) = '2019-12-07' THEN 1 END) as date5,
+	count(CASE WHEN DATE(time) = '2019-12-08' THEN 1 END) as date6,
+	count(CASE WHEN DATE(time) = '2019-12-09' THEN 1 END) as date7
+FROM unlikes 
+WHERE `to` = 35
+
 
 */
