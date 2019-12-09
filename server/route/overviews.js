@@ -10,7 +10,7 @@ module.exports.select = (req, res) => {
             console.log(err);
         } else {
             results = JSON.parse(JSON.stringify(results));
-            console.log(results);
+            res.json(results);
         }
     })
 }
