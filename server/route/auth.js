@@ -77,8 +77,7 @@ module.exports.in = (req, res) => {
                 } else if (results[0].verify === 0) {
                     res.json(4); // Verify is 0
                 } else {
-                    req.session.user = results[0].id;
-                    console.log(req.session.user);
+                    req.session.userId = results[0].id;
                     res.json(1); // Log in successfully
                 }
             })
@@ -89,8 +88,8 @@ module.exports.in = (req, res) => {
 //
 
 module.exports.out = (req, res) => {
-    if (req.session.user !== -1) {
-        req.session.user = -1;
+    if (req.session.userId !== -1) {
+        req.session.userId = -1;
         res.json(1);
     } else {
         res.json(0);
