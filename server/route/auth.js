@@ -57,7 +57,7 @@ module.exports.up = (req, res) => {
 
 module.exports.in = (req, res) => {
     const sql_select_user = 'SELECT * FROM users WHERE email = ?';
-    const sql_select_verify = 'SELECT verify FROM users WHERE email = ? AND password = SHA1(?)';
+    const sql_select_verify = 'SELECT verify, id FROM users WHERE email = ? AND password = SHA1(?)';
 
     const email = req.query.email;
     const password = req.query.password;
@@ -77,7 +77,8 @@ module.exports.in = (req, res) => {
                 } else if (results[0].verify === 0) {
                     res.json(4); // Verify is 0
                 } else {
-                    req.session.user = email;
+                    req.session.user = results[0].id;
+                    console.log(req.session.user);
                     res.json(1); // Log in successfully
                 }
             })
@@ -88,8 +89,8 @@ module.exports.in = (req, res) => {
 //
 
 module.exports.out = (req, res) => {
-    if (req.session.user !== undefined) {
-        req.session.user = undefined;
+    if (req.session.user !== -1) {
+        req.session.user = -1;
         res.json(1);
     } else {
         res.json(0);
