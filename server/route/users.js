@@ -157,21 +157,44 @@ module.exports.updatePassword = (req, res) => {
 
 //
 
+const fs = require('fs');
+const path = require('path');
+
+const imagePath = path.join(__dirname, '../public/images/');
+
 module.exports.updatePicture = (req, res) => {
     const sql = 'UPDATE users SET picture' + req.body.index + ' = ? WHERE email = ?';
 
     const email = req.session.user;
-    const picture = req.body.picture;
+    let picture = req.body.picture;
+
+    let extension = '';
+    if(picture.match(/data:image\/jpeg;base64,/)) {
+        extension = '.jpeg';
+    } else if(picture.match(/data:image\/jpg;base64,/)) {
+        extension = '.jpg';
+    } else if(picture.match(/data:image\/png;base64,/)) {
+        extension = '.png';
+    }
+
+    picture = picture.replace('data:image/jpeg;base64,', '')
+                    .replace('data:image/jpg;base64,', '')
+                    .replace('data:image/png;base64,', '');
+
+    const code = uuid();
 
     if (email === undefined) {
         res.json(0);
     } else {
-        conn.query(sql, [picture, email], (err) => {
+        fs.writeFileSync(imagePath + code + extension, picture, {encoding: 'base64'}, function(err) {
+            console.log('File created');
+        });
+        conn.query(sql, [code + extension, email], (err) => {
             if (err) {
                 console.log(err);
                 res.json(0);
             } else {
-                res.json(1);
+                res.json(code + extension);
             }
         })
     }

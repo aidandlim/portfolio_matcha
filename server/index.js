@@ -34,13 +34,15 @@ app.use(session({
 app.use(
     bodyParser.urlencoded({
         extended: true,
-        limit: '4mb'
+        limit: '50mb'
     })
 )
 
 app.use(bodyParser.json({
-    limit: '4mb',
+    limit: '50mb',
 }));
+
+app.use(express.static('public'));
 
 app.use(cors({origin: 'https://localhost:3000'}));
 
