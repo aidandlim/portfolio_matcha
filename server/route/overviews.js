@@ -27,3 +27,69 @@ module.exports.select = (req, res) => {
 
 
 }
+
+/*
+
+SELECT 'appears' AS type, '2019-12-02' AS date, count(*) as count FROM appears WHERE DATE(time) = '2019-12-02' AND `to` = 35
+UNION
+SELECT 'appears' AS type, '2019-12-03' AS date, count(*) as count FROM appears WHERE DATE(time) = '2019-12-03' AND `to` = 35
+UNION
+SELECT 'appears' AS type, '2019-12-04' AS date, count(*) as count FROM appears WHERE DATE(time) = '2019-12-04' AND `to` = 35
+UNION
+SELECT 'appears' AS type, '2019-12-05' AS date, count(*) as count FROM appears WHERE DATE(time) = '2019-12-05' AND `to` = 35
+UNION
+SELECT 'appears' AS type, '2019-12-06' AS date, count(*) as count FROM appears WHERE DATE(time) = '2019-12-06' AND `to` = 35
+UNION
+SELECT 'appears' AS type, '2019-12-07' AS date, count(*) as count FROM appears WHERE DATE(time) = '2019-12-07' AND `to` = 35
+UNION
+SELECT 'appears' AS type, '2019-12-08' AS date, count(*) as count FROM appears WHERE DATE(time) = '2019-12-08' AND `to` = 35
+
+UNION
+
+SELECT 'visits' AS type, '2019-12-02' AS date, count(*) as count FROM visits WHERE DATE(time) = '2019-12-02' AND `to` = 35
+UNION
+SELECT 'visits' AS type, '2019-12-03' AS date, count(*) as count FROM visits WHERE DATE(time) = '2019-12-03' AND `to` = 35
+UNION
+SELECT 'visits' AS type, '2019-12-04' AS date, count(*) as count FROM visits WHERE DATE(time) = '2019-12-04' AND `to` = 35
+UNION
+SELECT 'visits' AS type, '2019-12-05' AS date, count(*) as count FROM visits WHERE DATE(time) = '2019-12-05' AND `to` = 35
+UNION
+SELECT 'visits' AS type, '2019-12-06' AS date, count(*) as count FROM visits WHERE DATE(time) = '2019-12-06' AND `to` = 35
+UNION
+SELECT 'visits' AS type, '2019-12-07' AS date, count(*) as count FROM visits WHERE DATE(time) = '2019-12-07' AND `to` = 35
+UNION
+SELECT 'visits' AS type, '2019-12-08' AS date, count(*) as count FROM visits WHERE DATE(time) = '2019-12-08' AND `to` = 35
+
+UNION
+
+SELECT 'likes' AS type, '2019-12-02' AS date, count(*) as count FROM likes WHERE DATE(time) = '2019-12-02' AND `to` = 35
+UNION
+SELECT 'likes' AS type, '2019-12-03' AS date, count(*) as count FROM likes WHERE DATE(time) = '2019-12-03' AND `to` = 35
+UNION
+SELECT 'likes' AS type, '2019-12-04' AS date, count(*) as count FROM likes WHERE DATE(time) = '2019-12-04' AND `to` = 35
+UNION
+SELECT 'likes' AS type, '2019-12-05' AS date, count(*) as count FROM likes WHERE DATE(time) = '2019-12-05' AND `to` = 35
+UNION
+SELECT 'likes' AS type, '2019-12-06' AS date, count(*) as count FROM likes WHERE DATE(time) = '2019-12-06' AND `to` = 35
+UNION
+SELECT 'likes' AS type, '2019-12-07' AS date, count(*) as count FROM likes WHERE DATE(time) = '2019-12-07' AND `to` = 35
+UNION
+SELECT 'likes' AS type, '2019-12-08' AS date, count(*) as count FROM likes WHERE DATE(time) = '2019-12-08' AND `to` = 35
+
+UNION
+
+SELECT 'unlikes' AS type, '2019-12-02' AS date, count(*) as count FROM unlikes WHERE DATE(time) = '2019-12-02' AND `to` = 35
+UNION
+SELECT 'unlikes' AS type, '2019-12-03' AS date, count(*) as count FROM unlikes WHERE DATE(time) = '2019-12-03' AND `to` = 35
+UNION
+SELECT 'unlikes' AS type, '2019-12-04' AS date, count(*) as count FROM unlikes WHERE DATE(time) = '2019-12-04' AND `to` = 35
+UNION
+SELECT 'unlikes' AS type, '2019-12-05' AS date, count(*) as count FROM unlikes WHERE DATE(time) = '2019-12-05' AND `to` = 35
+UNION
+SELECT 'unlikes' AS type, '2019-12-06' AS date, count(*) as count FROM unlikes WHERE DATE(time) = '2019-12-06' AND `to` = 35
+UNION
+SELECT 'unlikes' AS type, '2019-12-07' AS date, count(*) as count FROM unlikes WHERE DATE(time) = '2019-12-07' AND `to` = 35
+UNION
+SELECT 'unlikes' AS type, '2019-12-08' AS date, count(*) as count FROM unlikes WHERE DATE(time) = '2019-12-08' AND `to` = 35
+
+*/
