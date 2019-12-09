@@ -52,7 +52,8 @@
 
 ## Document
 
-- Database & Restful API Summary : <a href="https://docs.google.com/spreadsheets/d/1-CM0LqIEmeM8dlE-RiZZnZ8IjyxbIhl-KkBeoyc4KYw">`Google Spread Sheet`</a>
+- Restful API Document : <a href="https://docs.google.com/document/d/1RT4i-FiOsoyaZkiVASqSxeQWgznQcfEdDkwunzn5ziY/edit?usp=sharing">`Google Docs`</a>
+- Database Document : <a href="https://docs.google.com/spreadsheets/d/1-CM0LqIEmeM8dlE-RiZZnZ8IjyxbIhl-KkBeoyc4KYw">`Google Spread Sheet`</a>
 
 ---
 
