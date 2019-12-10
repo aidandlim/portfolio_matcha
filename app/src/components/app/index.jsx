@@ -19,9 +19,13 @@ const App = () => {
 	const dispatch = useDispatch();
 
 	if(user.data.id === undefined) {
-		axios.get('/users')
+		const data = {
+			userId: -1,
+		}
+		axios.get('/users', {params : data})
 		.then((res) => {
-			if(res.data) {
+			console.log(res.data);
+			if(res.data.length !== 0) {
 				dispatch(user_data(res.data[0]));
 				if(res.data[0].picture1 !== '' && res.data[0].first_name !== '' && res.data[0].last_name !== '' && res.data[0].address !== '') {
 					dispatch(user_isComplete(true));
