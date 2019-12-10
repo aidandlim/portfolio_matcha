@@ -10,41 +10,43 @@ const URL = require('../const');
 //
 
 module.exports.select = (req, res) => {
-    const email = req.query.email === undefined ? req.session.user : req.query.email;
-    // const distance = req.query.distance;
+    const userId = req.query.userId === -1 ? req.session.userId : req.query.userId;
+    const distance = req.query.distance;
 
-    // if (distance === null) {
-        const sql = 'SELECT * FROM users WHERE id = ?';
+    if (distance === undefined) {
+        const sql = 'SELECT id, email, last_name, first_name, birth_year, gender, preference, address, latitude, longitude, bio, picture1, picture2, picture3, picture4, picture5 FROM users WHERE id = ?';
 
-        conn.query(sql, [email], (err, results) => {
+        conn.query(sql, [userId], (err, results) => {
             if (err) {
                 console.log(err);
             } else {
-                if (results.length !== 0) { 
-                    results = JSON.parse(JSON.stringify(results));
-                    res.json(results);
-                } else {
-                    res.json(undefined);
-                }
+                results = JSON.parse(JSON.stringify(results));
+                res.json(results);
             }
         })
-    // }
-    //  else {
-    //     const sql = 'SELECT * FROM users WHERE email = ?';
+    } else {
+        const sql_select_user = 'SELECT latitude, longitude FROM users WHERE id = ?';
+        const sql_select_target = 'SELECT id, last_name, first_name, picture1, latitude, longitude (6371*acos(cos(radians(?))*cos(radians(latitude))*cos(radians(longitude)-radians(?))+sin(radians(?))*sin(radians(latitude)))) AS distance FROM users HAVING distance <= (? * 0.625) ORDER BY distance';
+
+        const user_Id = req.session.userId;
         
-    //     conn.query(sql, [email], (err, results) => {
-    //         if (err) {
-    //             console.log(err);
-    //         } else {
-    //             if (results.length !== 0) { 
-    //                 results = JSON.parse(JSON.stringify(results));
-    //                 res.json(results);
-    //             } else {
-    //                 res.json(undefined);
-    //             }
-    //         }
-    //     })
-    // }
+        conn.query(sql_select_user, [user_Id], (err, results) => {
+            if (err) {
+                console.log(err);
+            } else {
+                results = JSON.parse(JSON.stringify(results));
+
+                conn.query(sql_select_target, [results[0].latitude, results[0].longitude, results[0].latitude, distance], (err, results) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        results = JSON.parse(JSON.stringify(results));
+                        res.json(results);
+                    }
+                })
+            }
+        })
+    }
 }
 
 //
