@@ -14,4 +14,3 @@ module.exports.select = (req, res) => {
         }
     })
 }
-

@@ -113,6 +113,7 @@ module.exports.updateEmail = (req, res) => {
                         console.log(err);
                     }
                 })
+                req.session.userId = -1;
                 res.json(1);
             }
         })

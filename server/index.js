@@ -71,8 +71,7 @@ app.post('/api/auth/up', auth.up);
 
 app.get('/api/tags', tags.select);
 app.post('/api/tags', tags.insert);
-app.post('/api/tags/link', tags.linkInsert);
-app.delete('/api/tags/link', tags.linkDelete);
+app.delete('/api/tags', tags.delete);
 
 app.put('/api/appears', appears.update);
 app.post('/api/appears', appears.insert);

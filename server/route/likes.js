@@ -31,7 +31,6 @@ module.exports.select = (req, res) => {
                     } for (let i = 0; i < results.length; i++) {
                         temp.other = temp.other.concat(results[i]);
                     }
-                    console.log(temp);
                     res.json(temp);
                 }
             })
