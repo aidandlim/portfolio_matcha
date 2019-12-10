@@ -10,7 +10,7 @@ const URL = require('../const');
 //
 
 module.exports.select = (req, res) => {
-    const userId = req.query.userId === -1 ? req.session.userId : req.query.userId;
+    const userId = parseInt(req.query.userId) === -1 ? req.session.userId : parseInt(req.query.userId);
     const distance = req.query.distance;
 
     if (distance === undefined) {
