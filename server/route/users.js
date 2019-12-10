@@ -51,24 +51,6 @@ module.exports.select = (req, res) => {
 
 //
 
-module.exports.emailCheck = (req, res) => {
-    const sql = 'SELECT * FROM users WHERE email = ?';
-
-    const email = req.query.email;
-
-    conn.query(sql, [email], (err, results) => {
-        if (err) {
-            console.log(err);
-        } else if (results.length === 0) {
-            res.json(0);
-        } else {
-            res.json(1);
-        }
-    })
-}
-
-//
-
 module.exports.update = (req, res) => {
     const sql = 'UPDATE users SET first_name = ?, last_name = ?, birth_year = ?, gender = ?, preference = ? WHERE id = ?';
 

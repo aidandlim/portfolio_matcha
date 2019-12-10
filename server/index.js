@@ -53,7 +53,6 @@ app.get('/', (req, res) => {
 // 
 
 app.get('/api/users', users.select);
-app.get('/api/users/email', users.emailCheck);
 app.put('/api/users', users.update);
 app.put('/api/users/email', users.updateEmail);
 app.put('/api/users/password', users.updatePassword);
