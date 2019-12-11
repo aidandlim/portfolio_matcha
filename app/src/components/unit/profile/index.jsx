@@ -5,8 +5,8 @@ import Email from './email';
 import Password from './password';
 import Picture from './picture';
 import Info from './info';
-import Location from './location';
 import Bio from './bio';
+import Location from './location';
 import Myself from './myself';
 import Preference from './preference';
 import Theme from './theme';
@@ -28,8 +28,8 @@ const Profile = () => {
 				{ nav === 0 ? <Password /> : '' }
 				{ nav === 1 ? <Picture /> : '' }
 				{ nav === 1 ? <Info /> : '' }
-				{ nav === 1 ? <Location /> : '' }
 				{ nav === 1 ? <Bio /> : '' }
+				{ nav === 1 ? <Location /> : '' }
 				{ nav === 2 ? <Myself /> : '' }
 				{ nav === 2 ? <Preference /> : '' }
 				{ nav === 3 ? <Theme /> : '' }
