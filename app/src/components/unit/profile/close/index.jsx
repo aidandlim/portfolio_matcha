@@ -1,14 +1,36 @@
 import React from 'react';
 
+import { useDispatch } from 'react-redux';
+import { user_data } from '../../../../actions';
+
+import axios from 'axios';
+
+import Alert from '../../../util/alert';
+
 import '../index.css';
 
 const Close = () => {
+	const dispatch = useDispatch();
+	
+	const _handleClose = () => {
+		Alert(1, 'Are you sure you want to close your account?', 'No, Thanks', 'Close My Account', _closeAccount);
+	}
+
+	const _closeAccount = () => {
+		axios.delete('/users')
+		.then(res => {
+			if(res.data) {
+				dispatch(user_data({}));
+			}
+		});
+	}
+
 	return (
 		<div className='profile-container'>
 			<div className='profile-title'>Close Account</div>
 			<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
 			<div className='profile-section'>
-				<input type='submit' className='profile-submit' value='CLOSE MY ACCOUNT' />
+				<input type='submit' className='profile-submit' value='CLOSE MY ACCOUNT' onClick={ () => _handleClose() }/>
 			</div>
 		</div>
 	);

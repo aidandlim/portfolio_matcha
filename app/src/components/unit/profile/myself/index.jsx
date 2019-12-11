@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import axios from 'axios';
 
@@ -10,6 +10,17 @@ import '../index.css';
 const Myself = () => {
 	const [tags, setTags] = useState([]);
 	const [suggests, setSuggests] = useState([]);
+
+	useEffect(() => {
+		const data = {
+			type: 'myself'
+		}
+
+		axios.get('/tags', { params : data })
+		.then((res) => {
+			setTags(res.data);
+		});
+	}, []);
 	
 	const _handleAddTag = (e) => {
 		e.preventDefault();
@@ -46,20 +57,16 @@ const Myself = () => {
 	}
 
 	const _handleSuggest = () => {
-		const data = [
-			{
-				id: 0,
-				name: 'hello',
-				count: '1435'
-			},
-			{
-				id: 1,
-				name: 'world',
-				count: '745'
-			}
-		]
 		if(document.myself.tag.value !== '') {
-			setSuggests(data);
+			const data = {
+				type: 'search',
+				keyword: document.myself.tag.value,
+			}
+
+			axios.get('/tags', { params : data })
+			.then((res) => {
+				setSuggests(res.data);
+			});
 		} else {
 			setSuggests([]);
 		}
@@ -67,7 +74,7 @@ const Myself = () => {
 
 	return (
 		<div className='profile-container'>
-			<div className='profile-title'>Describe Myself</div>
+			<div className='profile-title'>Describe Who I Am</div>
 			<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
 			<div className='profile-section'>
 				<div className='profile-tag-box'>

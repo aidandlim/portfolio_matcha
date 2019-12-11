@@ -11,15 +11,24 @@ const Theme = () => {
 	const dispatch = useDispatch();
 
 	const colors = [
+		'#c0392b',
 		'#e74c3c',
+		'#d35400',
 		'#e67e22',
+		'#f39c12',
 		'#f1c40f',
+		'#16a085',
 		'#1abc9c',
+		'#27ae60',
 		'#2ecc71',
+		'#2980b9',
 		'#3498db',
+		'#8e44ad',
 		'#9b59b6',
-		'#34495e',
 		'#7f8c8d',
+		'#95a5a6',
+		'#2c3e50',
+		'#34495e',
 	];
 
 	const _handleColor = (color) => {

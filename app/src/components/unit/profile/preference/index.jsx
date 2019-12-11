@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+import axios from 'axios';
 
 import Tag from '../tag';
 import Suggest from '../suggest';
@@ -8,14 +10,25 @@ import '../index.css';
 const Preference = () => {
 	const [tags, setTags] = useState([]);
 	const [suggests, setSuggests] = useState([]);
+
+	useEffect(() => {
+		const data = {
+			type: 'myself'
+		}
+
+		axios.get('/tags', { params : data })
+		.then((res) => {
+			setTags(res.data);
+		});
+	}, []);
 	
 	const _handleAddTag = (e) => {
 		e.preventDefault();
-		if(document.prefer.tag.value !== '') {
-			const result = [...tags, document.prefer.tag.value];
+		if(document.preference.tag.value !== '') {
+			const result = [...tags, document.preference.tag.value];
 			setTags(result);
 			setSuggests([]);
-			document.prefer.tag.value = '';
+			document.preference.tag.value = '';
 		}
 	}
 
@@ -23,7 +36,7 @@ const Preference = () => {
 		const result = [...tags, value];
 		setTags(result);
 		setSuggests([]);
-		document.myself.tag.value = '';
+		document.preference.tag.value = '';
 	}
 	
 	const _handleDeleteTag = (index) => {
@@ -33,20 +46,16 @@ const Preference = () => {
 	}
 
 	const _handleSuggest = () => {
-		const data = [
-			{
-				id: 0,
-				name: 'hello',
-				count: '1435'
-			},
-			{
-				id: 1,
-				name: 'world',
-				count: '745'
+		if(document.preference.tag.value !== '') {
+			const data = {
+				type: 'search',
+				keyword: document.preference.tag.value,
 			}
-		]
-		if(document.prefer.tag.value !== '') {
-			setSuggests(data);
+
+			axios.get('/tags', { params : data })
+			.then((res) => {
+				setSuggests(res.data);
+			});
 		} else {
 			setSuggests([]);
 		}
@@ -54,7 +63,7 @@ const Preference = () => {
 
 	return (
 		<div className='profile-container'>
-			<div className='profile-title'>Describe Preference</div>
+			<div className='profile-title'>Describe Who I Am Looking For</div>
 			<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
 			<div className='profile-section'>
 				<div className='profile-tag-box'>
@@ -62,7 +71,7 @@ const Preference = () => {
 						<Tag key={index} tag={tag} index={index} _handleDeleteTag={_handleDeleteTag} />
 					)) : 'There is no tag yet! Please add tag!'}
 				</div>
-				<form name='prefer' onSubmit={_handleAddTag} autoComplete='off'>
+				<form name='preference' onSubmit={_handleAddTag} autoComplete='off'>
 					<input type='text' className='profile-input' name='tag' placeholder='Tag' onChange={_handleSuggest} />
 					<input type='submit' className='profile-submit' value='ADD'/>
 				</form>
