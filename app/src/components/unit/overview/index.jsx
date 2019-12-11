@@ -13,6 +13,7 @@ const Overview = () => {
 	const [graphData, setGraphData] = useState([]);
 	const [followers, setFollowers] = useState([]);
 	const [following, setFollowing] = useState([]);
+	const [blocks, setBlocks] = useState([]);
 
 	const _handleNav = (index) => {
 		setNav(index);
@@ -184,8 +185,8 @@ const Overview = () => {
 			<div className='frame-header'>
 				<div className='frame-title'>OVERVIEW</div>
 			</div>
-			<div className='frame-body'>
-				<Nav nav={nav} setNav={_handleNav} followers={followers} following={following} />
+			<Nav nav={nav} setNav={_handleNav} followers={followers} following={following} blocks={blocks} />
+			<div className='frame-body-hasNav'>
 				{ nav === 0 ? <Graph graphData={graphData} /> : '' }
 				{ nav === 1 ? <Follow follows={followers} /> : '' }
 				{ nav === 2 ? <Follow follows={following} /> : '' }

@@ -134,9 +134,61 @@
     cursor: pointer;
 }
 
+.frame-nav {
+    width: calc(100% - 1rem);
+    height: 1rem;
+
+    padding: 0.5rem;
+
+    position: relative;
+    float: left;
+
+    background-color: #ecf0f1;
+}
+
+.frame-nav-menu,
+.frame-nav-menu-active {
+    width: auto;
+    height: 1rem;
+
+    padding: 0 0.25rem;
+    margin-right: 0.25rem;
+
+    position: relative;
+    float: left;
+
+    color: var(--color-50);
+    font-size: 0.6rem;
+    font-weight: 900;
+    line-height: 1rem;
+
+    cursor: pointer;
+}
+
+.frame-nav-menu-active {
+    color: white;
+
+    background-color: var(--color-50);
+    border-radius: 0.25rem;
+}
+
 .frame-body {
     width: 100%;
-    height: calc(100%  - 2rem);
+    height: calc(100%  - 2.5rem);
+
+    padding-bottom: 0.5rem;
+
+    overflow-y: scroll;
+
+    position: relative;
+    float: left;
+}
+
+.frame-body-hasNav {
+    width: 100%;
+    height: calc(100%  - 4.5rem);
+
+    padding-bottom: 0.5rem;
 
     overflow-y: scroll;
 

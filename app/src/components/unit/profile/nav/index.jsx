@@ -2,20 +2,20 @@ import React from 'react';
 
 import '../index.css';
 
-const Nav = ({ followers, following, blocks, nav, setNav }) => {
+const Nav = ({ nav, setNav }) => {
     return (
         <div className='frame-nav'>
             <div className={nav === 0 ? 'frame-nav-menu-active' : 'frame-nav-menu'} onClick={ () => setNav(0) }>
-                Statistics
+                Account
             </div>
             <div className={nav === 1 ? 'frame-nav-menu-active' : 'frame-nav-menu'} onClick={ () => setNav(1) }>
-                Followers ({followers.length})
+                Profile
             </div>
             <div className={nav === 2 ? 'frame-nav-menu-active' : 'frame-nav-menu'} onClick={ () => setNav(2) }>
-                Following ({following.length})
+                Tags
             </div>
             <div className={nav === 3 ? 'frame-nav-menu-active' : 'frame-nav-menu'} onClick={ () => setNav(3) }>
-                Blocks ({blocks.length})
+                Setting
             </div>
 		</div>
 	);

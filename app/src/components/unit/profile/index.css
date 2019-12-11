@@ -69,6 +69,8 @@
     background-size: cover;
     background-position: center;
     border-radius: 0.5rem;
+
+    cursor: pointer;
 }
 
 .profile-image:nth-child(5) {
@@ -80,6 +82,8 @@
     padding-top: calc(26.666% - 0.2rem);
 
     border: dotted 0.1rem var(--color-20);
+
+    cursor: pointer;
 }
 
 .profile-image-none-icon {

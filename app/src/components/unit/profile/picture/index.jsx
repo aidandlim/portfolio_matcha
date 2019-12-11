@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { user_data , user_isComplete} from '../../../../actions';
 
 import axios from 'axios';
+import { IMAGE } from '../../../../api';
 
 import { FaPlusCircle } from 'react-icons/fa';
 
@@ -70,7 +71,7 @@ const Picture = () => {
 					user.data.picture1 !== ''
 					?
 						<div className='profile-image' onClick={ () => _handlePicture(1) } style={{
-							backgroundImage: `url('http://localhost:8443/images/${user.data.picture1}')`
+							backgroundImage: `url('${IMAGE}${user.data.picture1}')`
 						}}></div>
 					:
 						<div className='profile-image profile-image-none' onClick={ () => _handlePicture(1) }>
@@ -81,7 +82,7 @@ const Picture = () => {
 					user.data.picture2 !== ''
 					?
 						<div className='profile-image' onClick={ () => _handlePicture(2) } style={{
-							backgroundImage: `url('http://localhost:8443/images/${user.data.picture2}')`
+							backgroundImage: `url('${IMAGE}${user.data.picture2}')`
 						}}></div>
 					:
 						<div className='profile-image profile-image-none' onClick={ () => _handlePicture(2) }>
@@ -92,7 +93,7 @@ const Picture = () => {
 					user.data.picture3 !== ''
 					?
 						<div className='profile-image' onClick={ () => _handlePicture(3) } style={{
-							backgroundImage: `url('http://localhost:8443/images/${user.data.picture3}')`
+							backgroundImage: `url('${IMAGE}${user.data.picture3}')`
 						}}></div>
 					:
 						<div className='profile-image profile-image-none' onClick={ () => _handlePicture(3) }>
@@ -103,7 +104,7 @@ const Picture = () => {
 					user.data.picture4 !== ''
 					?
 						<div className='profile-image' onClick={ () => _handlePicture(4) } style={{
-							backgroundImage: `url('http://localhost:8443/images/${user.data.picture4}')`
+							backgroundImage: `url('${IMAGE}${user.data.picture4}')`
 						}}></div>
 					:
 						<div className='profile-image profile-image-none' onClick={ () => _handlePicture(4) }>
@@ -114,7 +115,7 @@ const Picture = () => {
 					user.data.picture5 !== ''
 					?
 						<div className='profile-image' onClick={ () => _handlePicture(5) } style={{
-							backgroundImage: `url('http://localhost:8443/images/${user.data.picture5}')`
+							backgroundImage: `url('${IMAGE}${user.data.picture5}')`
 						}}></div>
 					:
 						<div className='profile-image profile-image-none' onClick={ () => _handlePicture(5) }>

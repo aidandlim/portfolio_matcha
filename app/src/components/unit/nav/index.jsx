@@ -4,10 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { user_data, ui_notification, chat_current } from '../../../actions';
 
 import axios from 'axios';
+import { IMAGE } from '../../../api';
 
 import Menu from './menu';
 
-import Profile from '../../../resources/profile1.jpeg';
 import { FaLocationArrow, FaUnlink } from "react-icons/fa";
 import './index.css';
 
@@ -50,7 +50,7 @@ const Nav = () => {
 	return (
 		<div className='nav'>
 			<div className='nav-profile' style={{
-				backgroundImage: 'url(\'' + Profile + '\')'
+				backgroundImage: `url('${IMAGE}${user.data.picture1}')`
 			}}></div>
 			<div className='nav-fullname'>Aidan Lim</div>
 			<div className='nav-location-container'>

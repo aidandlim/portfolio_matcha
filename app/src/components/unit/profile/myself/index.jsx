@@ -23,7 +23,7 @@ const Myself = () => {
 				type: 'myself'
 			}
 
-			axios.post('/tags/link', data)
+			axios.post('/tags', data)
 			.then((res) => {
 				console.log(res);
 			});

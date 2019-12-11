@@ -1,37 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import Picture from './picture';
+import Nav from './nav';
 import Email from './email';
 import Password from './password';
+import Picture from './picture';
 import Info from './info';
 import Location from './location';
 import Bio from './bio';
 import Myself from './myself';
 import Preference from './preference';
-import Notification from './notification';
 import Theme from './theme';
+import Notification from './notification';
 import Close from './close';
 
 import './index.css';
 
 const Profile = () => {
+	const [nav, setNav] = useState(0);
 	return (
 		<div className='frame'>
 			<div className='frame-header'>
 				<div className='frame-title'>PROFILE</div>
 			</div>
-			<div className='frame-body'>
-				<Picture />
-				<Email />
-				<Password />
-				<Info />
-				<Location />
-				<Bio />
-				<Myself />
-				<Preference />
-				<Notification />
-				<Theme />
-				<Close />
+			<Nav nav={nav} setNav={setNav} />
+			<div className='frame-body-hasNav'>
+				{ nav === 0 ? <Email /> : '' }
+				{ nav === 0 ? <Password /> : '' }
+				{ nav === 1 ? <Picture /> : '' }
+				{ nav === 1 ? <Info /> : '' }
+				{ nav === 1 ? <Location /> : '' }
+				{ nav === 1 ? <Bio /> : '' }
+				{ nav === 2 ? <Myself /> : '' }
+				{ nav === 2 ? <Preference /> : '' }
+				{ nav === 3 ? <Theme /> : '' }
+				{ nav === 3 ? <Notification /> : '' }
+				{ nav === 3 ? <Close /> : '' }
 			</div>
 		</div>
 	);
