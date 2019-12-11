@@ -1,7 +1,7 @@
 const conn = require('../config/db');
 
 module.exports.select = (req, res) => {
-    const sql_select_search = 'SELECT * FROM tags WHERE tag LIKE \'%?%\'';
+    const sql_select_search = 'SELECT * FROM tags WHERE tag LIKE ?';
     const sql_select_myself = 'SELECT tag FROM tags LEFT JOIN users_and_tags AS uat ON tags.id = uat.tag_id WHERE uat.user_id = ? AND uat.type = 0';
     const sql_select_preference = 'SELECT tag FROM tags LEFT JOIN users_and_tags AS uat ON tags.id = uat.tag_id WHERE uat.user_id = ? AND uat.type = 1';
 
@@ -9,7 +9,7 @@ module.exports.select = (req, res) => {
     const data = req.query;
 
     if (data.type === 'search') {
-        conn.query(sql_select_search, [data.keyword], (err, results) => {
+        conn.query(sql_select_search, ['%' + data.keyword + '%'], (err, results) => {
             if (err) {
                 console.log(err);
             } else {
