@@ -84,6 +84,7 @@ app.post('/api/visits', visits.insert);
 app.get('/api/likes', likes.select);
 app.put('/api/likes', likes.update);
 app.post('/api/likes', likes.insert);
+app.delete('/api/likes', likes.delete);
 
 app.put('/api/unlikes', unlikes.update);
 app.post('/api/unlikes', unlikes.insert);
