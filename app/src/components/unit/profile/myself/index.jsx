@@ -35,17 +35,14 @@ const Myself = () => {
 				type: 0
 			}
 
-			axios.post('/tags', data)
-			.then((res) => {
-				console.log(res);
-			});
+			axios.post('/tags', data);
 			
 			document.myself.tag.value = '';
 		}
 	}
 
 	const _handleAddTagFromSuggest = (value) => {
-		const result = [...tags, value];
+		const result = [...tags, {tag: value}];
 		setTags(result);
 		setSuggests([]);
 		document.myself.tag.value = '';
@@ -64,10 +61,10 @@ const Myself = () => {
 				keyword: document.myself.tag.value,
 			}
 
-			// axios.get('/tags', { params : data })
-			// .then((res) => {
-			// 	setSuggests(res.data);
-			// });
+			axios.get('/tags', { params : data })
+			.then((res) => {
+				setSuggests(res.data);
+			});
 		} else {
 			setSuggests([]);
 		}
@@ -84,7 +81,7 @@ const Myself = () => {
 					)) : 'There is no tag yet! Please add tag!'}
 				</div>
 				<form name='myself' onSubmit={_handleAddTag} autoComplete='off'>
-					<input type='text' className='profile-input' name='tag' placeholder='Tag' onChange={_handleSuggest} />
+					<input type='text' className='profile-input' name='tag' placeholder='Tag' onChange={() => _handleSuggest()} />
 					<input type='submit' className='profile-submit' value='ADD'/>
 				</form>
 				<div className='profile-suggest-box'>

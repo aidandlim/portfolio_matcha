@@ -2,10 +2,10 @@ import React from 'react';
 
 import '../index.css';
 
-const Suggest = ({suggest, index, _handleAddTagFromSuggest}) => {
+const Suggest = ({suggest, _handleAddTagFromSuggest}) => {
 	return (
-		<div className='profile-suggest' onClick={() => _handleAddTagFromSuggest(suggest.name)}>
-			{suggest.name} ({suggest.count})
+		<div className='profile-suggest' onClick={() => _handleAddTagFromSuggest(suggest.tag)}>
+			{suggest.tag}
 		</div>
 	);
 }

@@ -21,7 +21,7 @@ const Info = () => {
 			last_name: document.profile_info.last_name.value,
 			birth_year: document.profile_info.birth_year.value,
 			gender: document.profile_info.gender.value,
-			preference: document.profile_info.preference.value,
+			preference_gender: document.profile_info.preference_gender.value,
 		};
 
 		axios.put('/users', data)
@@ -32,7 +32,7 @@ const Info = () => {
 				result.last_name = data.last_name;
 				result.birth_year = data.birth_year;
 				result.gender = data.gender;
-				result.preference = data.preference;
+				result.preference_gender = data.preference_gender;
 				dispatch(user_data(result));
 				if(result.picture1 !== '' && result.first_name !== '' && result.last_name !== '' && result.address !== '') {
 					dispatch(user_isComplete(true));
@@ -55,7 +55,7 @@ const Info = () => {
 					<input type='text' className='profile-input profile-input-first' name='last_name' defaultValue={user.data.last_name} placeholder='Last Name' />
 					<input type='text' className='profile-input profile-input-first profile-input-last' name='birth_year' defaultValue={user.data.birth_year} placeholder='Birth Year' />
 					<input type='text' className='profile-input' name='gender' defaultValue={user.data.gender} placeholder='Gender' />
-					<input type='text' className='profile-input' name='preference' defaultValue={user.data.preference} placeholder='Preference' />
+					<input type='text' className='profile-input' name='preference_gender' defaultValue={user.data.preference_gender} placeholder='Preference Gender' />
 					<input type='submit' className='profile-submit' value='UPDATE' />
 				</form>
 			</div>

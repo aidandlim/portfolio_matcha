@@ -34,17 +34,14 @@ const Preference = () => {
 				type: 1
 			}
 
-			axios.post('/tags', data)
-			.then((res) => {
-				console.log(res);
-			});
+			axios.post('/tags', data);
 
 			document.preference.tag.value = '';
 		}
 	}
 
 	const _handleAddTagFromSuggest = (value) => {
-		const result = [...tags, value];
+		const result = [...tags, {tag: value}];
 		setTags(result);
 		setSuggests([]);
 		document.preference.tag.value = '';
@@ -63,10 +60,10 @@ const Preference = () => {
 				keyword: document.preference.tag.value,
 			}
 
-			// axios.get('/tags', { params : data })
-			// .then((res) => {
-			// 	setSuggests(res.data);
-			// });
+			axios.get('/tags', { params : data })
+			.then((res) => {
+				setSuggests(res.data);
+			});
 		} else {
 			setSuggests([]);
 		}
