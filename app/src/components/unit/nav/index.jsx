@@ -52,7 +52,7 @@ const Nav = () => {
 			<div className='nav-profile' style={{
 				backgroundImage: `url('${IMAGE}${user.data.picture1}')`
 			}}></div>
-			<div className='nav-fullname'>Aidan Lim</div>
+			<div className='nav-fullname'>{user.data.first_name} {user.data.last_name}</div>
 			<div className='nav-location-container'>
 				<FaLocationArrow className='nav-location-icon'/>
 				<div className='nav-location-address'>{user.data.address === '' ? 'Unknown' : user.data.address}</div>

@@ -161,7 +161,12 @@ const Overview = () => {
 				setGraphData(graph);
 			}
 		});
-		axios.get('/likes')
+		
+		const data = {
+			type: 'follow'
+		}
+
+		axios.get('/likes', { params : data })
 		.then((res) => {
 			if(res.data) {
 				setFollowers(res.data.user);
@@ -190,6 +195,7 @@ const Overview = () => {
 				{ nav === 0 ? <Graph graphData={graphData} /> : '' }
 				{ nav === 1 ? <Follow follows={followers} /> : '' }
 				{ nav === 2 ? <Follow follows={following} /> : '' }
+				{ nav === 3 ? <Follow follows={blocks} /> : '' }
 			</div>
 		</div>
 	);
