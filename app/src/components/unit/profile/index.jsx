@@ -5,6 +5,7 @@ import Email from './email';
 import Password from './password';
 import Picture from './picture';
 import Info from './info';
+import Filter from './filter';
 import Bio from './bio';
 import Location from './location';
 import Myself from './myself';
@@ -28,6 +29,7 @@ const Profile = () => {
 				{ nav === 0 ? <Password /> : '' }
 				{ nav === 1 ? <Picture /> : '' }
 				{ nav === 1 ? <Info /> : '' }
+				{ nav === 1 ? <Filter /> : '' }
 				{ nav === 1 ? <Bio /> : '' }
 				{ nav === 1 ? <Location /> : '' }
 				{ nav === 2 ? <Myself /> : '' }

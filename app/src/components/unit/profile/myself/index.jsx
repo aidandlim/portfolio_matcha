@@ -18,6 +18,7 @@ const Myself = () => {
 
 		axios.get('/tags', { params : data })
 		.then((res) => {
+			console.log(res);
 			setTags(res.data);
 		});
 	}, []);
@@ -25,13 +26,13 @@ const Myself = () => {
 	const _handleAddTag = (e) => {
 		e.preventDefault();
 		if(document.myself.tag.value !== '') {
-			const result = [...tags, document.myself.tag.value];
+			const result = [...tags, {tag: document.myself.tag.value}];
 			setTags(result);
 			setSuggests([]);
 
 			const data = {
 				tag: document.myself.tag.value,
-				type: 'myself'
+				type: 0
 			}
 
 			axios.post('/tags', data)
@@ -63,10 +64,10 @@ const Myself = () => {
 				keyword: document.myself.tag.value,
 			}
 
-			axios.get('/tags', { params : data })
-			.then((res) => {
-				setSuggests(res.data);
-			});
+			// axios.get('/tags', { params : data })
+			// .then((res) => {
+			// 	setSuggests(res.data);
+			// });
 		} else {
 			setSuggests([]);
 		}

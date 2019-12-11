@@ -13,7 +13,7 @@ const Preference = () => {
 
 	useEffect(() => {
 		const data = {
-			type: 'myself'
+			type: 'preference'
 		}
 
 		axios.get('/tags', { params : data })
@@ -25,9 +25,20 @@ const Preference = () => {
 	const _handleAddTag = (e) => {
 		e.preventDefault();
 		if(document.preference.tag.value !== '') {
-			const result = [...tags, document.preference.tag.value];
+			const result = [...tags, {tag: document.preference.tag.value}];
 			setTags(result);
 			setSuggests([]);
+
+			const data = {
+				tag: document.preference.tag.value,
+				type: 1
+			}
+
+			axios.post('/tags', data)
+			.then((res) => {
+				console.log(res);
+			});
+
 			document.preference.tag.value = '';
 		}
 	}
@@ -52,10 +63,10 @@ const Preference = () => {
 				keyword: document.preference.tag.value,
 			}
 
-			axios.get('/tags', { params : data })
-			.then((res) => {
-				setSuggests(res.data);
-			});
+			// axios.get('/tags', { params : data })
+			// .then((res) => {
+			// 	setSuggests(res.data);
+			// });
 		} else {
 			setSuggests([]);
 		}

@@ -173,6 +173,13 @@ const Overview = () => {
 				setFollowing(res.data.other);
 			}
 		});
+
+		axios.get('/blocks')
+		.then((res) => {
+			if(res.data) {
+				setBlocks(res.data);
+			}
+		});
 	  }, []);
 
 	const _handleDate = (diff) => {
