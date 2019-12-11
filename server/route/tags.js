@@ -23,7 +23,7 @@ module.exports.select = (req, res) => {
                 console.log(err);
             } else {
                 results = JSON.parse(JSON.stringify(results));
-                res.json(results[0].tag);
+                res.json(results);
             }
         })
     } else if (data.type === 'preference') {
@@ -32,7 +32,7 @@ module.exports.select = (req, res) => {
                 console.log(err);
             } else {
                 results = JSON.parse(JSON.stringify(results));
-                res.json(results[0].tag);
+                res.json(results);
             }
         })
     }
