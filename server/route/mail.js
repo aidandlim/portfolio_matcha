@@ -74,3 +74,48 @@ module.exports.reverify = (req, res) => {
         }
     })
 }
+
+//
+
+module.exports.notification = (type, from_id, to_email) => {
+    const sql = 'SELECT first_name, last_name FROM users WHERE id = ?';
+
+    conn.query(sql, [from_id], (err, results) => {
+        if (err) {
+            console.log(err);
+        } else {
+            results = JSON.parse(JSON.stringify(results));
+
+            let message;
+
+            if (type === 'appear') {
+                message = 'Your profile was shown to ' + results[0].first_name + ' ' + results[0].last_name + '.';
+            } else if (type === 'like') {
+                message = results[0].first_name + ' ' + results[0].last_name + ' liked your profile.';
+            } else if (type === 'unlike') {
+                message = results[0].first_name + ' ' + results[0].last_name + ' disliked your profile.';
+            } else if (type === 'visit') {
+                message = results[0].first_name + ' ' + results[0].last_name + ' visited your profile.';
+            }
+
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: '42sv.matcha@gmail.com',
+                    pass: 'gusdk314'
+                }
+            });
+            const mailOptions = {
+                from: '42sv.matcha@gmail.com',
+                to: to_email,
+                subject: 'Matcha notification :)',
+                html: "<div>" + message + "</div>"
+            };
+            transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                    console.log(error);
+                }
+            });
+        }
+    })
+};

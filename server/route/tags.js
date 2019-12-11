@@ -1,18 +1,41 @@
 const conn = require('../config/db');
 
 module.exports.select = (req, res) => {
-    const sql = 'SELECT * FROM tags WHERE tag LIKE \'%?%\'';
+    const sql_select_search = 'SELECT * FROM tags WHERE tag LIKE \'%?%\'';
+    const sql_select_myself = 'SELECT tag FROM tags LEFT JOIN users_and_tags AS uat ON tags.id = uat.tag_id WHERE uat.user_id = ? AND uat.type = 0';
+    const sql_select_preference = 'SELECT tag FROM tags LEFT JOIN users_and_tags AS uat ON tags.id = uat.tag_id WHERE uat.user_id = ? AND uat.type = 1';
 
-    const tag = req.query.keyword;
+    const userId = req.session.userId;
+    const data = req.query;
 
-    conn.query(sql, [tag], (err, results) => {
-        if (err) {
-            console.log(err);
-        } else {
-            results = JSON.parse(JSON.stringify(results));
-            res.json(results);
-        }
-    })
+    if (data.type === 'search') {
+        conn.query(sql_select_search, [data.keyword], (err, results) => {
+            if (err) {
+                console.log(err);
+            } else {
+                results = JSON.parse(JSON.stringify(results));
+                res.json(results);
+            }
+        })
+    } else if (data.type === 'myself') {
+        conn.query(sql_select_myself, [userId], (err, results) => {
+            if (err) {
+                console.log(err);
+            } else {
+                results = JSON.parse(JSON.stringify(results));
+                res.json(results[0].tag);
+            }
+        })
+    } else if (data.type === 'preference') {
+        conn.query(sql_select_preference, [userId], (err, results) => {
+            if (err) {
+                console.log(err);
+            } else {
+                results = JSON.parse(JSON.stringify(results));
+                res.json(results[0].tag);
+            }
+        })
+    }
 }
 
 //

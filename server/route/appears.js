@@ -1,16 +1,30 @@
+const mail = require('./mail');
+
 const conn = require('../config/db');
 
 module.exports.insert = (req, res) => {
-    const sql = 'INSERT INTO appears (from, to) values (?, ?)';
+    const sql = 'INSERT INTO appears (`from`, `to`) values (?, ?)';
 
-    const data = req.body;
+    const userId = req.session.userId;
+    const to = req.body.to;
 
-    conn.query(sql, [data.from, data.to], (err) => {
+    conn.query(sql, [userId, to], (err) => {
         if (err) {
             console.log(err);
             res.json(0);
         } else {
-            res.json(1);
+            const sql_select_to = 'SELECT email FROM users WHERE id = ?';
+
+            conn.query(sql_select_to, [to], (err, results) => {
+                if (err) {
+                    console.log(err);
+                    res.json(0);
+                } else {
+                    results = JSON.parse(JSON.stringify(results));
+                    mail.notification('appear', userId, results[0].email);
+                    res.json(1);
+                }
+            })
         }
     })
 }

@@ -59,6 +59,8 @@ app.put('/api/users/password', users.updatePassword);
 app.put('/api/users/picture', users.updatePicture);
 app.put('/api/users/address', users.updateAddress);
 app.put('/api/users/bio', users.updateBio);
+app.put('/api/users/notification', users.updateNotification);
+app.delete('/api/users', users.delete);
 
 app.get('/api/verifies/up', verifies.up);
 
@@ -90,10 +92,12 @@ app.get('/api/notifications', notifications.select);
 
 app.get('/api/overviews', overviews.select);
 
+app.get('/api/logs', logs.select);
+
+
 
 
 app.post('/api/blocks/insert', blocks.insert);
-app.post('/api/logs/insert', logs.insert);
 app.post('/api/messages/insert', messages.insert);
 app.post('/api/reports/insert', reports.insert);
 

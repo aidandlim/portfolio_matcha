@@ -65,6 +65,7 @@ module.exports.in = (req, res) => {
     conn.query(sql_select_user, [email], (err, results) => {
         if (err) {
             console.log(err);
+            res.json(0);
         } else if (results.length === 0) {
             res.json(2); // Doesn't exist email
         } else {
@@ -72,13 +73,24 @@ module.exports.in = (req, res) => {
                 results = JSON.parse(JSON.stringify(results));
                 if (err) {
                     console.log(err);
+                    res.json(0);
                 } else if (results.length === 0) {
                     res.json(3); // Password is wrong
                 } else if (results[0].verify === 0) {
                     res.json(4); // Verify is 0
                 } else {
-                    req.session.userId = results[0].id;
-                    res.json(1); // Log in successfully
+                    const sql_insert_log = 'INSERT INTO logs (user_id) values (?)';
+
+                    const userId = results[0].id;
+                    conn.query(sql_insert_log, [userId], (err) => {
+                        if (err) {
+                            console.log(err);
+                            res.json(0);
+                        } else {
+                            req.session.userId = userId;
+                            res.json(1); // Log in successfully
+                        }
+                    })
                 }
             })
         }

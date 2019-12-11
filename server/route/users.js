@@ -14,7 +14,7 @@ module.exports.select = (req, res) => {
     const distance = req.query.distance;
 
     if (distance === undefined) {
-        const sql = 'SELECT id, email, last_name, first_name, birth_year, gender, preference, address, latitude, longitude, bio, picture1, picture2, picture3, picture4, picture5 FROM users WHERE id = ?';
+        const sql = 'SELECT id, email, last_name, first_name, birth_year, gender, preference, address, latitude, longitude, bio, picture1, picture2, picture3, picture4, picture5, notification FROM users WHERE id = ?';
 
         conn.query(sql, [userId], (err, results) => {
             if (err) {
@@ -69,6 +69,24 @@ module.exports.update = (req, res) => {
             }
         })
     }
+}
+
+//
+
+module.exports.delete = (req, res) => {
+    const sql = 'DELETE FROM users WHERE id = ?';
+
+    const userId = req.session.userId;
+
+    conn.query(sql, [userId], (err) => {
+        if (err) {
+            console.log(err);
+            res.json(0);
+        } else {
+            req.session.userId = -1;
+            res.json(1);
+        }
+    })
 }
 
 //
@@ -226,4 +244,21 @@ module.exports.updateBio = (req, res) => {
             }
         })
     }
+}
+
+//
+
+module.exports.updateNotification = (req, res) => {
+    const sql = 'UPDATE users SET notification = if(notification = 1, 0, 1) WHERE id = ?';
+
+    const userId = req.session.userId;
+
+    conn.query(sql, [userId], (err) => {
+        if (err) {
+            console.log(err);
+            res.json(0);
+        } else {
+            res.json(1);
+        }
+    })
 }
