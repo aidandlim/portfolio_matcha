@@ -173,12 +173,12 @@ const Overview = () => {
 			}
 		});
 
-		// axios.get('/blocks')
-		// .then((res) => {
-		// 	if(res.data) {
-		// 		setBlocks(res.data);
-		// 	}
-		// });
+		axios.get('/blocks')
+		.then((res) => {
+			if(res.data) {
+				setBlocks(res.data);
+			}
+		});
 	  }, []);
 
 	const _handleDate = (diff) => {

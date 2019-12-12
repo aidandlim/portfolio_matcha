@@ -15,7 +15,7 @@ const Chat = () => {
 	return (
 		<div className={chat.current === -1 ? 'chat' : 'chat chat-active'}>
 			<div className='chat-header'>
-				<div className='chat-header-name'>Aidan Lim</div>
+				<div className='chat-header-name'>{chat.current !== -1 ? `${chat.list[chat.current].first_name} ${chat.list[chat.current].last_name}` : ''}</div>
 				<FaRegTrashAlt className='chat-header-remove' />
 				<FaTimesCircle className='chat-header-exit' onClick={ () => dispatch(chat_current(-1)) } />
 			</div>

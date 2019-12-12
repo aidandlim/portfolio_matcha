@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { chat_list } from '../../../actions';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+import axios from 'axios';
 
 import Nav from '../../unit/nav';
 import Sidebar from '../../unit/sidebar';
@@ -20,6 +23,18 @@ const Core = () => {
 	const ui = useSelector(state => state.ui);
 	const user = useSelector(state => state.user);
 	const chat = useSelector(state => state.chat);
+
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		const data = {
+			type: 'chat'
+		}
+		axios.get('/likes', { params: data})
+		.then((res) => {
+			dispatch(chat_list(res.data));
+		});
+	}, [dispatch]);
 
 	return (
 		<Router>

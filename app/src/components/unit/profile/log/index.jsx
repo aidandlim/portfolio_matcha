@@ -10,7 +10,6 @@ const Log = () => {
 	useEffect(() => {
 		axios.get('/logs')
 		.then((res) => {
-			console.log(res.data);
 			setLogs(res.data);
 		})
 	}, []);

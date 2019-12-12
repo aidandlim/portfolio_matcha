@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { match_data } from '../../../actions';
+import { useSelector } from 'react-redux';
 
 import axios from 'axios';
 
@@ -12,20 +11,21 @@ import './index.css';
 
 const Match = () => {
 	const match = useSelector(state => state.match);
-	const dispatch = useDispatch();
+
+	const [matches, setMatches] = useState({});
 
 	useEffect(() => {
 		axios.get('/matches')
 		.then((res) => {
-			dispatch(match_data(res.data));
+			setMatches(res.data);
 		});
 	}, []);
 
 	return (
 		<div className='match'>
-			{ match.data.id !== undefined && !match.isDetail ? <Card /> : '' }
-			{ match.data.id !== undefined && match.isDetail ? <Detail /> : '' }
-			{ match.data.id === undefined ? <div className='match-inactive'>Sorry for uncomfortable.<br />There is no valid match card!</div> : ''}
+			{ matches.id !== undefined && !match.isDetail ? <Card matches={matches}/> : '' }
+			{ matches.id !== undefined && match.isDetail ? <Detail matches={matches} /> : '' }
+			{ matches.id === undefined ? <div className='match-inactive'>Sorry for uncomfortable.<br />There is no valid match card!</div> : ''}
 		</div>
 	);
 }

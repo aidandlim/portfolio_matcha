@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { match_isDetail, match_data } from '../../../../actions';
+import { match_isDetail } from '../../../../actions';
 
 import axios from 'axios';
 
