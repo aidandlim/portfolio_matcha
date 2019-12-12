@@ -102,7 +102,7 @@ app.delete('/api/blocks', blocks.delete);
 
 app.post('/api/reports', reports.insert);
 
-// app.get('/api/matches', matches.select);
+app.get('/api/matches', matches.select);
 
 // 
 
