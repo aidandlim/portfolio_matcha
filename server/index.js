@@ -11,6 +11,7 @@ const appears = require('./route/appears');
 const blocks = require('./route/blocks');
 const likes = require('./route/likes');
 const logs = require('./route/logs');
+const matches = require('./route/matches');
 // const messages = require('./route/messages');
 const reports = require('./route/reports');
 const tags = require('./route/tags');
