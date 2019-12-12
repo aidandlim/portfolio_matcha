@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { match_isDetail } from '../../../../actions';
+import { match_isDetail, match_data } from '../../../../actions';
 
 import axios from 'axios';
 
@@ -16,6 +16,11 @@ const Card = () => {
 	const [ index, setIndex ] = useState(0);
 
 	useEffect(() => {
+		const data = {
+			to: match.data.id
+		}
+
+		axios.post('appears', { params : data });
 		_handleImage();
 	});
 

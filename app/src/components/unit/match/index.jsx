@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { match_data } from '../../../actions';
+
+import axios from 'axios';
 
 import Card from './card';
 import Detail from './detail';
@@ -9,6 +12,14 @@ import './index.css';
 
 const Match = () => {
 	const match = useSelector(state => state.match);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		axios.get('/matches')
+		.then((res) => {
+			dispatch(match_data(res.data));
+		});
+	}, []);
 
 	return (
 		<div className='match'>

@@ -7,12 +7,6 @@ import axios from 'axios';
 
 import { FaBirthdayCake, FaLocationArrow, FaRuler, FaTimes, FaArrowAltCircleLeft, FaArrowAltCircleRight, FaSearchMinus, FaHeart } from 'react-icons/fa';
 
-import Profile1 from '../../../../resources/profile1.jpeg';
-import Profile2 from '../../../../resources/profile2.jpeg';
-import Profile3 from '../../../../resources/profile3.jpeg';
-import Profile4 from '../../../../resources/profile4.jpeg';
-import Profile5 from '../../../../resources/profile5.jpeg';
-
 import '../index.css';
 
 const Detail = () => {
@@ -22,6 +16,12 @@ const Detail = () => {
 	const [ index, setIndex ] = useState(0);
 
 	useEffect(() => {
+		const data = {
+			to: match.data.id
+		}
+
+		axios.post('visits', { params : data });
+
 		_handleImage();
 	});
 
@@ -88,19 +88,19 @@ const Detail = () => {
 		<div className='match-detail'>
 			<div className='match-detail-pictures'>
 				<div className='match-detail-picture' style={{
-					backgroundImage: 'url(\'' + Profile1 + '\')'
+					backgroundImage: 'url(\'' + match.data.picture1 + '\')'
 				}}></div>
 				<div className='match-detail-picture' style={{
-					backgroundImage: 'url(\'' + Profile2 + '\')'
+					backgroundImage: 'url(\'' + match.data.picture2 + '\')'
 				}}></div>
 				<div className='match-detail-picture' style={{
-					backgroundImage: 'url(\'' + Profile3 + '\')'
+					backgroundImage: 'url(\'' + match.data.picture3 + '\')'
 				}}></div>
 				<div className='match-detail-picture' style={{
-					backgroundImage: 'url(\'' + Profile4 + '\')'
+					backgroundImage: 'url(\'' + match.data.picture4 + '\')'
 				}}></div>
 				<div className='match-detail-picture' style={{
-					backgroundImage: 'url(\'' + Profile5 + '\')'
+					backgroundImage: 'url(\'' + match.data.picture5 + '\')'
 				}}></div>
 				<FaArrowAltCircleLeft className='match-detail-arrow match-detail-arrow-left' onClick={ () => _handleIndex(false, -1) } />
 				<FaArrowAltCircleRight className='match-detail-arrow match-detail-arrow-right' onClick={ () => _handleIndex(true, -1) } />
@@ -109,21 +109,21 @@ const Detail = () => {
 				<FaHeart className='match-detail-reaction-icon match-detail-reaction-icon-like' onClick={ () => _handleLike() }  />
 			</div>
 			<div className='match-detail-container'>
-				<div className='match-detail-name'>Aidan Lim</div>
+				<div className='match-detail-name'>{match.data.first_name} {match.data.last_name}</div>
 				<FaBirthdayCake className='match-detail-icon' />
-				<div className='match-detail-content'>Born in 1991 (28 years old)</div>
+				<div className='match-detail-content'>Born in {match.data.birth_year} (00 years old)</div>
 				<FaLocationArrow className='match-detail-icon' />
-				<div className='match-detail-content'>Live in Fremont, CA, USA</div>
+				<div className='match-detail-content'>Live in {match.data.address}</div>
 				<FaRuler className='match-detail-icon' />
-				<div className='match-detail-content'>16.3 miles away</div>
-				<div className='match-detail-bio'>Hello! I'm Aidan Lim</div>
+				<div className='match-detail-content'>00.0 miles away</div>
+				<div className='match-detail-bio'>{match.data.bio}</div>
 				<div className='match-detail-tag-box'>
 					<div className='match-detail-tag-box-title'>I am ... </div>
-					<div className='match-detail-tag-box-content'>#hello</div>
+					<div className='match-detail-tag-box-content'>#</div>
 				</div>
 				<div className='match-detail-tag-box'>
 					<div className='match-detail-tag-box-title'>I am looking for ... </div>
-					<div className='match-detail-tag-box-content'>#hello</div>
+					<div className='match-detail-tag-box-content'>#</div>
 				</div>
 			</div>
 		</div>
