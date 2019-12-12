@@ -46,6 +46,15 @@ export const user_isComplete = (value) => {
 
 /***************************************************/
 
+export const detail_id = (value) => {
+    return {
+        type: 'DETAIL_ID',
+        payload: value
+    };
+};
+
+/***************************************************/
+
 export const match_data = (value) => {
     return {
         type: 'MATCH_DATA',

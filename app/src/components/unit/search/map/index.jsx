@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { ui_detail } from '../../../../actions';
+import { detail_id, ui_detail } from '../../../../actions';
 
 import axios from 'axios';
 
@@ -28,7 +28,8 @@ const Map = (props) => {
 		});	
 	}, []);
 
-	const _handleDetail = () => {
+	const _handleDetail = (id) => {
+		dispatch(detail_id(id));
 		dispatch(ui_detail(true));
 	}
 
@@ -43,7 +44,7 @@ const Map = (props) => {
 				<Marker
 					key={index}
 					position={{lat: marker.latitude, lng: marker.longitude}}
-					onClick={() => _handleDetail()} />
+					onClick={() => _handleDetail(marker.id)} />
 			)}
 		</GoogleMap>
 	);

@@ -5,6 +5,8 @@ import { ui_landing } from '../../../../actions';
 
 import axios from 'axios';
 
+import { deviceType, osName, osVersion, browserName, browserVersion } from 'react-device-detect';
+
 import Alert from '../../../util/alert';
 
 import '../index.css';
@@ -18,6 +20,7 @@ const In = () => {
 		const data = {
 			email: document.signin.email.value,
 			password: document.signin.password.value,
+			info: `[${ deviceType === '' ? 'PC' : deviceType.toUpperCase() }] ${osName} ${osVersion} - ${browserName} ${browserVersion}`
 		};
 
 		axios.get('/auth/in', {params: data})

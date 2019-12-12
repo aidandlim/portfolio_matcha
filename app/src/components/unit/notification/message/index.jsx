@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useDispatch } from 'react-redux';
-import { ui_notification, ui_detail } from '../../../../actions';
+import { ui_notification, ui_detail, detail_id } from '../../../../actions';
 
 import { IMAGE } from '../../../../api';
 
@@ -12,6 +12,7 @@ const Message = ({message}) => {
 
     const _handleDetail = () => {
         dispatch(ui_notification(false));
+        dispatch(detail_id(message.from));
         dispatch(ui_detail(true));
     }
 

@@ -12,6 +12,7 @@ const Match = () => {
 	useEffect(() => {
 		axios.get('/matches')
 		.then((res) => {
+			console.table(res.data);
 			setMatches(res.data);
 		});
 	}, []);

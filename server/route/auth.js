@@ -61,6 +61,7 @@ module.exports.in = (req, res) => {
 
     const email = req.query.email;
     const password = req.query.password;
+    const info = req.query.info;
 
     conn.query(sql_select_user, [email], (err, results) => {
         if (err) {
@@ -79,10 +80,10 @@ module.exports.in = (req, res) => {
                 } else if (results[0].verify === 0) {
                     res.json(4); // Verify is 0
                 } else {
-                    const sql_insert_log = 'INSERT INTO logs (user_id) values (?)';
+                    const sql_insert_log = 'INSERT INTO logs (user_id, info) values (?, ?)';
 
                     const userId = results[0].id;
-                    conn.query(sql_insert_log, [userId], (err) => {
+                    conn.query(sql_insert_log, [userId, info], (err) => {
                         if (err) {
                             console.log(err);
                             res.json(0);
