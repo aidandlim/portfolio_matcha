@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { ui_notification, chat_current } from '../../../../actions';
+import { ui_notification, chat_current, ui_detail } from '../../../../actions';
 
 import { IMAGE } from '../../../../api';
 
@@ -21,6 +21,7 @@ const User = ({ user, index }) => {
 				dispatch(chat_current(index));
 			}, 500);
 		}
+		dispatch(ui_detail(false));
 	}
 
 	return (

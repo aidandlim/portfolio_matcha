@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { ui_notification, chat_current } from '../../../actions';
+import { ui_notification, chat_current, ui_detail } from '../../../actions';
 
 import User from './user';
 
@@ -22,6 +22,7 @@ const Sidebar = () => {
 				dispatch(ui_notification(ui.notification ? false : true));
 			}, 500);
 		}
+		dispatch(ui_detail(false));
 	}
 
 	return (

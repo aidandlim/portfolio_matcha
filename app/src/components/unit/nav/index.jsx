@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { user_data, ui_notification, chat_current } from '../../../actions';
+import { user_data, ui_notification, chat_current, ui_detail } from '../../../actions';
 
 import axios from 'axios';
 import { IMAGE } from '../../../api';
@@ -35,6 +35,7 @@ const Nav = () => {
 		setNav(index);
 		dispatch(ui_notification(false));
 		dispatch(chat_current(-1));
+		dispatch(ui_detail(false));
 	}
 
 	const _handledLogout = () => {

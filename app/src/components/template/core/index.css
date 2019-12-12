@@ -117,11 +117,11 @@
     opacity: 0.8;
 }
 
-.frame-maximization {
-    width: 0.6rem;
-    height: 0.6rem;
+.frame-exit {
+    width: 0.8rem;
+    height: 0.8rem;
 
-    margin: 0.7rem 0.5rem;
+    margin: 0.6rem 0.5rem;
 
     position: absolute;
     top: 0;

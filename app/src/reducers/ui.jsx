@@ -2,6 +2,7 @@ const ui = {
     color: '#F44336',
     landing: 0,
     notification: false,
+    detail: false,
 }
 
 const uiReducer = (state = ui, action) => {
@@ -17,6 +18,10 @@ const uiReducer = (state = ui, action) => {
         case 'UI_NOTIFICATION':
             return Object.assign({}, state, {
                 notification: action.payload
+            });
+        case 'UI_DETAIL':
+            return Object.assign({}, state, {
+                detail: action.payload
             });
         default:
             return state;

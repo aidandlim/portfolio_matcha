@@ -77,7 +77,7 @@ const Preference = () => {
 			type: 1
 		}
 
-		axios.delete('/tags', data);
+		axios.delete('/tags', { params: data });
 
 		result.splice(index, 1);
 		setTags(result);

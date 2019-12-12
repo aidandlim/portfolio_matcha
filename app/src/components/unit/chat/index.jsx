@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { chat_current } from '../../../actions';
+import { chat_current, ui_detail } from '../../../actions';
 
 import Message from './message';
 
@@ -11,11 +11,16 @@ import './index.css';
 const Chat = () => {
 	const chat = useSelector(state => state.chat);
 	const dispatch = useDispatch();
+
+	const _handleDetail = () => {
+		dispatch(ui_detail(true));
+		dispatch(chat_current(-1));
+	}
 	
 	return (
 		<div className={chat.current === -1 ? 'chat' : 'chat chat-active'}>
 			<div className='chat-header'>
-				<div className='chat-header-name'>{chat.current !== -1 ? `${chat.list[chat.current].first_name} ${chat.list[chat.current].last_name}` : ''}</div>
+				<div className='chat-header-name' onClick={ () => _handleDetail() }>{chat.current !== -1 ? `${chat.list[chat.current].first_name} ${chat.list[chat.current].last_name}` : ''}</div>
 				<FaRegTrashAlt className='chat-header-remove' />
 				<FaTimesCircle className='chat-header-exit' onClick={ () => dispatch(chat_current(-1)) } />
 			</div>

@@ -77,7 +77,7 @@ const Myself = () => {
 			type: 0
 		}
 
-		axios.delete('/tags', data);
+		axios.delete('/tags', { params: data });
 
 		result.splice(index, 1);
 		setTags(result);

@@ -183,19 +183,20 @@
     width: 100%;
     height: 1.5rem;
 
-    margin-bottom: 0.5rem;
-
     position: relative;
     float: left;
 
     color: var(--color-70);
-    font-size: 0.6rem;
+    font-size: 0.5rem;
     font-weight: 500;
     text-indent: 0.5rem;
     line-height: 1.5rem;
 
     background-color: var(--color-10);
-    border-radius: 0.25rem;
+}
+
+.profile-log-container:last-child {
+    margin-bottom: 0.5rem;
 }
 
 .profile-tag-box {

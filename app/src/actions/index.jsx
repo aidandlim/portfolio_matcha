@@ -21,6 +21,13 @@ export const ui_notification = (value) => {
     };
 };
 
+export const ui_detail = (value) => {
+    return {
+        type: 'UI_DETAIL',
+        payload: value
+    };
+};
+
 /***************************************************/
 
 export const user_data = (value) => {

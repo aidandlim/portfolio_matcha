@@ -15,6 +15,7 @@ import Notification from '../../unit/notification';
 import Profile from '../../unit/profile';
 import Overview from '../../unit/overview';
 import Match from '../../unit/match';
+import Detail from '../../unit/detail';
 import Search from '../../unit/search';
 
 import './index.css';
@@ -48,6 +49,7 @@ const Core = () => {
 						{user.isComplete ? <Route path='/search' component={Search} /> : ''}
 					</Switch>
 					{!user.isComplete ? <div className='announcement'>After you have completed your profile, you will be able to access a matching service.</div> : '' }
+					{ ui.detail ? <Detail /> : '' }
 				</div>
 				<Chat />
 				<Notification />
