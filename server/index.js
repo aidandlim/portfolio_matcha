@@ -11,7 +11,7 @@ const appears = require('./route/appears');
 const blocks = require('./route/blocks');
 const likes = require('./route/likes');
 const logs = require('./route/logs');
-const messages = require('./route/messages');
+// const messages = require('./route/messages');
 const reports = require('./route/reports');
 const tags = require('./route/tags');
 const unlikes = require('./route/unlikes');
@@ -102,9 +102,7 @@ app.delete('/api/blocks', blocks.delete);
 
 app.post('/api/reports', reports.insert);
 
-
-
-app.post('/api/messages/insert', messages.insert);
+app.get('/api/matches', matches.select);
 
 // 
 

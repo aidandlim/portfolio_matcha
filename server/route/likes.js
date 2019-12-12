@@ -101,7 +101,7 @@ module.exports.update = (req, res) => {
 module.exports.delete = (req, res) => {
     const sql = 'DELETE FROM likes WHERE id = ?';
 
-    const id = req.body.id;
+    const id = req.query.id;
 
     conn.query(sql, [id], (err) => {
         if (err) {

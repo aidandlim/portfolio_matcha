@@ -46,7 +46,7 @@ module.exports.delete = (req, res) => {
     const sql = 'DELETE FROM blocks WHERE `from` = ? AND `to` = ?';
 
     const userId = req.session.userId;
-    const to = req.body.id;
+    const to = req.query.id;
 
     conn.query(sql, [userId, to], (err) => {
         if (err) {
