@@ -85,11 +85,12 @@ module.exports.insert = (req, res) => {
 //
 
 module.exports.delete = (req, res) => {
-    const sql = 'DELETE FROM users_and_tags WHERE id = ?';
+    const sql = 'DELETE FROM users_and_tags WHERE tag_id = (SELECT id FROM tags WHERE tag = ?) AND type = ? AND user_id = ?';
 
-    const id = req.body.id;
+    const data = req.body;
+    const userId = req.session.userId;
 
-    conn.query(sql, [id], (err) => {
+    conn.query(sql, [data.tag, parseInt(data.type), userId], (err) => {
         if (err) {
             console.log(err);
             res.json(0);

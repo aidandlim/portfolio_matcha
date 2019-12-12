@@ -273,3 +273,21 @@ module.exports.updateNotification = (req, res) => {
         }
     })
 }
+
+//
+
+module.exports.filters = (req, res) => {
+    const sql = 'UPDATE users SET preference_min_age = ?, preference_max_age = ?, preference_max_distance = ? WHERE id = ?';
+
+    const data = req.body;
+    const userId = req.session.userId;
+
+    conn.query(sql, [data.preference_min_age, data.preference_max_age, data.preference_max_distance, userId], (err) => {
+        if (err) {
+            console.log(err);
+            res.json(0);
+        } else {
+            res.json(1);
+        }
+    })
+}

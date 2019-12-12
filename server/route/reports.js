@@ -1,16 +1,17 @@
 const conn = require('../config/db');
 
 module.exports.insert = (req, res) => {
-    let sql = 'INSERT INTO reports (from, to, reason) values (?, ?, ?)';
+    const sql = 'INSERT INTO reports (`from`, `to`, reason) values (?, ?, ?)';
 
-    let user = req.body.user;
+    const data = req.body;
+    const userId = req.session.userId;
 
-    conn.query(sql, [], (err, results) => {
+    conn.query(sql, [userId, parseInt(data.to), data.reason], (err) => {
         if (err) {
             console.log(err);
+            res.json(0);
         } else {
-            results = JSON.parse(JSON.stringify(results));
-            res.json(results);
+            res.json(1);
         }
     })
 }

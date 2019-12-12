@@ -3,8 +3,8 @@ const mail = require('./mail');
 const conn = require('../config/db');
 
 module.exports.select = (req, res) => {
-    const sql_select_user = 'SELECT `from` as data FROM likes WHERE `to` = ?';
-    const sql_select_other = 'SELECT `to` as data FROM likes WHERE `from` = ?';
+    const sql_select_user = 'SELECT id, first_name, last_name, picture1 FROM users WHERE id IN (SELECT `from` FROM likes WHERE `to` = ?)';
+    const sql_select_other = 'SELECT id, first_name, last_name, picture1 FROM users WHERE id IN (SELECT `to` FROM likes WHERE `from` = ?)';
     const sql_select_both = 'SELECT id, first_name, last_name, picture1 FROM users WHERE id IN (SELECT `to` FROM likes WHERE `from` = ? AND `to` IN (SELECT `from` FROM likes WHERE `to` = ?))';
 
     const userId = req.session.userId;
@@ -22,8 +22,6 @@ module.exports.select = (req, res) => {
             } else {
                 results = JSON.parse(JSON.stringify(results));
                 for (let i = 0; i < results.length; i++) {
-                    results[i] = Object.values(results[i]);
-                } for (let i = 0; i < results.length; i++) {
                     temp.user = temp.user.concat(results[i]);
                 }
     
@@ -33,8 +31,6 @@ module.exports.select = (req, res) => {
                     } else {
                         results = JSON.parse(JSON.stringify(results));
                         for (let i = 0; i < results.length; i++) {
-                            results[i] = Object.values(results[i]);
-                        } for (let i = 0; i < results.length; i++) {
                             temp.other = temp.other.concat(results[i]);
                         }
                         res.json(temp);
