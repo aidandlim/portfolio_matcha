@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Nav from './nav';
 import Email from './email';
 import Password from './password';
+import Log from './log';
 import Picture from './picture';
 import Info from './info';
 import Filter from './filter';
@@ -27,6 +28,7 @@ const Profile = () => {
 			<div className='frame-body-hasNav'>
 				{ nav === 0 ? <Email /> : '' }
 				{ nav === 0 ? <Password /> : '' }
+				{ nav === 0 ? <Log /> : '' }
 				{ nav === 1 ? <Picture /> : '' }
 				{ nav === 1 ? <Info /> : '' }
 				{ nav === 1 ? <Filter /> : '' }

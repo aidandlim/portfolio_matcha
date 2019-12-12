@@ -18,7 +18,6 @@ const Myself = () => {
 
 		axios.get('/tags', { params : data })
 		.then((res) => {
-			console.log(res);
 			setTags(res.data);
 		});
 	}, []);

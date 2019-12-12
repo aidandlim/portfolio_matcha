@@ -23,7 +23,6 @@ const Overview = () => {
 		axios.get('/overviews')
 		.then((res) => {
 			if(res.data) {
-				console.log(res);
 				const graph = [
 					{
 						id: res.data[0].type,
@@ -174,12 +173,12 @@ const Overview = () => {
 			}
 		});
 
-		axios.get('/blocks')
-		.then((res) => {
-			if(res.data) {
-				setBlocks(res.data);
-			}
-		});
+		// axios.get('/blocks')
+		// .then((res) => {
+		// 	if(res.data) {
+		// 		setBlocks(res.data);
+		// 	}
+		// });
 	  }, []);
 
 	const _handleDate = (diff) => {
