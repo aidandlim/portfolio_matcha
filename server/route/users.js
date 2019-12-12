@@ -26,7 +26,7 @@ module.exports.select = (req, res) => {
         })
     } else {
         const sql_select_user = 'SELECT latitude, longitude FROM users WHERE id = ?';
-        const sql_select_target = 'SELECT id, last_name, first_name, picture1, latitude, longitude (6371*acos(cos(radians(?))*cos(radians(latitude))*cos(radians(longitude)-radians(?))+sin(radians(?))*sin(radians(latitude)))) AS distance FROM users HAVING distance <= (? * 0.625) ORDER BY distance';
+        const sql_select_target = 'SELECT id, last_name, first_name, picture1, latitude, longitude, (6371*acos(cos(radians(?))*cos(radians(latitude))*cos(radians(longitude)-radians(?))+sin(radians(?))*sin(radians(latitude)))) AS distance FROM users WHERE id != ? HAVING distance <= (? * 0.625) ORDER BY distance';
 
         const user_Id = req.session.userId;
         
@@ -36,7 +36,7 @@ module.exports.select = (req, res) => {
             } else {
                 results = JSON.parse(JSON.stringify(results));
 
-                conn.query(sql_select_target, [results[0].latitude, results[0].longitude, results[0].latitude, distance], (err, results) => {
+                conn.query(sql_select_target, [results[0].latitude, results[0].longitude, results[0].latitude, userId, distance], (err, results) => {
                     if (err) {
                         console.log(err);
                     } else {
