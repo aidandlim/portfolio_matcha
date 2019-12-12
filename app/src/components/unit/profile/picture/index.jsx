@@ -6,7 +6,7 @@ import { user_data , user_isComplete} from '../../../../actions';
 import axios from 'axios';
 import { IMAGE } from '../../../../api';
 
-import { FaPlusCircle } from 'react-icons/fa';
+import { FaPlusCircle, FaRegTimesCircle } from 'react-icons/fa';
 
 import '../index.css';
 
@@ -15,9 +15,14 @@ const Picture = () => {
 	const [index, setIndex] = useState(0);
 	const dispatch = useDispatch();
 
-	const _handlePicture = (index) => {
+	const _handlePicture = (e, type, index) => {
+		e.stopPropagation();
 		setIndex(index);
-		document.getElementById('profile_picture').click();
+		if(type) {
+			document.getElementById('profile_picture').click();
+		} else {
+			_handlePictureDelete(index);
+		}
 	}
 
 	const _handlePictureUpload = () => {
@@ -35,7 +40,6 @@ const Picture = () => {
 
 				axios.put('/users/picture', data)
 				.then((res) => {
-					console.log(res.data);
 					let result = user.data;
 					if(index === 1)
 						result.picture1 = res.data;
@@ -62,6 +66,29 @@ const Picture = () => {
 		}
 	}
 
+	const _handlePictureDelete = (index) => {
+		const data = {
+			picture : '',
+			index: index
+		}
+
+		axios.put('/users/picture', data)
+		.then((res) => {
+			let result = user.data;
+			if(index === 1)
+				result.picture1 = res.data;
+			if(index === 2)
+				result.picture2 = res.data;
+			if(index === 3)
+				result.picture3 = res.data;
+			if(index === 4)
+				result.picture4 = res.data;
+			if(index === 5)
+				result.picture5 = res.data;
+			dispatch(user_data(result));
+		});
+	}
+
 	return (
 		<div className='profile-container'>
 			<div className='profile-title'>Picture</div>
@@ -70,55 +97,65 @@ const Picture = () => {
 				{
 					user.data.picture1 !== ''
 					?
-						<div className='profile-image' onClick={ () => _handlePicture(1) } style={{
+						<div className='profile-image' onClick={ (e) => _handlePicture(e, 1, 1) } style={{
 							backgroundImage: `url('${IMAGE}${user.data.picture1}')`
-						}}></div>
+						}}>
+						
+						</div>
 					:
-						<div className='profile-image profile-image-none' onClick={ () => _handlePicture(1) }>
+						<div className='profile-image profile-image-none' onClick={ (e) => _handlePicture(e, 1, 1) }>
 							<FaPlusCircle className='profile-image-none-icon' />
 						</div>
 				}
 				{
 					user.data.picture2 !== ''
 					?
-						<div className='profile-image' onClick={ () => _handlePicture(2) } style={{
+						<div className='profile-image' onClick={ (e) => _handlePicture(e, 1, 2) } style={{
 							backgroundImage: `url('${IMAGE}${user.data.picture2}')`
-						}}></div>
+						}}>
+							<FaRegTimesCircle className='profile-image-delete' onClick={ (e) => _handlePicture(e, 0, 2) }/>
+						</div>
 					:
-						<div className='profile-image profile-image-none' onClick={ () => _handlePicture(2) }>
+						<div className='profile-image profile-image-none' onClick={ (e) => _handlePicture(e, 1, 2) }>
 							<FaPlusCircle className='profile-image-none-icon' />
 						</div>
 				}
 				{
 					user.data.picture3 !== ''
 					?
-						<div className='profile-image' onClick={ () => _handlePicture(3) } style={{
+						<div className='profile-image' onClick={ (e) => _handlePicture(e, 1, 3) } style={{
 							backgroundImage: `url('${IMAGE}${user.data.picture3}')`
-						}}></div>
+						}}>
+							<FaRegTimesCircle className='profile-image-delete' onClick={ (e) => _handlePicture(e, 0, 3) }/>
+						</div>
 					:
-						<div className='profile-image profile-image-none' onClick={ () => _handlePicture(3) }>
+						<div className='profile-image profile-image-none' onClick={ (e) => _handlePicture(e, 1, 3) }>
 							<FaPlusCircle className='profile-image-none-icon' />
 						</div>
 				}
 				{
 					user.data.picture4 !== ''
 					?
-						<div className='profile-image' onClick={ () => _handlePicture(4) } style={{
+						<div className='profile-image' onClick={ (e) => _handlePicture(e, 1, 4) } style={{
 							backgroundImage: `url('${IMAGE}${user.data.picture4}')`
-						}}></div>
+						}}>
+							<FaRegTimesCircle className='profile-image-delete' onClick={ (e) => _handlePicture(e, 0, 4) }/>
+						</div>
 					:
-						<div className='profile-image profile-image-none' onClick={ () => _handlePicture(4) }>
+						<div className='profile-image profile-image-none' onClick={ (e) => _handlePicture(e, 1, 4) }>
 							<FaPlusCircle className='profile-image-none-icon' />
 						</div>
 				}
 				{
 					user.data.picture5 !== ''
 					?
-						<div className='profile-image' onClick={ () => _handlePicture(5) } style={{
+						<div className='profile-image' onClick={ (e) => _handlePicture(e, 1, 5) } style={{
 							backgroundImage: `url('${IMAGE}${user.data.picture5}')`
-						}}></div>
+						}}>
+							<FaRegTimesCircle className='profile-image-delete' onClick={ (e) => _handlePicture(e, 0, 5) }/>
+						</div>
 					:
-						<div className='profile-image profile-image-none' onClick={ () => _handlePicture(5) }>
+						<div className='profile-image profile-image-none' onClick={ (e) => _handlePicture(e, 1, 5) }>
 							<FaPlusCircle className='profile-image-none-icon' />
 						</div>
 				}

@@ -26,30 +26,60 @@ const Myself = () => {
 	const _handleAddTag = (e) => {
 		e.preventDefault();
 		if(document.myself.tag.value !== '') {
-			const result = [...tags, {tag: document.myself.tag.value}];
-			setTags(result);
-			setSuggests([]);
+			if(_handleCheckDuplicate(document.myself.tag.value)) {
+				const result = [...tags, {tag: document.myself.tag.value}];
+				setTags(result);
 
-			const data = {
-				tag: document.myself.tag.value,
-				type: 0
+				const data = {
+					tag: document.myself.tag.value,
+					type: 0
+				}
+
+				axios.post('/tags', data);
 			}
-
-			axios.post('/tags', data);
-			
+			setSuggests([]);
 			document.myself.tag.value = '';
 		}
 	}
 
 	const _handleAddTagFromSuggest = (value) => {
-		const result = [...tags, {tag: value}];
-		setTags(result);
+		if(_handleCheckDuplicate(value)) {
+			const result = [...tags, {tag: value}];
+			setTags(result);
+			
+			const data = {
+				tag: value,
+				type: 0
+			}
+
+			axios.post('/tags', data);
+		}
 		setSuggests([]);
 		document.myself.tag.value = '';
+	}
+
+	const _handleCheckDuplicate = (value) => {
+		const result = [...tags];
+
+		for(let i = 0; i < result.length; i++) {
+			if(value === result[i].tag) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 	
 	const _handleDeleteTag = (index) => {
 		const result = [...tags];
+		
+		const data = {
+			tag: result[index].tag,
+			type: 0
+		}
+
+		axios.delete('/tags', data);
+
 		result.splice(index, 1);
 		setTags(result);
 	}

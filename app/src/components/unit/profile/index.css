@@ -77,6 +77,19 @@
     margin-right: 0;
 }
 
+.profile-image-delete {
+    width: 0.75rem;
+    height: 0.75rem;
+
+    position: absolute;
+    top: 0.25rem;
+    left: calc(100% - 1rem);
+
+    color: #CCCCCC;
+
+    z-index: 9;
+}
+
 .profile-image-none {
     width: calc(20% - 2rem / 5 - 0.2rem);
     padding-top: calc(26.666% - 0.2rem);
@@ -191,7 +204,7 @@
     width: auto;
     height: 1rem;
 
-    margin: 0 0.25rem 0 0;
+    margin: 0 0.25rem 0.25rem 0;
     padding: 0.25rem;
 
     position: relative;
@@ -210,6 +223,7 @@
     width: calc(100% / 3 - 1rem / 3);
     height: auto;
 
+    margin-top: -0.5rem;
     position: relative;
     float: left;
 
