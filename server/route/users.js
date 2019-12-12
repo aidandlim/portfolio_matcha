@@ -170,33 +170,44 @@ module.exports.updatePicture = (req, res) => {
     const userId = req.session.userId;
     let picture = req.body.picture;
 
-    let extension = '';
-    if(picture.match(/data:image\/jpeg;base64,/)) {
-        extension = '.jpeg';
-    } else if(picture.match(/data:image\/jpg;base64,/)) {
-        extension = '.jpg';
-    } else if(picture.match(/data:image\/png;base64,/)) {
-        extension = '.png';
-    }
+    if(picture !== '') {
+        let extension = '';
+        if(picture.match(/data:image\/jpeg;base64,/)) {
+            extension = '.jpeg';
+        } else if(picture.match(/data:image\/jpg;base64,/)) {
+            extension = '.jpg';
+        } else if(picture.match(/data:image\/png;base64,/)) {
+            extension = '.png';
+        }
 
-    picture = picture.replace('data:image/jpeg;base64,', '')
-                    .replace('data:image/jpg;base64,', '')
-                    .replace('data:image/png;base64,', '');
+        picture = picture.replace('data:image/jpeg;base64,', '')
+                        .replace('data:image/jpg;base64,', '')
+                        .replace('data:image/png;base64,', '');
 
-    const code = uuid();
+        const code = uuid();
 
-    if (userId === -1) {
-        res.json(0);
+        if (userId === -1) {
+            res.json(0);
+        } else {
+            fs.writeFileSync(imagePath + code + extension, picture, {encoding: 'base64'}, function(err) {
+                console.log('File created');
+            });
+            conn.query(sql, [code + extension, userId], (err) => {
+                if (err) {
+                    console.log(err);
+                    res.json(0);
+                } else {
+                    res.json(code + extension);
+                }
+            })
+        }
     } else {
-        fs.writeFileSync(imagePath + code + extension, picture, {encoding: 'base64'}, function(err) {
-            console.log('File created');
-        });
-        conn.query(sql, [code + extension, userId], (err) => {
+        conn.query(sql, ['', userId], (err) => {
             if (err) {
                 console.log(err);
                 res.json(0);
             } else {
-                res.json(code + extension);
+                res.json('');
             }
         })
     }
