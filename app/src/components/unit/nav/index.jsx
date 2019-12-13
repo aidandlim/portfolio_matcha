@@ -41,7 +41,6 @@ const Nav = () => {
 	const _handledLogout = () => {
 		axios.get('/auth/out')
 		.then((res) => {
-			console.log(res.data);
 			if(res.data) {
 				dispatch(user_data({}));
 			}

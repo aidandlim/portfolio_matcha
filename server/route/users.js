@@ -52,7 +52,7 @@ module.exports.select = (req, res) => {
 //
 
 module.exports.update = (req, res) => {
-    const sql = 'UPDATE users SET first_name = ?, last_name = ?, birth_year = ?, gender = ?, preference = ? WHERE id = ?';
+    const sql = 'UPDATE users SET first_name = ?, last_name = ?, birth_year = ?, gender = ?, preference_gender = ? WHERE id = ?';
 
     const userId = req.session.userId;
     const data = req.body;
@@ -60,7 +60,7 @@ module.exports.update = (req, res) => {
     if (userId === -1) {
         res.json(0);
     } else {
-        conn.query(sql, [data.first_name, data.last_name, data.birth_year, data.gender, data.preference, userId], (err) => {
+        conn.query(sql, [data.first_name, data.last_name, data.birth_year, data.gender, data.preference_gender, userId], (err) => {
             if (err) {
                 console.log(err);
                 res.json(0);

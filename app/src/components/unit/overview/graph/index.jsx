@@ -9,7 +9,7 @@ const Graph = ({ graphData }) => {
         <div className='overview-graph'>
             <ResponsiveLine
                 data={graphData}
-                margin={{ top: 25, right: 100, bottom: 50, left: 50 }}
+                margin={{ top: 25, right: 100, bottom: 25, left: 50 }}
                 xScale={{ type: 'point' }}
                 yScale={{ type: 'linear', stacked: false, min: 'auto', max: 'auto' }}
                 colors={{ scheme: 'nivo' }}

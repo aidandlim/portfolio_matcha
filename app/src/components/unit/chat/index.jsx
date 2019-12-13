@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { chat_current, ui_detail } from '../../../actions';
+import { chat_current, ui_detail, detail_id } from '../../../actions';
 
 import Message from './message';
 
@@ -14,6 +14,7 @@ const Chat = () => {
 
 	const _handleDetail = () => {
 		dispatch(ui_detail(true));
+		dispatch(detail_id(chat.list[chat.current].id));
 		dispatch(chat_current(-1));
 	}
 	

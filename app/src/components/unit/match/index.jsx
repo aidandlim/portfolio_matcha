@@ -12,6 +12,7 @@ const Match = () => {
 	useEffect(() => {
 		axios.get('/matches')
 		.then((res) => {
+			console.log(res.data);
 			if(res.data.length !== 0) {
 				setMatches(res.data[0]);
 				_handleAppears(res.data[0].id);

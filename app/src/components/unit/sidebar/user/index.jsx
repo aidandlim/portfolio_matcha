@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { ui_notification, chat_current, ui_detail } from '../../../../actions';
+import { ui_notification, chat_current, ui_detail, detail_id } from '../../../../actions';
 
 import { IMAGE } from '../../../../api';
 
@@ -15,6 +15,7 @@ const User = ({ user, index }) => {
 	const _handleCurrentChat = () => {
 		if(!ui.notification) {
 			dispatch(chat_current(index));
+			dispatch(detail_id(user.id));
 		} else {
 			dispatch(ui_notification(false));
 			setTimeout(() => {

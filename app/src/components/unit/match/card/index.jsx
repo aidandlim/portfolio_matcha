@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { useDispatch } from 'react-redux';
-import { match_isDetail } from '../../../../actions';
+import { ui_detail, detail_id } from '../../../../actions';
 
 import axios from 'axios';
 
@@ -58,6 +58,11 @@ const Card = ({ matches, setMatches, newMatches }) => {
 		newMatches();
 	}
 
+	const _handleDetail = () => {
+		dispatch(ui_detail(true));
+		dispatch(detail_id(matches.id));
+	}
+
 	const _handleUnlike = () => {
 		const data = {
 			to: matches.id
@@ -91,7 +96,7 @@ const Card = ({ matches, setMatches, newMatches }) => {
 			<FaArrowAltCircleLeft className='match-card-arrow match-card-arrow-left' onClick={ () => _handleIndex(false, -1) } />
 			<FaArrowAltCircleRight className='match-card-arrow match-card-arrow-right' onClick={ () => _handleIndex(true, -1) } />
 			<FaTimes className='match-card-icon match-card-icon-dislike' onClick={ () => _handleUnlike() } />
-			<FaSearchPlus className='match-card-icon match-card-icon-detail' onClick={ () => dispatch(match_isDetail(true)) }/>
+			<FaSearchPlus className='match-card-icon match-card-icon-detail' onClick={ () => _handleDetail() }/>
 			<FaHeart className='match-card-icon match-card-icon-like' onClick={ () => _handleLike() } />
 		</div>
 	);
