@@ -32,7 +32,7 @@ module.exports.insert = (req, res) => {
             conn.query(sql_delete_likes, [userId, to], (err) => {
                 if (err) {
                     console.log(err);
-                    res.json(0;
+                    res.json(0);
                 } else {
                     res.json(1);
                 }

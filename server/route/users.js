@@ -11,9 +11,9 @@ const URL = require('../const');
 
 module.exports.select = (req, res) => {
     const userId = parseInt(req.query.userId) === -1 ? req.session.userId : parseInt(req.query.userId);
-    const distance = req.query.distance;
+    const position = req.query;
 
-    if (distance === undefined) {
+    if (position.latitude === undefined) {
         const sql = 'SELECT id, email, last_name, first_name, birth_year, gender, preference_gender, preference_min_age, preference_max_age, preference_max_distance, address, latitude, longitude, bio, picture1, picture2, picture3, picture4, picture5, notification FROM users WHERE id = ?';
 
         conn.query(sql, [userId], (err, results) => {
@@ -25,25 +25,16 @@ module.exports.select = (req, res) => {
             }
         })
     } else {
-        const sql_select_user = 'SELECT latitude, longitude FROM users WHERE id = ?';
-        const sql_select_target = 'SELECT id, last_name, first_name, picture1, latitude, longitude, (6371*acos(cos(radians(?))*cos(radians(latitude))*cos(radians(longitude)-radians(?))+sin(radians(?))*sin(radians(latitude)))) AS distance FROM users WHERE id != ? HAVING distance <= (? * 0.625) ORDER BY distance';
+        const sql = 'SELECT id, last_name, first_name, birth_year, gender, preference_gender, preference_min_age, preference_max_age, preference_max_distance, address, latitude, longitude, bio, picture1, picture2, picture3, picture4, picture5, notification, (6371*acos(cos(radians(?))*cos(radians(latitude))*cos(radians(longitude)-radians(?))+sin(radians(?))*sin(radians(latitude))))*1.6 AS distance FROM users WHERE id NOT IN (SELECT `to` FROM appears WHERE `from` = ?) AND id NOT IN (SELECT `to` FROM visits WHERE `from` = ?) AND id NOT IN (SELECT `to` FROM likes WHERE `from` = ?) AND id NOT IN (SELECT `to` FROM unlikes WHERE `from` = ?) AND id NOT IN (SELECT `to` FROM blocks WHERE `from` = ?) AND id NOT IN (SELECT `to` FROM reports WHERE `from` = ?) AND gender IN (SELECT preference_gender FROM users WHERE id = ?) AND preference_gender IN (SELECT gender FROM users WHERE id = ?) AND year(CURDATE()) - birth_year BETWEEN (SELECT preference_min_age FROM users WHERE id = ?) AND (SELECT preference_max_age FROM users WHERE id = ?) AND id NOT IN (SELECT id FROM users WHERE first_name = \'\' OR last_name = \'\' OR address = \'\' OR picture1 = \'\') AND id != ? HAVING distance <= 50 ORDER BY distance';
 
         const user_Id = req.session.userId;
         
-        conn.query(sql_select_user, [user_Id], (err, results) => {
+        conn.query(sql, [data.latitude, data.longitude, data.latitude, user_Id, user_Id, user_Id, user_Id, user_Id, user_Id, user_Id, user_Id, user_Id, user_Id, user_Id], (err, results) => {
             if (err) {
                 console.log(err);
             } else {
                 results = JSON.parse(JSON.stringify(results));
-
-                conn.query(sql_select_target, [results[0].latitude, results[0].longitude, results[0].latitude, userId, distance], (err, results) => {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        results = JSON.parse(JSON.stringify(results));
-                        res.json(results);
-                    }
-                })
+                res.json(results);
             }
         })
     }

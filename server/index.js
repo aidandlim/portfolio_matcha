@@ -109,4 +109,16 @@ app.get('/api/messages', messages.select);
 
 // 
 
-app.listen(8443, () => console.log('server is running !'));
+const server = app.listen(8443, () => console.log('server is running !'));
+
+const io = require('socket.io').listen(server);
+
+io.sockets.on('connection',function(socket) {
+    socket.emit('toclient',{
+        msg:'Welcome !'
+    });
+    socket.on('fromclient',function(data) {
+        socket.emit('toclient',data);
+        console.log('Message from client :'+data.msg);
+    })
+ });
