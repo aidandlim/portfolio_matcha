@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { user_data, ui_notification, chat_current } from '../../../actions';
+import { user_data, ui_notification, chat_current, detail_data, match_data, chat_list, user_tag1, user_tag2, user_suggest1, user_suggest2 } from '../../../actions';
 
 import axios from 'axios';
 import { IMAGE } from '../../../api';
@@ -36,7 +36,7 @@ const Nav = () => {
 		setNav(index);
 		dispatch(ui_notification(false));
 		dispatch(chat_current(-1));
-		DetailPull(dispatch, -1);
+		dispatch(detail_data({}));
 	}
 
 	const _handledLogout = () => {
@@ -44,6 +44,15 @@ const Nav = () => {
 		.then((res) => {
 			if(res.data) {
 				dispatch(user_data({}));
+				dispatch(ui_notification(false));
+				dispatch(chat_current(-1));
+				dispatch(detail_data({}));
+				dispatch(match_data({}));
+				dispatch(chat_list([]));
+				dispatch(user_tag1([]));
+				dispatch(user_tag2([]));
+				dispatch(user_suggest1([]));
+				dispatch(user_suggest2([]));
 			}
 		});
 	}

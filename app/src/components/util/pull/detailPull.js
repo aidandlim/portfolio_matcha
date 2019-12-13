@@ -7,6 +7,8 @@ const DetailPull = (dispatch, id) => {
         const data = {
             userId: id,
         }
+
+        console.log(data);
         
         axios.get('/users', { params : data })
         .then((res) => {

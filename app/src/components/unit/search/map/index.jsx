@@ -19,17 +19,32 @@ const Map = (props) => {
 	useEffect(() => {
 		const data = {
 			userId: -1,
-			distance: 30
+			latitude: user.data.latitude,
+			longitude: user.data.longitude,
 		}
 
 		axios.get('/users', { params: data} )
 		.then((res) => {
 			setMarkers(res.data);
 		});	
-	}, []);
+	}, [user]);
 
 	const _handleDetail = (id) => {
+		console.log(id);
 		DetailPull(dispatch, id);
+	}
+
+	const _handleDrag = (mapProps, map) => {
+		const data = {
+			userId: -1,
+			latitude: map.center.lat(),
+			longitude: map.center.lng(),
+		}
+
+		axios.get('/users', { params: data} )
+		.then((res) => {
+			setMarkers(res.data);
+		});	
 	}
 
 	return (
@@ -38,12 +53,13 @@ const Map = (props) => {
 			google={props.google}
 			zoom={12}
 			initialCenter={{ lat: user.data.latitude, lng: user.data.longitude }}
+			onDragend={_handleDrag}
 		>
 			{markers.map((marker, index) => 
 				<Marker
 					key={index}
 					position={{lat: marker.latitude, lng: marker.longitude}}
-					onClick={() => _handleDetail(marker.id)} />
+					onClick={() => _handleDetail(marker.id)}/>
 			)}
 		</GoogleMap>
 	);
