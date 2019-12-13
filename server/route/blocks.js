@@ -18,17 +18,25 @@ module.exports.select = (req, res) => {
 //
 
 module.exports.insert = (req, res) => {
-    const sql = 'INSERT INTO blocks (`from`, `to`) values (?, ?)';
+    const sql_insert_blocks = 'INSERT INTO blocks (`from`, `to`) values (?, ?)';
+    const sql_delete_likes = 'DELETE FROM likes WHERE `from` = ? AND `to` = ?';
 
     const userId = req.session.userId;
     const to = req.body.to;
 
-    conn.query(sql, [userId, to], (err) => {
+    conn.query(sql_insert_blocks, [userId, to], (err) => {
         if (err) {
             console.log(err);
             res.json(0);
         } else {
-            res.json(1);
+            conn.query(sql_delete_likes, [userId, to], (err) => {
+                if (err) {
+                    console.log(err);
+                    res.json(0;
+                } else {
+                    res.json(1);
+                }
+            })
         }
     })
 }
