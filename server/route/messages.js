@@ -1,16 +1,29 @@
 const conn = require('../config/db');
 
-module.exports.insert = (req, res) => {
-    let sql = 'INSERT INTO messages (from, to, content, checked) values (?, ?, ?, ?)';
+module.exports.select = (req, res) => {
+    const sql_select_all = 'SELECT content AS messages, DATE_FORMAT(time, "%Y-%m-%d %k:%i") AS time FROM messages WHERE `from` = ? AND `to` = ? ORDER BY time';
+    const sql_select_new = 'SELECT content AS messages, DATE_FORMAT(time, "%Y-%m-%d %k:%i") AS time FROM messages WHERE `from` = ? AND `to` = ? AND checked = 0 ORDER BY time';
 
-    let user = req.body.user;
+    const userId = req.session.userId;
+    const data = req.query;
 
-    conn.query(sql, [], (err, results) => {
-        if (err) {
-            console.log(err);
-        } else {
-            results = JSON.parse(JSON.stringify(results));
-            res.json(results);
-        }
-    })
+    if (data.type === 'all') {
+        conn.query(sql_select_all, [userId, data.target], (err, results) => {
+            if (err) {
+                console.log(err);
+            } else {
+                results = JSON.parse(JSON.stringify(results));
+                res.json(results);
+            }
+        })
+    } else if (data.type === 'new') {
+        conn.query(sql_select_new, [userId, data.target], (err, results) => {
+            if (err) {
+                console.log(err);
+            } else {
+                results = JSON.parse(JSON.stringify(results));
+                res.json(results);
+            }
+        })
+    }
 }

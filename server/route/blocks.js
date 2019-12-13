@@ -1,7 +1,7 @@
 const conn = require('../config/db');
 
 module.exports.select = (req, res) => {
-    const sql = 'SELECT `to` FROM blocks WHERE `from` = ?';
+    const sql = 'SELECT id, first_name, last_name, picture1 FROM users WHERE id IN (SELECT `to` FROM blocks WHERE `from` = ?)';
 
     const userId = req.session.userId;
 
@@ -9,15 +9,8 @@ module.exports.select = (req, res) => {
         if (err) {
             console.log(err);
         } else {
-            let temp = [];
-
             results = JSON.parse(JSON.stringify(results));
-            for (let i = 0; i < results.length; i++) {
-                results[i] = Object.values(results[i]);
-            } for (let i = 0; i < results.length; i++) {
-                temp = temp.concat(results[i]);
-            }
-            res.json(temp);
+            res.json(results);
         }
     })
 }
