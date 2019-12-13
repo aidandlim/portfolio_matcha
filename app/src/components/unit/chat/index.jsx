@@ -1,21 +1,20 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { chat_current, ui_detail, detail_id } from '../../../actions';
+import { chat_current } from '../../../actions';
 
 import Message from './message';
 
 import { FaTimesCircle, FaRegTrashAlt } from "react-icons/fa";
 import './index.css';
+import DetailPull from '../../util/pull/detailPull';
 
 const Chat = () => {
 	const chat = useSelector(state => state.chat);
 	const dispatch = useDispatch();
 
 	const _handleDetail = () => {
-		dispatch(ui_detail(true));
-		dispatch(detail_id(chat.list[chat.current].id));
-		dispatch(chat_current(-1));
+		DetailPull(dispatch, chat.list[chat.current].id);
 	}
 	
 	return (

@@ -63,9 +63,17 @@ const Password = () => {
 			<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
 			<div className='profile-section'>
 				<form name='profile_password' onSubmit={_handleForm}>
-					<input type='password' className='profile-input' name='password' placeholder='New Password' />
-					<input type='password' className='profile-input' name='confirm' placeholder='Confirm Password' />
-					<input type='submit' className='profile-submit' value='UPDATE' />
+					<label className='profile-input-label'>
+						<div className='profile-input-title'>New Password</div>
+						<input type='password' className='profile-input' name='password' />
+					</label>
+					<label className='profile-input-label'>
+						<div className='profile-input-title'>Confirm Password</div>
+						<input type='password' className='profile-input' name='confirm' />
+					</label>
+					<div className='profile-submit-container'>
+						<input type='submit' className='profile-submit' value='UPDATE' />
+					</div>
 				</form>
 			</div>
 		</div>

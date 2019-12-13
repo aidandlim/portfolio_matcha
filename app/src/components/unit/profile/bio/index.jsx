@@ -1,11 +1,10 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { user_data } from '../../../../actions';
 
 import axios from 'axios';
 
-// import Alert from '../../../util/alert';
+import UserPull from '../../../util/pull/userPull';
 
 import '../index.css';
 
@@ -23,9 +22,7 @@ const Bio = () => {
 		axios.put('/users/bio', data)
 		.then(res => {
 			if(res.data) {
-				let result = user.data;
-				result.bio = data.bio;
-				dispatch(user_data(result));
+				UserPull(dispatch);
 			} else {
 				//
 			}

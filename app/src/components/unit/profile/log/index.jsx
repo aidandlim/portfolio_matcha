@@ -20,7 +20,7 @@ const Log = () => {
 			<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
 			<div className='profile-section'>
 				{logs.map((log, index) => 
-					<div className='profile-log-container' key={index}>{log.time}</div>
+					<div className='profile-log-container' key={index}>{log.time}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{log.info}</div>
 				)}
 			</div>
 		</div>

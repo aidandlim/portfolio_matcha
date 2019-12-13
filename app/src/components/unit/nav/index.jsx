@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { user_data, ui_notification, chat_current, ui_detail } from '../../../actions';
+import { user_data, ui_notification, chat_current } from '../../../actions';
 
 import axios from 'axios';
 import { IMAGE } from '../../../api';
@@ -10,6 +10,7 @@ import Menu from './menu';
 
 import { FaLocationArrow, FaUnlink } from "react-icons/fa";
 import './index.css';
+import DetailPull from '../../util/pull/detailPull';
 
 const Nav = () => {
 	const user = useSelector(state => state.user);
@@ -35,7 +36,7 @@ const Nav = () => {
 		setNav(index);
 		dispatch(ui_notification(false));
 		dispatch(chat_current(-1));
-		dispatch(ui_detail(false));
+		DetailPull(dispatch, -1);
 	}
 
 	const _handledLogout = () => {

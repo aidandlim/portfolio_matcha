@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { ui_notification, chat_current, ui_detail } from '../../../actions';
+import { ui_notification, chat_current } from '../../../actions';
 
 import User from './user';
 
@@ -22,15 +22,11 @@ const Sidebar = () => {
 				dispatch(ui_notification(ui.notification ? false : true));
 			}, 500);
 		}
-		dispatch(ui_detail(false));
 	}
 
 	return (
 		<div className='sidebar'>
 			<FaBell className={ ui.notification ? 'sidebar-notification sidebar-notification-active' : 'sidebar-notification' } onClick={() => _handleNotification()} />
-			{/*chat.list.map((chat, index) => 
-				<User key={index} id={index} data={chat} />
-			)*/}
 			{chat.list.map((user, index) => 
 				<User key={index} index={index} user={user}/>
 			)}

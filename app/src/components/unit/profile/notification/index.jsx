@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { user_data } from '../../../../actions';
 
 import axios from 'axios';
 
 import Alert from '../../../util/alert';
+import UserPull from '../../../util/pull/userPull';
 
 import '../index.css';
 
@@ -14,10 +14,12 @@ const Notification = () => {
 	const dispatch = useDispatch();
 
 	const _handleNotification = () => {
-		const result = {...user.data};
-		result.notification = !result.notification;
-		dispatch(user_data(result));
-		axios.put('/users/notification');
+		axios.put('/users/notification')
+		.then((res) => {
+			if(res.data) {
+				UserPull(dispatch);
+			}
+		});
 	}
 
 	const _handleConstruction = () => {

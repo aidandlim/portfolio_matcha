@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { chat_list } from '../../../actions';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import axios from 'axios';
+import TagPull from '../../util/pull/tagPull';
+import ChatListPull from '../../util/pull/chatListPull';
+import OverviewPull from '../../util/pull/overviewPull';
+import MatchPull from '../../util/pull/matchPull';
 
 import Nav from '../../unit/nav';
 import Sidebar from '../../unit/sidebar';
@@ -24,17 +26,17 @@ const Core = () => {
 	const ui = useSelector(state => state.ui);
 	const user = useSelector(state => state.user);
 	const chat = useSelector(state => state.chat);
+	const detail = useSelector(state => state.detail);
 
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		const data = {
-			type: 'chat'
-		}
-		axios.get('/likes', { params: data})
-		.then((res) => {
-			dispatch(chat_list(res.data));
-		});
+		TagPull(dispatch);
+		ChatListPull(dispatch);
+		OverviewPull(dispatch, 0);
+		OverviewPull(dispatch, 1);
+		OverviewPull(dispatch, 2);
+		MatchPull(dispatch);
 	}, [dispatch]);
 
 	return (
@@ -49,7 +51,7 @@ const Core = () => {
 						{user.isComplete ? <Route path='/search' component={Search} /> : ''}
 					</Switch>
 					{!user.isComplete ? <div className='announcement'>After you have completed your profile, you will be able to access a matching service.</div> : '' }
-					{ ui.detail ? <Detail /> : '' }
+					{ detail.data.id !== undefined ? <Detail /> : '' }
 				</div>
 				<Chat />
 				<Notification />

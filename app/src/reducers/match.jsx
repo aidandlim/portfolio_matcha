@@ -1,10 +1,10 @@
-const detail = {
+const match = {
     data: {}
 }
 
-const detailReducer = (state = detail, action) => {
+const matchReducer = (state = match, action) => {
     switch (action.type) {
-        case 'DETAIL_DATA':
+        case 'MATCH_DATA':
             return Object.assign({}, state, {
                 data: action.payload
             });
@@ -13,4 +13,4 @@ const detailReducer = (state = detail, action) => {
     }
 }
 
-export default detailReducer;
+export default matchReducer;
