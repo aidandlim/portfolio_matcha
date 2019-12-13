@@ -11,12 +11,11 @@ const URL = require('../const');
 
 module.exports.select = (req, res) => {
     const userId = parseInt(req.query.userId) === -1 ? req.session.userId : parseInt(req.query.userId);
+    const user_Id = req.session.userId;
     const position = req.query;
 
     if (position.latitude === undefined) {
         const sql = 'SELECT id, email, last_name, first_name, birth_year, gender, preference_gender, preference_min_age, preference_max_age, preference_max_distance, address, latitude, longitude, bio, picture1, picture2, picture3, picture4, picture5, notification, (SELECT id FROM likes WHERE `from` = ? AND `to` = ?) as isLike FROM users WHERE id = ?';
-
-        const user_Id = req.session.userId;
 
         conn.query(sql, [user_Id, userId, userId], (err, results) => {
             if (err) {
@@ -28,8 +27,6 @@ module.exports.select = (req, res) => {
         })
     } else {
         const sql = 'SELECT id, last_name, first_name, birth_year, gender, preference_gender, preference_min_age, preference_max_age, preference_max_distance, address, latitude, longitude, bio, picture1, picture2, picture3, picture4, picture5, notification, (6371*acos(cos(radians(?))*cos(radians(latitude))*cos(radians(longitude)-radians(?))+sin(radians(?))*sin(radians(latitude))))*1.6 AS distance FROM users WHERE id NOT IN (SELECT `to` FROM appears WHERE `from` = ?) AND id NOT IN (SELECT `to` FROM visits WHERE `from` = ?) AND id NOT IN (SELECT `to` FROM likes WHERE `from` = ?) AND id NOT IN (SELECT `to` FROM unlikes WHERE `from` = ?) AND id NOT IN (SELECT `to` FROM blocks WHERE `from` = ?) AND id NOT IN (SELECT `to` FROM reports WHERE `from` = ?) AND gender IN (SELECT preference_gender FROM users WHERE id = ?) AND preference_gender IN (SELECT gender FROM users WHERE id = ?) AND year(CURDATE()) - birth_year BETWEEN (SELECT preference_min_age FROM users WHERE id = ?) AND (SELECT preference_max_age FROM users WHERE id = ?) AND id NOT IN (SELECT id FROM users WHERE first_name = \'\' OR last_name = \'\' OR address = \'\' OR picture1 = \'\') AND id != ? HAVING distance <= 50*1.6 ORDER BY distance';
-
-        const user_Id = req.session.userId;
         
         conn.query(sql, [position.latitude, position.longitude, position.latitude, user_Id, user_Id, user_Id, user_Id, user_Id, user_Id, user_Id, user_Id, user_Id, user_Id, user_Id], (err, results) => {
             if (err) {
