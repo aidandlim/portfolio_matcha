@@ -1,14 +1,18 @@
 import React from 'react';
 
+import { useSelector } from 'react-redux';
+
 import { ResponsiveLine } from '@nivo/line';
 
 import '../index.css';
 
-const Graph = ({ graphData }) => {
+const Graph = () => {
+    const overview = useSelector(state => state.overview);
+
     return (
         <div className='overview-graph'>
             <ResponsiveLine
-                data={graphData}
+                data={overview.graph}
                 margin={{ top: 25, right: 100, bottom: 25, left: 50 }}
                 xScale={{ type: 'point' }}
                 yScale={{ type: 'linear', stacked: false, min: 'auto', max: 'auto' }}

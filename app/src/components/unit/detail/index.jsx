@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { ui_detail } from '../../../actions';
 
 import axios from 'axios';
+
+import ChatListPull from '../../util/pull/chatListPull';
+import OverviewPull from '../../util/pull/overviewPull';
+import DetailPull from '../../util/pull/detailPull';
 
 import { IMAGE } from '../../../api';
 
@@ -14,38 +17,64 @@ const Detail = () => {
 	const detail = useSelector(state => state.detail);
 	const dispatch = useDispatch();
 
-	const [user, setUser] = useState({});
-
 	useEffect(() => {
-		const data = {
-			userId: detail.id
-		}
-
-		axios.get('/users', { params: data })
-		.then((res) => {
-			setUser(res.data[0]);
-			axios.post('/visits', { to: res.data[0].id });
-		});
+		axios.post('/visits', { to: detail.data.id });
 	}, [detail]);
 
+	const _handleFollow = (type) => {
+		if(type) {
+			const data = {
+				to: detail.data.id
+			}
+
+			axios.post('/likes', data)
+			.then(() => {
+				ChatListPull(dispatch);
+				OverviewPull(dispatch, 1);
+				DetailPull(dispatch, detail.data.id);
+			});
+		} else {
+			const data = {
+				id: detail.data.isLike
+			}
+
+			axios.delete('/likes', { params : data })
+			.then(() => {
+				ChatListPull(dispatch);
+				OverviewPull(dispatch, 1);
+				DetailPull(dispatch, detail.data.id);
+			});
+		}
+	}
+
 	const _handleExit = () => {
-		dispatch(ui_detail(false));
+		DetailPull(dispatch, -1);
 	}
 
 	return (
 		<div className='detail'>
 			<div className='frame'>
 				<div className='frame-header'>
-					<div className='frame-title'>{user.first_name}'s Profile</div>
+					<div className='frame-title'>
+						<div className='detail-title'>
+							{detail.data.first_name}'s Profile
+						</div>
+						{detail.data.isLike === null 
+							?
+							<div className='detail-islike' onClick={ () => _handleFollow(1) }>Follow Now</div>
+							:
+							<div className='detail-islike-active' onClick={ () => _handleFollow(0) }>Followed</div>
+						}
+					</div>
 					<FaRegTimesCircle className='frame-exit' onClick={ () => _handleExit() }/>
 				</div>
 				<div className='frame-body'>
 					<div className='detail'>
 						{
-							user.picture1 !== ''
+							detail.data.picture1 !== undefined && detail.data.picture1 !== ''
 							?
 								<div className='profile-image' style={{
-									backgroundImage: `url('${IMAGE}${user.picture1}')`
+									backgroundImage: `url('${IMAGE}${detail.data.picture1}')`
 								}}>
 								
 								</div>
@@ -55,10 +84,10 @@ const Detail = () => {
 								</div>
 						}
 						{
-							user.picture2 !== ''
+							detail.data.picture2 !== undefined && detail.data.picture2 !== ''
 							?
 								<div className='profile-image' style={{
-									backgroundImage: `url('${IMAGE}${user.picture2}')`
+									backgroundImage: `url('${IMAGE}${detail.data.picture2}')`
 								}}>
 									
 								</div>
@@ -68,10 +97,10 @@ const Detail = () => {
 								</div>
 						}
 						{
-							user.picture3 !== ''
+							detail.data.picture3 !== undefined && detail.data.picture3 !== ''
 							?
 								<div className='profile-image' style={{
-									backgroundImage: `url('${IMAGE}${user.picture3}')`
+									backgroundImage: `url('${IMAGE}${detail.data.picture3}')`
 								}}>
 									
 								</div>
@@ -81,10 +110,10 @@ const Detail = () => {
 								</div>
 						}
 						{
-							user.picture4 !== ''
+							detail.data.picture4 !== undefined && detail.data.picture4 !== ''
 							?
 								<div className='profile-image' style={{
-									backgroundImage: `url('${IMAGE}${user.picture4}')`
+									backgroundImage: `url('${IMAGE}${detail.data.picture4}')`
 								}}>
 									
 								</div>
@@ -94,10 +123,10 @@ const Detail = () => {
 								</div>
 						}
 						{
-							user.picture5 !== ''
+							detail.data.picture5 !== undefined && detail.data.picture5 !== ''
 							?
 								<div className='profile-image' style={{
-									backgroundImage: `url('${IMAGE}${user.picture5}')`
+									backgroundImage: `url('${IMAGE}${detail.data.picture5}')`
 								}}>
 									
 								</div>

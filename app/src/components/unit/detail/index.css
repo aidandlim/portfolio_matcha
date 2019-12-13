@@ -10,3 +10,37 @@
 
     z-index: 9;
 }
+
+.detail-title {
+    width: auto;
+    height: 100%;
+    
+    position: relative;
+    float: left;
+}
+
+.detail-islike,
+.detail-islike-active {
+    width: auto;
+    height: auto;
+
+    margin: 0 0.5rem;
+    padding: 0.35rem;
+
+    position: relative;
+    float: left;
+    top: 50%;
+    transform: translate(0, -50%);
+
+    color: var(--color-70);
+    font-size: 0.5rem;
+    font-weight: 900;
+    text-indent: 0;
+    line-height: 100%;
+
+    background-color: white;
+    border-radius: 0.35rem;
+
+    opacity: 0.5;
+
+}

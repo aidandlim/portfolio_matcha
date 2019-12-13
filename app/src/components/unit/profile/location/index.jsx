@@ -1,13 +1,12 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { user_data, user_isComplete } from '../../../../actions';
 
 import axios from 'axios';
-
 import { KEY } from '../../../../api';
 
 import Alert from '../../../util/alert';
+import UserPull from '../../../util/pull/userPull';
 
 import '../index.css';
 
@@ -43,12 +42,7 @@ const Location = () => {
 					axios.put('/users/address', data)
 					.then(res => {
 						if(res.data) {
-							let result = user.data;
-							result.address = data.address;
-							result.latitude = data.latitude;
-							result.longitude = data.longitude;
-							dispatch(user_data(result));
-							document.profile_location.zipcode.value = '';
+							UserPull(dispatch);
 						} else {
 							//
 						}
@@ -77,17 +71,7 @@ const Location = () => {
 				axios.put('/users/address', data)
 				.then(res => {
 					if(res.data) {
-						let result = user.data;
-						result.address = data.address;
-						result.latitude = data.latitude;
-						result.longitude = data.longitude;
-						dispatch(user_data(result));
-						if(result.picture1 !== '' && result.first_name !== '' && result.last_name !== '' && result.address !== '') {
-							dispatch(user_isComplete(true));
-						} else {
-							dispatch(user_isComplete(false));
-						}
-						document.profile_location.zipcode.value = '';
+						UserPull(dispatch);
 					} else {
 						//
 					}
@@ -101,11 +85,19 @@ const Location = () => {
 			<div className='profile-title'>Location</div>
 			<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
 			<div className='profile-section'>
-				<div className='profile-input'>{user.data.address === '' ? 'Unknown' : user.data.address}</div>
 				<form name='profile_location' onSubmit={_handleForm}>
-					<input type='text' className='profile-input' name='zipcode' placeholder='Zip Code' />
-					<input type='submit' className='profile-submit' value='UPDATE' />
-					<input type='button' className='profile-submit' value='SET AS CURRENT LOCATION' onClick={ () => _handleCurrentLocation() } />
+					<label className='profile-input-label'>
+						<div className='profile-input-title'>Current Address</div>
+						<div className='profile-input'>{user.data.address === '' ? 'Unknown' : user.data.address}</div>
+					</label>
+					<label className='profile-input-label'>
+						<div className='profile-input-title'>Zipcode</div>
+						<input type='number' className='profile-input' name='zipcode' />
+					</label>
+					<div className='profile-submit-container'>
+						<input type='submit' className='profile-submit' value='UPDATE' />
+						<input type='button' className='profile-submit' value='SET AS CURRENT LOCATION' onClick={ () => _handleCurrentLocation() } />
+					</div>
 				</form>
 			</div>
 		</div>

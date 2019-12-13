@@ -1,7 +1,7 @@
 const conn = require('../config/db');
 
 module.exports.select = (req, res) => {
-    let sql = 'SELECT DATE_FORMAT(time, "%Y-%m-%d %k:%i") AS time FROM logs WHERE user_id = ? ORDER BY time DESC LIMIT 10';
+    let sql = 'SELECT DATE_FORMAT(time, "%Y-%m-%d %k:%i") AS time, info FROM logs WHERE user_id = ? ORDER BY time DESC LIMIT 10';
 
     let userId = req.session.userId;
 

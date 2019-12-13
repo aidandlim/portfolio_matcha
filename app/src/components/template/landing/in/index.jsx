@@ -10,6 +10,7 @@ import { deviceType, osName, osVersion, browserName, browserVersion } from 'reac
 import Alert from '../../../util/alert';
 
 import '../index.css';
+import UserPull from '../../../util/pull/userPull';
 
 const In = () => {
 	const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const In = () => {
 		axios.get('/auth/in', {params: data})
 		.then(res => {
 			if(res.data === 1) {
-				dispatch(ui_landing(0));
+				UserPull(dispatch);
 			} else if(res.data === 2) {
 				Alert(0, 'email is invalid', 'Okay', null, null);
 			} else if(res.data === 3) {

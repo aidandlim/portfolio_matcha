@@ -37,7 +37,9 @@ const Email = () => {
 			<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
 			<div className='profile-section'>
 				<form name='profile_email' onSubmit={_handleForm}>
-					<input type='email' className='profile-input' name='email' defaultValue={user.data.email} placeholder='Email' />
+					<label className='profile-input-label'>
+						<input type='email' className='profile-input' name='email' defaultValue={user.data.email} />
+					</label>
 					<input type='submit' className='profile-submit' value='UPDATE' />
 				</form>
 			</div>

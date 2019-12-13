@@ -111,11 +111,43 @@
     color: var(--color-10);
 }
 
-.profile-input {
+.profile-input-label,
+.profile-input-label-last {
     width: calc(100% / 3 - 1rem / 3);
-    height: 1.5rem;
+    height: auto;
 
     margin: 0 0.5rem 0.5rem 0;
+
+    position: relative;
+    float: left;
+}
+
+.profile-input-label-last {
+    margin-right: 0;
+}
+
+.profile-input-title {
+    width: 100%;
+    height: 1rem;
+
+    position: relative;
+    float: left;
+
+    color: white;
+    font-size: 0.5rem;
+    font-weight: 900;
+    text-align: center;
+    line-height: 1rem;
+
+    background-color: var(--color-50);
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.profile-input {
+    width: 100%;
+    height: 1.5rem;
+
+    margin: 0;
     padding: 0;
 
     position: relative;
@@ -130,14 +162,8 @@
     background: var(--color-20);
     border: solid 0.01rem var(--color-30);
     box-sizing: border-box;
-}
 
-.profile-input-first {
-    margin-bottom: 0.5rem;
-}
-
-.profile-input-last {
-    margin-right: 0;
+    outline: none;
 }
 
 .profile-textarea {
@@ -160,6 +186,14 @@
     box-sizing: border-box;
 
     resize: none;
+}
+
+.profile-submit-container {
+    width: 100%;
+    height: auto;
+
+    position: relative;
+    float: left;
 }
 
 .profile-submit {
@@ -202,6 +236,7 @@
 .profile-tag-box {
     width: calc(100% - 1rem);
     height: auto;
+    min-height: 1.5rem;
 
     margin-bottom: 0.5rem;
     padding: 0.5rem 0.5rem 0.25rem 0.5rem;
@@ -212,7 +247,7 @@
     color: #AAAAAA;
     font-size: 0.5rem;
     font-weight: 900;
-    line-height: 1rem;
+    line-height: 1.3rem;
 
     background: var(--color-10);
     border: none;

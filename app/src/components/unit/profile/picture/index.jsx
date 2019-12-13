@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { user_data , user_isComplete} from '../../../../actions';
 
 import axios from 'axios';
 import { IMAGE } from '../../../../api';
+
+import UserPull from '../../../util/pull/userPull';
 
 import { FaPlusCircle, FaRegTimesCircle } from 'react-icons/fa';
 
@@ -39,24 +40,8 @@ const Picture = () => {
 				}
 
 				axios.put('/users/picture', data)
-				.then((res) => {
-					let result = user.data;
-					if(index === 1)
-						result.picture1 = res.data;
-					if(index === 2)
-						result.picture2 = res.data;
-					if(index === 3)
-						result.picture3 = res.data;
-					if(index === 4)
-						result.picture4 = res.data;
-					if(index === 5)
-						result.picture5 = res.data;
-					dispatch(user_data(result));
-					if(result.picture1 !== '' && result.first_name !== '' && result.last_name !== '' && result.address !== '') {
-						dispatch(user_isComplete(true));
-					} else {
-						dispatch(user_isComplete(false));
-					}
+				.then(() => {
+					UserPull(dispatch);
 				});
 				
 				input.value = '';
@@ -73,19 +58,8 @@ const Picture = () => {
 		}
 
 		axios.put('/users/picture', data)
-		.then((res) => {
-			let result = user.data;
-			if(index === 1)
-				result.picture1 = res.data;
-			if(index === 2)
-				result.picture2 = res.data;
-			if(index === 3)
-				result.picture3 = res.data;
-			if(index === 4)
-				result.picture4 = res.data;
-			if(index === 5)
-				result.picture5 = res.data;
-			dispatch(user_data(result));
+		.then(() => {
+			UserPull(dispatch);
 		});
 	}
 

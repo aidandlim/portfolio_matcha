@@ -1,42 +1,36 @@
 import React, { useState, useEffect } from 'react';
 
-import { useDispatch } from 'react-redux';
-import { ui_detail, detail_id } from '../../../../actions';
+import { useSelector, useDispatch } from 'react-redux';
 
 import axios from 'axios';
 
 import { IMAGE } from '../../../../api';
 
+import ChatListPull from '../../../util/pull/chatListPull';
+import OverviewPull from '../../../util/pull/overviewPull';
+import DetailPull from '../../../util/pull/detailPull';
+import MatchPull from '../../../util/pull/matchPull';
+
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight, FaTimes, FaSearchPlus, FaHeart } from 'react-icons/fa';
 
 import '../index.css';
 
-const Card = ({ matches, setMatches, newMatches }) => {
+const Card = () => {
 	const [ index, setIndex ] = useState(0);
+	const match = useSelector(state => state.match);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		_handleImage();
 	});
 
-	const _handleIndex = (toRight, target) => {
-		if(target !== -1) {
-			setIndex(target);
-		} else {
-			if(toRight) {
-				if(0 <= index && index <= 3)
-					setIndex(index + 1);
-				else
-					setIndex(0);
-			} else {
-				if(1 <= index && index <= 4)
-					setIndex(index - 1);
-				else
-					setIndex(4);
-			}
+	useEffect(() => {
+		const data = {
+			to: match.data.id
 		}
-	}
-
+		axios.post('/appears', data);
+	}, [match]);
+	
 	const _handleImage = () => {
 		let images = document.getElementsByClassName('match-card-picture');
 		for(let i = 0; i < images.length; i++) {
@@ -48,51 +42,72 @@ const Card = ({ matches, setMatches, newMatches }) => {
 		}
 	}
 
+	const _handleIndex = (toRight, target) => {
+		if(target !== -1) {
+			setIndex(target);
+		} else {
+			if(toRight) {
+				if(0 <= index && index <= 3)
+				setIndex(index + 1);
+				else
+				setIndex(0);
+			} else {
+				if(1 <= index && index <= 4)
+				setIndex(index - 1);
+				else
+				setIndex(4);
+			}
+		}
+	}
+
 	const _handleLike = () => {
 		const data = {
-			to: matches.id
+			to: match.data.id
 		};
 
-		axios.post('/likes', data);
-
-		newMatches();
+		axios.post('/likes', data)
+		.then(() => {
+			ChatListPull(dispatch);
+			OverviewPull(dispatch, 1);
+			MatchPull(dispatch);
+		});
 	}
 
 	const _handleDetail = () => {
-		dispatch(ui_detail(true));
-		dispatch(detail_id(matches.id));
+		DetailPull(match.data.id);
 	}
 
 	const _handleUnlike = () => {
 		const data = {
-			to: matches.id
+			to: match.data.id
 		};
 
-		axios.post('/unlikes', data);
-
-		newMatches();
+		axios.post('/unlikes', data)
+		.then(() => {
+			MatchPull(dispatch);
+		});
 	}
 
 	return (
 		<div className='match-card'>
 			<div className='match-card-pictures'>
 				<div className='match-card-picture' style={{
-					backgroundImage: `url('${IMAGE}${matches.picture1}')`
+					backgroundImage: `url('${IMAGE}${match.data.picture1}')`
 				}}></div>
 				<div className='match-card-picture' style={{
-					backgroundImage: `url('${IMAGE}${matches.picture2}')`
+					backgroundImage: `url('${IMAGE}${match.data.picture2}')`
 				}}></div>
 				<div className='match-card-picture' style={{
-					backgroundImage: `url('${IMAGE}${matches.picture3}')`
+					backgroundImage: `url('${IMAGE}${match.data.picture3}')`
 				}}></div>
 				<div className='match-card-picture' style={{
-					backgroundImage: `url('${IMAGE}${matches.picture4}')`
+					backgroundImage: `url('${IMAGE}${match.data.picture4}')`
 				}}></div>
 				<div className='match-card-picture' style={{
-					backgroundImage: `url('${IMAGE}${matches.picture5}')`
+					backgroundImage: `url('${IMAGE}${match.data.picture5}')`
 				}}></div>
 			</div>
-			<div className='match-card-title'>{matches.first_name} {matches.last_name} ({matches.age})</div>
+			<div className='match-card-title'>{match.data.first_name} {match.data.last_name} ({match.data.age})</div>
 			<FaArrowAltCircleLeft className='match-card-arrow match-card-arrow-left' onClick={ () => _handleIndex(false, -1) } />
 			<FaArrowAltCircleRight className='match-card-arrow match-card-arrow-right' onClick={ () => _handleIndex(true, -1) } />
 			<FaTimes className='match-card-icon match-card-icon-dislike' onClick={ () => _handleUnlike() } />

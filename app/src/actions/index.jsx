@@ -21,18 +21,39 @@ export const ui_notification = (value) => {
     };
 };
 
-export const ui_detail = (value) => {
-    return {
-        type: 'UI_DETAIL',
-        payload: value
-    };
-};
-
 /***************************************************/
 
 export const user_data = (value) => {
     return {
         type: 'USER_DATA',
+        payload: value
+    };
+};
+
+export const user_tag1 = (value) => {
+    return {
+        type: 'USER_TAG1',
+        payload: value
+    };
+};
+
+export const user_tag2 = (value) => {
+    return {
+        type: 'USER_TAG2',
+        payload: value
+    };
+};
+
+export const user_suggest1 = (value) => {
+    return {
+        type: 'USER_SUGGEST1',
+        payload: value
+    };
+};
+
+export const user_suggest2 = (value) => {
+    return {
+        type: 'USER_SUGGEST2',
         payload: value
     };
 };
@@ -46,9 +67,39 @@ export const user_isComplete = (value) => {
 
 /***************************************************/
 
-export const detail_id = (value) => {
+export const overview_graph = (value) => {
     return {
-        type: 'DETAIL_ID',
+        type: 'OVERVIEW_GRAPH',
+        payload: value
+    };
+};
+
+export const overview_followers = (value) => {
+    return {
+        type: 'OVERVIEW_FOLLOWERS',
+        payload: value
+    };
+};
+
+export const overview_following = (value) => {
+    return {
+        type: 'OVERVIEW_FOLLOWING',
+        payload: value
+    };
+};
+
+export const overview_blocks = (value) => {
+    return {
+        type: 'OVERVIEW_BLOCKS',
+        payload: value
+    };
+};
+
+/***************************************************/
+
+export const detail_data = (value) => {
+    return {
+        type: 'DETAIL_DATA',
         payload: value
     };
 };
@@ -58,13 +109,6 @@ export const detail_id = (value) => {
 export const match_data = (value) => {
     return {
         type: 'MATCH_DATA',
-        payload: value
-    };
-};
-
-export const match_isDetail = (value) => {
-    return {
-        type: 'MATCH_ISDETAIL',
         payload: value
     };
 };
