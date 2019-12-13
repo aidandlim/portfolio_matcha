@@ -1,26 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { match_isDetail } from '../../../../actions';
 
 import axios from 'axios';
+
+import { IMAGE } from '../../../../api';
 
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight, FaTimes, FaSearchPlus, FaHeart } from 'react-icons/fa';
 
 import '../index.css';
 
-const Card = () => {
-	const match = useSelector(state => state.match);
+const Card = ({ matches, setMatches, newMatches }) => {
+	const [ index, setIndex ] = useState(0);
 	const dispatch = useDispatch();
 
-	const [ index, setIndex ] = useState(0);
-
 	useEffect(() => {
-		const data = {
-			to: match.data.id
-		}
-
-		axios.post('appears', { params : data });
 		_handleImage();
 	});
 
@@ -55,57 +50,47 @@ const Card = () => {
 
 	const _handleLike = () => {
 		const data = {
-			to: match.id
+			to: matches.id
 		};
 
-		axios.post('/likes', data)
-		.then(res => {
-			if(res.data) {
-				// 
-			} else {
-				//
-			}
-		});
+		axios.post('/likes', data);
+
+		newMatches();
 	}
 
-	const _handleDislike = () => {
+	const _handleUnlike = () => {
 		const data = {
-			to: match.id
+			to: matches.id
 		};
 
-		axios.post('/dislikes', data)
-		.then(res => {
-			if(res.data) {
-				// 
-			} else {
-				//
-			}
-		});
+		axios.post('/unlikes', data);
+
+		newMatches();
 	}
 
 	return (
 		<div className='match-card'>
 			<div className='match-card-pictures'>
 				<div className='match-card-picture' style={{
-					backgroundImage: 'url(\'' + match.data.picture1 + '\')'
-				}}>{match.data.picture1}</div>
+					backgroundImage: `url('${IMAGE}${matches.picture1}')`
+				}}></div>
 				<div className='match-card-picture' style={{
-					backgroundImage: 'url(\'' + match.data.picture2 + '\')'
-				}}>{match.data.picture2}</div>
+					backgroundImage: `url('${IMAGE}${matches.picture2}')`
+				}}></div>
 				<div className='match-card-picture' style={{
-					backgroundImage: 'url(\'' + match.data.picture3 + '\')'
-				}}>{match.data.picture3}</div>
+					backgroundImage: `url('${IMAGE}${matches.picture3}')`
+				}}></div>
 				<div className='match-card-picture' style={{
-					backgroundImage: 'url(\'' + match.data.picture4 + '\')'
-				}}>{match.data.picture4}</div>
+					backgroundImage: `url('${IMAGE}${matches.picture4}')`
+				}}></div>
 				<div className='match-card-picture' style={{
-					backgroundImage: 'url(\'' + match.data.picture5 + '\')'
-				}}>{match.data.picture5}</div>
+					backgroundImage: `url('${IMAGE}${matches.picture5}')`
+				}}></div>
 			</div>
-			<div className='match-card-title'>{match.data.first_name} {match.data.last_name} ({match.data.age})</div>
+			<div className='match-card-title'>{matches.first_name} {matches.last_name} ({matches.age})</div>
 			<FaArrowAltCircleLeft className='match-card-arrow match-card-arrow-left' onClick={ () => _handleIndex(false, -1) } />
 			<FaArrowAltCircleRight className='match-card-arrow match-card-arrow-right' onClick={ () => _handleIndex(true, -1) } />
-			<FaTimes className='match-card-icon match-card-icon-dislike' onClick={ () => _handleDislike() } />
+			<FaTimes className='match-card-icon match-card-icon-dislike' onClick={ () => _handleUnlike() } />
 			<FaSearchPlus className='match-card-icon match-card-icon-detail' onClick={ () => dispatch(match_isDetail(true)) }/>
 			<FaHeart className='match-card-icon match-card-icon-like' onClick={ () => _handleLike() } />
 		</div>

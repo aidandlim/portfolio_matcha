@@ -3,7 +3,7 @@ const mail = require('./mail');
 const conn = require('../config/db');
 
 module.exports.insert = (req, res) => {
-    const sql = 'INSERT INTO unlikes (from, to) values (?, ?)';
+    const sql = 'INSERT INTO unlikes (`from`, `to`) values (?, ?)';
 
     const userId = req.session.userId;
     const to = req.body.to;
