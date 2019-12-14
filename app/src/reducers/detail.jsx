@@ -1,5 +1,7 @@
 const detail = {
-    data: {}
+    data: {},
+    tag1: [],
+    tag2: [],
 }
 
 const detailReducer = (state = detail, action) => {
@@ -7,6 +9,14 @@ const detailReducer = (state = detail, action) => {
         case 'DETAIL_DATA':
             return Object.assign({}, state, {
                 data: action.payload
+            });
+        case 'DETAIL_TAG1':
+            return Object.assign({}, state, {
+                tag1: action.payload
+            });
+        case 'DETAIL_TAG2':
+            return Object.assign({}, state, {
+                tag2: action.payload
             });
         default:
             return state;

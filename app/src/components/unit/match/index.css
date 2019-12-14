@@ -54,6 +54,12 @@
     top: 0;
     left: 0;
 
+    color: var(--color-30);
+    font-size: 0.6rem;
+    font-weight: 900;
+    text-align: center;
+    line-height: 16rem;
+
     background-size: cover;
     background-position: center;
     border-radius: 0.5rem;

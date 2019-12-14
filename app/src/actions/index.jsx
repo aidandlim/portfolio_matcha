@@ -104,6 +104,20 @@ export const detail_data = (value) => {
     };
 };
 
+export const detail_tag1 = (value) => {
+    return {
+        type: 'DETAIL_TAG1',
+        payload: value
+    };
+};
+
+export const detail_tag2 = (value) => {
+    return {
+        type: 'DETAIL_TAG2',
+        payload: value
+    };
+};
+
 /***************************************************/
 
 export const match_data = (value) => {

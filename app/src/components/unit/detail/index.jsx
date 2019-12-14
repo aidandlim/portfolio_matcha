@@ -7,10 +7,11 @@ import axios from 'axios';
 import ChatListPull from '../../util/pull/chatListPull';
 import OverviewPull from '../../util/pull/overviewPull';
 import DetailPull from '../../util/pull/detailPull';
+import MatchPull from '../../util/pull/matchPull';
 
 import { IMAGE } from '../../../api';
 
-import { FaRegTimesCircle } from 'react-icons/fa';
+import { FaRegTimesCircle, FaUserAlt, FaLocationArrow, FaHeart } from 'react-icons/fa';
 import './index.css';
 
 const Detail = () => {
@@ -32,6 +33,7 @@ const Detail = () => {
 				ChatListPull(dispatch);
 				OverviewPull(dispatch, 1);
 				DetailPull(dispatch, detail.data.id);
+				MatchPull(dispatch);
 			});
 		} else {
 			const data = {
@@ -43,6 +45,7 @@ const Detail = () => {
 				ChatListPull(dispatch);
 				OverviewPull(dispatch, 1);
 				DetailPull(dispatch, detail.data.id);
+				MatchPull(dispatch);
 			});
 		}
 	}
@@ -57,7 +60,7 @@ const Detail = () => {
 				<div className='frame-header'>
 					<div className='frame-title'>
 						<div className='detail-title'>
-							{detail.data.first_name}'s Profile
+							{detail.data.first_name} {detail.data.last_name}'s Profile
 						</div>
 						{detail.data.isLike === null 
 							?
@@ -69,7 +72,7 @@ const Detail = () => {
 					<FaRegTimesCircle className='frame-exit' onClick={ () => _handleExit() }/>
 				</div>
 				<div className='frame-body'>
-					<div className='detail'>
+					<div className='detail-picture-container'>
 						{
 							detail.data.picture1 !== undefined && detail.data.picture1 !== ''
 							?
@@ -135,6 +138,30 @@ const Detail = () => {
 									
 								</div>
 						}
+					</div>
+					<div className='detail-info-container'>
+						<FaUserAlt className='detail-info-icon' />
+						<div className='detail-info-content'>Born in {detail.data.birth_year}, 28 years old.</div>
+					</div>
+					<div className='detail-info-container'>
+						<FaLocationArrow className='detail-info-icon' />
+						<div className='detail-info-content'>In {detail.data.address}. 10.0 miles away.</div>
+					</div>
+					<div className='detail-info-container'>
+						<FaHeart className='detail-info-icon' />
+						<div className='detail-info-content'>76%</div>
+					</div>
+					<div className='detail-tag-title'>I am ...</div>
+					<div className='detail-tag-container'>
+						{detail.tag1.length !== 0 ? detail.tag1.map((tag, index) => 
+							<div className='detail-tag' key={index}>{tag.tag}</div>
+						) : 'There is no tag yet!'}
+					</div>
+					<div className='detail-tag-title'>I am looking for ...</div>
+					<div className='detail-tag-container'>
+						{detail.tag2.length !== 0 ? detail.tag2.map((tag, index) => 
+							<div className='detail-tag' key={index}>{tag.tag}</div>
+						) : 'There is no tag yet!'}
 					</div>
 				</div>
 			</div>

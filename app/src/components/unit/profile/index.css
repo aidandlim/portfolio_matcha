@@ -70,6 +70,8 @@
     background-position: center;
     border-radius: 0.5rem;
 
+    background-color: var(--color-10);
+
     cursor: pointer;
 }
 

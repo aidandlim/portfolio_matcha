@@ -1,16 +1,3 @@
-.detail {
-    width: calc(100% - 2rem);
-    height: calc(100% - 2rem);
-
-    padding: 1rem;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    z-index: 9;
-}
-
 .detail-title {
     width: auto;
     height: 100%;
@@ -43,4 +30,109 @@
 
     opacity: 0.5;
 
+}
+
+.detail-picture-container {
+    width: calc(100% - 2rem);
+    height: auto;
+
+    padding: 1rem;
+
+    position: relative;
+    float: left;
+
+    background-color: var(--color-10);
+}
+
+.detail-info-container {
+    width: calc(100% - 2rem);
+    height: auto;
+
+    padding: 1rem 1rem 0.25rem 1rem;
+
+    position: relative;
+    float: left;
+}
+
+.detail-info-icon {
+    width: 0.7rem;
+    height: 0.7rem;
+
+    padding: 0.15rem;
+    margin-right: 0.75rem;
+
+    position: relative;
+    float: left;
+
+    color: var(--color-70);
+}
+
+.detail-info-content {
+    width: calc(100% - 1.75rem);
+    height: 1rem;
+
+    position: relative;
+    float: left;
+
+    color: var(--color-40);
+    font-size: 0.65rem;
+    font-weight: 700;
+    line-height: 1rem;
+}
+
+.detail-tag-container {
+    width: calc(100% - 3rem);
+    height: auto;
+    min-height: 1.5rem;
+
+    margin: 0 1rem;
+    padding: 0.5rem 0.5rem 0 0.5rem;
+
+    position: relative;
+    float: left;
+
+    color: #AAAAAA;
+    font-size: 0.5rem;
+    font-weight: 900;
+    text-align: center;
+    line-height: 1rem;
+
+    background-color: var(--color-10);
+}
+
+.detail-tag-title {
+    width: calc(100% - 2rem);
+    height: 1.5rem;
+
+    margin: 1rem 1rem 0 1rem;
+
+    position: relative;
+    float: left;
+
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 900;
+    text-align: center;
+    line-height: 1.5rem;
+
+    background-color: var(--color-50);
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.detail-tag {
+    width: auto;
+    height: auto;
+
+    padding: 0.25rem;
+    margin:  0 0.25rem 0.5rem 0;
+
+    position: relative;
+    float: left;
+
+    color: var(--color-70);
+    font-size: 0.65rem;
+    font-weight: 900;
+
+    background-color: white;
+    border-radius: 0.35rem;
 }

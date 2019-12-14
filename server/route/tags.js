@@ -35,6 +35,26 @@ module.exports.select = (req, res) => {
                 res.json(results);
             }
         })
+    } else if (data.type === 'other') {
+        conn.query(sql_select_myself, [data.userId], (err, results1) => {
+            if (err) {
+                console.log(err);
+            } else {
+                conn.query(sql_select_preference, [data.userId], (err, results2) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        results1 = JSON.parse(JSON.stringify(results1));
+                        results2 = JSON.parse(JSON.stringify(results2));
+                        const returnValue = {
+                            user: results1,
+                            other: results2
+                        }
+                        res.json(returnValue);
+                    }
+                })
+            }
+        })
     }
 }
 

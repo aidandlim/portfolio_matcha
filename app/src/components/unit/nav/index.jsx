@@ -10,7 +10,6 @@ import Menu from './menu';
 
 import { FaLocationArrow, FaUnlink } from "react-icons/fa";
 import './index.css';
-import DetailPull from '../../util/pull/detailPull';
 
 const Nav = () => {
 	const user = useSelector(state => state.user);

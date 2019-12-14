@@ -37,6 +37,8 @@
 
     background-size: cover;
     background-position: center;
+
+    cursor: pointer;
 }
 
 .overview-follow-card:nth-child(5n) {
