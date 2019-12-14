@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import axios from 'axios';
+import { socket } from '../../template/core';
 
 import ChatListPull from '../../util/pull/chatListPull';
 import OverviewPull from '../../util/pull/overviewPull';
@@ -15,21 +16,19 @@ import { FaRegTimesCircle, FaUserAlt, FaLocationArrow, FaHeart } from 'react-ico
 import './index.css';
 
 const Detail = () => {
+	const user = useSelector(state => state.user);
 	const detail = useSelector(state => state.detail);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		axios.post('/visits', { to: detail.data.id });
-	}, [detail]);
+		socket.emit('visits', user.data.id, detail.data.id, () => {
+			//
+		});
+	}, [user.data.id, detail.data.id]);
 
 	const _handleFollow = (type) => {
 		if(type) {
-			const data = {
-				to: detail.data.id
-			}
-
-			axios.post('/likes', data)
-			.then(() => {
+			socket.emit('likes', user.data.id, detail.data.id, () => {
 				ChatListPull(dispatch);
 				OverviewPull(dispatch, 1);
 				DetailPull(dispatch, detail.data.id);

@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
+import io from 'socket.io-client';
+
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import TagPull from '../../util/pull/tagPull';
@@ -22,6 +24,8 @@ import Search from '../../unit/search';
 
 import './index.css';
 
+export let socket;
+
 const Core = () => {
 	const ui = useSelector(state => state.ui);
 	const user = useSelector(state => state.user);
@@ -38,6 +42,24 @@ const Core = () => {
 		OverviewPull(dispatch, 2);
 		MatchPull(dispatch);
 	}, [dispatch]);
+
+	const ENDPOINT = 'http://localhost:8443';
+
+	useEffect(() => {
+		socket = io(ENDPOINT);
+
+		socket.emit('join', user.data.id, (message) => {
+			console.log(message);
+		});
+
+		socket.on('notification', () => {
+			console.log('notification has arrived');
+		});
+
+		socket.on('message', () => {
+			console.log('message has arrived');
+		});
+	}, [user.data.id]);
 
 	return (
 		<Router>

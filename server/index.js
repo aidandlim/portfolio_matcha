@@ -109,16 +109,61 @@ app.get('/api/messages', messages.select);
 
 // 
 
-const server = app.listen(8443, () => console.log('server is running !'));
+const http = require('http');
+const socketio = require('socket.io');
+const server = http.createServer(app);
+const io = socketio(server);
 
-const io = require('socket.io').listen(server);
+const { addUser, removeUser, getUser } = require('./container');
 
-io.sockets.on('connection',function(socket) {
-    socket.emit('toclient',{
-        msg:'Welcome !'
+io.on('connection', (socket) => {
+    socket.on('join', (id) => {
+        addUser({ socketId: socket.id, userId: id });
     });
-    socket.on('fromclient',function(data) {
-        socket.emit('toclient',data);
-        console.log('Message from client :'+data.msg);
-    })
- });
+
+    socket.on('appears', (from, to, callback) => {
+        const user = getUser(to);
+        if(user) {
+            io.to(user.socketId).emit('notification');
+        }
+        // appears.insert(from, to, callback);
+    });
+    
+    socket.on('visits', (from, to, callback) => {
+        const user = getUser(to);
+        if(user) {
+            io.to(user.socketId).emit('notification');
+        }
+        // visits.insert(from, to, callback);
+    });
+
+    socket.on('likes', (from, to, callback) => {
+        const user = getUser(to);
+        if(user) {
+            io.to(user.socketId).emit('notification');
+        }
+        // likes.insert(from, to, callback);
+    });
+
+    socket.on('unlikes', (from, to, callback) => {
+        const user = getUser(to);
+        if(user) {
+            io.to(user.socketId).emit('notification');
+        }
+        // unlikes.insert(from, to, callback);
+    });
+
+    socket.on('message', (from, to, content, callback) => {
+        const user = getUser(to);
+        if(user) {
+            io.to(user.socketId).emit('message');
+        }
+        // messages.insert(from, to, content, callback);
+    });
+
+    socket.on('disconnect', (id) => {
+        removeUser(id);
+    });
+});
+
+server.listen(8443, () => console.log(`Server has started on port 8443`));

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import axios from 'axios';
+import { socket } from '../../../template/core';
 
 import { IMAGE } from '../../../../api';
 
@@ -17,6 +18,8 @@ import '../index.css';
 
 const Card = () => {
 	const [ index, setIndex ] = useState(0);
+
+	const user = useSelector(state => state.user);
 	const match = useSelector(state => state.match);
 	const dispatch = useDispatch();
 
@@ -59,12 +62,7 @@ const Card = () => {
 	}
 
 	const _handleLike = () => {
-		const data = {
-			to: match.data.id
-		};
-
-		axios.post('/likes', data)
-		.then(() => {
+		socket.emit('likes', user.data.id, match.data.id, () => {
 			ChatListPull(dispatch);
 			OverviewPull(dispatch, 1);
 			MatchPull(dispatch);
@@ -76,12 +74,7 @@ const Card = () => {
 	}
 
 	const _handleUnlike = () => {
-		const data = {
-			to: match.data.id
-		};
-
-		axios.post('/unlikes', data)
-		.then(() => {
+		socket.emit('unlikes', user.data.id, match.data.id, () => {
 			MatchPull(dispatch);
 		});
 	}

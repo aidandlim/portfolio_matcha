@@ -19,6 +19,7 @@ import './index.css';
 
 const Profile = () => {
 	const [nav, setNav] = useState(0);
+
 	return (
 		<div className='frame'>
 			<div className='frame-header'>

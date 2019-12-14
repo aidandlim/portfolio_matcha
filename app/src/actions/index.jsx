@@ -158,3 +158,12 @@ export const chat_current = (value) => {
         payload: value
     };
 };
+
+/***************************************************/
+
+export const socket = (value) => {
+    return {
+        type: 'SOCKET',
+        payload: value
+    };
+};
