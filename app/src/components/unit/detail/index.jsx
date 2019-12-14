@@ -21,18 +21,24 @@ const Detail = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		socket.emit('visits', user.data.id, detail.data.id, () => {
-			//
+		socket.emit('visits', user.data.id, detail.data.id, (result) => {
+			if(result === -1) {
+				// session is invalid
+			}
 		});
 	}, [user.data.id, detail.data.id]);
 
 	const _handleFollow = (type) => {
 		if(type) {
-			socket.emit('likes', user.data.id, detail.data.id, () => {
-				ChatListPull(dispatch);
-				OverviewPull(dispatch, 1);
-				DetailPull(dispatch, detail.data.id);
-				MatchPull(dispatch);
+			socket.emit('likes', user.data.id, detail.data.id, (result) => {
+				if(result === -1) {
+					// session is invalid
+				} else {
+					ChatListPull(dispatch);
+					OverviewPull(dispatch, 1);
+					DetailPull(dispatch, detail.data.id);
+					MatchPull(dispatch);
+				}
 			});
 		} else {
 			const data = {

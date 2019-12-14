@@ -2,6 +2,7 @@ const mail = require('./mail');
 
 const conn = require('../config/db');
 
+/*
 module.exports.insert = (req, res) => {
     const sql = 'INSERT INTO appears (`from`, `to`) values (?, ?)';
 
@@ -23,6 +24,31 @@ module.exports.insert = (req, res) => {
                     results = JSON.parse(JSON.stringify(results));
                     mail.notification('appear', userId, results[0].email);
                     res.json(1);
+                }
+            })
+        }
+    })
+}
+*/
+
+module.exports.insert = (from, to, callback) => {
+    const sql = 'INSERT INTO appears (`from`, `to`) values (?, ?)';
+
+    conn.query(sql, [from, to], (err) => {
+        if (err) {
+            console.log(err);
+            callback(0);
+        } else {
+            const sql_select_to = 'SELECT email FROM users WHERE id = ?';
+
+            conn.query(sql_select_to, [to], (err, results) => {
+                if (err) {
+                    console.log(err);
+                    callback(0);
+                } else {
+                    results = JSON.parse(JSON.stringify(results));
+                    mail.notification('appear', from, results[0].email);
+                    callback(1);
                 }
             })
         }

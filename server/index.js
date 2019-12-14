@@ -78,18 +78,18 @@ app.post('/api/tags', tags.insert);
 app.delete('/api/tags', tags.delete);
 
 app.put('/api/appears', appears.update);
-app.post('/api/appears', appears.insert);
+// app.post('/api/appears', appears.insert);
 
 app.put('/api/visits', visits.update);
-app.post('/api/visits', visits.insert);
+// app.post('/api/visits', visits.insert);
 
 app.get('/api/likes', likes.select);
 app.put('/api/likes', likes.update);
-app.post('/api/likes', likes.insert);
+// app.post('/api/likes', likes.insert);
 app.delete('/api/likes', likes.delete);
 
 app.put('/api/unlikes', unlikes.update);
-app.post('/api/unlikes', unlikes.insert);
+// app.post('/api/unlikes', unlikes.insert);
 
 app.get('/api/notifications', notifications.select);
 
@@ -118,50 +118,77 @@ const { addUser, removeUser, getUser } = require('./container');
 
 io.on('connection', (socket) => {
     socket.on('join', (id) => {
+        console.log(`connection has created! [ socketId: ${socket.id}, userId: ${id} ]`);
         addUser({ socketId: socket.id, userId: id });
     });
 
     socket.on('appears', (from, to, callback) => {
-        const user = getUser(to);
-        if(user) {
-            io.to(user.socketId).emit('notification');
+        console.log(`appears is called! [ from: ${from}, to: ${to} ]`);
+        if(!getUser(from)) {
+            callback(-1);
+        } else {
+            const user = getUser(to);
+            if(user) {
+                io.to(user.socketId).emit('notification');
+            }
+            appears.insert(from, to, callback);
         }
-        // appears.insert(from, to, callback);
     });
     
     socket.on('visits', (from, to, callback) => {
-        const user = getUser(to);
-        if(user) {
-            io.to(user.socketId).emit('notification');
+        console.log(`visits is called! [ from: ${from}, to: ${to} ]`);
+        if(!getUser(from)) {
+            callback(-1);
+        } else {
+            const user = getUser(to);
+            if(user) {
+                io.to(user.socketId).emit('notification');
+            }
+            visits.insert(from, to, callback);
         }
-        // visits.insert(from, to, callback);
     });
 
     socket.on('likes', (from, to, callback) => {
-        const user = getUser(to);
-        if(user) {
-            io.to(user.socketId).emit('notification');
+        console.log(`likes is called! [ from: ${from}, to: ${to} ]`);
+        if(!getUser(from)) {
+            callback(-1);
+        } else {
+            const user = getUser(to);
+            if(user) {
+                io.to(user.socketId).emit('notification');
+            }
+            likes.insert(from, to, callback);
         }
-        // likes.insert(from, to, callback);
     });
 
     socket.on('unlikes', (from, to, callback) => {
-        const user = getUser(to);
-        if(user) {
-            io.to(user.socketId).emit('notification');
+        console.log(`unlikes is called! [ from: ${from}, to: ${to} ]`);
+        if(!getUser(from)) {
+            callback(-1);
+        } else {
+            const user = getUser(to);
+            if(user) {
+                io.to(user.socketId).emit('notification');
+            }
+            unlikes.insert(from, to, callback);
         }
-        // unlikes.insert(from, to, callback);
     });
 
     socket.on('message', (from, to, content, callback) => {
-        const user = getUser(to);
-        if(user) {
-            io.to(user.socketId).emit('message');
+        console.log(`message is called! [ from: ${from}, to: ${to}, content: ${content} ]`);
+        if(!getUser(from)) {
+            callback(-1);
+        } else {
+            const user = getUser(to);
+            if(user) {
+                io.to(user.socketId).emit('notification');
+            }
+            messages.insert(from, to, content, callback);
         }
-        // messages.insert(from, to, content, callback);
     });
 
     socket.on('disconnect', (id) => {
+        console.log(`disconnect is called! [ id: ${id} ]`);
         removeUser(id);
     });
 });

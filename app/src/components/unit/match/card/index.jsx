@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import axios from 'axios';
 import { socket } from '../../../template/core';
 
 import { IMAGE } from '../../../../api';
@@ -28,11 +27,12 @@ const Card = () => {
 	});
 
 	useEffect(() => {
-		const data = {
-			to: match.data.id
-		}
-		axios.post('/appears', data);
-	}, [match]);
+		socket.emit('appears', user.data.id, match.data.id, (result) => {
+			if(result === -1) {
+				// session is invalid
+			}
+		});
+	}, [user.data.id, match.data.id]);
 	
 	const _handleImage = () => {
 		let images = document.getElementsByClassName('match-card-picture');
@@ -62,10 +62,14 @@ const Card = () => {
 	}
 
 	const _handleLike = () => {
-		socket.emit('likes', user.data.id, match.data.id, () => {
-			ChatListPull(dispatch);
-			OverviewPull(dispatch, 1);
-			MatchPull(dispatch);
+		socket.emit('likes', user.data.id, match.data.id, (result) => {
+			if(result === -1) {
+				// session is invalid
+			} else {
+				ChatListPull(dispatch);
+				OverviewPull(dispatch, 1);
+				MatchPull(dispatch);
+			}
 		});
 	}
 
@@ -74,8 +78,12 @@ const Card = () => {
 	}
 
 	const _handleUnlike = () => {
-		socket.emit('unlikes', user.data.id, match.data.id, () => {
-			MatchPull(dispatch);
+		socket.emit('unlikes', user.data.id, match.data.id, (result) => {
+			if(result === -1) {
+				// session is invalid
+			} else {
+				MatchPull(dispatch);
+			}
 		});
 	}
 

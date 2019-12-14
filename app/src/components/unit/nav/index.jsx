@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { user_data, ui_notification, chat_current, detail_data, match_data, chat_list, user_tag1, user_tag2, user_suggest1, user_suggest2 } from '../../../actions';
 
-import axios from 'axios';
+import socket from '../../template/core';
 import { IMAGE } from '../../../api';
 
 import Menu from './menu';
@@ -39,9 +39,10 @@ const Nav = () => {
 	}
 
 	const _handledLogout = () => {
-		axios.get('/auth/out')
-		.then((res) => {
-			if(res.data) {
+		socket.emit('disconnect', user.data.id, (result) => {
+			if(result === -1) {
+				// session is invalid
+			} else {
 				dispatch(user_data({}));
 				dispatch(ui_notification(false));
 				dispatch(chat_current(-1));
