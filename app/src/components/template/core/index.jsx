@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { ui_nav, detail_data, chat_current } from '../../../actions';
+import { ui_nav, detail_data, chat_current, notification_count } from '../../../actions';
 
 import io from 'socket.io-client';
 
@@ -9,7 +9,6 @@ import Tag_P from '../../util/pull/tag';
 import Chat_P from '../../util/pull/chat';
 import Messages_P from '../../util/pull/messages';
 import Overview_P from '../../util/pull/overview';
-import Match_P from '../../util/pull/match';
 import Notification_P from '../../util/pull/notification';
 
 import Nav from '../../unit/nav';
@@ -33,6 +32,7 @@ const Core = () => {
 	const user = useSelector(state => state.user);
 	const detail = useSelector(state => state.detail);
 	const chat = useSelector(state => state.chat);
+	const notification = useSelector(state => state.notification);
 
 	const dispatch = useDispatch();
 
@@ -42,7 +42,6 @@ const Core = () => {
 		Overview_P(dispatch, 0);
 		Overview_P(dispatch, 1);
 		Overview_P(dispatch, 2);
-		Match_P(dispatch);
 		Notification_P(dispatch);
 	}, [dispatch, user.data.id]);
 
@@ -52,20 +51,16 @@ const Core = () => {
 		socket = io(ENDPOINT);
 
 		socket.emit('join', user.data.id, () => {
-			// console.log(message);
+			
 		});
 
 		socket.on('notification', ({ type }) => {
-			// console.log('notification has arrived');
 			Notification_P(dispatch);
-			if(type === 'likes' || type === 'blocks')
-				Chat_P(dispatch);
 		});
 	}, [dispatch, user.data.id]);
 
 	useEffect(() => {
 		socket.on('message', () => {
-			// console.log('message has arrived', from);
 			Chat_P(dispatch);
 			if(chat.current !== -1)
 				Messages_P(dispatch, chat.list[chat.current].id);
@@ -75,6 +70,9 @@ const Core = () => {
 	const _handleNav = (index) => {
 		dispatch(chat_current(-1));
 		dispatch(detail_data({}));
+		if(index === 5) {
+			dispatch(notification_count(0));
+		}
 		dispatch(ui_nav(index));
 	}
 
@@ -95,8 +93,8 @@ const Core = () => {
 					<FaComment className={ui.nav === 4 ? 'core-nav-chat-active' : 'core-nav-chat'} onClick={ () => _handleNav(4)} />
 					<div className={ui.nav === 5 ? 'core-nav-decoration-top-active' : 'core-nav-decoration-top'} onClick={ () => _handleNav(5)} ></div>
 					<div className={ui.nav === 4 ? 'core-nav-decoration-bottom-active' : 'core-nav-decoration-bottom'} onClick={ () => _handleNav(4)} ></div>
-					<div className='core-nav-icon-top' onClick={ () => _handleNav(5)} >N</div>
-					<div className='core-nav-icon-bottom' onClick={ () => _handleNav(4)} >N</div>
+					{notification.count !== 0 ? <div className='core-nav-icon-top' onClick={ () => _handleNav(5)} >N</div> : null}
+					{chat.list.findIndex((chat) => chat.count !== 0) !== -1 ? <div className='core-nav-icon-bottom' onClick={ () => _handleNav(4)} >N</div> : null}
 				</div>
 			</div>
 	);

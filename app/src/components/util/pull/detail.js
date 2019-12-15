@@ -3,6 +3,7 @@ import { detail_data, detail_tag1, detail_tag2 } from '../../../actions';
 import axios from 'axios';
 
 const DetailPull = (dispatch, id) => {
+    console.log('DetailPull');
     if(id !== -1) {
         const data = {
             userId: id,

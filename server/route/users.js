@@ -16,7 +16,7 @@ module.exports.select = (req, res) => {
         const position = req.query;
 
         if (position.latitude === undefined) {
-            const sql = 'SELECT id, email, last_name, first_name, birth_year, gender, preference_gender, preference_min_age, preference_max_age, preference_max_distance, address, latitude, longitude, bio, picture1, picture2, picture3, picture4, picture5, notification, (SELECT id FROM likes WHERE `from` = ? AND `to` = ?) as isLike FROM users WHERE id = ?';
+            const sql = 'SELECT id, email, last_name, first_name, birth_year, gender, preference_gender, preference_min_age, preference_max_age, preference_max_distance, address, latitude, longitude, bio, picture1, picture2, picture3, picture4, picture5, notification, (SELECT distinct id FROM likes WHERE `from` = ? AND `to` = ?) as isLike FROM users WHERE id = ?';
 
             conn.query(sql, [user_Id, userId, userId], (err, results) => {
                 if (err) {

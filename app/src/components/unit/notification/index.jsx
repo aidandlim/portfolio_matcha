@@ -1,32 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import axios from 'axios';
+import Notification_P from '../../util/pull/notification';
 
 import Message from './message';
 
 import './index.css';
 
 const Notification = () => {
-	const ui = useSelector(state => state.ui);
 	const notification = useSelector(state => state.notification);
+	const dispatch = useDispatch();
 
-	if(ui.notification) {
-		notification.list.map((msg) => {
-			if(msg.type === 'appears') {
-				return axios.put('/appears', { id: msg.id });
-			} else if(msg.type === 'visits') {
-				return axios.put('/visits', { id: msg.id });
-			} else if(msg.type === 'likes') {
-				return axios.put('/likes', { id: msg.id });
-			} else if(msg.type === 'unlikes') {
-				return axios.put('/unlikes', { id: msg.id });
-			} else {
-				return null;
-			}
-		});
-	}
+	useEffect(() => {
+		return () => {
+			axios.put('/notifications')
+			.then((res) => {
+				if(res.data) {
+					Notification_P(dispatch);
+				}
+			});
+		}
+	}, [dispatch]);
 
 	return (
 		<div className='frame-narrow'>

@@ -98,6 +98,7 @@ app.put('/api/unlikes', unlikes.update);
 app.post('/api/unlikes', unlikes.insert);
 
 app.get('/api/notifications', notifications.select);
+app.put('/api/notifications', notifications.update);
 
 app.get('/api/overviews', overviews.select);
 

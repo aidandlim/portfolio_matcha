@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+import Match_P from '../../util/pull/match';
 
 import Card from './card';
 
@@ -8,6 +10,11 @@ import './index.css';
 
 const Match = () => {
 	const match = useSelector(state => state.match);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		Match_P(dispatch);
+	}, [dispatch]);
 
 	return (
 		<div className='match'>

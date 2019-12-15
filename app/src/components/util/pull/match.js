@@ -3,6 +3,7 @@ import { match_data } from '../../../actions';
 import axios from 'axios';
 
 const MatchPull = (dispatch) => {
+    console.log('MatchPull');
     dispatch(match_data({id: -1}));
     axios.get('/matches')
     .then((res) => {

@@ -20,3 +20,42 @@ module.exports.select = (req, res) => {
         res.json(-1);
     }
 }
+
+module.exports.update = (req, res) => {
+    if (req.session.userId !== -1) {
+        const sql_1 = 'UPDATE appears SET checked = 1 WHERE `to` = ?;';
+        const sql_2 = 'UPDATE visits SET checked = 1 WHERE `to` = ?;';
+        const sql_3 = 'UPDATE likes SET checked = 1 WHERE `to` = ?;';
+        const sql_4 = 'UPDATE unlikes SET checked = 1 WHERE `to` = ?;';
+
+        const userId = req.session.userId;
+
+        conn.query(sql_1, [userId, userId, userId, userId], (err, results) => {
+            if (err) {
+                console.log(err);
+            } else {
+                conn.query(sql_2, [userId, userId, userId, userId], (err, results) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        conn.query(sql_3, [userId, userId, userId, userId], (err, results) => {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                conn.query(sql_4, [userId, userId, userId, userId], (err, results) => {
+                                    if (err) {
+                                        console.log(err);
+                                    } else {
+                                        res.json(1);
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
+            }
+        })
+    } else {
+        res.json(-1);
+    }
+}

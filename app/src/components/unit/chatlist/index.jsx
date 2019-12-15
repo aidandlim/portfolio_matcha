@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { chat_current } from '../../../actions';
+import { chat_list, chat_current } from '../../../actions';
 
 import Messages_P from '../../util/pull/messages';
 
@@ -15,6 +15,9 @@ const Chatlist = () => {
 
     const _handleChat = (index) => {
         Messages_P(dispatch, chat.list[index].id);
+        let result = [...chat.list];
+        chat.list[index].count = 0;
+        dispatch(chat_list(result));
         dispatch(chat_current(index));
     }
 
@@ -31,7 +34,7 @@ const Chatlist = () => {
                                 backgroundImage: `url('${IMAGE}${chat.picture1}')`
                             }} onClick={ () => _handleChat(index) }>
                                 <div className='chatlist-name'>{chat.first_name} {chat.last_name}</div>
-                                <div className='chatlist-icon'>N</div>
+                                {chat.count !== 0 ? <div className='chatlist-icon'>N</div> : null}
                             </div>
                         )
                     }

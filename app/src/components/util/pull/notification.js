@@ -3,6 +3,7 @@ import { notification_list, notification_count } from '../../../actions';
 import axios from 'axios';
 
 const NotificationPull = (dispatch) => {
+    console.log('NotificationPull');
     axios.get('/notifications')
     .then((res) => {
         dispatch(notification_list(res.data));
