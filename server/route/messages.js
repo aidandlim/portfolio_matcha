@@ -23,16 +23,14 @@ module.exports.select = (req, res) => {
     const userId = req.session.userId;
     const to = req.query.to;
 
-    if (data.type === 'all') {
-        conn.query(sql, [userId, to, userId, to], (err, results) => {
-            if (err) {
-                console.log(err);
-            } else {
-                results = JSON.parse(JSON.stringify(results));
-                res.json(results);
-            }
-        })
-    }
+    conn.query(sql, [userId, to, userId, to], (err, results) => {
+        if (err) {
+            console.log(err);
+        } else {
+            results = JSON.parse(JSON.stringify(results));
+            res.json(results);
+        }
+    })
 }
 
 //
