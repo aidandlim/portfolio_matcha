@@ -31,7 +31,7 @@ const Card = () => {
 			if(result === -1) {
 				// session is invalid
 			} else {
-				console.log(`Appears call is success!`);
+				// console.log(`Appears call is success!`);
 			}
 		});
 	}, [user.data.id, match.data.id]);
@@ -77,7 +77,7 @@ const Card = () => {
 	}
 
 	const _handleDetail = () => {
-		DetailPull(match.data.id);
+		DetailPull(dispatch, match.data.id);
 	}
 
 	const _handleUnlike = () => {

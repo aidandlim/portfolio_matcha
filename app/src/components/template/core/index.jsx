@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import TagPull from '../../util/pull/tagPull';
 import ChatListPull from '../../util/pull/chatListPull';
+import ChatMessagesPull from '../../util/pull/chatMessagesPull';
 import OverviewPull from '../../util/pull/overviewPull';
 import MatchPull from '../../util/pull/matchPull';
 import NotificationPull from '../../util/pull/notificationPull';
@@ -50,19 +51,26 @@ const Core = () => {
 	useEffect(() => {
 		socket = io(ENDPOINT);
 
-		socket.emit('join', user.data.id, (message) => {
-			console.log(message);
+		socket.emit('join', user.data.id, () => {
+			// console.log(message);
 		});
 
-		socket.on('notification', () => {
-			console.log('notification has arrived');
+		socket.on('notification', ({ type }) => {
+			// console.log('notification has arrived');
 			NotificationPull(dispatch);
+			if(type === 'likes' || type === 'blocks')
+				ChatListPull(dispatch);
 		});
+	}, [dispatch, user.data.id]);
 
+	useEffect(() => {
 		socket.on('message', () => {
-			console.log('message has arrived');
+			// console.log('message has arrived', from);
+			ChatListPull(dispatch);
+			if(chat.current !== -1)
+				ChatMessagesPull(dispatch, chat.list[chat.current].id);
 		});
-	}, [user.data.id, dispatch]);
+	}, [dispatch, chat]);
 
 	return (
 		<Router>

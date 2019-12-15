@@ -119,12 +119,12 @@ app.post('/api/messages', messages.insert);
 
 io.on('connection', (socket) => {
     socket.on('join', (id) => {
-        console.log(`connection has created! [ socketId: ${socket.id}, userId: ${id} ]`);
+        // console.log(`connection has created! [ socketId: ${socket.id}, userId: ${id} ]`);
         addUser({ socketId: socket.id, userId: id });
     });
 
     socket.on('appears', (from, to, callback) => {
-        console.log(`appears is called! [ from: ${from}, to: ${to} ]`);
+        // console.log(`appears is called! [ from: ${from}, to: ${to} ]`);
         if(!getUser(from)) {
             callback(-1);
         } else {
@@ -132,14 +132,14 @@ io.on('connection', (socket) => {
             const user = getUser(to);
             Promise.all([promise]).then(() => {
                 if(user) {
-                    io.to(user.socketId).emit('notification');
+                    io.to(user.socketId).emit('notification', { type: 'appears' });
                 }
             });
         }
     });
     
     socket.on('visits', (from, to, callback) => {
-        console.log(`visits is called! [ from: ${from}, to: ${to} ]`);
+        // console.log(`visits is called! [ from: ${from}, to: ${to} ]`);
         if(!getUser(from)) {
             callback(-1);
         } else {
@@ -147,14 +147,14 @@ io.on('connection', (socket) => {
             const user = getUser(to);
             Promise.all([promise]).then(() => {
                 if(user) {
-                    io.to(user.socketId).emit('notification');
+                    io.to(user.socketId).emit('notification', { type: 'visits' });
                 }
             });
         }
     });
 
     socket.on('likes', (from, to, callback) => {
-        console.log(`likes is called! [ from: ${from}, to: ${to} ]`);
+        // console.log(`likes is called! [ from: ${from}, to: ${to} ]`);
         if(!getUser(from)) {
             callback(-1);
         } else {
@@ -162,14 +162,14 @@ io.on('connection', (socket) => {
             const user = getUser(to);
             Promise.all([promise]).then(() => {
                 if(user) {
-                    io.to(user.socketId).emit('notification');
+                    io.to(user.socketId).emit('notification', { type: 'likes' });
                 }
             });
         }
     });
 
     socket.on('unlikes', (from, to, callback) => {
-        console.log(`unlikes is called! [ from: ${from}, to: ${to} ]`);
+        // console.log(`unlikes is called! [ from: ${from}, to: ${to} ]`);
         if(!getUser(from)) {
             callback(-1);
         } else {
@@ -177,27 +177,29 @@ io.on('connection', (socket) => {
             const user = getUser(to);
             Promise.all([promise]).then(() => {
                 if(user) {
-                    io.to(user.socketId).emit('notification');
+                    io.to(user.socketId).emit('notification', { type: 'unlikes' });
                 }
             });
         }
     });
 
     socket.on('message', (from, to, content, callback) => {
-        console.log(`message is called! [ from: ${from}, to: ${to}, content: ${content} ]`);
+        // console.log(`message is called! [ from: ${from}, to: ${to}, content: ${content} ]`);
         if(!getUser(from)) {
             callback(-1);
         } else {
+            let promise = messages.insert(from, to, content, callback);
             const user = getUser(to);
-            if(user) {
-                io.to(user.socketId).emit('notification');
-            }
-            messages.insert(from, to, content, callback);
+            Promise.all([promise]).then(() => {
+                if(user) {
+                    io.to(user.socketId).emit('message');
+                }
+            });
         }
     });
 
     socket.on('disconnect', (id) => {
-        console.log(`disconnect is called! [ id: ${id} ]`);
+        // console.log(`disconnect is called! [ id: ${id} ]`);
         removeUser(id);
     });
 });

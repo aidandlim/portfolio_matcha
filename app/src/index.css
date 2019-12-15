@@ -41,8 +41,14 @@ input[type="password"],
 input[type="email"],
 input[type="submit"],
 input[type="button"],
+input[type="number"],
+select,
 textarea  {
-    -webkit-appearance: none;
+    border-radius:0;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    outline: none;
 }
 
 select { 

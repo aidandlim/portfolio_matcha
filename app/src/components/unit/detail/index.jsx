@@ -58,6 +58,24 @@ const Detail = () => {
 		}
 	}
 
+	const _handleBlock = () => {
+		const data = {
+			to: detail.data.id
+		}
+		axios.post('/blocks', data)
+		.then(() => {
+			ChatListPull(dispatch);
+			DetailPull(dispatch, detail.data.id);
+		});
+	}
+
+	const _handleReport = () => {
+		const data = {
+			to: detail.data.id
+		}
+		axios.post('/reports', data);
+	}
+
 	const _handleExit = () => {
 		DetailPull(dispatch, -1);
 	}
@@ -170,6 +188,10 @@ const Detail = () => {
 						{detail.tag2.length !== 0 ? detail.tag2.map((tag, index) => 
 							<div className='detail-tag' key={index}>{tag.tag}</div>
 						) : 'There is no tag yet!'}
+					</div>
+					<div className='detail-button-container'>
+						<div className='detail-button' onClick={ () => _handleBlock() }>Block</div>
+						<div className='detail-button' onClick={ () => _handleReport() }>Report</div>
 					</div>
 				</div>
 			</div>

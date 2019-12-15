@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { user_data, ui_notification, chat_current, detail_data, match_data, chat_list, user_tag1, user_tag2, user_suggest1, user_suggest2 } from '../../../actions';
+import { ui_notification, chat_current, detail_data } from '../../../actions';
 
-import socket from '../../template/core';
 import { IMAGE } from '../../../api';
 
 import Menu from './menu';
 
 import { FaLocationArrow, FaUnlink } from "react-icons/fa";
 import './index.css';
+import LogoutPull from '../../util/pull/logoutPull';
 
 const Nav = () => {
 	const user = useSelector(state => state.user);
@@ -39,22 +39,7 @@ const Nav = () => {
 	}
 
 	const _handledLogout = () => {
-		socket.emit('disconnect', user.data.id, (result) => {
-			if(result === -1) {
-				// session is invalid
-			} else {
-				dispatch(user_data({}));
-				dispatch(ui_notification(false));
-				dispatch(chat_current(-1));
-				dispatch(detail_data({}));
-				dispatch(match_data({}));
-				dispatch(chat_list([]));
-				dispatch(user_tag1([]));
-				dispatch(user_tag2([]));
-				dispatch(user_suggest1([]));
-				dispatch(user_suggest2([]));
-			}
-		});
+		LogoutPull(dispatch);
 	}
 
 	return (

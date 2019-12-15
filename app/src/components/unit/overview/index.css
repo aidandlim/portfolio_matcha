@@ -8,9 +8,9 @@
 
 .overview-follow {
     width: calc(100% - 1rem);
-    height: calc(100% - 1rem);
+    height: auto;
 
-    padding: 0.5rem;
+    padding: 0.5rem 0.5rem 0 0.5rem;
 
     position: relative;
     float: left;

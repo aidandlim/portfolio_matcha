@@ -19,7 +19,7 @@ module.exports.insert = (from, to, content, callback) => {
 
 module.exports.select = (req, res) => {
     if (req.session.userId !== -1) {
-        const sql = 'SELECT content AS messages, DATE_FORMAT(time, "%Y-%m-%d %k:%i:%s") AS time , direction FROM (SELECT content, time, 1 AS direction FROM messages WHERE `from` = ? AND `to` = ? UNION SELECT content, time, 0 AS direction FROM messages WHERE `to` = ? AND `from` = ?) results ORDER BY time';
+        const sql = 'SELECT id, content AS messages, DATE_FORMAT(time, "%Y-%m-%d %k:%i:%s") AS time, direction, checked FROM (SELECT id, content, time, 1 AS direction, checked FROM messages WHERE `from` = ? AND `to` = ? UNION SELECT id, content, time, 0 AS direction, checked FROM messages WHERE `to` = ? AND `from` = ?) results ORDER BY time';
 
         const userId = req.session.userId;
         const to = req.query.to;
@@ -41,12 +41,11 @@ module.exports.select = (req, res) => {
 
 module.exports.update = (req, res) => {
     if (req.session.userId !== -1) {
-        const sql = 'UPDATE messages SET checked = 1 WHERE `from` = ? AND `to` = ? AND content = ?';
+        const sql = 'UPDATE messages SET checked = 1 WHERE `from` = ? AND `to` = ?';
 
-        const userId = req.session.userId;
         const data = req.body;
 
-        conn.query(sql, [userId, data.to, data.content], (err) => {
+        conn.query(sql, [data.from, data.to], (err) => {
             if (err) {
                 console.log(err);
                 res.json(0);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { ui_color } from '../../actions';
@@ -19,9 +19,9 @@ const App = () => {
 	const ui = useSelector(state => state.ui);
 	const dispatch = useDispatch();
 
-	if(user.data.id === undefined) {
+	useEffect(() => {
 		UserPull(dispatch);
-	}
+	}, [dispatch, user.data.id]);
 
 	const getColor = cookie.load('theme-color');
 

@@ -2,7 +2,8 @@ import { chat_list } from '../../../actions';
 
 import axios from 'axios';
 
-const UserPull = (dispatch) => {
+const ChatListPull = (dispatch) => {
+    console.log('ChatListPull');
     const data = {
         type: 'chat'
     }
@@ -12,4 +13,4 @@ const UserPull = (dispatch) => {
     });
 }
 
-export default UserPull;
+export default ChatListPull;

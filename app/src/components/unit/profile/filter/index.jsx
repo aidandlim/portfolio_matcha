@@ -47,7 +47,7 @@ const Filter = () => {
 					</label>
 					<label className='profile-input-label-last'>
 						<div className='profile-input-title'>Maximum Distance (Miles)</div>
-						<input type='number' className='profile-input' name='preference_max_distance' defaultValue={user.data.preference_max_distance === -1 ? '' : user.data.preference_max_distance} placeholder='No Matter' />
+						<input type='number' min='0' className='profile-input' name='preference_max_distance' defaultValue={user.data.preference_max_distance} placeholder='No Matter' />
 					</label>
 					<input type='submit' className='profile-submit' value='UPDATE' />
 				</form>

@@ -152,6 +152,13 @@ export const chat_list = (value) => {
     };
 };
 
+export const chat_messages = (value) => {
+    return {
+        type: 'CHAT_MESSAGES',
+        payload: value
+    };
+};
+
 export const chat_current = (value) => {
     return {
         type: 'CHAT_CURRENT',
@@ -164,6 +171,13 @@ export const chat_current = (value) => {
 export const notification_list = (value) => {
     return {
         type: 'NOTIFICATION_LIST',
+        payload: value
+    };
+};
+
+export const notification_count = (value) => {
+    return {
+        type: 'NOTIFICATION_COUNT',
         payload: value
     };
 };

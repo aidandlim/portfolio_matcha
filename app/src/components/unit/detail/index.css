@@ -136,3 +136,30 @@
     background-color: white;
     border-radius: 0.35rem;
 }
+
+.detail-button-container {
+    width: calc(100% - 2rem);
+    height: auto;
+
+    margin: 0.5rem 1rem 0 1rem;
+
+    position: relative;
+    float: left;
+}
+
+.detail-button {
+    width: auto;
+    height: auto;
+
+    padding: 0.5rem;
+    margin: 0.5rem 0.5rem 0.5rem 0;
+
+    position: relative;
+    float: left;
+
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 900;
+
+    background-color: var(--color-70);
+}
