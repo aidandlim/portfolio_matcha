@@ -19,8 +19,7 @@ const Chat = () => {
 	useEffect(() => {
 		if(chat.current !== -1) {
 			const data = {
-				type: 'all',
-				target: chat.list[chat.current].id
+				to: chat.list[chat.current].id
 			}
 			axios.get('/messages', { params: data })
 			.then((res) => {

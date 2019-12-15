@@ -161,9 +161,9 @@ export const chat_current = (value) => {
 
 /***************************************************/
 
-export const socket = (value) => {
+export const notification_list = (value) => {
     return {
-        type: 'SOCKET',
+        type: 'NOTIFICATION_LIST',
         payload: value
     };
 };

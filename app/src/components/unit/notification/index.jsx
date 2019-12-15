@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import { useSelector } from 'react-redux';
 
@@ -10,19 +10,10 @@ import './index.css';
 
 const Notification = () => {
 	const ui = useSelector(state => state.ui);
-	const [messages, setMessages] = useState([]);
-
-	useEffect(() => {
-		axios.get('/notifications')
-		.then(res => {
-			if(res.data) {
-				setMessages(res.data);
-			}
-		});	
-	}, []);
+	const notification = useSelector(state => state.notification);
 
 	if(ui.notification) {
-		messages.map((msg) => {
+		notification.list.map((msg) => {
 			if(msg.type === 'appears') {
 				return axios.put('/appears', { id: msg.id });
 			} else if(msg.type === 'visits') {
@@ -39,8 +30,8 @@ const Notification = () => {
 
 	return (
 		<div className={ui.notification ? 'notification notification-active' : 'notification'}>
-			{messages.length === 0 ? 'There is no notification message' : ''}
-			{messages.map((message, index) => <Message key={index} message={message} />)}
+			{notification.list.length === 0 ? 'There is no notification message' : ''}
+			{notification.list.map((message, index) => <Message key={index} message={message} />)}
 		</div>
 	);
 }

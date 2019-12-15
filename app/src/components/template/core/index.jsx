@@ -10,6 +10,7 @@ import TagPull from '../../util/pull/tagPull';
 import ChatListPull from '../../util/pull/chatListPull';
 import OverviewPull from '../../util/pull/overviewPull';
 import MatchPull from '../../util/pull/matchPull';
+import NotificationPull from '../../util/pull/notificationPull';
 
 import Nav from '../../unit/nav';
 import Sidebar from '../../unit/sidebar';
@@ -41,6 +42,7 @@ const Core = () => {
 		OverviewPull(dispatch, 1);
 		OverviewPull(dispatch, 2);
 		MatchPull(dispatch);
+		NotificationPull(dispatch);
 	}, [dispatch]);
 
 	const ENDPOINT = 'http://localhost:8443';
@@ -54,12 +56,13 @@ const Core = () => {
 
 		socket.on('notification', () => {
 			console.log('notification has arrived');
+			NotificationPull(dispatch);
 		});
 
 		socket.on('message', () => {
 			console.log('message has arrived');
 		});
-	}, [user.data.id]);
+	}, [user.data.id, dispatch]);
 
 	return (
 		<Router>

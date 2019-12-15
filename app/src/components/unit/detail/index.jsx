@@ -24,6 +24,8 @@ const Detail = () => {
 		socket.emit('visits', user.data.id, detail.data.id, (result) => {
 			if(result === -1) {
 				// session is invalid
+			} else {
+				console.log(`Visits call is success!`);
 			}
 		});
 	}, [user.data.id, detail.data.id]);
@@ -34,6 +36,7 @@ const Detail = () => {
 				if(result === -1) {
 					// session is invalid
 				} else {
+					console.log(`Likes call is success!`);
 					ChatListPull(dispatch);
 					OverviewPull(dispatch, 1);
 					DetailPull(dispatch, detail.data.id);

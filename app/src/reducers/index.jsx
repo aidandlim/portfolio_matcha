@@ -6,7 +6,7 @@ import detailReducer from './detail';
 import overviewReducer from './overview';
 import matchReducer from './match';
 import chatReducer from './chat';
-import socketReducer from './socket';
+import notificationReducer from './notification';
 
 const rootReducers = combineReducers({
     ui: uiReducer,
@@ -15,7 +15,7 @@ const rootReducers = combineReducers({
     overview: overviewReducer,
     match: matchReducer,
     chat: chatReducer,
-    socket: socketReducer,
+    notification: notificationReducer,
 })
 
 export default rootReducers;

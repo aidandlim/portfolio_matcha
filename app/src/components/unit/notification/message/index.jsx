@@ -27,7 +27,7 @@ const Message = ({message}) => {
                 {message.type === 'likes' ? `${message.first_name} ${message.last_name} liked you.` : '' }
                 {message.type === 'unlikes' ? `${message.first_name} ${message.last_name} unliked you.` : '' }
             </div>
-            <div className='notification-message-time'>{message.time}</div>
+            <div className='notification-message-time'>{message.formattedTime}</div>
         </div>
 	);
 }

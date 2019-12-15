@@ -128,11 +128,13 @@ io.on('connection', (socket) => {
         if(!getUser(from)) {
             callback(-1);
         } else {
+            let promise = appears.insert(from, to, callback);
             const user = getUser(to);
-            if(user) {
-                io.to(user.socketId).emit('notification');
-            }
-            appears.insert(from, to, callback);
+            Promise.all([promise]).then(() => {
+                if(user) {
+                    io.to(user.socketId).emit('notification');
+                }
+            });
         }
     });
     
@@ -141,11 +143,13 @@ io.on('connection', (socket) => {
         if(!getUser(from)) {
             callback(-1);
         } else {
+            let promise = visits.insert(from, to, callback);
             const user = getUser(to);
-            if(user) {
-                io.to(user.socketId).emit('notification');
-            }
-            visits.insert(from, to, callback);
+            Promise.all([promise]).then(() => {
+                if(user) {
+                    io.to(user.socketId).emit('notification');
+                }
+            });
         }
     });
 
@@ -154,11 +158,13 @@ io.on('connection', (socket) => {
         if(!getUser(from)) {
             callback(-1);
         } else {
+            let promise = likes.insert(from, to, callback);
             const user = getUser(to);
-            if(user) {
-                io.to(user.socketId).emit('notification');
-            }
-            likes.insert(from, to, callback);
+            Promise.all([promise]).then(() => {
+                if(user) {
+                    io.to(user.socketId).emit('notification');
+                }
+            });
         }
     });
 
@@ -167,11 +173,13 @@ io.on('connection', (socket) => {
         if(!getUser(from)) {
             callback(-1);
         } else {
+            let promise = unlikes.insert(from, to, callback);
             const user = getUser(to);
-            if(user) {
-                io.to(user.socketId).emit('notification');
-            }
-            unlikes.insert(from, to, callback);
+            Promise.all([promise]).then(() => {
+                if(user) {
+                    io.to(user.socketId).emit('notification');
+                }
+            });
         }
     });
 

@@ -27,7 +27,9 @@ const User = ({ user, index }) => {
 		<div className='sidebar-user' onClick={ () => _handleCurrentChat() }>
 			<div className={chat.current === index ? 'sidebar-user-picture sidebar-user-picture-active' : 'sidebar-user-picture'} style={{
 				backgroundImage: `url('${IMAGE}${user.picture1}')`
-			}}></div>
+			}}>
+				<div className='sidebar-user-online'></div>
+			</div>
 		</div>
 	);
 }

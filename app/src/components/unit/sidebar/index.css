@@ -66,3 +66,15 @@
     height: 1.6rem;
     border: solid 0.2rem white;
 }
+
+.sidebar-user-online {
+    width: 0.5rem;
+    height: 0.5rem;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background-color: #1DE9B6;
+    border-radius: 50%;
+}

@@ -30,6 +30,8 @@ const Card = () => {
 		socket.emit('appears', user.data.id, match.data.id, (result) => {
 			if(result === -1) {
 				// session is invalid
+			} else {
+				console.log(`Appears call is success!`);
 			}
 		});
 	}, [user.data.id, match.data.id]);
@@ -66,6 +68,7 @@ const Card = () => {
 			if(result === -1) {
 				// session is invalid
 			} else {
+				console.log(`Likes call is success!`);
 				ChatListPull(dispatch);
 				OverviewPull(dispatch, 1);
 				MatchPull(dispatch);
@@ -82,6 +85,7 @@ const Card = () => {
 			if(result === -1) {
 				// session is invalid
 			} else {
+				console.log(`Unlikes call is success!`);
 				MatchPull(dispatch);
 			}
 		});
