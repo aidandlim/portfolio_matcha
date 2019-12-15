@@ -1,5 +1,5 @@
 .profile-container {
-    width: 100%;
+    width: 50%;
     height: auto;
 
     position: relative;
@@ -59,23 +59,27 @@
 }
 
 .profile-image {
-    width: calc(20% - 2rem / 5);
-    padding-top: 26.666%;
-    margin-right: 0.5rem;
+    width: calc(100% / 3 - 1rem / 3);
+    padding-top: 44.444%;
+    margin: 0 0.5rem 0.5rem 0;
 
     position: relative;
     float: left;
 
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     border-radius: 0.5rem;
 
     background-color: var(--color-10);
+    border: solid 0.1rem var(--color-20);
+
+    box-sizing: border-box;
 
     cursor: pointer;
 }
 
-.profile-image:nth-child(5) {
+.profile-image:nth-child(3n) {
     margin-right: 0;
 }
 
@@ -93,10 +97,12 @@
 }
 
 .profile-image-none {
-    width: calc(20% - 2rem / 5 - 0.2rem);
-    padding-top: calc(26.666% - 0.2rem);
+    width: calc(100% / 3 - 1rem / 3);
+    padding-top: 44.444%;
 
     border: dotted 0.1rem var(--color-20);
+
+    box-sizing: border-box;
 
     cursor: pointer;
 }
@@ -115,17 +121,13 @@
 
 .profile-input-label,
 .profile-input-label-last {
-    width: calc(100% / 3 - 1rem / 3);
+    width: 100%;
     height: auto;
 
-    margin: 0 0.5rem 0.5rem 0;
+    margin-bottom: 0.5rem;
 
     position: relative;
     float: left;
-}
-
-.profile-input-label-last {
-    margin-right: 0;
 }
 
 .profile-input-title {
@@ -135,13 +137,12 @@
     position: relative;
     float: left;
 
-    color: white;
+    color: var(--color-50);
     font-size: 0.5rem;
     font-weight: 900;
-    text-align: center;
+    text-align: left;
     line-height: 1rem;
 
-    background-color: var(--color-50);
     border-radius: 0.25rem 0.25rem 0 0;
 }
 
@@ -217,7 +218,7 @@
 
 .profile-log-container {
     width: 100%;
-    height: 1.5rem;
+    height: 1.25rem;
 
     position: relative;
     float: left;
@@ -225,10 +226,7 @@
     color: var(--color-70);
     font-size: 0.5rem;
     font-weight: 500;
-    text-indent: 0.5rem;
-    line-height: 1.5rem;
-
-    background-color: var(--color-10);
+    line-height: 1.25rem;
 }
 
 .profile-log-container:last-child {
@@ -277,10 +275,11 @@
 }
 
 .profile-suggest-box {
-    width: calc(100% / 3 - 1rem / 3);
+    width: 100%;
     height: auto;
 
     margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
     position: relative;
     float: left;
 
@@ -307,7 +306,7 @@
 }
 
 .profile-theme-example {
-    width: calc(100% / 6 - 2.5rem / 6);
+    width: calc(100% / 3 - 1rem / 3);
     height: 4rem;
 
     margin: 0 0.5rem 0.5rem 0;
@@ -318,7 +317,7 @@
     cursor: pointer;
 }
 
-.profile-theme-example:nth-child(6n) {
+.profile-theme-example:nth-child(3n) {
     margin-right: 0;
 }
 
@@ -371,10 +370,11 @@
 }
 
 .profile-notification-title {
-    width: auto;
+    width: 4.5rem;
     height: 1rem;
 
     margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
 
     position: relative;
     float: left;
@@ -390,7 +390,8 @@
     width: 2rem;
     height: 1rem;
 
-    margin-right: 2rem;
+    margin-right: calc(100% - 7rem);
+    margin-bottom: 0.5rem;
 
     position: relative;
     float: left;

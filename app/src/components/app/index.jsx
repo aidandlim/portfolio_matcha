@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ui_color } from '../../actions';
 
+import User_P from '../util/pull/user';
+
 import cookie from 'react-cookies';
 
 import Core from '../template/core';
@@ -10,7 +12,6 @@ import Landing from '../template/landing';
 
 import Wrapper from 'react-div-100vh';
 
-import UserPull from '../util/pull/userPull';
 
 import './index.css';
 
@@ -20,7 +21,7 @@ const App = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		UserPull(dispatch);
+		User_P(dispatch);
 	}, [dispatch, user.data.id]);
 
 	const getColor = cookie.load('theme-color');

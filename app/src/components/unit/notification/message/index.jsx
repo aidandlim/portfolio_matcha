@@ -1,19 +1,17 @@
 import React from 'react';
 
 import { useDispatch } from 'react-redux';
-import { ui_notification } from '../../../../actions';
 
 import { IMAGE } from '../../../../api';
 
 import '../index.css';
-import DetailPull from '../../../util/pull/detailPull';
+import Detail_P from '../../../util/pull/detail';
 
 const Message = ({message}) => {
     const dispatch = useDispatch();
 
     const _handleDetail = () => {
-        dispatch(ui_notification(false));
-        DetailPull(dispatch, message.from);
+        Detail_P(dispatch, message.from);
     }
 
 	return (

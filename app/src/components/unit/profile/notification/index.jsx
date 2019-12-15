@@ -3,9 +3,9 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import axios from 'axios';
+import User_P from '../../../util/pull/user';
 
 import Alert from '../../../util/alert';
-import UserPull from '../../../util/pull/userPull';
 
 import '../index.css';
 
@@ -17,7 +17,7 @@ const Notification = () => {
 		axios.put('/users/notification')
 		.then((res) => {
 			if(res.data) {
-				UserPull(dispatch);
+				User_P(dispatch);
 			}
 		});
 	}

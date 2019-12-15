@@ -3,8 +3,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import axios from 'axios';
-
-import UserPull from '../../../util/pull/userPull';
+import User_P from '../../../util/pull/user';
 
 import '../index.css';
 
@@ -22,7 +21,7 @@ const Bio = () => {
 		axios.put('/users/bio', data)
 		.then(res => {
 			if(res.data) {
-				UserPull(dispatch);
+				User_P(dispatch);
 			} else {
 				//
 			}
@@ -35,6 +34,7 @@ const Bio = () => {
 			<div className='profile-description'>Sometimes it is better to just walk away from things and go back to them later when you’re in a better frame of mind.</div>
 			<div className='profile-section'>
 				<form name='profile_bio' onSubmit={_handleForm}>
+					<div className='profile-input-title'>Bio</div>
 					<textarea type='text' className='profile-textarea' name='bio' defaultValue={user.data.bio} />
 					<input type='submit' className='profile-submit' value='UPDATE' />
 				</form>

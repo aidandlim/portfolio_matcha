@@ -1,28 +1,11 @@
 .notification {
-    width: 15.5rem;
-    height: calc(100% - 1rem);
+    width: calc(100% - 1rem);
+    height: auto;
 
     padding: 0.5rem;
-    
-    position: absolute;
-    top: 0;
-    left: 100%;
 
-    color: var(--color-50);
-    font-size: 0.6rem;
-    font-weight: 700;
-    text-align: center;
-    line-height: 5rem;
-    
-    background-color: var(--color-10);
-
-    transition: 0.5s;
-
-    z-index: 9;
-}
-
-.notification-active {
-    left: calc(100% - 20.5rem);
+    position: relative;
+    float: left;
 }
 
 .notification-message,
@@ -40,7 +23,7 @@
 }
 
 .notification-message {
-    opacity: 0.5;
+    opacity: 0.75;
 }
 
 .notification-message-picture {

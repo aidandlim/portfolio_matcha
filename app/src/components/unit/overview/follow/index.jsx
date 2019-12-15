@@ -5,13 +5,13 @@ import { useDispatch } from 'react-redux';
 import { IMAGE } from '../../../../api';
 
 import '../index.css';
-import DetailPull from '../../../util/pull/detailPull';
+import Detail_P from '../../../util/pull/detail';
 
 const Follow = ({ follows }) => {
     const dispatch = useDispatch();
 
     const _handleDetail = (id) => {
-        DetailPull(dispatch, id);
+        Detail_P(dispatch, id);
     }
 
     return (

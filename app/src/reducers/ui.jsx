@@ -1,7 +1,7 @@
 const ui = {
     color: '#F44336',
     landing: 0,
-    notification: false,
+    nav: 0,
 }
 
 const uiReducer = (state = ui, action) => {
@@ -14,9 +14,9 @@ const uiReducer = (state = ui, action) => {
             return Object.assign({}, state, {
                 landing: action.payload
             });
-        case 'UI_NOTIFICATION':
+        case 'UI_NAV':
             return Object.assign({}, state, {
-                notification: action.payload
+                nav: action.payload
             });
         default:
             return state;

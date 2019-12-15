@@ -29,9 +29,16 @@ const Notification = () => {
 	}
 
 	return (
-		<div className={ui.notification ? 'notification notification-active' : 'notification'}>
-			{notification.list.length === 0 ? 'There is no notification message' : ''}
-			{notification.list.map((message, index) => <Message key={index} message={message} />)}
+		<div className='frame-narrow'>
+			<div className='frame-header'>
+				<div className='frame-title'>Notification</div>
+			</div>
+			<div className='frame-body'>
+				<div className='notification'>
+					{notification.list.length === 0 ? 'There is no notification message' : ''}
+					{notification.list.map((message, index) => <Message key={index} message={message} />)}
+				</div>
+			</div>
 		</div>
 	);
 }

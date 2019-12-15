@@ -1,3 +1,10 @@
+.detail {
+    width: auto;
+    height: auto;
+
+    z-index: 10;
+}
+
 .detail-title {
     width: auto;
     height: 100%;
@@ -36,12 +43,50 @@
     width: calc(100% - 2rem);
     height: auto;
 
-    padding: 1rem;
+    padding: 0.25rem 1rem 1rem 1rem;
 
     position: relative;
     float: left;
 
+    background-color: var(--color-80);
+}
+
+.detail-image {
+    width: calc(100% / 5 - 2rem / 5);
+    padding-top: 26.666%;
+    margin: 0 0.5rem 0 0;
+
+    position: relative;
+    float: left;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 0.5rem;
+
     background-color: var(--color-10);
+    border: solid 0.1rem var(--color-20);
+
+    box-sizing: border-box;
+
+    cursor: pointer;
+}
+
+.detail-image-none {
+    width: calc(100% / 5 - 2rem / 5);
+    padding-top: 26.666%;
+
+    border: dotted 0.1rem white;
+
+    box-sizing: border-box;
+
+    opacity: 0.5;
+
+    cursor: pointer;
+}
+
+.detail-image:nth-child(5n) {
+    margin-right: 0;
 }
 
 .detail-info-container {

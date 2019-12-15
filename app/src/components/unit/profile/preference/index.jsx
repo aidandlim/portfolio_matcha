@@ -3,9 +3,8 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import axios from 'axios';
-
-import TagPull from '../../../util/pull/tagPull';
-import SuggestPull from '../../../util/pull/suggestPull';
+import Tag_P from '../../../util/pull/tag';
+import Suggest_P from '../../../util/pull/suggest';
 
 import Tag from '../tag';
 import Suggest from '../suggest';
@@ -28,11 +27,11 @@ const Preference = () => {
 				axios.post('/tags', data)
 				.then((res) => {
 					if(res.data) {
-						TagPull(dispatch);
+						Tag_P(dispatch);
 					}
 				});
 			}
-			SuggestPull(dispatch, 3);
+			Suggest_P(dispatch, 3);
 			document.preference.tag.value = '';
 		}
 	}
@@ -47,11 +46,11 @@ const Preference = () => {
 			axios.post('/tags', data)
 			.then((res) => {
 				if(res.data) {
-					TagPull(dispatch);
+					Tag_P(dispatch);
 				}
 			});
 		}
-		SuggestPull(dispatch, 3);
+		Suggest_P(dispatch, 3);
 		document.preference.tag.value = '';
 	}
 
@@ -78,13 +77,13 @@ const Preference = () => {
 		axios.delete('/tags', { params: data })
 		.then((res) => {
 			if(res.data) {
-				TagPull(dispatch);
+				Tag_P(dispatch);
 			}
 		});
 	}
 
 	const _handleSuggest = () => {
-		SuggestPull(dispatch, 1);
+		Suggest_P(dispatch, 1);
 	}
 
 	return (
@@ -101,13 +100,13 @@ const Preference = () => {
 					<label className='profile-input-label'>
 						<input type='text' className='profile-input' name='tag' placeholder='Tag' onChange={_handleSuggest} />
 					</label>
+					<div className='profile-suggest-box'>
+						{user.suggest2.map((suggest, index) => (
+							<Suggest key={index} suggest={suggest} index={index} _handleAddTagFromSuggest={_handleAddTagFromSuggest} />
+						))}
+					</div>
 					<input type='submit' className='profile-submit' value='ADD'/>
 				</form>
-				<div className='profile-suggest-box'>
-					{user.suggest2.map((suggest, index) => (
-						<Suggest key={index} suggest={suggest} index={index} _handleAddTagFromSuggest={_handleAddTagFromSuggest} />
-					))}
-				</div>
 			</div>
 		</div>
 	);

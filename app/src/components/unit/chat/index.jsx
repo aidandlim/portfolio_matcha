@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { chat_current } from '../../../actions';
+import { chat_current, chat_messages } from '../../../actions';
 
 import axios from 'axios';
 import { socket } from '../../template/core';
+
+import Detail_p from '../../util/pull/detail';
+import Messages_P from '../../util/pull/messages';
 
 import Message from './message';
 
@@ -12,8 +15,6 @@ import ScrollToBottom from 'react-scroll-to-bottom';
 
 import { FaTimesCircle } from "react-icons/fa";
 import './index.css';
-import DetailPull from '../../util/pull/detailPull';
-import ChatMessagesPull from '../../util/pull/chatMessagesPull';
 
 const Chat = () => {
 	const [message, setMessage] = useState('');
@@ -22,9 +23,7 @@ const Chat = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		if(chat.current !== -1) {
-			axios.put('/messages', { from: chat.list[chat.current].id, to : user.data.id });
-		}
+		axios.put('/messages', { from: chat.list[chat.current].id, to : user.data.id });
 	}, [chat, user.data.id]);
 
 	const _handleForm = (e) => {
@@ -35,22 +34,26 @@ const Chat = () => {
 				// session is invalid
 			} else {
 				// console.log(`Message call is success!`);
-				ChatMessagesPull(dispatch, chat.list[chat.current].id);
+				Messages_P(dispatch, chat.list[chat.current].id);
 			}
 		});
 		setMessage('');
 	}
 
 	const _handleDetail = () => {
-		DetailPull(dispatch, chat.list[chat.current].id);
+		Detail_p(dispatch, chat.list[chat.current].id);
+	}
+
+	const _handleExit = () => {
 		dispatch(chat_current(-1));
+		dispatch(chat_messages([]));
 	}
 
 	return (
-		<div className={chat.current === -1 ? 'chat' : 'chat chat-active'}>
+		<div className='frame-narrow'>
 			<div className='chat-header'>
 				<div className='chat-header-name' onClick={ () => _handleDetail() }>{chat.current !== -1 ? `${chat.list[chat.current].first_name} ${chat.list[chat.current].last_name}` : ''}</div>
-				<FaTimesCircle className='chat-header-exit' onClick={ () => dispatch(chat_current(-1)) } />
+				<FaTimesCircle className='chat-header-exit' onClick={ () => _handleExit() } />
 			</div>
 			<ScrollToBottom className='chat-body'>
 				{chat.messages.map((message, index) => 

@@ -3,10 +3,11 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import axios from 'axios';
+import User_P from '../../../util/pull/user';
+
 import { KEY } from '../../../../api';
 
 import Alert from '../../../util/alert';
-import UserPull from '../../../util/pull/userPull';
 
 import '../index.css';
 
@@ -42,7 +43,7 @@ const Location = () => {
 					axios.put('/users/address', data)
 					.then(res => {
 						if(res.data) {
-							UserPull(dispatch);
+							User_P(dispatch);
 						} else {
 							//
 						}
@@ -71,7 +72,7 @@ const Location = () => {
 				axios.put('/users/address', data)
 				.then(res => {
 					if(res.data) {
-						UserPull(dispatch);
+						User_P(dispatch);
 					} else {
 						//
 					}

@@ -4,13 +4,13 @@ import { useDispatch } from 'react-redux';
 import { ui_landing } from '../../../../actions';
 
 import axios from 'axios';
+import User_P from '../../../util/pull/user';
 
 import { deviceType, osName, osVersion, browserName, browserVersion } from 'react-device-detect';
 
 import Alert from '../../../util/alert';
 
 import '../index.css';
-import UserPull from '../../../util/pull/userPull';
 
 const In = () => {
 	const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const In = () => {
 		axios.get('/auth/in', {params: data})
 		.then(res => {
 			if(res.data === 1) {
-				UserPull(dispatch);
+				User_P(dispatch);
 			} else if(res.data === 2) {
 				Alert(0, 'email is invalid', 'Okay', null, null);
 			} else if(res.data === 3) {

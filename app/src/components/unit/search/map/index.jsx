@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import axios from 'axios';
+import Detail_P from '../../../util/pull/detail';
 
 import { Map as GoogleMap, GoogleApiWrapper, Marker } from 'google-maps-react';
 import { KEY } from '../../../../api';
 
 import '../index.css';
-import DetailPull from '../../../util/pull/detailPull';
 
 const Map = (props) => {
 	const user = useSelector(state => state.user);
@@ -31,7 +31,7 @@ const Map = (props) => {
 
 	const _handleDetail = (id) => {
 		console.log(id);
-		DetailPull(dispatch, id);
+		Detail_P(dispatch, id);
 	}
 
 	const _handleDrag = (mapProps, map) => {

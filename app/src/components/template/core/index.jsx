@@ -1,28 +1,28 @@
 import React, { useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
+import { ui_nav, detail_data, chat_current } from '../../../actions';
 
 import io from 'socket.io-client';
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-import TagPull from '../../util/pull/tagPull';
-import ChatListPull from '../../util/pull/chatListPull';
-import ChatMessagesPull from '../../util/pull/chatMessagesPull';
-import OverviewPull from '../../util/pull/overviewPull';
-import MatchPull from '../../util/pull/matchPull';
-import NotificationPull from '../../util/pull/notificationPull';
+import Tag_P from '../../util/pull/tag';
+import Chat_P from '../../util/pull/chat';
+import Messages_P from '../../util/pull/messages';
+import Overview_P from '../../util/pull/overview';
+import Match_P from '../../util/pull/match';
+import Notification_P from '../../util/pull/notification';
 
 import Nav from '../../unit/nav';
-import Sidebar from '../../unit/sidebar';
-import Chat from '../../unit/chat';
-import Notification from '../../unit/notification';
-
 import Profile from '../../unit/profile';
 import Overview from '../../unit/overview';
 import Match from '../../unit/match';
-import Detail from '../../unit/detail';
 import Search from '../../unit/search';
+import Chatlist from '../../unit/chatlist';
+import Chat from '../../unit/chat';
+import Detail from '../../unit/detail';
+import Notification from '../../unit/notification';
+
+import { FaBell, FaComment } from 'react-icons/fa';
 
 import './index.css';
 
@@ -31,20 +31,20 @@ export let socket;
 const Core = () => {
 	const ui = useSelector(state => state.ui);
 	const user = useSelector(state => state.user);
-	const chat = useSelector(state => state.chat);
 	const detail = useSelector(state => state.detail);
+	const chat = useSelector(state => state.chat);
 
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		TagPull(dispatch);
-		ChatListPull(dispatch);
-		OverviewPull(dispatch, 0);
-		OverviewPull(dispatch, 1);
-		OverviewPull(dispatch, 2);
-		MatchPull(dispatch);
-		NotificationPull(dispatch);
-	}, [dispatch]);
+		Tag_P(dispatch);
+		Chat_P(dispatch);
+		Overview_P(dispatch, 0);
+		Overview_P(dispatch, 1);
+		Overview_P(dispatch, 2);
+		Match_P(dispatch);
+		Notification_P(dispatch);
+	}, [dispatch, user.data.id]);
 
 	const ENDPOINT = 'http://localhost:8443';
 
@@ -57,40 +57,48 @@ const Core = () => {
 
 		socket.on('notification', ({ type }) => {
 			// console.log('notification has arrived');
-			NotificationPull(dispatch);
+			Notification_P(dispatch);
 			if(type === 'likes' || type === 'blocks')
-				ChatListPull(dispatch);
+				Chat_P(dispatch);
 		});
 	}, [dispatch, user.data.id]);
 
 	useEffect(() => {
 		socket.on('message', () => {
 			// console.log('message has arrived', from);
-			ChatListPull(dispatch);
+			Chat_P(dispatch);
 			if(chat.current !== -1)
-				ChatMessagesPull(dispatch, chat.list[chat.current].id);
+				Messages_P(dispatch, chat.list[chat.current].id);
 		});
 	}, [dispatch, chat]);
 
+	const _handleNav = (index) => {
+		dispatch(chat_current(-1));
+		dispatch(detail_data({}));
+		dispatch(ui_nav(index));
+	}
+
 	return (
-		<Router>
 			<div className='core'>
 				<Nav />
-				<div className={chat.current === -1 && !ui.notification ? 'default' : 'default default-active'}>
-					<Switch>
-						<Route path='/' exact component={Profile} />
-						{user.isComplete ? <Route path='/overview' exact component={Overview} /> : ''}
-						{user.isComplete ? <Route path='/match' component={Match} /> : ''}
-						{user.isComplete ? <Route path='/search' component={Search} /> : ''}
-					</Switch>
-					{!user.isComplete ? <div className='announcement'>After you have completed your profile, you will be able to access a matching service.</div> : '' }
-					{ detail.data.id !== undefined ? <Detail /> : '' }
+				<div className='default'>
+					{ui.nav === 0 ? <Profile /> : null}
+					{!user.isComplete ? <div className='announcement'>After you have completed your profile, you will be able to access a matching service.</div> : null}
+					{user.isComplete && ui.nav === 1 ? <Overview /> : null}
+					{user.isComplete && ui.nav === 2 ? <Match /> : null}
+					{user.isComplete && ui.nav === 3 ? <Search /> : null}
+					{user.isComplete && ui.nav === 4 ? <Chatlist /> : null}
+					{user.isComplete && ui.nav === 5 ? <Notification /> : null}
+					{chat.current !== -1 ? <Chat /> : null}
+					{detail.data.id !== undefined ? <Detail /> : null}
+					<FaBell className={ui.nav === 5 ? 'core-nav-notification-active' : 'core-nav-notification'} onClick={ () => _handleNav(5)} />
+					<FaComment className={ui.nav === 4 ? 'core-nav-chat-active' : 'core-nav-chat'} onClick={ () => _handleNav(4)} />
+					<div className={ui.nav === 5 ? 'core-nav-decoration-top-active' : 'core-nav-decoration-top'} onClick={ () => _handleNav(5)} ></div>
+					<div className={ui.nav === 4 ? 'core-nav-decoration-bottom-active' : 'core-nav-decoration-bottom'} onClick={ () => _handleNav(4)} ></div>
+					<div className='core-nav-icon-top' onClick={ () => _handleNav(5)} >N</div>
+					<div className='core-nav-icon-bottom' onClick={ () => _handleNav(4)} >N</div>
 				</div>
-				<Chat />
-				<Notification />
-				<Sidebar />
 			</div>
-		</Router>
 	);
 }
 

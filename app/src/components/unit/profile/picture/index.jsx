@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import axios from 'axios';
-import { IMAGE } from '../../../../api';
+import User_P from '../../../util/pull/user';
 
-import UserPull from '../../../util/pull/userPull';
+import { IMAGE } from '../../../../api';
 
 import { FaPlusCircle, FaRegTimesCircle } from 'react-icons/fa';
 
@@ -41,7 +41,7 @@ const Picture = () => {
 
 				axios.put('/users/picture', data)
 				.then(() => {
-					UserPull(dispatch);
+					User_P(dispatch);
 				});
 				
 				input.value = '';
@@ -59,7 +59,7 @@ const Picture = () => {
 
 		axios.put('/users/picture', data)
 		.then(() => {
-			UserPull(dispatch);
+			User_P(dispatch);
 		});
 	}
 

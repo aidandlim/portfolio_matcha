@@ -38,6 +38,7 @@ const Email = () => {
 			<div className='profile-section'>
 				<form name='profile_email' onSubmit={_handleForm}>
 					<label className='profile-input-label'>
+						<div className='profile-input-title'>Email Address</div>
 						<input type='email' className='profile-input' name='email' defaultValue={user.data.email} />
 					</label>
 					<input type='submit' className='profile-submit' value='UPDATE' />

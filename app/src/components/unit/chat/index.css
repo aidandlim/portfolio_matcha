@@ -1,24 +1,3 @@
-.chat {
-    width: 15.5rem;
-    height: calc(100% - 1rem);
-
-    padding: 0.5rem;
-    
-    position: absolute;
-    top: 0;
-    left: 100%;
-
-    background-color: var(--color-10);
-
-    transition: 0.5s;
-
-    z-index: 9;
-}
-
-.chat-active {
-    left: calc(100% - 20.5rem);
-}
-
 .chat-header {
     width: 100%;
     height: 2rem;
@@ -27,7 +6,6 @@
     float: left;
 
     background-color: var(--color-70);
-    border-radius: 0.5rem 0.5rem 0 0;
 }
 
 .chat-header-name {
@@ -82,7 +60,6 @@
     float: left;
 
     background-color: var(--color-40);
-    border-radius: 0 0 0.5rem 0.5rem;
 }
 
 .chat-footer-input {

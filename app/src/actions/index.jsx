@@ -14,9 +14,9 @@ export const ui_landing = (value) => {
     };
 };
 
-export const ui_notification = (value) => {
+export const ui_nav = (value) => {
     return {
-        type: 'UI_NOTIFICATION',
+        type: 'UI_NAV',
         payload: value
     };
 };

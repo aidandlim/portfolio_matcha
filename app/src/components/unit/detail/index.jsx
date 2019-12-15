@@ -5,10 +5,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { socket } from '../../template/core';
 
-import ChatListPull from '../../util/pull/chatListPull';
-import OverviewPull from '../../util/pull/overviewPull';
-import DetailPull from '../../util/pull/detailPull';
-import MatchPull from '../../util/pull/matchPull';
+import Chat_P from '../../util/pull/chat';
+import Overview_P from '../../util/pull/overview';
+import Detail_P from '../../util/pull/detail';
+import Match_p from '../../util/pull/match';
 
 import { IMAGE } from '../../../api';
 
@@ -37,10 +37,10 @@ const Detail = () => {
 					// session is invalid
 				} else {
 					console.log(`Likes call is success!`);
-					ChatListPull(dispatch);
-					OverviewPull(dispatch, 1);
-					DetailPull(dispatch, detail.data.id);
-					MatchPull(dispatch);
+					Chat_P(dispatch);
+					Overview_P(dispatch, 1);
+					Detail_P(dispatch, detail.data.id);
+					Match_p(dispatch);
 				}
 			});
 		} else {
@@ -50,10 +50,10 @@ const Detail = () => {
 
 			axios.delete('/likes', { params : data })
 			.then(() => {
-				ChatListPull(dispatch);
-				OverviewPull(dispatch, 1);
-				DetailPull(dispatch, detail.data.id);
-				MatchPull(dispatch);
+				Chat_P(dispatch);
+				Overview_P(dispatch, 1);
+				Detail_P(dispatch, detail.data.id);
+				Match_p(dispatch);
 			});
 		}
 	}
@@ -64,8 +64,8 @@ const Detail = () => {
 		}
 		axios.post('/blocks', data)
 		.then(() => {
-			ChatListPull(dispatch);
-			DetailPull(dispatch, detail.data.id);
+			Chat_P(dispatch);
+			Detail_P(dispatch, detail.data.id);
 		});
 	}
 
@@ -77,7 +77,7 @@ const Detail = () => {
 	}
 
 	const _handleExit = () => {
-		DetailPull(dispatch, -1);
+		Detail_P(dispatch, -1);
 	}
 
 	return (
@@ -102,65 +102,65 @@ const Detail = () => {
 						{
 							detail.data.picture1 !== undefined && detail.data.picture1 !== ''
 							?
-								<div className='profile-image' style={{
+								<div className='detail-image' style={{
 									backgroundImage: `url('${IMAGE}${detail.data.picture1}')`
 								}}>
 								
 								</div>
 							:
-								<div className='profile-image profile-image-none'>
+								<div className='detail-image detail-image-none'>
 									
 								</div>
 						}
 						{
 							detail.data.picture2 !== undefined && detail.data.picture2 !== ''
 							?
-								<div className='profile-image' style={{
+								<div className='detail-image' style={{
 									backgroundImage: `url('${IMAGE}${detail.data.picture2}')`
 								}}>
 									
 								</div>
 							:
-								<div className='profile-image profile-image-none'>
+								<div className='detail-image detail-image-none'>
 									
 								</div>
 						}
 						{
 							detail.data.picture3 !== undefined && detail.data.picture3 !== ''
 							?
-								<div className='profile-image' style={{
+								<div className='detail-image' style={{
 									backgroundImage: `url('${IMAGE}${detail.data.picture3}')`
 								}}>
 									
 								</div>
 							:
-								<div className='profile-image profile-image-none'>
+								<div className='detail-image detail-image-none'>
 									
 								</div>
 						}
 						{
 							detail.data.picture4 !== undefined && detail.data.picture4 !== ''
 							?
-								<div className='profile-image' style={{
+								<div className='detail-image' style={{
 									backgroundImage: `url('${IMAGE}${detail.data.picture4}')`
 								}}>
 									
 								</div>
 							:
-								<div className='profile-image profile-image-none'>
+								<div className='detail-image detail-image-none'>
 									
 								</div>
 						}
 						{
 							detail.data.picture5 !== undefined && detail.data.picture5 !== ''
 							?
-								<div className='profile-image' style={{
+								<div className='detail-image' style={{
 									backgroundImage: `url('${IMAGE}${detail.data.picture5}')`
 								}}>
 									
 								</div>
 							:
-								<div className='profile-image profile-image-none'>
+								<div className='detail-image detail-image-none'>
 									
 								</div>
 						}

@@ -3,8 +3,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import axios from 'axios';
-
-import UserPull from '../../../util/pull/userPull';
+import User_P from '../../../util/pull/user';
 
 import '../index.css';
 
@@ -26,7 +25,7 @@ const Info = () => {
 		axios.put('/users', data)
 		.then(res => {
 			if(res.data) {
-				UserPull(dispatch);
+				User_P(dispatch);
 			} else {
 				//
 			}

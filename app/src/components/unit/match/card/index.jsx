@@ -6,10 +6,10 @@ import { socket } from '../../../template/core';
 
 import { IMAGE } from '../../../../api';
 
-import ChatListPull from '../../../util/pull/chatListPull';
-import OverviewPull from '../../../util/pull/overviewPull';
-import DetailPull from '../../../util/pull/detailPull';
-import MatchPull from '../../../util/pull/matchPull';
+import Chat_P from '../../../util/pull/chat';
+import Overview_P from '../../../util/pull/overview';
+import Detail_P from '../../../util/pull/detail';
+import Match_P from '../../../util/pull/match';
 
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight, FaTimes, FaSearchPlus, FaHeart } from 'react-icons/fa';
 
@@ -69,15 +69,15 @@ const Card = () => {
 				// session is invalid
 			} else {
 				console.log(`Likes call is success!`);
-				ChatListPull(dispatch);
-				OverviewPull(dispatch, 1);
-				MatchPull(dispatch);
+				Chat_P(dispatch);
+				Overview_P(dispatch, 1);
+				Match_P(dispatch);
 			}
 		});
 	}
 
 	const _handleDetail = () => {
-		DetailPull(dispatch, match.data.id);
+		Detail_P(dispatch, match.data.id);
 	}
 
 	const _handleUnlike = () => {
@@ -86,7 +86,7 @@ const Card = () => {
 				// session is invalid
 			} else {
 				console.log(`Unlikes call is success!`);
-				MatchPull(dispatch);
+				Match_P(dispatch);
 			}
 		});
 	}
