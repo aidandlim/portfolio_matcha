@@ -2,7 +2,7 @@ import { user_data, user_isComplete } from '../../../actions';
 
 import axios from 'axios';
 
-const UserPull = (dispatch) => {
+const User = (dispatch) => {
     const data = {
         userId: -1,
     }
@@ -20,4 +20,4 @@ const UserPull = (dispatch) => {
     });
 }
 
-export default UserPull;
+export default User;

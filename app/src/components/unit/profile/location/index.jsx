@@ -4,10 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import axios from 'axios';
 import User_P from '../../../util/pull/user';
-
-import { KEY } from '../../../../api';
-
+import Logout_P from '../../../util/pull/logout';
 import Alert from '../../../util/alert';
+
+import { GMAP_KEY } from '../../../../api';
 
 import '../index.css';
 
@@ -21,7 +21,7 @@ const Location = () => {
 		const zipcode = document.profile_location.zipcode.value;
 
 		if(zipcode.length === 5) {
-			axios.get('https://maps.googleapis.com/maps/api/geocode/json?language=en&address=' + zipcode + '&key=' + KEY)
+			axios.get('https://maps.googleapis.com/maps/api/geocode/json?language=en&address=' + zipcode + '&key=' + GMAP_KEY)
 			.then((res) => {
 				if(res.data.status === 'ZERO_RESULTS') {
 					Alert(0, 'zipcode is invalid', 'Okay', null, null);
@@ -45,7 +45,8 @@ const Location = () => {
 						if(res.data) {
 							User_P(dispatch);
 						} else {
-							//
+							Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+							Logout_P(dispatch);
 						}
 					});
 				}
@@ -55,7 +56,7 @@ const Location = () => {
 
 	const _handleCurrentLocation = () => {
 		navigator.geolocation.getCurrentPosition((position) => {
-			axios.get('https://maps.googleapis.com/maps/api/geocode/json?language=en&latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&key=' + KEY)
+			axios.get('https://maps.googleapis.com/maps/api/geocode/json?language=en&latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&key=' + GMAP_KEY)
 			.then((res) => {
 				let result = res.data.plus_code.compound_code.split(' ');
 				let address = '';
@@ -74,7 +75,8 @@ const Location = () => {
 					if(res.data) {
 						User_P(dispatch);
 					} else {
-						//
+						Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+						Logout_P(dispatch);
 					}
 				});
 			});

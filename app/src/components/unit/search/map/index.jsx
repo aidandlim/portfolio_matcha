@@ -4,9 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import axios from 'axios';
 import Detail_P from '../../../util/pull/detail';
+import Logout_P from '../../../util/pull/logout';
+import Alert from '../../../util/alert';
 
 import { Map as GoogleMap, GoogleApiWrapper, Marker } from 'google-maps-react';
-import { KEY } from '../../../../api';
+import { GMAP_KEY } from '../../../../api';
 
 import '../index.css';
 
@@ -25,9 +27,14 @@ const Map = (props) => {
 
 		axios.get('/users', { params: data} )
 		.then((res) => {
-			setMarkers(res.data);
+			if(res.data === -1) {
+				Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+				Logout_P(dispatch);
+			} else {
+				setMarkers(res.data);
+			}
 		});	
-	}, [user]);
+	}, [user, dispatch]);
 
 	const _handleDetail = (id) => {
 		console.log(id);
@@ -43,7 +50,12 @@ const Map = (props) => {
 
 		axios.get('/users', { params: data} )
 		.then((res) => {
-			setMarkers(res.data);
+			if(res.data === -1) {
+				Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+				Logout_P(dispatch);
+			} else {
+				setMarkers(res.data);
+			}
 		});	
 	}
 
@@ -66,5 +78,5 @@ const Map = (props) => {
 }
 
 export default GoogleApiWrapper({
-	apiKey: KEY
+	apiKey: GMAP_KEY
   })(Map);

@@ -5,7 +5,7 @@ import { chat_list, chat_current } from '../../../actions';
 
 import Messages_P from '../../util/pull/messages';
 
-import { IMAGE } from '../../../api';
+import { IMAGE_URL } from '../../../api';
 
 import './index.css';
 
@@ -29,14 +29,16 @@ const Chatlist = () => {
 			<div className='frame-body'>
 				<div className='chatlist'>
 					{
-                        chat.list.map((chat, index) => 
+                        chat.list.length !== 0 ? chat.list.map((chat, index) => 
                             <div className='chatlist-container' key={index} style={{
-                                backgroundImage: `url('${IMAGE}${chat.picture1}')`
+                                backgroundImage: `url('${IMAGE_URL}${chat.picture1}')`
                             }} onClick={ () => _handleChat(index) }>
                                 <div className='chatlist-name'>{chat.first_name} {chat.last_name}</div>
                                 {chat.count !== 0 ? <div className='chatlist-icon'>N</div> : null}
                             </div>
                         )
+                        :
+                        'There is no follower. Find someone on Match!'
                     }
 				</div>
 			</div>

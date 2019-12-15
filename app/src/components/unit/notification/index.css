@@ -4,6 +4,12 @@
 
     padding: 0.5rem;
 
+    color: var(--color-50);
+    font-size: 0.6rem;
+    font-weight: 900;
+    text-align: center;
+    line-height: 5rem;
+
     position: relative;
     float: left;
 }

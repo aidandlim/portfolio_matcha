@@ -9,8 +9,10 @@ import Chat_P from '../../util/pull/chat';
 import Overview_P from '../../util/pull/overview';
 import Detail_P from '../../util/pull/detail';
 import Match_p from '../../util/pull/match';
+import Logout_P from '../../util/pull/logout';
+import Alert from '../../util/alert';
 
-import { IMAGE } from '../../../api';
+import { IMAGE_URL } from '../../../api';
 
 import { FaRegTimesCircle, FaUserAlt, FaLocationArrow, FaHeart } from 'react-icons/fa';
 import './index.css';
@@ -23,20 +25,19 @@ const Detail = () => {
 	useEffect(() => {
 		socket.emit('visits', user.data.id, detail.data.id, (result) => {
 			if(result === -1) {
-				// session is invalid
-			} else {
-				console.log(`Visits call is success!`);
+				Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+				Logout_P(dispatch);
 			}
 		});
-	}, [user.data.id, detail.data.id]);
+	}, [user.data.id, detail.data.id, dispatch]);
 
 	const _handleFollow = (type) => {
 		if(type) {
 			socket.emit('likes', user.data.id, detail.data.id, (result) => {
 				if(result === -1) {
-					// session is invalid
+					Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+					Logout_P(dispatch);
 				} else {
-					console.log(`Likes call is success!`);
 					Chat_P(dispatch);
 					Overview_P(dispatch, 1);
 					Detail_P(dispatch, detail.data.id);
@@ -49,11 +50,16 @@ const Detail = () => {
 			}
 
 			axios.delete('/likes', { params : data })
-			.then(() => {
-				Chat_P(dispatch);
-				Overview_P(dispatch, 1);
-				Detail_P(dispatch, detail.data.id);
-				Match_p(dispatch);
+			.then((res) => {
+				if(res.data === -1) {
+					Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+					Logout_P(dispatch);
+				} else {
+					Chat_P(dispatch);
+					Overview_P(dispatch, 1);
+					Detail_P(dispatch, detail.data.id);
+					Match_p(dispatch);
+				}
 			});
 		}
 	}
@@ -63,9 +69,14 @@ const Detail = () => {
 			to: detail.data.id
 		}
 		axios.post('/blocks', data)
-		.then(() => {
-			Chat_P(dispatch);
-			Detail_P(dispatch, detail.data.id);
+		.then((res) => {
+			if(res.data === -1) {
+				Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+				Logout_P(dispatch);
+			} else {
+				Chat_P(dispatch);
+				Detail_P(dispatch, detail.data.id);
+			}
 		});
 	}
 
@@ -73,7 +84,13 @@ const Detail = () => {
 		const data = {
 			to: detail.data.id
 		}
-		axios.post('/reports', data);
+		axios.post('/reports', data)
+		.then((res) => {
+			if(res.data === -1) {
+				Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+				Logout_P(dispatch);
+			}
+		});
 	}
 
 	const _handleExit = () => {
@@ -103,7 +120,7 @@ const Detail = () => {
 							detail.data.picture1 !== undefined && detail.data.picture1 !== ''
 							?
 								<div className='detail-image' style={{
-									backgroundImage: `url('${IMAGE}${detail.data.picture1}')`
+									backgroundImage: `url('${IMAGE_URL}${detail.data.picture1}')`
 								}}>
 								
 								</div>
@@ -116,7 +133,7 @@ const Detail = () => {
 							detail.data.picture2 !== undefined && detail.data.picture2 !== ''
 							?
 								<div className='detail-image' style={{
-									backgroundImage: `url('${IMAGE}${detail.data.picture2}')`
+									backgroundImage: `url('${IMAGE_URL}${detail.data.picture2}')`
 								}}>
 									
 								</div>
@@ -129,7 +146,7 @@ const Detail = () => {
 							detail.data.picture3 !== undefined && detail.data.picture3 !== ''
 							?
 								<div className='detail-image' style={{
-									backgroundImage: `url('${IMAGE}${detail.data.picture3}')`
+									backgroundImage: `url('${IMAGE_URL}${detail.data.picture3}')`
 								}}>
 									
 								</div>
@@ -142,7 +159,7 @@ const Detail = () => {
 							detail.data.picture4 !== undefined && detail.data.picture4 !== ''
 							?
 								<div className='detail-image' style={{
-									backgroundImage: `url('${IMAGE}${detail.data.picture4}')`
+									backgroundImage: `url('${IMAGE_URL}${detail.data.picture4}')`
 								}}>
 									
 								</div>
@@ -155,7 +172,7 @@ const Detail = () => {
 							detail.data.picture5 !== undefined && detail.data.picture5 !== ''
 							?
 								<div className='detail-image' style={{
-									backgroundImage: `url('${IMAGE}${detail.data.picture5}')`
+									backgroundImage: `url('${IMAGE_URL}${detail.data.picture5}')`
 								}}>
 									
 								</div>

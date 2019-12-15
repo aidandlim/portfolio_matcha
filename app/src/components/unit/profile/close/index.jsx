@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { user_data } from '../../../../actions';
 
 import axios from 'axios';
-
+import Logout_P from '../../../util/pull/logout';
 import Alert from '../../../util/alert';
 
 import '../index.css';
@@ -21,6 +21,9 @@ const Close = () => {
 		.then(res => {
 			if(res.data) {
 				dispatch(user_data({}));
+			} else {
+				Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+				Logout_P(dispatch);
 			}
 		});
 	}

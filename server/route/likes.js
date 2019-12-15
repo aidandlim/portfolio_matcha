@@ -61,25 +61,35 @@ module.exports.select = (req, res) => {
 module.exports.insert = (from, to, callback) => {
     const sql = 'INSERT INTO likes (`from`, `to`) values (?, ?)';
 
-    conn.query(sql, [from, to], (err) => {
+    const sql_select_check = 'SELECT * FROM likes WHERE `from` = ? AND `to` = ?';
+
+    conn.query(sql_select_check, [from, to], (err, results) => {
         if (err) {
             console.log(err);
             callback(0);
-        } else {
-            const sql_select_to = 'SELECT email FROM users WHERE id = ?';
-
-            conn.query(sql_select_to, [to], (err, results) => {
+        }
+        if(results.length === 0) {
+            conn.query(sql, [from, to], (err) => {
                 if (err) {
                     console.log(err);
                     callback(0);
                 } else {
-                    results = JSON.parse(JSON.stringify(results));
-                    mail.notification('like', from, results[0].email);
-                    callback(1);
+                    const sql_select_to = 'SELECT email FROM users WHERE id = ?';
+        
+                    conn.query(sql_select_to, [to], (err, results) => {
+                        if (err) {
+                            console.log(err);
+                            callback(0);
+                        } else {
+                            results = JSON.parse(JSON.stringify(results));
+                            mail.notification('like', from, results[0].email);
+                            callback(1);
+                        }
+                    })
                 }
-            })
+            });
         }
-    })
+    });
 }
 
 //

@@ -2,15 +2,20 @@ import { chat_list } from '../../../actions';
 
 import axios from 'axios';
 
-const ChatListPull = (dispatch) => {
-    console.log('ChatListPull');
+import Logout_P from './logout';
+
+const Chat = (dispatch) => {
     const data = {
         type: 'chat'
     }
-    axios.get('/likes', { params: data})
+    axios.get('/likes', { params: data })
     .then((res) => {
-        dispatch(chat_list(res.data));
+        if(res.data === -1) {
+            Logout_P();
+        } else {
+            dispatch(chat_list(res.data));
+        }
     });
 }
 
-export default ChatListPull;
+export default Chat;

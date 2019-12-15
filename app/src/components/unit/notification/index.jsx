@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import axios from 'axios';
 import Notification_P from '../../util/pull/notification';
+import Logout_P from '../../util/pull/logout';
+import Alert from '../../util/alert';
 
 import Message from './message';
 
@@ -17,7 +19,10 @@ const Notification = () => {
 		return () => {
 			axios.put('/notifications')
 			.then((res) => {
-				if(res.data) {
+				if(res.data === -1) {
+					Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+					Logout_P(dispatch);
+				} else {
 					Notification_P(dispatch);
 				}
 			});

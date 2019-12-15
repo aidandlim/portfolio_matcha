@@ -1,10 +1,9 @@
 import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { user_data } from '../../../../actions';
 
 import axios from 'axios';
-
+import Logout_P from '../../../util/pull/logout';
 import Alert from '../../../util/alert';
 
 import '../index.css';
@@ -23,8 +22,8 @@ const Email = () => {
 		axios.put('/users/email', data)
 		.then(res => {
 			if(res.data) {
-				dispatch(user_data({}));
 				Alert(0, 'Email has updated. Sign in Again!', 'Okay', null, null);
+				Logout_P(dispatch);
 			} else {
 				Alert(0, 'Email is invalid', 'Okay', null, null);
 			}

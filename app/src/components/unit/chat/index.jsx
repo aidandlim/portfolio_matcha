@@ -8,6 +8,8 @@ import { socket } from '../../template/core';
 
 import Detail_p from '../../util/pull/detail';
 import Messages_P from '../../util/pull/messages';
+import Logout_P from '../../util/pull/logout';
+import Alert from '../../util/alert';
 
 import Message from './message';
 
@@ -23,17 +25,23 @@ const Chat = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		axios.put('/messages', { from: chat.list[chat.current].id, to : user.data.id });
-	}, [chat, user.data.id]);
+		axios.put('/messages', { from: chat.list[chat.current].id, to : user.data.id })
+		.then((res) => {
+			if(res.data === -1) {
+				Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+				Logout_P(dispatch);
+			}
+		});
+	}, [chat, user.data.id, dispatch]);
 
 	const _handleForm = (e) => {
 		e.preventDefault();
 
 		socket.emit('message', user.data.id, chat.list[chat.current].id, message, (result) => {
 			if(result === -1) {
-				// session is invalid
+				Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+				Logout_P(dispatch);
 			} else {
-				// console.log(`Message call is success!`);
 				Messages_P(dispatch, chat.list[chat.current].id);
 			}
 		});

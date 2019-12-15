@@ -4,12 +4,14 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { socket } from '../../../template/core';
 
-import { IMAGE } from '../../../../api';
+import { IMAGE_URL } from '../../../../api';
 
 import Chat_P from '../../../util/pull/chat';
 import Overview_P from '../../../util/pull/overview';
 import Detail_P from '../../../util/pull/detail';
 import Match_P from '../../../util/pull/match';
+import Logout_P from '../../../util/pull/logout';
+import Alert from '../../../util/alert';
 
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight, FaTimes, FaSearchPlus, FaHeart } from 'react-icons/fa';
 
@@ -29,12 +31,11 @@ const Card = () => {
 	useEffect(() => {
 		socket.emit('appears', user.data.id, match.data.id, (result) => {
 			if(result === -1) {
-				// session is invalid
-			} else {
-				// console.log(`Appears call is success!`);
+				Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+				Logout_P(dispatch);
 			}
 		});
-	}, [user.data.id, match.data.id]);
+	}, [user.data.id, match.data.id, dispatch]);
 	
 	const _handleImage = () => {
 		let images = document.getElementsByClassName('match-card-picture');
@@ -66,9 +67,9 @@ const Card = () => {
 	const _handleLike = () => {
 		socket.emit('likes', user.data.id, match.data.id, (result) => {
 			if(result === -1) {
-				// session is invalid
+				Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+				Logout_P(dispatch);
 			} else {
-				console.log(`Likes call is success!`);
 				Chat_P(dispatch);
 				Overview_P(dispatch, 1);
 				Match_P(dispatch);
@@ -83,9 +84,9 @@ const Card = () => {
 	const _handleUnlike = () => {
 		socket.emit('unlikes', user.data.id, match.data.id, (result) => {
 			if(result === -1) {
-				// session is invalid
+				Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+				Logout_P(dispatch);
 			} else {
-				console.log(`Unlikes call is success!`);
 				Match_P(dispatch);
 			}
 		});
@@ -96,27 +97,27 @@ const Card = () => {
 			<div className='match-card-pictures'>
 				{match.data.picture1 !== '' && match.data.picture1 !== undefined ?
 					<div className='match-card-picture' style={{
-						backgroundImage: `url('${IMAGE}${match.data.picture1}')`
+						backgroundImage: `url('${IMAGE_URL}${match.data.picture1}')`
 					}}></div>
 				: <div className='match-card-picture'>This slot is empty</div> }
 				{match.data.picture2 !== '' && match.data.picture2 !== undefined ?
 					<div className='match-card-picture' style={{
-						backgroundImage: `url('${IMAGE}${match.data.picture2}')`
+						backgroundImage: `url('${IMAGE_URL}${match.data.picture2}')`
 					}}></div>
 				: <div className='match-card-picture'>This slot is empty</div> }
 				{match.data.picture3 !== '' && match.data.picture3 !== undefined ?
 					<div className='match-card-picture' style={{
-						backgroundImage: `url('${IMAGE}${match.data.picture3}')`
+						backgroundImage: `url('${IMAGE_URL}${match.data.picture3}')`
 					}}></div>
 				: <div className='match-card-picture'>This slot is empty</div> }
 				{match.data.picture4 !== '' && match.data.picture4 !== undefined ?
 					<div className='match-card-picture' style={{
-						backgroundImage: `url('${IMAGE}${match.data.picture4}')`
+						backgroundImage: `url('${IMAGE_URL}${match.data.picture4}')`
 					}}></div>
 				: <div className='match-card-picture'>This slot is empty</div> }
 				{match.data.picture5 !== '' && match.data.picture5 !== undefined ?
 					<div className='match-card-picture' style={{
-						backgroundImage: `url('${IMAGE}${match.data.picture5}')`
+						backgroundImage: `url('${IMAGE_URL}${match.data.picture5}')`
 					}}></div>
 				: <div className='match-card-picture'>This slot is empty</div> }
 			</div>

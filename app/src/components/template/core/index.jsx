@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ui_nav, detail_data, chat_current, notification_count } from '../../../actions';
 
 import io from 'socket.io-client';
+import { SOCKET_URL } from '../../../api';
 
 import Tag_P from '../../util/pull/tag';
 import Chat_P from '../../util/pull/chat';
@@ -22,6 +23,8 @@ import Detail from '../../unit/detail';
 import Notification from '../../unit/notification';
 
 import { FaBell, FaComment } from 'react-icons/fa';
+
+import NotificationMP3 from '../../../resources/notification.mp3';
 
 import './index.css';
 
@@ -45,22 +48,22 @@ const Core = () => {
 		Notification_P(dispatch);
 	}, [dispatch, user.data.id]);
 
-	const ENDPOINT = 'http://localhost:8443';
-
 	useEffect(() => {
-		socket = io(ENDPOINT);
+		socket = io(SOCKET_URL);
 
 		socket.emit('join', user.data.id, () => {
 			
 		});
 
-		socket.on('notification', ({ type }) => {
+		socket.on('notification', () => {
+			document.getElementById('notification-mp3').play();
 			Notification_P(dispatch);
 		});
 	}, [dispatch, user.data.id]);
 
 	useEffect(() => {
 		socket.on('message', () => {
+			document.getElementById('notification-mp3').play();
 			Chat_P(dispatch);
 			if(chat.current !== -1)
 				Messages_P(dispatch, chat.list[chat.current].id);
@@ -91,11 +94,14 @@ const Core = () => {
 					{detail.data.id !== undefined ? <Detail /> : null}
 					<FaBell className={ui.nav === 5 ? 'core-nav-notification-active' : 'core-nav-notification'} onClick={ () => _handleNav(5)} />
 					<FaComment className={ui.nav === 4 ? 'core-nav-chat-active' : 'core-nav-chat'} onClick={ () => _handleNav(4)} />
-					<div className={ui.nav === 5 ? 'core-nav-decoration-top-active' : 'core-nav-decoration-top'} onClick={ () => _handleNav(5)} ></div>
-					<div className={ui.nav === 4 ? 'core-nav-decoration-bottom-active' : 'core-nav-decoration-bottom'} onClick={ () => _handleNav(4)} ></div>
+					<div id='notification-top' className={ui.nav === 5 ? 'core-nav-decoration-top-active' : 'core-nav-decoration-top'} onClick={ () => _handleNav(5)} ></div>
+					<div id='notification-bottom' className={ui.nav === 4 ? 'core-nav-decoration-bottom-active' : 'core-nav-decoration-bottom'} onClick={ () => _handleNav(4)} ></div>
 					{notification.count !== 0 ? <div className='core-nav-icon-top' onClick={ () => _handleNav(5)} >N</div> : null}
 					{chat.list.findIndex((chat) => chat.count !== 0) !== -1 ? <div className='core-nav-icon-bottom' onClick={ () => _handleNav(4)} >N</div> : null}
 				</div>
+				<audio id='notification-mp3' style={{ display: 'none' }}>
+					<source src={NotificationMP3} type='audio/mp3' />
+				</audio>
 			</div>
 	);
 }

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import { IMAGE } from '../../../../api';
+import { IMAGE_URL } from '../../../../api';
 
 import '../index.css';
 import Detail_P from '../../../util/pull/detail';
@@ -17,7 +17,7 @@ const Message = ({message}) => {
 	return (
         <div className={!message.checked ? 'notification-message-active' : 'notification-message'} onClick={ () => _handleDetail() }>
             <div className='notification-message-picture' style={{
-                backgroundImage: `url('${IMAGE}${message.picture}')`
+                backgroundImage: `url('${IMAGE_URL}${message.picture}')`
             }}></div>
             <div className='notification-message-content'>
                 {message.type === 'appears' ? `${message.first_name} ${message.last_name} saw your profile card.` : '' }

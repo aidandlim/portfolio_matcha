@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { user_data } from '../../../../actions';
 
 import axios from 'axios';
-
+import Logout_P from '../../../util/pull/logout';
 import Alert from '../../../util/alert';
 
 import '../index.css';
@@ -25,6 +25,9 @@ const Password = () => {
 				if(res.data) {
 					dispatch(user_data({}));
 					Alert(0, 'Password has updated. Sign in Again!', 'Okay', null, null);
+				} else {
+					Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+				Logout_P(dispatch);
 				}
 			});
 		} else {

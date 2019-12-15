@@ -4,8 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import axios from 'axios';
 import User_P from '../../../util/pull/user';
+import Logout_P from '../../../util/pull/logout';
+import Alert from '../../../util/alert';
 
-import { IMAGE } from '../../../../api';
+import { IMAGE_URL } from '../../../../api';
 
 import { FaPlusCircle, FaRegTimesCircle } from 'react-icons/fa';
 
@@ -40,8 +42,13 @@ const Picture = () => {
 				}
 
 				axios.put('/users/picture', data)
-				.then(() => {
-					User_P(dispatch);
+				.then((res) => {
+					if(res.data === -1) {
+						Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+						Logout_P(dispatch);
+					} else {
+						User_P(dispatch);
+					}
 				});
 				
 				input.value = '';
@@ -58,8 +65,13 @@ const Picture = () => {
 		}
 
 		axios.put('/users/picture', data)
-		.then(() => {
-			User_P(dispatch);
+		.then((res) => {
+			if(res.data === -1) {
+				Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+				Logout_P(dispatch);
+			} else {
+				User_P(dispatch);
+			}
 		});
 	}
 
@@ -72,7 +84,7 @@ const Picture = () => {
 					user.data.picture1 !== ''
 					?
 						<div className='profile-image' onClick={ (e) => _handlePicture(e, 1, 1) } style={{
-							backgroundImage: `url('${IMAGE}${user.data.picture1}')`
+							backgroundImage: `url('${IMAGE_URL}${user.data.picture1}')`
 						}}>
 						
 						</div>
@@ -85,7 +97,7 @@ const Picture = () => {
 					user.data.picture2 !== ''
 					?
 						<div className='profile-image' onClick={ (e) => _handlePicture(e, 1, 2) } style={{
-							backgroundImage: `url('${IMAGE}${user.data.picture2}')`
+							backgroundImage: `url('${IMAGE_URL}${user.data.picture2}')`
 						}}>
 							<FaRegTimesCircle className='profile-image-delete' onClick={ (e) => _handlePicture(e, 0, 2) }/>
 						</div>
@@ -98,7 +110,7 @@ const Picture = () => {
 					user.data.picture3 !== ''
 					?
 						<div className='profile-image' onClick={ (e) => _handlePicture(e, 1, 3) } style={{
-							backgroundImage: `url('${IMAGE}${user.data.picture3}')`
+							backgroundImage: `url('${IMAGE_URL}${user.data.picture3}')`
 						}}>
 							<FaRegTimesCircle className='profile-image-delete' onClick={ (e) => _handlePicture(e, 0, 3) }/>
 						</div>
@@ -111,7 +123,7 @@ const Picture = () => {
 					user.data.picture4 !== ''
 					?
 						<div className='profile-image' onClick={ (e) => _handlePicture(e, 1, 4) } style={{
-							backgroundImage: `url('${IMAGE}${user.data.picture4}')`
+							backgroundImage: `url('${IMAGE_URL}${user.data.picture4}')`
 						}}>
 							<FaRegTimesCircle className='profile-image-delete' onClick={ (e) => _handlePicture(e, 0, 4) }/>
 						</div>
@@ -124,7 +136,7 @@ const Picture = () => {
 					user.data.picture5 !== ''
 					?
 						<div className='profile-image' onClick={ (e) => _handlePicture(e, 1, 5) } style={{
-							backgroundImage: `url('${IMAGE}${user.data.picture5}')`
+							backgroundImage: `url('${IMAGE_URL}${user.data.picture5}')`
 						}}>
 							<FaRegTimesCircle className='profile-image-delete' onClick={ (e) => _handlePicture(e, 0, 5) }/>
 						</div>

@@ -2,8 +2,7 @@ import { user_data, chat_current, detail_data, match_data, chat_list, chat_messa
 
 import axios from 'axios';
 
-const LogoutPull = (dispatch) => {
-    console.log('LogoutPull');
+const Logout = (dispatch) => {
     axios.get('/auth/out')
     .then((res) => {
         if(res.data) {
@@ -21,4 +20,4 @@ const LogoutPull = (dispatch) => {
     });
 }
 
-export default LogoutPull;
+export default Logout;

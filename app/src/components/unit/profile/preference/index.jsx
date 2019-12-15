@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import Tag_P from '../../../util/pull/tag';
 import Suggest_P from '../../../util/pull/suggest';
+import Logout_P from '../../../util/pull/logout';
+import Alert from '../../../util/alert';
 
 import Tag from '../tag';
 import Suggest from '../suggest';
@@ -28,6 +30,9 @@ const Preference = () => {
 				.then((res) => {
 					if(res.data) {
 						Tag_P(dispatch);
+					} else {
+						Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+						Logout_P(dispatch);
 					}
 				});
 			}
@@ -47,6 +52,9 @@ const Preference = () => {
 			.then((res) => {
 				if(res.data) {
 					Tag_P(dispatch);
+				} else {
+					Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+					Logout_P(dispatch);
 				}
 			});
 		}
@@ -78,6 +86,9 @@ const Preference = () => {
 		.then((res) => {
 			if(res.data) {
 				Tag_P(dispatch);
+			} else {
+				Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+				Logout_P(dispatch);
 			}
 		});
 	}

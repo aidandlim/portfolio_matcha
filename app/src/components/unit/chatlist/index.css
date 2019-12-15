@@ -6,6 +6,12 @@
 
     position: relative;
     float: left;
+
+    color: var(--color-50);
+    font-size: 0.6rem;
+    font-weight: 900;
+    text-align: center;
+    line-height: 5rem;
 }
 
 .chatlist-container {

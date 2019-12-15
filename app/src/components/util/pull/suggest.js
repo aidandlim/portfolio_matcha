@@ -2,7 +2,9 @@ import { user_suggest1, user_suggest2 } from '../../../actions';
 
 import axios from 'axios';
 
-const SuggestPull = (dispatch, type) => {
+import Logout_P from './logout';
+
+const Suggest = (dispatch, type) => {
     if(type === 0) {
         if(document.myself.tag.value !== '') {
 			const data = {
@@ -12,10 +14,14 @@ const SuggestPull = (dispatch, type) => {
 
 			axios.get('/tags', { params : data })
 			.then((res) => {
-				dispatch(user_suggest1(res.data));
+				if(res.data === -1) {
+					Logout_P();
+				} else {
+					dispatch(user_suggest1(res.data));
+				}
 			});
 		} else {
-			SuggestPull(dispatch, 2);
+			Suggest(dispatch, 2);
 		}
     } else if(type === 1) {
         if(document.preference.tag.value !== '') {
@@ -26,10 +32,14 @@ const SuggestPull = (dispatch, type) => {
 
 			axios.get('/tags', { params : data })
 			.then((res) => {
-				dispatch(user_suggest2(res.data));
+				if(res.data === -1) {
+					Logout_P();
+				} else {
+					dispatch(user_suggest2(res.data));
+				}
 			});
 		} else {
-			SuggestPull(dispatch, 3);
+			Suggest(dispatch, 3);
 		}
     } else if(type === 2) {
         dispatch(user_suggest1([]));
@@ -38,4 +48,4 @@ const SuggestPull = (dispatch, type) => {
     }
 }
 
-export default SuggestPull;
+export default Suggest;

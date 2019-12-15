@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import axios from 'axios';
 import User_P from '../../../util/pull/user';
+import Logout_P from '../../../util/pull/logout';
+import Alert from '../../../util/alert';
 
 import '../index.css';
 
@@ -25,7 +27,8 @@ const Filter = () => {
 			if(res.data) {
 				User_P(dispatch);
 			} else {
-				//
+				Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+				Logout_P(dispatch);
 			}
 		});
 	}

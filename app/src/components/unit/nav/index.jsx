@@ -6,7 +6,7 @@ import Logout_P from '../../util/pull/logout';
 
 import Menu from './menu';
 
-import { IMAGE } from '../../../api';
+import { IMAGE_URL } from '../../../api';
 
 import { FaLocationArrow, FaUnlink } from "react-icons/fa";
 import './index.css';
@@ -22,7 +22,7 @@ const Nav = () => {
 	return (
 		<div className='nav'>
 			<div className='nav-profile' style={{
-				backgroundImage: `url('${IMAGE}${user.data.picture1}')`
+				backgroundImage: `url('${IMAGE_URL}${user.data.picture1}')`
 			}}></div>
 			<div className='nav-fullname'>{user.data.first_name === '' && user.data.last_name === '' ? 'Unknown' : '' }{user.data.first_name} {user.data.last_name}</div>
 			<div className='nav-location-container'>
