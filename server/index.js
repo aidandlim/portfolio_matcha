@@ -131,7 +131,7 @@ io.on('connection', (socket) => {
             if(user) {
                 io.to(user.socketId).emit('notification');
             }
-            appears.insert(from, to, callback);
+            // appears.insert(from, to, callback);
         }
     });
     
@@ -144,7 +144,7 @@ io.on('connection', (socket) => {
             if(user) {
                 io.to(user.socketId).emit('notification');
             }
-            visits.insert(from, to, callback);
+            // visits.insert(from, to, callback);
         }
     });
 
@@ -157,7 +157,7 @@ io.on('connection', (socket) => {
             if(user) {
                 io.to(user.socketId).emit('notification');
             }
-            likes.insert(from, to, callback);
+            // likes.insert(from, to, callback);
         }
     });
 
@@ -170,7 +170,7 @@ io.on('connection', (socket) => {
             if(user) {
                 io.to(user.socketId).emit('notification');
             }
-            unlikes.insert(from, to, callback);
+            // unlikes.insert(from, to, callback);
         }
     });
 
@@ -183,7 +183,7 @@ io.on('connection', (socket) => {
             if(user) {
                 io.to(user.socketId).emit('notification');
             }
-            messages.insert(from, to, content, callback);
+            // messages.insert(from, to, content, callback);
         }
     });
 
