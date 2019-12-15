@@ -8,7 +8,7 @@ module.exports.select = (req, res) => {
     if (req.session.userId !== -1) {
         const sql_select_user = 'SELECT id, first_name, last_name, picture1 FROM users WHERE id IN (SELECT `from` FROM likes WHERE `to` = ?)';
         const sql_select_other = 'SELECT id, first_name, last_name, picture1 FROM users WHERE id IN (SELECT `to` FROM likes WHERE `from` = ?)';
-        const sql_select_both = 'SELECT id, first_name, last_name, picture1 FROM users WHERE id IN (SELECT `to` FROM likes WHERE `from` = ? AND `to` IN (SELECT `from` FROM likes WHERE `to` = ?))';
+        const sql_select_both = 'SELECT id, first_name, last_name, picture1, (SELECT COUNT(*) FROM messages WHERE `from` = u.id AND `to` = ? AND checked = 0) AS count FROM users AS u WHERE id IN (SELECT `to` FROM likes WHERE `from` = ? AND `to` IN (SELECT `from` FROM likes WHERE `to` = ?))';
 
         const userId = req.session.userId;
         const type = req.query.type;
@@ -42,7 +42,7 @@ module.exports.select = (req, res) => {
                 }
             })
         } else if (type === 'chat') {
-            conn.query(sql_select_both, [userId, userId], (err, results) => {
+            conn.query(sql_select_both, [userId, userId, userId], (err, results) => {
                 if (err) {
                     console.log(err);
                 } else {
