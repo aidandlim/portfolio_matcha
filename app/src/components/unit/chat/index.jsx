@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { chat_current } from '../../../actions';
+
+import axios from 'axios';
 
 import Message from './message';
 
@@ -10,8 +12,22 @@ import './index.css';
 import DetailPull from '../../util/pull/detailPull';
 
 const Chat = () => {
+	const [messages, setMessages] = useState([]);
 	const chat = useSelector(state => state.chat);
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		if(chat.current !== -1) {
+			const data = {
+				type: 'all',
+				target: chat.list[chat.current].id
+			}
+			axios.get('/messages', { params: data })
+			.then((res) => {
+				setMessages(res.data);
+			});
+		}
+	}, [chat]);
 
 	const _handleDetail = () => {
 		DetailPull(dispatch, chat.list[chat.current].id);
@@ -25,10 +41,9 @@ const Chat = () => {
 				<FaTimesCircle className='chat-header-exit' onClick={ () => dispatch(chat_current(-1)) } />
 			</div>
 			<div className='chat-body'>
-				<Message direction={0} content={'This is a Japanese doll.'} />
-				<Message direction={1} content={'He didn\'t want to go to the dentist, yet he went anyway.'} />
-				<Message direction={0} content={'She works two jobs to make ends meet; at least, that was her reason for not having time to join us.'} />
-				<Message direction={1} content={'Don\'t step on the broken glass.'} />
+				{messages.map((message, index) => 
+					<Message message={message} key={index} />	
+				)}
 			</div>
 			<div className='chat-footer'>
 				<textarea className='chat-footer-input'></textarea>
