@@ -2,6 +2,8 @@ const mail = require('./mail');
 
 const conn = require('../config/db');
 
+//
+
 module.exports.select = (req, res) => {
     const sql_select_user = 'SELECT id, first_name, last_name, picture1 FROM users WHERE id IN (SELECT `from` FROM likes WHERE `to` = ?)';
     const sql_select_other = 'SELECT id, first_name, last_name, picture1 FROM users WHERE id IN (SELECT `to` FROM likes WHERE `from` = ?)';
@@ -52,27 +54,24 @@ module.exports.select = (req, res) => {
 
 //
 
-module.exports.insert = (req, res) => {
+module.exports.insert = (from, to, callback) => {
     const sql = 'INSERT INTO likes (`from`, `to`) values (?, ?)';
 
-    const userId = req.session.userId;
-    const to = req.body.to;
-
-    conn.query(sql, [userId, to], (err) => {
+    conn.query(sql, [from, to], (err) => {
         if (err) {
             console.log(err);
-            res.json(0);
+            callback(0);
         } else {
             const sql_select_to = 'SELECT email FROM users WHERE id = ?';
 
             conn.query(sql_select_to, [to], (err, results) => {
                 if (err) {
                     console.log(err);
-                    res.json(0);
+                    callback(0);
                 } else {
                     results = JSON.parse(JSON.stringify(results));
-                    mail.notification('like', userId, results[0].email);
-                    res.json(1);
+                    mail.notification('like', from, results[0].email);
+                    callback(1);
                 }
             })
         }

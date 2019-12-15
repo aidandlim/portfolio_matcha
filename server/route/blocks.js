@@ -1,5 +1,7 @@
 const conn = require('../config/db');
 
+//
+
 module.exports.select = (req, res) => {
     const sql = 'SELECT id, first_name, last_name, picture1 FROM users WHERE id IN (SELECT `to` FROM blocks WHERE `from` = ?)';
 

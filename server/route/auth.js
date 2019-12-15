@@ -4,6 +4,8 @@ const uuid = require('uuid/v1');
 const conn = require('../config/db');
 const URL = require('../const');
 
+//
+
 module.exports.up = (req, res) => {
     const sql_select_user = 'SELECT * FROM users WHERE email = ?';
     const sql_insert_users = 'INSERT INTO users (email, password) values (?, SHA1(?))';

@@ -1,5 +1,7 @@
 const conn = require('../config/db');
 
+//
+
 module.exports.insert = (req, res) => {
     const sql = 'INSERT INTO reports (`from`, `to`, reason) values (?, ?, ?)';
 

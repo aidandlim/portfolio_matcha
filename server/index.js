@@ -3,6 +3,12 @@ const session = require('express-session');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const http = require('http');
+const socketio = require('socket.io');
+const server = http.createServer(app);
+const io = socketio(server);
+
+const { addUser, removeUser, getUser } = require('./container');
 
 const users = require('./route/users');
 const auth = require('./route/auth');
@@ -78,18 +84,18 @@ app.post('/api/tags', tags.insert);
 app.delete('/api/tags', tags.delete);
 
 app.put('/api/appears', appears.update);
-// app.post('/api/appears', appears.insert);
+app.post('/api/appears', appears.insert);
 
 app.put('/api/visits', visits.update);
-// app.post('/api/visits', visits.insert);
+app.post('/api/visits', visits.insert);
 
 app.get('/api/likes', likes.select);
 app.put('/api/likes', likes.update);
-// app.post('/api/likes', likes.insert);
+app.post('/api/likes', likes.insert);
 app.delete('/api/likes', likes.delete);
 
 app.put('/api/unlikes', unlikes.update);
-// app.post('/api/unlikes', unlikes.insert);
+app.post('/api/unlikes', unlikes.insert);
 
 app.get('/api/notifications', notifications.select);
 
@@ -106,15 +112,10 @@ app.post('/api/reports', reports.insert);
 app.get('/api/matches', matches.select);
 
 app.get('/api/messages', messages.select);
+app.put('/api/messages', messages.update);
+app.post('/api/messages', messages.insert);
 
-// 
-
-const http = require('http');
-const socketio = require('socket.io');
-const server = http.createServer(app);
-const io = socketio(server);
-
-const { addUser, removeUser, getUser } = require('./container');
+//
 
 io.on('connection', (socket) => {
     socket.on('join', (id) => {
@@ -131,7 +132,7 @@ io.on('connection', (socket) => {
             if(user) {
                 io.to(user.socketId).emit('notification');
             }
-            // appears.insert(from, to, callback);
+            appears.insert(from, to, callback);
         }
     });
     
@@ -144,7 +145,7 @@ io.on('connection', (socket) => {
             if(user) {
                 io.to(user.socketId).emit('notification');
             }
-            // visits.insert(from, to, callback);
+            visits.insert(from, to, callback);
         }
     });
 
@@ -157,7 +158,7 @@ io.on('connection', (socket) => {
             if(user) {
                 io.to(user.socketId).emit('notification');
             }
-            // likes.insert(from, to, callback);
+            likes.insert(from, to, callback);
         }
     });
 
@@ -170,7 +171,7 @@ io.on('connection', (socket) => {
             if(user) {
                 io.to(user.socketId).emit('notification');
             }
-            // unlikes.insert(from, to, callback);
+            unlikes.insert(from, to, callback);
         }
     });
 
@@ -183,7 +184,7 @@ io.on('connection', (socket) => {
             if(user) {
                 io.to(user.socketId).emit('notification');
             }
-            // messages.insert(from, to, content, callback);
+            messages.insert(from, to, content, callback);
         }
     });
 

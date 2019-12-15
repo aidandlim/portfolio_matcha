@@ -3,6 +3,8 @@ const uuid = require('uuid/v1');
 
 const conn = require('../config/db');
 
+//
+
 module.exports.forgot = (req, res) => {
     const sql = 'UPDATE users SET password = SHA1(?) WHERE email = ?';
 

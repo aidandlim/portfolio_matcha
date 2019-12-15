@@ -1,5 +1,7 @@
 const conn = require('../config/db');
 
+//
+
 module.exports.up = (req, res) => {
     const sql_select_verifies = 'SELECT id FROM verifies AS v LEFT JOIN users AS u ON v.user_id = u.id WHERE u.email = ? AND uuid = ?';
     const sql_delete_verifies = 'DELETE FROM verifies AS v LEFT JOIN users AS u ON v.user_id = u.id WHERE u.email = ? AND uuid = ?';
