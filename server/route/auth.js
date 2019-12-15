@@ -107,6 +107,6 @@ module.exports.out = (req, res) => {
         req.session.userId = -1;
         res.json(1);
     } else {
-        res.json(0);
+        res.json(-1);
     }
 }

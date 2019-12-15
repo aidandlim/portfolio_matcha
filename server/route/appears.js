@@ -31,16 +31,20 @@ module.exports.insert = (from, to, callback) => {
 //
 
 module.exports.update = (req, res) => {
-    const sql = 'UPDATE appears SET checked = 1 WHERE id = ?';
+    if (req.session.userId !== -1) {
+        const sql = 'UPDATE appears SET checked = 1 WHERE id = ?';
 
-    const id = req.body.id;
+        const id = req.body.id;
 
-    conn.query(sql, [id], (err) => {
-        if (err) {
-            console.log(err);
-            res.json(0);
-        } else {
-            res.json(1);
-        }
-    })
+        conn.query(sql, [id], (err) => {
+            if (err) {
+                console.log(err);
+                res.json(0);
+            } else {
+                res.json(1);
+            }
+        })
+    } else {
+        res.json(-1);
+    }
 }
