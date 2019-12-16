@@ -49,7 +49,7 @@ const Chat = () => {
 	}
 
 	const _handleDetail = () => {
-		Detail_p(dispatch, chat.list[chat.current].id);
+		Detail_p(dispatch, chat.list[chat.current].id, user.data.latitude, user.data.longitude);
 	}
 
 	const _handleExit = () => {

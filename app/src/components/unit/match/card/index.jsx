@@ -78,7 +78,7 @@ const Card = () => {
 	}
 
 	const _handleDetail = () => {
-		Detail_P(dispatch, match.data.id);
+		Detail_P(dispatch, match.data.id, user.data.latitude, user.data.longitude);
 	}
 
 	const _handleUnlike = () => {

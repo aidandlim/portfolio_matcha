@@ -28,6 +28,8 @@ import NotificationMP3 from '../../../resources/notification.mp3';
 
 import './index.css';
 
+import './mobile.css';
+
 export let socket;
 
 const Core = () => {

@@ -4,10 +4,13 @@ import axios from 'axios';
 
 import Logout_P from './logout';
 
-const Detail = (dispatch, id) => {
+const Detail = (dispatch, id, latitude, longitude) => {
     if(id !== -1) {
         const data = {
+            type: 'detail',
             userId: id,
+            latitude: latitude,
+            longitude: longitude,
         }
         
         axios.get('/users', { params : data })

@@ -40,7 +40,7 @@ const Detail = () => {
 				} else {
 					Chat_P(dispatch);
 					Overview_P(dispatch, 1);
-					Detail_P(dispatch, detail.data.id);
+					Detail_P(dispatch, detail.data.id, user.data.latitude, user.data.longitude);
 					Match_p(dispatch);
 				}
 			});
@@ -57,7 +57,7 @@ const Detail = () => {
 				} else {
 					Chat_P(dispatch);
 					Overview_P(dispatch, 1);
-					Detail_P(dispatch, detail.data.id);
+					Detail_P(dispatch, detail.data.id, user.data.latitude, user.data.longitude);
 					Match_p(dispatch);
 				}
 			});
@@ -75,7 +75,7 @@ const Detail = () => {
 				Logout_P(dispatch);
 			} else {
 				Chat_P(dispatch);
-				Detail_P(dispatch, detail.data.id);
+				Detail_P(dispatch, detail.data.id, user.data.latitude, user.data.longitude);
 			}
 		});
 	}
@@ -94,7 +94,7 @@ const Detail = () => {
 	}
 
 	const _handleExit = () => {
-		Detail_P(dispatch, -1);
+		Detail_P(dispatch, -1, user.data.latitude, user.data.longitude);
 	}
 
 	return (
@@ -184,15 +184,15 @@ const Detail = () => {
 					</div>
 					<div className='detail-info-container'>
 						<FaUserAlt className='detail-info-icon' />
-						<div className='detail-info-content'>Born in {detail.data.birth_year}, 28 years old.</div>
+						<div className='detail-info-content'>Born in {detail.data.birth_year}, {detail.data.age} years old.</div>
 					</div>
 					<div className='detail-info-container'>
 						<FaLocationArrow className='detail-info-icon' />
-						<div className='detail-info-content'>In {detail.data.address}. 10.0 miles away.</div>
+						<div className='detail-info-content'>In {detail.data.address}. {detail.data.distance.toFixed(2)} miles away.</div>
 					</div>
 					<div className='detail-info-container'>
 						<FaHeart className='detail-info-icon' />
-						<div className='detail-info-content'>76%</div>
+						<div className='detail-info-content'>{detail.data.count_likes - detail.data.count_unlikes >= 0 ? `+${detail.data.count_likes - detail.data.count_unlikes}` : detail.data.count_likes - detail.data.count_unlikes}</div>
 					</div>
 					<div className='detail-tag-title'>I am ...</div>
 					<div className='detail-tag-container'>

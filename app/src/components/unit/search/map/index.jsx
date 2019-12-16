@@ -38,7 +38,7 @@ const Map = (props) => {
 
 	const _handleDetail = (id) => {
 		console.log(id);
-		Detail_P(dispatch, id);
+		Detail_P(dispatch, id, user.data.latitude, user.data.longitude);
 	}
 
 	const _handleDrag = (mapProps, map) => {

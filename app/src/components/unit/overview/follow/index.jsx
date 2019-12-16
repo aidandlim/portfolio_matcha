@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { IMAGE_URL } from '../../../../api';
 
@@ -8,10 +8,11 @@ import '../index.css';
 import Detail_P from '../../../util/pull/detail';
 
 const Follow = ({ follows }) => {
+    const user = useSelector(state => state.user);
     const dispatch = useDispatch();
 
     const _handleDetail = (id) => {
-        Detail_P(dispatch, id);
+        Detail_P(dispatch, id, user.data.latitude, user.data.longitude);
     }
 
     return (
