@@ -3,9 +3,13 @@ const session = require('express-session');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const http = require('http');
+const https = require('https');
 const socketio = require('socket.io');
-const server = http.createServer(app);
+const fs = require('fs');
+const privateKey  = fs.readFileSync('cert/key.pem', 'utf8');
+const certificate = fs.readFileSync('cert/matcha.pem', 'utf8');
+const credentials = {key: privateKey, cert: certificate};
+const server = https.createServer(credentials, app);
 const io = socketio(server);
 
 const { addUser, removeUser, getUser } = require('./container');
@@ -51,7 +55,7 @@ app.use(bodyParser.json({
 
 app.use(express.static('public'));
 
-app.use(cors({origin: 'https://localhost:3000'}));
+app.use(cors({origin: 'https://matcha.aidandlim.com:3000'}));
 
 app.get('/', (req, res) => {
     res.send('Connection is successful');
@@ -205,6 +209,6 @@ io.on('connection', (socket) => {
     });
 });
 
-const PORT = 80;
+const PORT = 443;
 
 server.listen(PORT, () => console.log(`Server has started on port ${PORT}`));
