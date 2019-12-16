@@ -205,4 +205,6 @@ io.on('connection', (socket) => {
     });
 });
 
-server.listen(8443, () => console.log(`Server has started on port 8443`));
+const PORT = 80;
+
+server.listen(PORT, () => console.log(`Server has started on port ${PORT}`));
