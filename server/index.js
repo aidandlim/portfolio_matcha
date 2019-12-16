@@ -209,6 +209,6 @@ io.on('connection', (socket) => {
     });
 });
 
-const PORT = 443;
+const PORT = 8443;
 
 server.listen(PORT, () => console.log(`Server has started on port ${PORT}`));
