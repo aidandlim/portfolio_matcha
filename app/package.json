@@ -2,7 +2,7 @@
   "name": "matcha",
   "version": "0.0.1",
   "private": true,
-  "proxy": "https://matcha.aidandlim.com:8443/api",
+  "proxy": "https://localhost:8443/api",
   "dependencies": {
     "@nivo/line": "^0.59.3",
     "axios": "^0.19.0",

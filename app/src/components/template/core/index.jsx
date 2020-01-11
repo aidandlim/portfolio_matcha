@@ -61,16 +61,14 @@ const Core = () => {
 			document.getElementById('notification-mp3').play();
 			Notification_P(dispatch);
 		});
-	}, [dispatch, user.data.id]);
 
-	useEffect(() => {
 		socket.on('message', () => {
-			document.getElementById('notification-mp3').play();
+			document.getElementById('message-mp3').play();
 			Chat_P(dispatch);
 			if(chat.current !== -1)
 				Messages_P(dispatch, chat.list[chat.current].id);
 		});
-	}, [dispatch, chat]);
+	});
 
 	const _handleNav = (index) => {
 		dispatch(chat_current(-1));
@@ -94,14 +92,17 @@ const Core = () => {
 					{user.isComplete && ui.nav === 5 ? <Notification /> : null}
 					{chat.current !== -1 ? <Chat /> : null}
 					{detail.data.id !== undefined ? <Detail /> : null}
-					<FaBell className={ui.nav === 5 ? 'core-nav-notification-active' : 'core-nav-notification'} onClick={ () => _handleNav(5)} />
-					<FaComment className={ui.nav === 4 ? 'core-nav-chat-active' : 'core-nav-chat'} onClick={ () => _handleNav(4)} />
-					<div id='notification-top' className={ui.nav === 5 ? 'core-nav-decoration-top-active' : 'core-nav-decoration-top'} onClick={ () => _handleNav(5)} ></div>
-					<div id='notification-bottom' className={ui.nav === 4 ? 'core-nav-decoration-bottom-active' : 'core-nav-decoration-bottom'} onClick={ () => _handleNav(4)} ></div>
+					{user.isComplete ? <FaBell className={ui.nav === 5 ? 'core-nav-notification-active' : 'core-nav-notification'} onClick={ () => _handleNav(5)} /> : null}
+					{user.isComplete ? <FaComment className={ui.nav === 4 ? 'core-nav-chat-active' : 'core-nav-chat'} onClick={ () => _handleNav(4)} /> : null}
+					{user.isComplete ? <div id='notification-top' className={ui.nav === 5 ? 'core-nav-decoration-top-active' : 'core-nav-decoration-top'} onClick={ () => _handleNav(5)} ></div> : null}
+					{user.isComplete ? <div id='notification-bottom' className={ui.nav === 4 ? 'core-nav-decoration-bottom-active' : 'core-nav-decoration-bottom'} onClick={ () => _handleNav(4)} ></div> : null}
 					{notification.count !== 0 ? <div className='core-nav-icon-top' onClick={ () => _handleNav(5)} >N</div> : null}
 					{chat.list.findIndex((chat) => chat.count !== 0) !== -1 ? <div className='core-nav-icon-bottom' onClick={ () => _handleNav(4)} >N</div> : null}
 				</div>
-				<audio id='notification-mp3' style={{ display: 'none' }}>
+				<audio id='notification-mp3' style={{ display: 'none' }} autoPlay=''>
+					<source src={NotificationMP3} type='audio/mp3' />
+				</audio>
+				<audio id='message-mp3' style={{ display: 'none' }} autoPlay=''>
 					<source src={NotificationMP3} type='audio/mp3' />
 				</audio>
 			</div>

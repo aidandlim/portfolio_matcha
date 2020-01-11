@@ -17,7 +17,7 @@ const Fg = () => {
 			email: document.forgot.email.value
 		};
 
-		axios.get('/mail/password', data)
+		axios.get('/mail/password', { params: data })
 		.then(res => {
 			if(res.data) {
 				Alert(0, 'check your email', 'Okay', null, null);
