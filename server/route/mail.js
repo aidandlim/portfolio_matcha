@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
 const uuid = require('uuid/v1');
+const URL = require('../const');
 
 const conn = require('../config/db');
 
