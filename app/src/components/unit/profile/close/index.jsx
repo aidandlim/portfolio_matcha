@@ -20,6 +20,7 @@ const Close = () => {
 		axios.delete('/users')
 		.then(res => {
 			if(res.data) {
+				Alert(0, 'User information has been updated!', 'Okay', null, null);
 				dispatch(user_data({}));
 			} else {
 				Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);

@@ -43,6 +43,7 @@ const Location = () => {
 					axios.put('/users/address', data)
 					.then(res => {
 						if(res.data) {
+							Alert(0, 'User information has been updated!', 'Okay', null, null);
 							User_P(dispatch);
 						} else {
 							Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
@@ -73,6 +74,7 @@ const Location = () => {
 				axios.put('/users/address', data)
 				.then(res => {
 					if(res.data) {
+						Alert(0, 'User information has been updated!', 'Okay', null, null);
 						User_P(dispatch);
 					} else {
 						Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
