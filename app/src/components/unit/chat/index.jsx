@@ -37,15 +37,17 @@ const Chat = () => {
 	const _handleForm = (e) => {
 		e.preventDefault();
 
-		socket.emit('message', user.data.id, chat.list[chat.current].id, message, (result) => {
-			if(result === -1) {
-				Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
-				Logout_P(dispatch);
-			} else {
-				Messages_P(dispatch, chat.list[chat.current].id);
-			}
-		});
-		setMessage('');
+		if(message !== '') {
+			socket.emit('message', user.data.id, chat.list[chat.current].id, message, (result) => {
+				if(result === -1) {
+					Alert(0, 'Session is invalid. Please signin again.', 'Okay', null, null);
+					Logout_P(dispatch);
+				} else {
+					Messages_P(dispatch, chat.list[chat.current].id);
+				}
+			});
+			setMessage('');
+		}
 	}
 
 	const _handleDetail = () => {
