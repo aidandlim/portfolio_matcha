@@ -1,10 +1,10 @@
 const mysql = require('mysql');
 
 const conn = mysql.createPool({
-    host: '54.215.128.212',
+    host: 'sql.aidandlim.com',
     port: '3306',
-    user: 'matcha',
-    password: 'matcha',
+    user: 'sql',
+    password: 'sql',
     database: 'com_aidandlim_matcha'
 })
 
