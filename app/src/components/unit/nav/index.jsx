@@ -21,9 +21,9 @@ const Nav = () => {
 
 	return (
 		<div className='nav'>
-			<div className='nav-profile' style={{
+			<div className='nav-profile' style={user.data.picture1 !== '' && user.data.picture1 !== undefined ? {
 				backgroundImage: `url('${IMAGE_URL}${user.data.picture1}')`
-			}}></div>
+			} : null}></div>
 			<div className='nav-fullname'>{user.data.first_name === '' && user.data.last_name === '' ? 'Unknown' : '' }{user.data.first_name} {user.data.last_name}</div>
 			<div className='nav-location-container'>
 				<FaLocationArrow className='nav-location-icon'/>

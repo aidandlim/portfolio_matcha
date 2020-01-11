@@ -81,7 +81,7 @@ const Picture = () => {
 			<div className='profile-description'>I currently have 4 windows open up… and I don’t know why.</div>
 			<div className='profile-section'>
 				{
-					user.data.picture1 !== ''
+					user.data.picture1 !== '' && user.data.picture1 !== undefined
 					?
 						<div className='profile-image' onClick={ (e) => _handlePicture(e, 1, 1) } style={{
 							backgroundImage: `url('${IMAGE_URL}${user.data.picture1}')`
@@ -94,7 +94,7 @@ const Picture = () => {
 						</div>
 				}
 				{
-					user.data.picture2 !== ''
+					user.data.picture2 !== '' && user.data.picture2 !== undefined
 					?
 						<div className='profile-image' onClick={ (e) => _handlePicture(e, 1, 2) } style={{
 							backgroundImage: `url('${IMAGE_URL}${user.data.picture2}')`
@@ -107,7 +107,7 @@ const Picture = () => {
 						</div>
 				}
 				{
-					user.data.picture3 !== ''
+					user.data.picture3 !== '' && user.data.picture3 !== undefined
 					?
 						<div className='profile-image' onClick={ (e) => _handlePicture(e, 1, 3) } style={{
 							backgroundImage: `url('${IMAGE_URL}${user.data.picture3}')`
@@ -120,7 +120,7 @@ const Picture = () => {
 						</div>
 				}
 				{
-					user.data.picture4 !== ''
+					user.data.picture4 !== '' && user.data.picture4 !== undefined
 					?
 						<div className='profile-image' onClick={ (e) => _handlePicture(e, 1, 4) } style={{
 							backgroundImage: `url('${IMAGE_URL}${user.data.picture4}')`
@@ -133,7 +133,7 @@ const Picture = () => {
 						</div>
 				}
 				{
-					user.data.picture5 !== ''
+					user.data.picture5 !== '' && user.data.picture5 !== undefined
 					?
 						<div className='profile-image' onClick={ (e) => _handlePicture(e, 1, 5) } style={{
 							backgroundImage: `url('${IMAGE_URL}${user.data.picture5}')`

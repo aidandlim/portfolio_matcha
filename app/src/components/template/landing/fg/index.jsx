@@ -20,10 +20,10 @@ const Fg = () => {
 		axios.get('/mail/password', { params: data })
 		.then(res => {
 			if(res.data) {
-				Alert(0, 'check your email', 'Okay', null, null);
+				Alert(0, 'Check your email', 'Okay', null, null);
 				dispatch(ui_landing(1));
 			} else {
-				Alert(0, 'email is invalid', 'Okay', null, null);
+				Alert(0, 'Email is invalid', 'Okay', null, null);
 			}
 		});
 	}

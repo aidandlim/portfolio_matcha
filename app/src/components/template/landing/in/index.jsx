@@ -44,7 +44,7 @@ const In = () => {
 		};
 
 		axios.get('/mail/reverify', {
-			data
+			params: data
 		})
 		.then(res => {
 			if(res.data) {

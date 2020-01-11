@@ -164,7 +164,7 @@ module.exports.updatePassword = (req, res) => {
         const userId = req.session.userId;
         const password = req.body.password;
 
-        if (email === undefined) {
+        if (userId === undefined) {
             res.json(0);
         } else {
             conn.query(sql, [password, userId], (err) => {
