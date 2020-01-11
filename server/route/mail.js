@@ -7,40 +7,45 @@ const conn = require('../config/db');
 //
 
 module.exports.forgot = (req, res) => {
-    const sql = 'UPDATE users SET password = SHA1(?) WHERE email = ?';
+    const sql1 = 'SELECT * FROM users WHERE email = ?';
+    const sql2 = 'UPDATE users SET password = SHA1(?) WHERE email = ?';
 
     const email = req.query.email;
     const password = uuid();
 
-    if (this.ft_emailCheck(email) === 0) {
-        res.json(0);
-    } else {
-        conn.query(sql, [password, email], (err) => {
-            if (err) {
-                console.log(err);
-            } else {
-                const transporter = nodemailer.createTransport({
-                    service: 'gmail',
-                    auth: {
-                        user: '42sv.matcha@gmail.com',
-                        pass: 'gusdk314'
-                    }
-                });
-                const mailOptions = {
-                    from: '42sv.matcha@gmail.com',
-                    to: email,
-                    subject: 'Please confirm for Matcha account :)',
-                    html: "<div>Your password is changed !<p>E-mail : " + email + "<p>Password : " + password + "<p>You can change your password after login.</div>"
-                };
-                transporter.sendMail(mailOptions, function(error, info){
-                    if (error) {
-                        console.log(error);
-                    }
-                });
-                res.json(1);
-            }
-        })
-    }
+    conn.query(sql1, [email], (err, results) => {
+        if (err) {
+            console.log(err);
+        } else if (results.length === 0) {
+            res.json(0);
+        } else {
+            conn.query(sql2, [password, email], (err) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    const transporter = nodemailer.createTransport({
+                        service: 'gmail',
+                        auth: {
+                            user: '42sv.matcha@gmail.com',
+                            pass: 'gusdk314'
+                        }
+                    });
+                    const mailOptions = {
+                        from: '42sv.matcha@gmail.com',
+                        to: email,
+                        subject: 'Please confirm for Matcha account :)',
+                        html: "<div>Your password is changed !<p>E-mail : " + email + "<p>Password : " + password + "<p>You can change your password after login.</div>"
+                    };
+                    transporter.sendMail(mailOptions, function(error, info){
+                        if (error) {
+                            console.log(error);
+                        }
+                    });
+                    res.json(1);
+                }
+            })
+        }
+    })
 }
 
 //
