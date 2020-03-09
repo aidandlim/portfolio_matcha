@@ -12,7 +12,7 @@
 
 ## Preview
 
-***Not Yet***
+<img src="https://github.com/aidandlim/portfolio_matcha/blob/master/PREVIEW.png?raw=true" width="100%" title="preview" alt="preview">
 
 ---
 
@@ -40,13 +40,35 @@
 
 ## Features
 
-***Not Yet***
+> User
+
+- Sign in & Sign up with email verification
+- Find password & Request verifying by email
+- Change user profile & information includes private account & notification setting
+- Access User detail page includes user information, activities, and posts
+
+> Match & Search
+
+- Automatic matching user using matching algoritms
+- Search other user near by using Google Maps API
+- Provide various filters
+
+> Social
+
+- Reflect Likes & Unlikes and so on to user profile
+- Live chat with follower who follows user
+- Check notification about reflection
+
+> Interface
+
+- A responsive page for desktop & mobile
+- Provide color set for user interface
 
 ---
 
 ## Live Demo
 
-***Not Yet***
+> Click <a href="https://matcha.aidandlim.com" target="_blank">`HERE`</a> to check it out right now.
 
 ---
 
